@@ -17,32 +17,21 @@ class ConfiguratorForm extends Component
     public $onPullrequest;
     public $onPullrequestBranches;
     public $manualTrigger;
-
     public $mysqlService;
     public $mysqlDatabase;
     public $mysqlVersion;
     public $mysqlDatabaseName;
     public $mysqlDatabasePort;
-
     public $stepEnvTemplateFile; // .env.ci
     public $stepPhpVersions; // 7.4
     public $stepNodejs; // false
     public $stepNodejsVersion; // 12.x
-
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
-
     public $stepFixStoragePermissions; //true
-
     public $stepDusk; // false
 
-
-
-
-
     public $result;
-
-
 
     public function mount()
     {
@@ -57,17 +46,13 @@ class ConfiguratorForm extends Component
         $this->mysqlVersion="5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
-
         $this->stepEnvTemplateFile= ".env.ci";
         $this->stepPhpVersions= ["8.0", "7.4"];
         $this->stepNodejs = false;
         $this->stepNodejsVersion ="12.x";
-
         $this->stepCachePackages =true;
         $this->stepCacheVendors = true;
-
         $this->stepFixStoragePermissions = true;
-
         $this->stepDusk = false;
         $this->result = "";
     }
@@ -95,29 +80,11 @@ class ConfiguratorForm extends Component
                 $retVal[$arg] = $vars[Str::camel($arg)];
             }
         }
-
         return $retVal;
-
     }
 
     public function submitForm()
     {
-
-        /*$data =[
-            "mysqlService" => $this->mysqlService,
-            "mysqlDatabase" => $this->mysqlDatabase,
-            "mysqlVersion" => $this->mysqlVersion,
-            "mysqlDatabaseName" => $this->mysqlDatabaseName,
-            "mysqlDatabasePort" => $this->mysqlDatabasePort,
-
-            "name" => $this->name,
-            "on_push" => $this->onPush,
-            "on_push_branches" => self::split($this->onPushBranches),
-            "on_pullrequest" => $this->onPullrequest,
-            "on_pullrequest_branches" => self::split($this->onPullrequestBranches),
-            "on_workflow_dispatch" => $this->manualTrigger
-        ];*/
-
         $data = $this->compactThis(
             "mysqlService",
             "mysqlDatabase",
@@ -126,12 +93,10 @@ class ConfiguratorForm extends Component
             "mysqlDatabasePort",
             "name",
             "on_push",
-
             "on_push_branches",
             "on_pullrequest",
             "on_pullrequest_branches",
             "manual_trigger",
-
             "stepEnvTemplateFile",
             "stepPhpVersions",
             "stepNodejs",
@@ -140,11 +105,8 @@ class ConfiguratorForm extends Component
             "stepCacheVendors",
             "stepFixStoragePermissions",
             "stepDusk"
-
-
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
-
         $this->result = view('action_yaml', $data)->render();
     }
 
