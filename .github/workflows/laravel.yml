@@ -23,7 +23,7 @@ jobs:
         # Docker Hub image (also with version)
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: testpassword
           MYSQL_DATABASE: db_test_laravel
         ## map the "external" 33306 port with the "internal" 3306
         ports:
