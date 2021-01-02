@@ -66,8 +66,8 @@
                       wire:model="onPullrequest"
                     >
                       <x-form.input-text
-                        model="onPullRequestBranches"
-                        name="onPullRequestBranches"
+                        model="onPullrequestBranches"
+                        name="onPullrequestBranches"
                         label="Branches"
                         help="Branches for the PR, comma separated for example main,develop.">
                       </x-form.input-text>
