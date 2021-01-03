@@ -6,7 +6,8 @@
         # Docker Hub image (also with version)
         image: {{ $mysqlDatabase }}:{{ $mysqlVersion }}
         env:
-          MYSQL_ROOT_PASSWORD: $@{{ secrets.DB_PASSWORD }}
+          # MYSQL_ROOT_PASSWORD: $@{{ secrets.DB_PASSWORD }}
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: {{ $mysqlDatabaseName }}
         ## map the "external" 33306 port with the "internal" 3306
         ports:
