@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ConfiguratorForm
@@ -32,6 +34,7 @@ class ConfiguratorForm extends Component
     public $stepDusk; // false
 
     public $result;
+    public $errorGeneration;
 
     public function mount()
     {
@@ -55,6 +58,7 @@ class ConfiguratorForm extends Component
         $this->stepFixStoragePermissions = true;
         $this->stepDusk = false;
         $this->result = "";
+        $this->errorGeneration = "";
     }
 
     private static function split($somethingToSplit, $splitChars=",")
@@ -107,7 +111,20 @@ class ConfiguratorForm extends Component
             "stepDusk"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
-        $this->result = view('action_yaml', $data)->render();
+        $stringResult = view('action_yaml', $data)->render();
+
+        try {
+            Yaml::parse($stringResult);
+            $this->errorGeneration = "";
+            $this->result = $stringResult;
+        } catch (ParseException $e) {
+            $this->errorGeneration = $e->getMessage();
+        }
+
+
+
+
+
     }
 
     public function render()
