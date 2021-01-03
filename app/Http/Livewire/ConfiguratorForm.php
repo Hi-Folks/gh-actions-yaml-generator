@@ -40,7 +40,7 @@ class ConfiguratorForm extends Component
     {
         $this->name="Test Laravel Github action";
         $this->onPush = true;
-        $this->onPushBranches = ["main", "develop", "feature/**"];
+        $this->onPushBranches = ["main", "develop", "features/**"];
         $this->onPullrequest= false;
         $this->onPullrequestBranches = ["main", "develop"];
         $this->manualTrigger = false;
@@ -49,7 +49,7 @@ class ConfiguratorForm extends Component
         $this->mysqlVersion="5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
-        $this->stepEnvTemplateFile= ".env.ci";
+        $this->stepEnvTemplateFile= ".env.example";
         $this->stepPhpVersions= ["8.0", "7.4"];
         $this->stepNodejs = false;
         $this->stepNodejsVersion ="12.x";

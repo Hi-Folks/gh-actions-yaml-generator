@@ -1,9 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "hifolks/gh-actions-yaml-generator",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
-        "framework",
+        "github",
+        "github-actions",
+        "yaml",
+        "cicd",
         "laravel"
     ],
     "license": "MIT",

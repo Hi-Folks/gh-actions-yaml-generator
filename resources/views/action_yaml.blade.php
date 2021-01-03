@@ -1,9 +1,11 @@
 name: {{ $name }}
 @include('yaml.on')
+
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
 @include('yaml.mysql_service')
+
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
