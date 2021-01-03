@@ -1,29 +1,19 @@
 name: {{ $name }}
-
 @include('yaml.on')
-
-
-
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
 @include('yaml.mysql_service')
-
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: {!! $stepPhpVersionsString !!}
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
         php-version: $@{{ matrix.php-versions }}
-
 @if ($stepCachePackages)
     - name: Get Composer Cache Directory 2
       id: composer-cache
@@ -37,7 +27,6 @@ jobs:
         restore-keys: |
           $@{{ runner.os }}-composer-
 @endif
-
 @if ($stepCacheVendors)
     - name: Cache PHP dependencies
       uses: actions/cache@v2
@@ -51,17 +40,14 @@ jobs:
     - name: Install Dependencies
       if: steps.vendor-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
 @if ($stepNodejs)
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '{{ $stepNodejsVersion }}'
 @endif
-
     - name: Generate key
       run: php artisan key:generate
-
 @if ($stepFixStoragePermissions)
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
