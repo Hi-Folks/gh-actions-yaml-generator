@@ -14,7 +14,7 @@ return [
     */
 
     //'name' => env('APP_NAME', 'Laravel'),
-    'name' => "Laravel GitHub Actions Yaml Generator",
+    'name' => "Ghygen",
 
 
     /*

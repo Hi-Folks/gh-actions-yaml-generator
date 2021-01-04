@@ -1,4 +1,22 @@
-# Laravel Github Actions Workflow Configurator
+![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
+
+# Ghygen
+Ghygen is a GitHub actions Yaml Generator.
+
+For Laravel/PHP Developers, Ghygen allows you creating your Yaml file for GitHub Actions, so you can:
+
+- select events trigger (manually , on push, on pull request);
+- select branches;
+- enable caching for all vendors;
+- enable caching PHP packages;
+- select multiple PHP versions;
+- select Node version for NPM (npm run something)
+- setup Mysql service
+- execute tests
+- static code analysis (WIP)
+- execute Dusk (WIP)
+
+This is a Work In Progress, we are adding new features...
 
 ## Install
 Clone source code, enter the new directory and perform a couple of instructions:
@@ -16,10 +34,15 @@ php artisan serve
 Open the browser to the URL: http://127.0.0.1:8000
 
 ## Usage
-Access to the form (by default the URL is http://127.0.0.1:8000 if you run php artisan serve), fill the form and click on "Generate Yaml File" button.
+Follow these steps:
+- access to the form (by default the URL is http://127.0.0.1:8000 if you run php artisan serve);
+- fill the form;
+- click on "Generate Yaml File" button.
 
 ![github-actions-generator-laravel](github-actions-generator-laravel.png "github-actions-generator-laravel")
 
-Copy the content of your Yaml file in your Laravel project in _.github/workflows/laravel_workflow.yaml_ .
+Next, copy the content of your generated Yaml in a new file in your Laravel project _.github/workflows/laravel_workflow.yaml_ .
+
 Commit and push the new file.
+
 If you configured "On - Push" you will see the running Actions in your Actions section of your GitHub project.
