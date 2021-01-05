@@ -9,6 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ConfiguratorForm
+ *
  * @package App\Http\Livewire
  */
 class ConfiguratorForm extends Component
@@ -45,25 +46,25 @@ class ConfiguratorForm extends Component
 
     public function mount()
     {
-        $this->name="Test Laravel Github action";
+        $this->name = "Test Laravel Github action";
         $this->onPush = true;
         $this->onPushBranches = ["main", "develop", "features/**"];
-        $this->onPullrequest= false;
+        $this->onPullrequest = false;
         $this->onPullrequestBranches = ["main", "develop"];
         $this->manualTrigger = false;
         $this->mysqlService = true;
-        $this->mysqlDatabase="mysql";
+        $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
 
-        $this->mysqlVersion="5.7";
+        $this->mysqlVersion = "5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
-        $this->stepEnvTemplateFile= ".env.example";
-        $this->stepPhpVersions= ["8.0", "7.4"];
+        $this->stepEnvTemplateFile = ".env.example";
+        $this->stepPhpVersions = ["8.0", "7.4"];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion ="14.x";
-        $this->stepCachePackages =true;
+        $this->stepNodejsVersion = "14.x";
+        $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
         $this->stepFixStoragePermissions = true;
@@ -76,16 +77,25 @@ class ConfiguratorForm extends Component
         $this->errorGeneration = "";
     }
 
-    private static function split($somethingToSplit, $splitChars=",")
+    private static function split($somethingToSplit, $splitChars = ",")
     {
-        if (\is_string( $somethingToSplit)) {
+        if (\is_string($somethingToSplit)) {
             return array_map('trim', explode($splitChars, $somethingToSplit));
         }
         return $somethingToSplit;
     }
 
-    private static function arrayToString($array) {
-        return "[ " . implode(",", array_map(function ($str) { return "'$str'"; }, $array)) . " ]";
+    private static function arrayToString($array)
+    {
+        return "[ " . implode(
+            ",",
+            array_map(
+                function ($str) {
+                    return "'$str'";
+                },
+                $array
+            )
+        ) . " ]";
     }
 
     private function compactThis(...$args)
@@ -146,11 +156,6 @@ class ConfiguratorForm extends Component
             $this->errorGeneration = $e->getMessage();
             $this->result = $stringResult;
         }
-
-
-
-
-
     }
 
     public function render()

@@ -63,7 +63,7 @@ jobs:
     - name: Execute Code Sniffer via phpcs
       run: |
         composer require --dev squizlabs/php_codesniffer
-        vendor/bin/phpcs app
+        vendor/bin/phpcs --standard=PSR12 app
 
     - name: Execute Code Static Analysis
       run: |
