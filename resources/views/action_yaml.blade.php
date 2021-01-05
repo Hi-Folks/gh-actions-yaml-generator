@@ -103,5 +103,5 @@ jobs:
     - name: Execute Code Static Analysis
       run: |
         composer require --dev phpstan/phpstan
-        vendor/bin/phpstan analyse app
+        vendor/bin/phpstan analyse --no-progress  app
 @endif
