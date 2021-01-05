@@ -13,9 +13,26 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0','7.4' ]
+        php-versions: [ '8.0' ]
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Install NPM packages
+      run: |
+        npm ci
+        npm run production
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
@@ -42,10 +59,23 @@ jobs:
     - name: Install Dependencies
       if: steps.vendor-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
+    - name: Run Migrations
+# Set environment
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: db_test_laravel
+        DB_PORT: 33306
+        DB_USER: root
+
+      run: php artisan migrate
     - name: Create Database
       run: |
         mkdir -p database
