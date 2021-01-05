@@ -1,5 +1,8 @@
-name: Test Manual Laravel Github action
-on: [ workflow_dispatch ]
+name: Database Test Laravel Github action
+on:
+  push:
+    branches:
+          - develop
 
 jobs:
   laravel-tests:

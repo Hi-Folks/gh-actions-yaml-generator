@@ -121,6 +121,8 @@ class ConfiguratorForm extends Component
             "stepDusk"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
+        $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
+        $data["on_push_branches"] = self::split($this->onPushBranches);
 
         $stringResult = view('action_yaml', $data)->render();
 
