@@ -87,7 +87,8 @@
                     value=1
                     wire:model="mysqlService"
                 >
-                  <div class="md:grid md:grid-cols-3 md:gap-3">
+
+                  <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPassword: false }">
                     <div class="col-span-1 ">
                       <x-form.input-text
                           model="mysqlVersion"
@@ -112,6 +113,27 @@
                           help="The Port exposed by the container, this is the external port.">
                       </x-form.input-text>
                     </div>
+                    <div class="col-span-2 ">
+                      <x-form.input-select
+                        model="mysqlPasswordType"
+                        name="mysqlPasswordType"
+                        label="Mysql Password: skip, or read from secret or hardcoded"
+                        :list="['skip'=>'Skip', 'secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
+                        help="Mysql Password: skip, or read from secret or hardcoded"
+                        multiselect=0
+                      onChange='showInputPassword= $event.target.value!=="skip"'>
+                      </x-form.input-select>
+                    </div>
+                    <div class="col-span-1 " x-show="showInputPassword">
+
+                        <x-form.input-text
+                          model="mysqlPassword"
+                          name="mysqlPassword"
+                          label="MySql Password"
+                          help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
+                        </x-form.input-text>
+                    </div>
+
                   </div>
                 </x-form.input-conditional-checkbox>
             </fieldset>
@@ -174,8 +196,9 @@
                     model="stepPhpVersions"
                     name="stepPhpVersions"
                     label="PHP Versions"
-                    :list="['8.0','7.4','7.3']"
-                    help="Select PHP Versions (Multiple)">
+                    :list="['8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
+                    help="Select PHP Versions (Multiple)"
+                    multiselect=1>
                   </x-form.input-select>
                 </div>
               </div>

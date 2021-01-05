@@ -21,6 +21,8 @@ class ConfiguratorForm extends Component
     public $manualTrigger;
     public $mysqlService;
     public $mysqlDatabase;
+    public $mysqlPasswordType; // 'skip
+    public $mysqlPassword; // password
     public $mysqlVersion;
     public $mysqlDatabaseName;
     public $mysqlDatabasePort;
@@ -46,6 +48,9 @@ class ConfiguratorForm extends Component
         $this->manualTrigger = false;
         $this->mysqlService = true;
         $this->mysqlDatabase="mysql";
+        $this->mysqlPasswordType = "skip";
+        $this->mysqlPassword = "DB_PASSWORD";
+
         $this->mysqlVersion="5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
@@ -95,6 +100,8 @@ class ConfiguratorForm extends Component
             "mysqlVersion",
             "mysqlDatabaseName",
             "mysqlDatabasePort",
+            "mysqlPassword",
+            "mysqlPasswordType",
             "name",
             "on_push",
             "on_push_branches",
@@ -111,6 +118,7 @@ class ConfiguratorForm extends Component
             "stepDusk"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
+
         $stringResult = view('action_yaml', $data)->render();
 
         try {
