@@ -31,7 +31,7 @@ jobs:
     - name: Install NPM packages
       run: |
         npm ci
-        npm run production
+        npm run development
 @endif
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
