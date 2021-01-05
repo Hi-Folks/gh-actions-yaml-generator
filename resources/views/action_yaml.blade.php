@@ -85,8 +85,23 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+@if ($stepExecutePhpunit)
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+@include('yaml.set_env')
+
       run: vendor/bin/phpunit --testdox
+@endif
+
+@if ($stepExecuteCodeSniffer)
+    - name: Execute Code Sniffer via phpcs
+      run: |
+        composer require --dev squizlabs/php_codesniffer
+        vendor/bin/phpcs app
+@endif
+
+@if ($stepExecuteStaticAnalysis)
+    - name: Execute Code Static Analysis
+      run: |
+        composer require --dev phpstan/phpstan
+        vendor/bin/phpstan analyse app
+@endif

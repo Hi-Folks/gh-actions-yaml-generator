@@ -35,6 +35,9 @@ class ConfiguratorForm extends Component
     public $stepCacheNpmModules; // true
     public $stepFixStoragePermissions; //true
     public $stepRunMigrations; // true
+    public $stepExecutePhpunit; //true
+    public $stepExecuteCodeSniffer; //false
+    public $stepExecuteStaticAnalysis; // false
     public $stepDusk; // false
 
     public $result;
@@ -65,6 +68,9 @@ class ConfiguratorForm extends Component
         $this->stepCacheNpmModules  = true;
         $this->stepFixStoragePermissions = true;
         $this->stepRunMigrations = true;
+        $this->stepExecutePhpunit = true;
+        $this->stepExecuteCodeSniffer = false;
+        $this->stepExecuteStaticAnalysis = false;
         $this->stepDusk = false;
         $this->result = "";
         $this->errorGeneration = "";
@@ -121,6 +127,9 @@ class ConfiguratorForm extends Component
             "stepCacheNpmModules",
             "stepFixStoragePermissions",
             "stepRunMigrations",
+            "stepExecutePhpunit",
+            "stepExecuteCodeSniffer",
+            "stepExecuteStaticAnalysis",
             "stepDusk"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);

@@ -245,6 +245,33 @@
                     help="Execute php artisan migrate">
                   </x-form.input-checkbox>
                 </div>
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecutePhpunit"
+                    name="stepExecutePhpunit"
+                    label="Execute Tests via phpunit"
+                    help="Execute Tests via phpunit">
+                  </x-form.input-checkbox>
+                </div>
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecuteCodeSniffer"
+                    name="stepExecuteCodeSniffer"
+                    label="Execute Code Sniffer with phpcs"
+                    help="Execute Code Sniffer with phpcs">
+                  </x-form.input-checkbox>
+                </div>
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecuteStaticAnalysis"
+                    name="stepExecuteStaticAnalysis"
+                    label="Execute Static Analysis"
+                    help="Execute Code Static Analysis via phpstan">
+                  </x-form.input-checkbox>
+                </div>
               </div>
 
             </fieldset>
