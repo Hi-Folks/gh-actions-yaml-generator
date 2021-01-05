@@ -33,6 +33,7 @@ class ConfiguratorForm extends Component
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepFixStoragePermissions; //true
+    public $stepRunMigrations; // true
     public $stepDusk; // false
 
     public $result;
@@ -61,6 +62,7 @@ class ConfiguratorForm extends Component
         $this->stepCachePackages =true;
         $this->stepCacheVendors = true;
         $this->stepFixStoragePermissions = true;
+        $this->stepRunMigrations = true;
         $this->stepDusk = false;
         $this->result = "";
         $this->errorGeneration = "";
@@ -115,6 +117,7 @@ class ConfiguratorForm extends Component
             "stepCachePackages",
             "stepCacheVendors",
             "stepFixStoragePermissions",
+            "stepRunMigrations",
             "stepDusk"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
@@ -127,6 +130,7 @@ class ConfiguratorForm extends Component
             $this->result = $stringResult;
         } catch (ParseException $e) {
             $this->errorGeneration = $e->getMessage();
+            $this->result = $stringResult;
         }
 
 

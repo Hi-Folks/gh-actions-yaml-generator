@@ -121,11 +121,10 @@
                         :list="['skip'=>'Skip', 'secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
                         help="Mysql Password: skip, or read from secret or hardcoded"
                         multiselect=0
-                      onChange='showInputPassword= $event.target.value!=="skip"'>
+                        onChange='showInputPassword= $event.target.value!=="skip"'>
                       </x-form.input-select>
                     </div>
                     <div class="col-span-1 " x-show="showInputPassword">
-
                         <x-form.input-text
                           model="mysqlPassword"
                           name="mysqlPassword"
@@ -133,7 +132,6 @@
                           help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
                         </x-form.input-text>
                     </div>
-
                   </div>
                 </x-form.input-conditional-checkbox>
             </fieldset>
@@ -209,7 +207,6 @@
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
-
                     <x-form.input-text
                       model="stepEnvTemplateFile"
                       name="stepEnvTemplateFile"
@@ -218,7 +215,6 @@
                     </x-form.input-text>
                 </div>
                 <div class="col-span-1 ">
-
                   <x-form.input-checkbox
                     model="stepFixStoragePermissions"
                     name="stepFixStoragePermissions"
@@ -226,7 +222,14 @@
                     help="Fix storage permission via chmod 777">
                   </x-form.input-checkbox>
                 </div>
-
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepRunMigrations"
+                    name="stepRunMigrations"
+                    label="Run migrations"
+                    help="Execute php artisan migrate">
+                  </x-form.input-checkbox>
+                </div>
               </div>
 
             </fieldset>
