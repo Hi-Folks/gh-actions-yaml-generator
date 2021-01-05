@@ -1,4 +1,4 @@
-name: Test Laravel Github action
+name: Test Manual Laravel Github action
 on: [ workflow_dispatch ]
 
 jobs:
