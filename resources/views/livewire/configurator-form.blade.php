@@ -138,7 +138,7 @@
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Caching</legend>
-              <div class="md:grid md:grid-cols-2 md:gap-2">
+              <div class="md:grid md:grid-cols-3 md:gap-3">
                 <div class="col-span-1 ">
                   <div class="mt-4 space-y-4">
                     <x-form.input-checkbox
@@ -164,12 +164,38 @@
                   </div>
                 </div>
 
+                <div class="col-span-1 ">
+                  <div class="mt-4 space-y-4">
+                    <x-form.input-checkbox
+                      model="stepCacheNpmModules"
+                      name="stepCacheNpmModules"
+                      label="Cache Npm Modules"
+                      value="1"
+                      help="Enable this, to use cached Npm modules"
+                    >
+                    </x-form.input-checkbox>
+                  </div>
+                </div>
               </div>
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
+
+
+                <div class="col-span-1 ">
+                  <x-form.input-select
+                    model="stepPhpVersions"
+                    name="stepPhpVersions"
+                    label="PHP Versions"
+                    :list="['8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
+                    help="Select PHP Versions (Multiple)"
+                    multiselect=1>
+                  </x-form.input-select>
+                </div>
+
+
                 <div class="col-span-1 ">
                   <x-form.input-conditional-checkbox
                     model="stepNodejs"
@@ -188,17 +214,6 @@
                   </x-form.input-conditional-checkbox>
                 </div>
 
-
-                <div class="col-span-1 ">
-                  <x-form.input-select
-                    model="stepPhpVersions"
-                    name="stepPhpVersions"
-                    label="PHP Versions"
-                    :list="['8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
-                    help="Select PHP Versions (Multiple)"
-                    multiselect=1>
-                  </x-form.input-select>
-                </div>
               </div>
 
             </fieldset>

@@ -32,6 +32,7 @@ class ConfiguratorForm extends Component
     public $stepNodejsVersion; // 12.x
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
+    public $stepCacheNpmModules; // true
     public $stepFixStoragePermissions; //true
     public $stepRunMigrations; // true
     public $stepDusk; // false
@@ -58,9 +59,10 @@ class ConfiguratorForm extends Component
         $this->stepEnvTemplateFile= ".env.example";
         $this->stepPhpVersions= ["8.0", "7.4"];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion ="12.x";
+        $this->stepNodejsVersion ="14.x";
         $this->stepCachePackages =true;
         $this->stepCacheVendors = true;
+        $this->stepCacheNpmModules  = true;
         $this->stepFixStoragePermissions = true;
         $this->stepRunMigrations = true;
         $this->stepDusk = false;
@@ -116,6 +118,7 @@ class ConfiguratorForm extends Component
             "stepNodejsVersion",
             "stepCachePackages",
             "stepCacheVendors",
+            "stepCacheNpmModules",
             "stepFixStoragePermissions",
             "stepRunMigrations",
             "stepDusk"

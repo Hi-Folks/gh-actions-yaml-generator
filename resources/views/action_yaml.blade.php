@@ -12,6 +12,27 @@ jobs:
         php-versions: {!! $stepPhpVersionsString !!}
     steps:
     - uses: actions/checkout@v2
+@if ($stepNodejs)
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '{{ $stepNodejsVersion }}'
+@if ($stepCacheNpmModules)
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: $@{{ runner.OS }}-node-$@{{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          $@{{ runner.OS }}-node-
+          $@{{ runner.OS }}-
+@endif
+    - name: Install NPM packages
+      run: |
+        npm ci
+        npm run production
+@endif
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
