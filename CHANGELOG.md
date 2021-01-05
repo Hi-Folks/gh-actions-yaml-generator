@@ -2,6 +2,21 @@
 
 All notable changes to `Laravel Github Actions Workflow Generator` will be documented in this file
 
+## 0.1.2 - WIP
+## Add
+- Tests execution (via phpunit)
+- Code Sniffer (via phpcs)
+- Static Analysis (via phpstan)
+- Select Mysql Password: skip / from secret / hardcoded
+- Run migrations (php artisan migrate)
+- Nodejs setup (optional)
+- Npm packages installation
+- Caching Npm packages
+
+## Change
+- fix array/string conversion for branches
+
+
 ## 0.1.1 (Proof of Concept) - 2021-01-03
 
 ### Change

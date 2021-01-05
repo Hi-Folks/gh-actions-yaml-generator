@@ -87,7 +87,8 @@
                     value=1
                     wire:model="mysqlService"
                 >
-                  <div class="md:grid md:grid-cols-3 md:gap-3">
+
+                  <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPassword: false }">
                     <div class="col-span-1 ">
                       <x-form.input-text
                           model="mysqlVersion"
@@ -112,13 +113,32 @@
                           help="The Port exposed by the container, this is the external port.">
                       </x-form.input-text>
                     </div>
+                    <div class="col-span-2 ">
+                      <x-form.input-select
+                        model="mysqlPasswordType"
+                        name="mysqlPasswordType"
+                        label="Mysql Password: skip, or read from secret or hardcoded"
+                        :list="['skip'=>'Skip', 'secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
+                        help="Mysql Password: skip, or read from secret or hardcoded"
+                        multiselect=0
+                        onChange='showInputPassword= $event.target.value!=="skip"'>
+                      </x-form.input-select>
+                    </div>
+                    <div class="col-span-1 " x-show="showInputPassword">
+                        <x-form.input-text
+                          model="mysqlPassword"
+                          name="mysqlPassword"
+                          label="MySql Password"
+                          help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
+                        </x-form.input-text>
+                    </div>
                   </div>
                 </x-form.input-conditional-checkbox>
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Caching</legend>
-              <div class="md:grid md:grid-cols-2 md:gap-2">
+              <div class="md:grid md:grid-cols-3 md:gap-3">
                 <div class="col-span-1 ">
                   <div class="mt-4 space-y-4">
                     <x-form.input-checkbox
@@ -144,12 +164,38 @@
                   </div>
                 </div>
 
+                <div class="col-span-1 ">
+                  <div class="mt-4 space-y-4">
+                    <x-form.input-checkbox
+                      model="stepCacheNpmModules"
+                      name="stepCacheNpmModules"
+                      label="Cache Npm Modules"
+                      value="1"
+                      help="Enable this, to use cached Npm modules"
+                    >
+                    </x-form.input-checkbox>
+                  </div>
+                </div>
               </div>
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
+
+
+                <div class="col-span-1 ">
+                  <x-form.input-select
+                    model="stepPhpVersions"
+                    name="stepPhpVersions"
+                    label="PHP Versions"
+                    :list="['8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
+                    help="Select PHP Versions (Multiple)"
+                    multiselect=1>
+                  </x-form.input-select>
+                </div>
+
+
                 <div class="col-span-1 ">
                   <x-form.input-conditional-checkbox
                     model="stepNodejs"
@@ -168,16 +214,6 @@
                   </x-form.input-conditional-checkbox>
                 </div>
 
-
-                <div class="col-span-1 ">
-                  <x-form.input-select
-                    model="stepPhpVersions"
-                    name="stepPhpVersions"
-                    label="PHP Versions"
-                    :list="['8.0','7.4','7.3']"
-                    help="Select PHP Versions (Multiple)">
-                  </x-form.input-select>
-                </div>
               </div>
 
             </fieldset>
@@ -186,7 +222,6 @@
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
-
                     <x-form.input-text
                       model="stepEnvTemplateFile"
                       name="stepEnvTemplateFile"
@@ -195,7 +230,6 @@
                     </x-form.input-text>
                 </div>
                 <div class="col-span-1 ">
-
                   <x-form.input-checkbox
                     model="stepFixStoragePermissions"
                     name="stepFixStoragePermissions"
@@ -203,7 +237,41 @@
                     help="Fix storage permission via chmod 777">
                   </x-form.input-checkbox>
                 </div>
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepRunMigrations"
+                    name="stepRunMigrations"
+                    label="Run migrations"
+                    help="Execute php artisan migrate">
+                  </x-form.input-checkbox>
+                </div>
 
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecutePhpunit"
+                    name="stepExecutePhpunit"
+                    label="Execute Tests via phpunit"
+                    help="Execute Tests via phpunit">
+                  </x-form.input-checkbox>
+                </div>
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecuteCodeSniffer"
+                    name="stepExecuteCodeSniffer"
+                    label="Execute Code Sniffer with phpcs"
+                    help="Execute Code Sniffer with phpcs">
+                  </x-form.input-checkbox>
+                </div>
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepExecuteStaticAnalysis"
+                    name="stepExecuteStaticAnalysis"
+                    label="Execute Static Analysis"
+                    help="Execute Code Static Analysis via phpstan">
+                  </x-form.input-checkbox>
+                </div>
               </div>
 
             </fieldset>

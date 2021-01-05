@@ -12,6 +12,27 @@ jobs:
         php-versions: {!! $stepPhpVersionsString !!}
     steps:
     - uses: actions/checkout@v2
+@if ($stepNodejs)
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '{{ $stepNodejsVersion }}'
+@if ($stepCacheNpmModules)
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: $@{{ runner.OS }}-node-$@{{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          $@{{ runner.OS }}-node-
+          $@{{ runner.OS }}-
+@endif
+    - name: Install NPM packages
+      run: |
+        npm ci
+        npm run development
+@endif
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
@@ -54,13 +75,33 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 @endif
+@if ($stepRunMigrations)
+    - name: Run Migrations
+@include('yaml.set_env')
 
+      run: php artisan migrate
+@endif
     - name: Create Database
       run: |
         mkdir -p database
         touch database/database.sqlite
+@if ($stepExecutePhpunit)
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
+@include('yaml.set_env')
+
       run: vendor/bin/phpunit --testdox
+@endif
+
+@if ($stepExecuteCodeSniffer)
+    - name: Execute Code Sniffer via phpcs
+      run: |
+        composer require --dev squizlabs/php_codesniffer
+        vendor/bin/phpcs --standard=PSR12 app
+@endif
+
+@if ($stepExecuteStaticAnalysis)
+    - name: Execute Code Static Analysis
+      run: |
+        composer require --dev phpstan/phpstan
+        vendor/bin/phpstan analyse --no-progress  app
+@endif
