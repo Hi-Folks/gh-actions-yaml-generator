@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Swaggest\JsonSchema\Schema;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -145,16 +146,24 @@ class ConfiguratorForm extends Component
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
-
         $stringResult = view('action_yaml', $data)->render();
-
+        $this->errorGeneration = "";
         try {
-            Yaml::parse($stringResult);
-            $this->errorGeneration = "";
-            $this->result = $stringResult;
+            $array = Yaml::parse($stringResult);
         } catch (ParseException $e) {
             $this->errorGeneration = $e->getMessage();
             $this->result = $stringResult;
+            return;
+        }
+        try {
+            $json = json_encode($array);
+            $schema = Schema::import('https://json.schemastore.org/github-workflow');
+            $schema->in(json_decode($json));
+            $this->result = $stringResult;
+        } catch (\Exception $e) {
+            $this->errorGeneration = $e->getMessage();
+            $this->result = $stringResult;
+            return;
         }
     }
 

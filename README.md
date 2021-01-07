@@ -1,20 +1,23 @@
 ![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
 
 # Ghygen
-Ghygen is a GitHub actions Yaml Generator.
+__Ghygen__ is a GitHub actions Yaml Generator.
 
-For Laravel/PHP Developers, Ghygen allows you creating your Yaml file for GitHub Actions, so you can:
+For Laravel/PHP Developers, __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, so you can:
 
 - select events trigger (manually , on push, on pull request);
 - select branches;
 - enable caching for all vendors;
 - enable caching PHP packages;
 - select multiple PHP versions;
-- select Node version for NPM (npm run something)
-- setup Mysql service
-- execute tests
-- static code analysis (WIP)
-- execute Dusk (WIP)
+- select Node version for NPM (npm run something);
+- caching node packages;
+- setup Mysql service;
+- run migrations;
+- execute tests via phpunit;
+- static code analysis; 
+- code sniffer (via phpcs);
+- validate Yaml file.
 
 This is a Work In Progress, we are adding new features...
 
