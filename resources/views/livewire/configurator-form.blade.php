@@ -317,7 +317,7 @@
 
   <div class="">
     <div class="px-4 mt-3  ">
-      <textarea rows="20" placeholder="this is the Yaml file" class="rounded-lg resize-none w-full text-grey-darkest flex-1 p-2 m-1 bg-transparent font-mono" name="tt">{{ $result }}</textarea>
+      <textarea rows="20" placeholder="this is the Yaml file" class="rounded-lg resize-none w-full text-grey-darkest flex-1 p-2 m-1 bg-transparent {{ $errorGeneration === ""? "":"bg-red-200" }} font-mono" name="tt">{{ $result }}</textarea>
 
     </div>
   </div>

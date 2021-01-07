@@ -2,7 +2,16 @@
 
 All notable changes to `Laravel Github Actions Workflow Generator` will be documented in this file
 
-## 0.1.2 - WIP
+## 0.1.3 - WIP
+## Add
+- Validate Yaml file generated
+- Show errors if there is some syntax error in Yaml file
+
+## Change
+- red background if some error happens during the generation of Yaml file
+
+
+## 0.1.2 - 2021-01-05
 ## Add
 - Tests execution (via phpunit)
 - Code Sniffer (via phpcs)
