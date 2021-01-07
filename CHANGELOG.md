@@ -2,7 +2,7 @@
 
 All notable changes to `Laravel Github Actions Workflow Generator` will be documented in this file
 
-## 0.1.3 - WIP
+## 0.1.3 - 2021-01-07
 ## Add
 - Validate Yaml file generated
 - Show errors if there is some syntax error in Yaml file
