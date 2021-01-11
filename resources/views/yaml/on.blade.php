@@ -5,15 +5,15 @@ on:
 @if ( $on_push )
   push:
     branches:
-    @foreach ( $on_push_branches as $branch)
+@foreach ( $on_push_branches as $branch)
       - {{ $branch }}
-    @endforeach
+@endforeach
 @endif
 @if ( $on_pullrequest )
   pull_request:
     branches:
-    @foreach ( $on_pullrequest_branches as $branch)
+@foreach ( $on_pullrequest_branches as $branch)
       - {{ $branch }}
-    @endforeach
+@endforeach
 @endif
 @endif
