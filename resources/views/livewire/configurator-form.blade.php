@@ -289,7 +289,7 @@
     </div>
 
   </div>
-  @if ($errorGeneration != "")
+  @error('yaml')
     <div class="alert flex flex-row items-center bg-red-200 p-5 rounded border-b-2 border-red-300">
       <div class="alert-icon flex items-center bg-red-100 border-2 border-red-500 justify-center h-10 w-10 flex-shrink-0 rounded-full">
 				<span class="text-red-500">
@@ -307,17 +307,17 @@
           Error
         </div>
         <div class="alert-description text-sm text-red-600">
-          {{ $errorGeneration }}
+          {{ $message }}
         </div>
       </div>
     </div>
 
 
-  @endif
+  @enderror
 
   <div class="">
     <div class="px-4 mt-3  ">
-      <textarea rows="20" placeholder="this is the Yaml file" class="rounded-lg resize-none w-full text-grey-darkest flex-1 p-2 m-1 bg-transparent {{ $errorGeneration === ""? "":"bg-red-200" }} font-mono" name="tt">{{ $result }}</textarea>
+      <textarea rows="20" placeholder="this is the Yaml file" class="rounded-lg resize-none w-full text-grey-darkest flex-1 p-2 m-1 bg-transparent {{ $errors->has('yaml')? "bg-red-200":"" }} font-mono" name="tt">{{ $result }}</textarea>
 
     </div>
   </div>

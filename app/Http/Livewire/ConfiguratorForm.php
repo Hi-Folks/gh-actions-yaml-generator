@@ -153,6 +153,7 @@ class ConfiguratorForm extends Component
         } catch (ParseException $e) {
             $this->errorGeneration = $e->getMessage();
             $this->result = $stringResult;
+            $this->addError('yaml', $e->getMessage());
             return;
         }
         try {
@@ -163,6 +164,7 @@ class ConfiguratorForm extends Component
         } catch (\Exception $e) {
             $this->errorGeneration = $e->getMessage();
             $this->result = $stringResult;
+            $this->addError('yaml', $e->getMessage());
             return;
         }
     }
