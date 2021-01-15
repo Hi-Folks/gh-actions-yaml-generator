@@ -19,18 +19,18 @@ class FormTest extends DuskTestCase
             $browser->visit('/')
                     ->assertSee('Ghygen');
             $browser->type('name' , 'Test123')
-                ->screenshot("test_name")
+                //->screenshot("test_name")
                 ->check('onPush')
                 ->check('onPullrequest')
                 ->select('mysqlPasswordType', "hardcoded")
-                ->pause(500)
+                ->pause(100)
                 ->type('mysqlPassword' , 'TestPassword')
-                ->screenshot("test_db")
-                ->pause(500)
+                //->screenshot("test_db")
+                ->check('stepDusk')
                 ->press('Generate Yaml File')
                 ->pause(1000)
                 ->screenshot("test")
-                ->assertSee('name: Test123');
+                ->assertDontSee('Error');
         });
     }
 }
