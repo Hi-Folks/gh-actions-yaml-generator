@@ -272,6 +272,16 @@
                     help="Execute Code Static Analysis via phpstan">
                   </x-form.input-checkbox>
                 </div>
+
+
+                <div class="col-span-1 ">
+                  <x-form.input-checkbox
+                    model="stepDusk"
+                    name="stepDusk"
+                    label="Execute Browser Test"
+                    help="Execute Browser Test via Laravel Dusk">
+                  </x-form.input-checkbox>
+                </div>
               </div>
 
             </fieldset>
