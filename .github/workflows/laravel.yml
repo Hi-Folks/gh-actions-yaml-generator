@@ -2,18 +2,36 @@ name: Test Laravel Github action
 on:
   push:
     branches:
-          - main
-          - develop
-          - features/**
+      - main
+      - develop
+      - features/**
 
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+# Service container Mysql mysql
+    services:
+      # Label used to access the service container
+      mysql:
+        # Docker Hub image (also with version)
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE:  db_test_laravel
+        ## map the "external" 33306 port with the "internal" 3306
+        ports:
+          - 33306:3306
+        # Set health checks to wait until mysql database has started (it takes some seconds to start)
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0' ]
+        php-versions: [ '7.4' ]
     steps:
     - uses: actions/checkout@v2
     - name: Install PHP versions
@@ -46,6 +64,15 @@ jobs:
       run: php artisan key:generate
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
+    - name: Run Migrations
+# Set environment
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: db_test_laravel
+        DB_PORT: 33306
+        DB_USER: root
+
+      run: php artisan migrate
     - name: Create Database
       run: |
         mkdir -p database
@@ -60,9 +87,23 @@ jobs:
 
       run: vendor/bin/phpunit --testdox
 
-    - name: Execute Code Sniffer via phpcs
+
+
+
+    - name: Browser Test - upgrade and start Chrome Driver
       run: |
-        composer require --dev squizlabs/php_codesniffer
-        vendor/bin/phpcs --standard=PSR12 app
-
-
+        composer require --dev laravel/dusk
+        php artisan dusk:chrome-driver
+        ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+    - name: Run Dusk Tests
+      run: |
+        php artisan serve > /dev/null 2>&1 &
+        chmod -R 0755 vendor/laravel/dusk/bin/
+        php artisan migrate
+        php artisan dusk
+# Set environment
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: db_test_laravel
+        DB_PORT: 33306
+        DB_USER: root

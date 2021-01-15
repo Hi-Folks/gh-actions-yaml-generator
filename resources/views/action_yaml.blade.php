@@ -105,3 +105,19 @@ jobs:
         composer require --dev phpstan/phpstan
         vendor/bin/phpstan analyse --no-progress  app
 @endif
+
+
+@if ($stepDusk)
+    - name: Browser Test - upgrade and start Chrome Driver
+      run: |
+        composer require --dev laravel/dusk
+        php artisan dusk:chrome-driver
+        ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+    - name: Run Dusk Tests
+      run: |
+        php artisan serve > /dev/null 2>&1 &
+        chmod -R 0755 vendor/laravel/dusk/bin/
+        php artisan migrate
+        php artisan dusk
+@include('yaml.set_env')
+@endif
