@@ -1,18 +1,23 @@
 # Changelog
 
-All notable changes to `Laravel Github Actions Workflow Generator` will be documented in this file
+## 0.1.4 - 2021-01-15
+### Add
+- new .env parameter for forcing HTTPS for assets: APP_FORCE_HTTPS;
+- using Larastan (to enhance the compatibility for phpstan with Laravel)
+- adding check for Laravel Dusk, so your workflow can launch browser test directly in the CICD
+
 
 ## 0.1.3 - 2021-01-07
-## Add
+### Add
 - Validate Yaml file generated
 - Show errors if there is some syntax error in Yaml file
 
-## Change
+### Change
 - red background if some error happens during the generation of Yaml file
 
 
 ## 0.1.2 - 2021-01-05
-## Add
+### Add
 - Tests execution (via phpunit)
 - Code Sniffer (via phpcs)
 - Static Analysis (via phpstan)
@@ -22,7 +27,7 @@ All notable changes to `Laravel Github Actions Workflow Generator` will be docum
 - Npm packages installation
 - Caching Npm packages
 
-## Change
+### Change
 - fix array/string conversion for branches
 
 
