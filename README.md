@@ -21,6 +21,12 @@ For Laravel/PHP Developers, __Ghygen__ allows you creating your __Yaml__ file fo
 
 This is a Work In Progress, we are adding new features...
 
+If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean App Platform:
+
+- [Ghygen Demo](https://ghygen-5proe.ondigitalocean.app/).
+
+If you want to start using it locally you can clone the repo and install it following the instructions below.
+
 ## Install
 Clone source code, enter the new directory and perform a couple of instructions:
 ```shell
