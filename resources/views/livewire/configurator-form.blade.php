@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ yaml: '' }">
   <!--div class="md:grid md:grid-cols-2 md:gap-6"-->
   <div class="">
       <!--div class="md:col-span-1">
@@ -299,11 +299,25 @@
 
           </div>
 
+          <div class="flex flex-row w-full text-right">
+            <div class="flex-grow px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <button  type="button" class="copy-btn inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                       data-clipboard-text="{{ $result }}">
+                Copy
+              </button>
+            </div>
+            <div class="flex-grow-0 px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <!--button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Generate Yaml File
+              </button-->
 
-          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Generate Yaml File
-            </button>
+              <button x-on:click="$wire.submitForm().then(result=>{
+              let yc =document.getElementById('yaml-code');
+              hljs.lineNumbersBlock(yc);
+              hljs.highlightBlock(yc);
+              })"
+              class="uppercase inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Generate Yaml File</button>
+            </div>
           </div>
         </div>
       </form>
@@ -336,10 +350,19 @@
 
   @enderror
 
-  <div class="">
-    <div class="px-4 mt-3  ">
-      <textarea rows="20" placeholder="this is the Yaml file" class="rounded-lg resize-none w-full text-grey-darkest flex-1 p-2 m-1 bg-transparent {{ $errors->has('yaml')? "bg-red-200":"" }} font-mono" name="tt">{{ $result }}</textarea>
 
+    <div class="px-4 mt-3  ">
+      <div wire:loading wire:target="submitForm">
+        <div class="w-full bg-blue-500 border border-blue-200 text-blue-900  pl-4 pr-8 py-3 rounded relative" role="info">
+          <strong class="font-bold">Loading</strong>
+          <span class="block sm:inline">Generating Yaml file, waiting please...</span>
+        </div>
+
+      </div>
+      <pre
+        id="code"
+        class="h-full font-mono text-sm prettyprint linenums selectable {{ $errors->has('yaml')? "bg-red-200":"" }}" data-line-numbers="true"
+      ><code id="yaml-code" class="hljs yaml">{{ $result }}</code></pre>
     </div>
-  </div>
 </div>
+
