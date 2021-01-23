@@ -1,14 +1,17 @@
 # Changelog
 
-## 0.1.5 - WIP
+## 0.1.5 - 2021-01-23
 ### Add
 - Add syntax highlight for Yaml workflow file
 - Add copy button. ONce the Yaml is generated, you can click Copy Button in order to copy in the clipboard the content (so you can paste in your .github/workflows/*.yml file)
 - Add Open Graph meta in the main page
+- Add Larastan for phpstan, for a better compatibility with Laravel for static code analysis
 
 ### Change
 - fix margin and padding for checkboxes
 - change input colors, from indigo to blue
+- Fix load env parameters (load DB_ parameters only if database is needed)
+- Fix Chrome driver version for Browser Tests (Laravel Dusk)
 
 ## 0.1.4 - 2021-01-15
 ### Add

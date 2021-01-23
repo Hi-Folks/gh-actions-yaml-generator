@@ -100,24 +100,28 @@ jobs:
 @endif
 
 @if ($stepExecuteStaticAnalysis)
-    - name: Execute Code Static Analysis
+    - name: Execute Code Static Analysis (PHP Stan + Larastan)
       run: |
-        composer require --dev phpstan/phpstan
-        vendor/bin/phpstan analyse --no-progress  app
+        composer require --dev nunomaduro/larastan
+        vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
 @endif
+
+
 
 
 @if ($stepDusk)
     - name: Browser Test - upgrade and start Chrome Driver
       run: |
         composer require --dev laravel/dusk
-        php artisan dusk:chrome-driver
+        php artisan dusk:chrome-driver --detect
         ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
     - name: Run Dusk Tests
       run: |
         php artisan serve > /dev/null 2>&1 &
         chmod -R 0755 vendor/laravel/dusk/bin/
+@if ( $mysqlService )
         php artisan migrate
+@endif
         php artisan dusk
 @include('yaml.set_env')
 @endif
