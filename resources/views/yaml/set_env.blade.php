@@ -1,5 +1,6 @@
 # Set environment
       env:
+@if ( $mysqlService )
 @if ( $mysqlDatabase != "")
         DB_CONNECTION: {{ $mysqlDatabase }}
 @endif
@@ -17,4 +18,7 @@
 @endif
 @if ( $mysqlPasswordType === 'hardcoded' )
         DB_PASSWORD: {{ $mysqlPassword }}
+@endif
+@else
+        SESSION_DRIVER: array
 @endif

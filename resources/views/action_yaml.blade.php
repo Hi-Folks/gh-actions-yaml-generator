@@ -123,7 +123,5 @@ jobs:
         php artisan migrate
 @endif
         php artisan dusk
-@if ( $mysqlService )
 @include('yaml.set_env')
-@endif
 @endif
