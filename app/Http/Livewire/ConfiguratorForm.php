@@ -76,7 +76,7 @@ class ConfiguratorForm extends Component
         $this->stepExecuteCodeSniffer = false;
         $this->stepExecuteStaticAnalysis = false;
         $this->stepDusk = false;
-        $this->result=" ";
+        $this->result = " ";
         $this->errorGeneration = "";
     }
 
@@ -117,7 +117,7 @@ class ConfiguratorForm extends Component
 
     public function updated($propertyName)
     {
-        $this->result=" ";
+        $this->result = " ";
     }
 
     public function submitForm()
