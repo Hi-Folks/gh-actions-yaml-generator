@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import '~highlight.js/styles/a11y-light';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.hljs {
+    @apply bg-white;
+}
+.hljs-ln td.hljs-ln-numbers {
+    @apply text-gray-400 pr-3 inline-block w-full text-right;
+}
+.hljs-ln td.hljs-ln-numbers div {
+    @apply inline-block px-2 w-full;
+}
+.hljs-ln td.hljs-ln-line {
+    @apply py-1;
+}
