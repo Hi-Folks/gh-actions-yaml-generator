@@ -27,7 +27,7 @@ class FormTest extends DuskTestCase
                 ->type('mysqlPassword' , 'TestPassword')
                 //->screenshot("test_db")
                 ->check('stepDusk')
-                ->press('Generate Yaml File')
+                ->press('GENERATE YAML FILE')
                 ->pause(1000)
                 ->screenshot("test")
                 ->assertDontSee('Error');
