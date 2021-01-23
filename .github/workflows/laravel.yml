@@ -85,10 +85,3 @@ jobs:
         run: |
           composer require --dev squizlabs/php_codesniffer
           vendor/bin/phpcs --standard=PSR12 app
-
-      - name: Execute Code Static Analysis
-        run: |
-          composer require --dev phpstan/phpstan
-          vendor/bin/phpstan analyse --no-progress  app
-
-
