@@ -113,7 +113,7 @@ jobs:
     - name: Browser Test - upgrade and start Chrome Driver
       run: |
         composer require --dev laravel/dusk
-        php artisan dusk:chrome-driver 87
+        php artisan dusk:chrome-driver --detect
         ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
     - name: Run Dusk Tests
       run: |
