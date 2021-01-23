@@ -276,8 +276,8 @@
                     <x-form.input-checkbox
                       model="stepExecuteStaticAnalysis"
                       name="stepExecuteStaticAnalysis"
-                      label="Execute Static Analysis"
-                      help="Execute Code Static Analysis via phpstan">
+                      label="Execute Code Static Analysis"
+                      help="Execute Code Static Analysis via phpstan and larastan">
                     </x-form.input-checkbox>
                   </div>
                 </div>
