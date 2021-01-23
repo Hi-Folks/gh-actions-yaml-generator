@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.5 - WIP
+### Add
+- Add syntax highlight for Yaml workflow file
+- Add copy button. ONce the Yaml is generated, you can click Copy Button in order to copy in the clipboard the content (so you can paste in your .github/workflows/*.yml file)
+- Add Open Graph meta in the main page
+
+### Change
+- fix margin and padding for checkboxes
+- change input colors, from indigo to blue
+
 ## 0.1.4 - 2021-01-15
 ### Add
 - new .env parameter for forcing HTTPS for assets: APP_FORCE_HTTPS;
