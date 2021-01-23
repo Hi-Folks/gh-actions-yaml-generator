@@ -7,8 +7,10 @@
   <livewire:styles/>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+  <script src="{{ mix('js/app.js') }}" defer></script>
   <meta property="og:url" content="{{ config('app.url') }}"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="{{ config("app.name") }} - GitHub Actions Yaml Generator"/>
@@ -34,5 +36,7 @@
   <x-footer></x-footer>
 </div>
 <livewire:scripts/>
+
+
 </body>
 </html>
