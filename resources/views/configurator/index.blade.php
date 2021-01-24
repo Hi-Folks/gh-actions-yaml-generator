@@ -16,20 +16,21 @@
   <meta property="og:title" content="{{ config("app.name") }} - GitHub Actions Yaml Generator"/>
   <meta property="og:description" content="Create your GitHub Actions workflow for Laravel applications."/>
   <meta property="og:image"
-        content="https://raw.githubusercontent.com/Hi-Folks/gh-actions-yaml-generator/main/ghygen-github-actions-yaml-generator-laravel.png"/>
+        content="{{ asset('ghygen-title.png') }}"/>
 
 </head>
 <body class="antialiased">
 <div>
   <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold leading-tight text-gray-900">
-        Ghygen - Github Actions Yaml Generator (for Laravel)
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
+      <img class="w-48  " src="{{ asset('ghygen-title.png') }}">
+      <h1 class="pl-20 text-gray-500">
+        Github Actions Yaml Generator for Laravel
       </h1>
     </div>
   </header>
   <main>
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
       <livewire:configurator-form/>
     </div>
   </main>
