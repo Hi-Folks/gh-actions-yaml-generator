@@ -21,7 +21,7 @@ jobs:
               testbench: 5.*
             - laravel: 8.*
               testbench: 6:*
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ operating-system}}
     steps:
     - uses: actions/checkout@v2
     - name: Setup Node.js
