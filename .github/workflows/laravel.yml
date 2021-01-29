@@ -20,7 +20,7 @@ jobs:
             - laravel: 7.*
               testbench: 5.*
             - laravel: 8.*
-              testbench: 6:*
+              testbench: 6.*
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.operating-system}}
     steps:
     - uses: actions/checkout@v2
@@ -101,7 +101,8 @@ jobs:
         vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
 
 
-
+    - name: Show Laravel version
+      run: php artisan --version
 
     - name: Browser Test - upgrade and start Chrome Driver
       run: |
