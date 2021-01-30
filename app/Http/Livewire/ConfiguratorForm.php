@@ -41,6 +41,9 @@ class ConfiguratorForm extends Component
     public $stepExecuteCodeSniffer; //false
     public $stepExecuteStaticAnalysis; // false
     public $stepDusk; // false
+    public $matrixLaravel; // false
+    public $matrixLaravelVersions; // []
+    public $matrixTestbenchDependencies;
 
     public $result;
     public $errorGeneration;
@@ -76,6 +79,15 @@ class ConfiguratorForm extends Component
         $this->stepExecuteCodeSniffer = false;
         $this->stepExecuteStaticAnalysis = false;
         $this->stepDusk = false;
+        $this->matrixLaravel = false;
+        $this->matrixLaravelVersions = [];
+        $this->matrixTestbenchDependencies = [
+          "8.*" => "6.*",
+            "7.*" => "5.*",
+            "6.*" => "4.*"
+        ]; // mapping laravel versions with testbench version as dependency
+        // the key is the laravel ver, the value is the orchestratestbench version
+
         $this->result = " ";
         $this->errorGeneration = "";
     }
@@ -148,11 +160,15 @@ class ConfiguratorForm extends Component
             "stepExecutePhpunit",
             "stepExecuteCodeSniffer",
             "stepExecuteStaticAnalysis",
-            "stepDusk"
+            "stepDusk",
+            "matrixLaravel",
+            "matrixLaravelVersions",
+            "matrixTestbenchDependencies"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
+        $data["matrixLaravelVersionsString"] = self::arrayToString($this->matrixLaravelVersions);
         $stringResult = view('action_yaml', $data)->render();
         $this->errorGeneration = "";
         try {

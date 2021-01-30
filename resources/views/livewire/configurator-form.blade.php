@@ -181,8 +181,6 @@
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
-
-
                 <div class="col-span-1 ">
                   <x-form.input-select
                     model="stepPhpVersions"
@@ -193,8 +191,6 @@
                     multiselect=1>
                   </x-form.input-select>
                 </div>
-
-
                 <div class="col-span-1 ">
                   <x-form.input-conditional-checkbox
                     model="stepNodejs"
@@ -212,14 +208,31 @@
                     </x-form.input-text>
                   </x-form.input-conditional-checkbox>
                 </div>
-
               </div>
-
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
+                <div class="col-span-1 ">
+                  <x-form.input-conditional-checkbox
+                    model="matrixLaravel"
+                    name="matrixLaravel"
+                    label="Define Specific Laravel versions"
+                    id="matrixLaravel"
+                    value=1
+                    wire:model="matrixLaravel"
+                  >
+                    <x-form.input-select
+                      model="matrixLaravelVersions"
+                      name="matrixLaravelVersions"
+                      label="Laravel Versions"
+                      :list="['8.*'=>'8.*','7.*'=>'7.*','6.*'=>'6.*']"
+                      help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 8 , 7 and 6"
+                      multiselect=1>
+                    </x-form.input-select>
+                  </x-form.input-conditional-checkbox>
+                </div>
                 <div class="col-span-1 ">
                     <x-form.input-text
                       model="stepEnvTemplateFile"
@@ -365,4 +378,3 @@
       ><code id="yaml-code" class="hljs yaml">{{ $result }}</code></pre>
     </div>
 </div>
-
