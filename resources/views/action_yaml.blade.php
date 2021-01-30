@@ -105,6 +105,10 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+
+    - name: Show Laravel versions
+      run: php artisan --version
+
 @if ($stepExecutePhpunit)
     - name: Execute tests (Unit and Feature tests) via PHPUnit
 @include('yaml.set_env')
