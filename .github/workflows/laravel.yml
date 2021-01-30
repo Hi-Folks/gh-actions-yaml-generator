@@ -13,32 +13,18 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '7.4' ]
-        dependency-version: [prefer-lowest, prefer-stable]
-        laravel: [8.* ]
+        php-versions: [ '8.0' ]
+        dependency-stability: [ prefer-stable ]
+
+        laravel: [ '8.*' ]
         include:
-            - laravel: 8.*
-              testbench: 6.*
-    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.operating-system}}
+          - laravel:  8.*
+            testbench: 6.*
+
+    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+
     steps:
     - uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}-
-    - name: Install NPM packages
-      run: |
-        npm ci
-        npm run development
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
@@ -62,14 +48,10 @@ jobs:
         key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-    - name: Install Dependencies
+    - name: Install Laravel Dependencies
       run: |
         composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-        composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.x'
+        composer update --${{ matrix.dependency-stability }} --prefer-dist --no-interaction --no-suggest
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
@@ -81,34 +63,6 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
 # Set environment
       env:
-        DB_CONNECTION: mysql
-        DB_DATABASE: db_test_laravel
-        DB_PORT: 33306
-        DB_USER: root
+        SESSION_DRIVER: array
 
       run: vendor/bin/phpunit --testdox
-
-    - name: Execute Code Sniffer via phpcs
-      run: |
-        composer require --dev squizlabs/php_codesniffer
-        vendor/bin/phpcs --standard=PSR12 app
-
-    - name: Execute Code Static Analysis (PHP Stan + Larastan)
-      run: |
-        composer require --dev nunomaduro/larastan
-        vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
-
-
-    - name: Show Laravel version
-      run: php artisan --version
-
-    - name: Browser Test - upgrade and start Chrome Driver
-      run: |
-        composer require --dev laravel/dusk
-        php artisan dusk:chrome-driver --detect
-        ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
-    - name: Run Dusk Tests
-      run: |
-        php artisan serve > /dev/null 2>&1 &
-        chmod -R 0755 vendor/laravel/dusk/bin/
-        php artisan dusk
