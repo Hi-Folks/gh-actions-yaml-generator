@@ -19,7 +19,8 @@ class YamlFormTest extends TestCase
     public function test_load_form()
     {
         $response = $this->get('/');
-        $response->assertStatus(200);
+        //$response->assertStatus(200);
+        dd($response->getContent());
     }
 
 
