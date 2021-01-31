@@ -10,6 +10,19 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: {!! $stepPhpVersionsString !!}
+        dependency-stability: [ prefer-stable ]
+@if ($matrixLaravel)
+
+        laravel: {!! $matrixLaravelVersionsString !!}
+        include:
+@foreach($matrixLaravelVersions as $lv)
+          - laravel:  {{ $lv }}
+            testbench: {{ $matrixTestbenchDependencies[$lv] }}
+@endforeach
+@endif
+
+    name: P$@{{ matrix.php-versions }} - L$@{{ matrix.laravel }} - $@{{ matrix.dependency-stability }} - $@{{ matrix.operating-system}}
+
     steps:
     - uses: actions/checkout@v2
 @if ($stepNodejs)
@@ -60,9 +73,16 @@ jobs:
 @endif
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('{{ $stepEnvTemplateFile }}', '.env');"
+@if ($matrixLaravel)
+    - name: Install Laravel Dependencies
+      run: |
+        composer require "laravel/framework:$@{{ matrix.laravel }}" "orchestra/testbench:$@{{ matrix.testbench }}" --no-interaction --no-update
+        composer update --$@{{ matrix.dependency-stability }} --prefer-dist --no-interaction --no-suggest
+@else
     - name: Install Dependencies
       if: steps.vendor-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+@endif
 @if ($stepNodejs)
     - name: Setup Node.js
       uses: actions/setup-node@v1
@@ -85,6 +105,10 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+
+    - name: Show Laravel versions
+      run: php artisan --version
+
 @if ($stepExecutePhpunit)
     - name: Execute tests (Unit and Feature tests) via PHPUnit
 @include('yaml.set_env')
