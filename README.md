@@ -12,17 +12,18 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - select triggering events: manually or automatically, when the developer _push_ the code on a specific branch, or a developer create a new _Pull Request_;
 - select branches;
 - enable caching for all vendors;
-- enable caching PHP packages;
-- select multiple PHP versions (8.0, 7.4, 7.3);
-- select Node version for NPM (npm run something);
+- enable __caching__ PHP packages;
+- select __multiple__ PHP versions (8.0, 7.4, 7.3);
+- select __multiple Laravel__ versions (8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
+- select __Node__ version for NPM (npm run something);
 - caching node packages;
-- setup Mysql service;
+- setup __Mysql__ service;
 - run migrations;
-- execute tests via phpunit;
-- static code analysis; 
-- code sniffer (via phpcs);
-- validate Yaml file;
-- execute Browser Test via Laravel Dusk.
+- __execute tests__ via phpunit;
+- static __code analysis__; 
+- code sniffer (via phpcs for __PSR12__ compatibility);
+- __validate Yaml__ file;
+- execute __Browser Test__ via Laravel Dusk.
 
 This is a Work In Progress, we are adding new features...
 
