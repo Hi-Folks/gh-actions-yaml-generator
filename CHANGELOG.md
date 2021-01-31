@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6 - WIP
+### Add
+- Add Laravel Matrix (for Laravel 8, Laravel 7 and Laravel 6)
+- Add caching Schema Yaml file (to improve the speed during Yaml checks)
+
 ## 0.1.5 - 2021-01-23
 ### Add
 - Add syntax highlight for Yaml workflow file
