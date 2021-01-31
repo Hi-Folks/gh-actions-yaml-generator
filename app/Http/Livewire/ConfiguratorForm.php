@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Swaggest\JsonSchema\Schema;
@@ -41,6 +42,9 @@ class ConfiguratorForm extends Component
     public $stepExecuteCodeSniffer; //false
     public $stepExecuteStaticAnalysis; // false
     public $stepDusk; // false
+    public $matrixLaravel; // false
+    public $matrixLaravelVersions; // []
+    public $matrixTestbenchDependencies;
 
     public $result;
     public $errorGeneration;
@@ -76,6 +80,15 @@ class ConfiguratorForm extends Component
         $this->stepExecuteCodeSniffer = false;
         $this->stepExecuteStaticAnalysis = false;
         $this->stepDusk = false;
+        $this->matrixLaravel = false;
+        $this->matrixLaravelVersions = [];
+        $this->matrixTestbenchDependencies = [
+          "8.*" => "6.*",
+            "7.*" => "5.*",
+            "6.*" => "4.*"
+        ]; // mapping laravel versions with testbench version as dependency
+        // the key is the laravel ver, the value is the orchestratestbench version
+
         $this->result = " ";
         $this->errorGeneration = "";
     }
@@ -148,11 +161,15 @@ class ConfiguratorForm extends Component
             "stepExecutePhpunit",
             "stepExecuteCodeSniffer",
             "stepExecuteStaticAnalysis",
-            "stepDusk"
+            "stepDusk",
+            "matrixLaravel",
+            "matrixLaravelVersions",
+            "matrixTestbenchDependencies"
         );
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
+        $data["matrixLaravelVersionsString"] = self::arrayToString($this->matrixLaravelVersions);
         $stringResult = view('action_yaml', $data)->render();
         $this->errorGeneration = "";
         try {
@@ -165,7 +182,11 @@ class ConfiguratorForm extends Component
         }
         try {
             $json = json_encode($array);
-            $schema = Schema::import('https://json.schemastore.org/github-workflow');
+            $seconds = 60 * 60 * 6; // 6 hours
+            $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
+                return Schema::import('https://json.schemastore.org/github-workflow');
+            });
+
             $schema->in(json_decode($json));
             $this->result = $stringResult;
         } catch (\Exception $e) {

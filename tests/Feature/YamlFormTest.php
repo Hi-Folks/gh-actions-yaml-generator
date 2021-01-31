@@ -18,8 +18,9 @@ class YamlFormTest extends TestCase
      */
     public function test_load_form()
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
+        $this->get('/')
+            ->assertStatus(200);
+
     }
 
 
@@ -34,6 +35,18 @@ class YamlFormTest extends TestCase
             ->set("onPullrequest", true)
             ->call('submitForm')
             ->assertHasNoErrors('yaml');
+    }
+    /**
+     * Form Test using pull request option.
+     * @return void
+     */
+    public function test_form_submit_emptyname()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","")
+            ->set("onPullrequest", true)
+            ->call('submitForm')
+            ->assertHasErrors('yaml');
     }
 
     /**
