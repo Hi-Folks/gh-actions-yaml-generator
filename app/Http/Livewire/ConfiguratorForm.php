@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Swaggest\JsonSchema\Schema;
@@ -181,7 +182,11 @@ class ConfiguratorForm extends Component
         }
         try {
             $json = json_encode($array);
-            $schema = Schema::import('https://json.schemastore.org/github-workflow');
+            $seconds = 60 * 60 * 6; // 6 hours
+            $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
+                return Schema::import('https://json.schemastore.org/github-workflow');
+            });
+
             $schema->in(json_decode($json));
             $this->result = $stringResult;
         } catch (\Exception $e) {
