@@ -46,7 +46,7 @@ class YamlFormTest extends TestCase
             ->set("name","")
             ->set("onPullrequest", true)
             ->call('submitForm')
-            ->assertHasErrors('yaml');
+            ->assertHasErrors('name');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Swaggest\JsonSchema\Schema;
@@ -49,7 +50,14 @@ class ConfiguratorForm extends Component
     public $result;
     public $errorGeneration;
 
-
+    protected $rules = [
+        'name' => 'required|string',
+        'onPushBranches' => 'exclude_unless:onPush,1|required',
+        'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
+        'mysqlVersion' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabaseName' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
+    ];
 
     public function mount()
     {
@@ -133,8 +141,12 @@ class ConfiguratorForm extends Component
         $this->result = " ";
     }
 
+
     public function submitForm()
     {
+
+        $this->validate();
+
         $data = $this->compactThis(
             "mysqlService",
             "mysqlDatabase",
