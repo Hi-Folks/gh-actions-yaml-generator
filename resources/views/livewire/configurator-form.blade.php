@@ -13,7 +13,7 @@
       <form wire:submit.prevent="submitForm"  action="#" method="POST">
         @csrf
         <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6 ">
+          <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
             <x-form.input-text
                 model="name"
                 name="name"
@@ -21,6 +21,7 @@
                 value="Laravel Action Workflow"
                 help="The name of your workflow. GitHub displays the names of your workflows on your repository's actions page.">
             </x-form.input-text>
+            @error('name') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
 
 
             <fieldset  class="border-2 shadow-2xl p-4 rounded-2xl">
@@ -54,6 +55,7 @@
                             help="Branches for the push, comma separated for example main,develop.">
                         </x-form.input-text>
                     </x-form.input-conditional-checkbox>
+                    @error('onPushBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
                   <div class="col-span-1 ">
                     <x-form.input-conditional-checkbox
@@ -71,7 +73,7 @@
                         help="Branches for the PR, comma separated for example main,develop.">
                       </x-form.input-text>
                     </x-form.input-conditional-checkbox>
-
+                    @error('onPullrequestBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
                 </div>
             </fieldset>
@@ -231,6 +233,8 @@
                       help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 8 , 7 and 6"
                       multiselect=1>
                     </x-form.input-select>
+
+
                   </x-form.input-conditional-checkbox>
                 </div>
                 <div class="col-span-1 ">
@@ -361,7 +365,19 @@
     </div>
 
 
+
   @enderror
+
+  @if ($errors->any())
+    <div class="  pl-3 bg-rose-200 font-extrabold   text-red-800 bg-red-200 border-red-600 border-b-2  ">
+      There was some error during validation. Take a look about your data in the form:
+      <ul class="  list-inside list-disc ">
+        @foreach ($errors->all() as $error)
+          <li class=" pl-5">{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
 
 
     <div class="px-4 mt-3  ">
