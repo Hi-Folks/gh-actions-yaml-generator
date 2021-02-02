@@ -97,6 +97,7 @@
                           label="Mysql Version"
                           help="Define the Mysql Version">
                       </x-form.input-text>
+                      @error('mysqlVersion') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-1 ">
                       <x-form.input-text
@@ -105,6 +106,7 @@
                           label="Mysql Database Name"
                           help="Define the Mysql database name">
                       </x-form.input-text>
+                      @error('mysqlDatabaseName') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-1 ">
                       <x-form.input-text
@@ -113,6 +115,7 @@
                           label="Mysql Database Port"
                           help="The Port exposed by the container, this is the external port.">
                       </x-form.input-text>
+                      @error('mysqlDatabasePort') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-2 ">
                       <x-form.input-select

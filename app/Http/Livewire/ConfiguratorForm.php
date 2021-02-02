@@ -54,6 +54,9 @@ class ConfiguratorForm extends Component
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
         'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
+        'mysqlVersion' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabaseName' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
     ];
 
     public function mount()
