@@ -64,4 +64,42 @@ class YamlFormTest extends TestCase
             ->assertHasNoErrors('yaml');
     }
 
+    /**
+     * Form Test: test on events checkboxes.
+     *
+     * @return void
+     */
+    public function test_form_submit_onevents()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", false)
+            ->set("onPullrequest", false)
+            ->call('submitForm')
+            ->assertHasErrors('onEvents');
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->set("onPullrequest", false)
+            ->call('submitForm')
+            ->assertHasNoErrors('onEvents');
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", true)
+            ->set("onPush", true)
+            ->set("onPullrequest", false)
+            ->call('submitForm')
+            ->assertHasNoErrors('onEvents');
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", true)
+            ->set("onPush", true)
+            ->set("onPullrequest", true)
+            ->call('submitForm')
+            ->assertHasNoErrors('onEvents');
+    }
+
 }
