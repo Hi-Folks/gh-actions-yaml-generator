@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.7 - WIP
+### Add
+- Validation for some mandatory fields like name;
+- Conditional validation for some mandatory fields that depend on a check (, branches if "On" event is selected, mysql parameter if Mysql service is selected);
+- Added Makefile for development.
+
 ## 0.1.6 - 2021-01-31
 ### Add
 - Add Laravel Matrix (for Laravel 8, Laravel 7 and Laravel 6)
