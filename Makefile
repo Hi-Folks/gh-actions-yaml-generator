@@ -1,5 +1,5 @@
 .PHONY : help phpstan test coverage phpcs
-
+.DEFAULT_GOAL:=help
 
 help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
@@ -16,4 +16,7 @@ coverage: ## Execute the coverage test
 phpcs: ## execute phpcs
 	phpcs --standard=PSR12 app
 
-allcheck: phpcs phpstan test ## all check
+allcheck: phpcs phpstan test ## it performs all check (phpcs, phpstan, tests)
+
+push: allcheck ## It performs all check and then git push on the current branch
+	git push origin HEAD
