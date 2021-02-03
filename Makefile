@@ -16,6 +16,9 @@ coverage: ## Execute the coverage test
 phpcs: ## execute phpcs
 	phpcs --standard=PSR12 app
 
+phpfix: ## Fix some warnings from phpcs
+	phpcbf --standard=PSR12  app
+
 allcheck: phpcs phpstan test ## it performs all check (phpcs, phpstan, tests)
 
 push: allcheck ## It performs all check and then git push on the current branch
