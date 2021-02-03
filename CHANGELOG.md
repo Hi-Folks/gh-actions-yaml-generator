@@ -2,7 +2,7 @@
 
 ## 0.1.7 - WIP
 ### Add
-- Validation for some mandatory fields like name;
+- Validation for some mandatory fields like name, "on events";
 - Conditional validation for some mandatory fields that depend on a check (, branches if "On" event is selected, mysql parameter if Mysql service is selected);
 - Added Makefile for development.
 

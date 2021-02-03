@@ -75,6 +75,7 @@
                     </x-form.input-conditional-checkbox>
                     @error('onPullrequestBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
+                  @error('onEvents') <div class="col-span-3 "><span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span></div> @enderror
                 </div>
             </fieldset>
 

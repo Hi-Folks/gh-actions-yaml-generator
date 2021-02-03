@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Swaggest\JsonSchema\Schema;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -144,9 +145,13 @@ class ConfiguratorForm extends Component
 
     public function submitForm()
     {
-
+        $values = $this->getDataForValidation($this->rules);
         $this->validate();
-
+        if ( ! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
+            $this->addError("onEvents", "You need to select at least one of GitHub event that triggers the workflow");
+            return;
+        }
+        
         $data = $this->compactThis(
             "mysqlService",
             "mysqlDatabase",
