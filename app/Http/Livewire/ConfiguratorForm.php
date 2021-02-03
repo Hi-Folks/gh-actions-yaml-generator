@@ -147,11 +147,11 @@ class ConfiguratorForm extends Component
     {
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
-        if ( ! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
+        if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
             $this->addError("onEvents", "You need to select at least one of GitHub event that triggers the workflow");
             return;
         }
-        
+
         $data = $this->compactThis(
             "mysqlService",
             "mysqlDatabase",
