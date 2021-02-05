@@ -164,8 +164,8 @@ class ConfiguratorForm extends Component
         if (! $values["mysqlService"] and $values["stepRunMigrations"]) {
             $this->hints[] = "I suggest you to select Mysql Service if you want to run migrations";
         }
-        if ( $values["stepDusk"] and ! $values["stepNodejs"]) {
-            $this->hints[] = "I suggest you to select 'Install node for NPM Build' if you want to perform Browser tests";
+        if ($values["stepDusk"] and ! $values["stepNodejs"]) {
+            $this->hints[] = "I suggest you to select 'Install node for NPM Build' if you have 'Execute Browser tests'";
         }
 
         $data = $this->compactThis(
