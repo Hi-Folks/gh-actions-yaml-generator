@@ -13,7 +13,7 @@
       <form wire:submit.prevent="submitForm"  action="#" method="POST">
         @csrf
         <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6 ">
+          <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
             <x-form.input-text
                 model="name"
                 name="name"
@@ -21,6 +21,7 @@
                 value="Laravel Action Workflow"
                 help="The name of your workflow. GitHub displays the names of your workflows on your repository's actions page.">
             </x-form.input-text>
+            @error('name') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
 
 
             <fieldset  class="border-2 shadow-2xl p-4 rounded-2xl">
@@ -54,6 +55,7 @@
                             help="Branches for the push, comma separated for example main,develop.">
                         </x-form.input-text>
                     </x-form.input-conditional-checkbox>
+                    @error('onPushBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
                   <div class="col-span-1 ">
                     <x-form.input-conditional-checkbox
@@ -71,8 +73,9 @@
                         help="Branches for the PR, comma separated for example main,develop.">
                       </x-form.input-text>
                     </x-form.input-conditional-checkbox>
-
+                    @error('onPullrequestBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
+                  @error('onEvents') <div class="col-span-3 "><span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span></div> @enderror
                 </div>
             </fieldset>
 
@@ -95,6 +98,7 @@
                           label="Mysql Version"
                           help="Define the Mysql Version">
                       </x-form.input-text>
+                      @error('mysqlVersion') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-1 ">
                       <x-form.input-text
@@ -103,6 +107,7 @@
                           label="Mysql Database Name"
                           help="Define the Mysql database name">
                       </x-form.input-text>
+                      @error('mysqlDatabaseName') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-1 ">
                       <x-form.input-text
@@ -111,6 +116,7 @@
                           label="Mysql Database Port"
                           help="The Port exposed by the container, this is the external port.">
                       </x-form.input-text>
+                      @error('mysqlDatabasePort') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-span-2 ">
                       <x-form.input-select
@@ -231,6 +237,8 @@
                       help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 8 , 7 and 6"
                       multiselect=1>
                     </x-form.input-select>
+
+
                   </x-form.input-conditional-checkbox>
                 </div>
                 <div class="col-span-1 ">
@@ -361,7 +369,35 @@
     </div>
 
 
+
   @enderror
+
+  @if ($errors->any())
+    <div class="  pl-3 bg-rose-200 font-extrabold   text-red-800 bg-red-200 border-red-600 border-b-2  ">
+      There was some error during validation. Take a look about your data in the form:
+      <ul class="  list-inside list-disc ">
+        @foreach ($errors->all() as $error)
+          <li class=" pl-5">{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  @foreach ($hints as $hint)
+
+    <div class="flex items-center bg-yellow-500 border-l-4 border-yellow-700 py-2 px-3 shadow-md mb-2">
+      <!-- icons -->
+      <div class="text-yellow-500 rounded-full bg-white mr-3">
+        <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-exclamation" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>
+      </div>
+      <!-- message -->
+      <div class="text-white font-bold  w-full ">
+        {{ $hint }}
+      </div>
+    </div>
+  @endforeach
 
 
     <div class="px-4 mt-3  ">

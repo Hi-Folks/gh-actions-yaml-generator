@@ -3,7 +3,9 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Swaggest\JsonSchema\Schema;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -49,7 +51,16 @@ class ConfiguratorForm extends Component
     public $result;
     public $errorGeneration;
 
+    public $hints;
 
+    protected $rules = [
+        'name' => 'required|string',
+        'onPushBranches' => 'exclude_unless:onPush,1|required',
+        'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
+        'mysqlVersion' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabaseName' => 'exclude_unless:mysqlService,1|required',
+        'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
+    ];
 
     public function mount()
     {
@@ -91,6 +102,8 @@ class ConfiguratorForm extends Component
 
         $this->result = " ";
         $this->errorGeneration = "";
+
+        $this->hints = [];
     }
 
     private static function split($somethingToSplit, $splitChars = ",")
@@ -133,8 +146,28 @@ class ConfiguratorForm extends Component
         $this->result = " ";
     }
 
+
     public function submitForm()
     {
+        $values = $this->getDataForValidation($this->rules);
+        $this->validate();
+        if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
+            $this->addError("onEvents", "You need to select at least one of GitHub event that triggers the workflow");
+            return;
+        }
+
+        // Provide some suggestions
+        $this->hints = [];
+        if ($values["mysqlService"] and ! $values["stepRunMigrations"]) {
+            $this->hints[] = "I suggest you to select run migration if you have MySqlService";
+        }
+        if (! $values["mysqlService"] and $values["stepRunMigrations"]) {
+            $this->hints[] = "I suggest you to select Mysql Service if you want to run migrations";
+        }
+        if ($values["stepDusk"] and ! $values["stepNodejs"]) {
+            $this->hints[] = "I suggest you to select 'Install node for NPM Build' if you have 'Execute Browser tests'";
+        }
+
         $data = $this->compactThis(
             "mysqlService",
             "mysqlDatabase",
@@ -170,6 +203,7 @@ class ConfiguratorForm extends Component
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
         $data["matrixLaravelVersionsString"] = self::arrayToString($this->matrixLaravelVersions);
+
         $stringResult = view('action_yaml', $data)->render();
         $this->errorGeneration = "";
         try {
