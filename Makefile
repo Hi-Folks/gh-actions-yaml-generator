@@ -18,6 +18,7 @@ phpcs: ## execute phpcs
 
 phpfix: ## Fix some warnings from phpcs
 	phpcbf --standard=PSR12  app
+	git commit -m "Auto Fix PSR12 Style"
 
 allcheck: phpcs phpstan test ## it performs all check (phpcs, phpstan, tests)
 
