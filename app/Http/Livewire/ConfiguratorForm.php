@@ -171,7 +171,7 @@ class ConfiguratorForm extends Component
             $hint = "You selected all 3 options: 'on Push', 'on Pull Request', and 'Manual Trigger'.";
             $hint = $hint . " I suggest you to select 'Manual Trigger' OR 'on push / on pull request'.";
             $this->hints[] = $hint;
-            $this->hints[] ="I selected automatically a 'Manual Trigger' for you.";
+            $this->hints[] = "I selected automatically a 'Manual Trigger' for you.";
         }
 
         $data = $this->compactThis(
