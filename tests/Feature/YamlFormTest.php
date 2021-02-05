@@ -100,6 +100,28 @@ class YamlFormTest extends TestCase
             ->set("onPullrequest", true)
             ->call('submitForm')
             ->assertHasNoErrors('onEvents');
+
+        $hintsTest =[];
+        $hint = "You selected all 3 options: 'on Push', 'on Pull Request', and 'Manual Trigger'.";
+        $hint = $hint . " I suggest you to select 'Manual Trigger' OR 'on push / on pull request'.";
+        $hintsTest[] = $hint;
+        $hintsTest[] ="I selected automatically a 'Manual Trigger' for you.";
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", true)
+            ->set("onPush", true)
+            ->set("onPullrequest", true)
+            ->call('submitForm')
+            ->assertSet('hints', $hintsTest);
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->set("onPullrequest", true)
+            ->call('submitForm')
+            ->assertSet('hints', []);
     }
 
 }
