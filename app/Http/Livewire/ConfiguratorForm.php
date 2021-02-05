@@ -167,6 +167,12 @@ class ConfiguratorForm extends Component
         if ($values["stepDusk"] and ! $values["stepNodejs"]) {
             $this->hints[] = "I suggest you to select 'Install node for NPM Build' if you have 'Execute Browser tests'";
         }
+        if ($values["onPush"] and $values["onPullrequest"] and $values["manualTrigger"]) {
+            $hint = "You selected all 3 options: 'on Push', 'on Pull Request', and 'Manual Trigger'.";
+            $hint = $hint . " I suggest you to select 'Manual Trigger' OR 'on push / on pull request'.";
+            $this->hints[] = $hint;
+            $this->hints[] ="I selected automatically a 'Manual Trigger' for you.";
+        }
 
         $data = $this->compactThis(
             "mysqlService",
