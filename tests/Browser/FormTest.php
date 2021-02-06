@@ -18,11 +18,7 @@ class FormTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                     ->assertSee('Ghygen');
-            $browser->type('name' , 'Test123')
-                ->press('GENERATE YAML FILE')
-                ->pause(1000)
-                ->screenshot("test")
-                ->assertDontSee('Error');
+
         });
     }
 }
