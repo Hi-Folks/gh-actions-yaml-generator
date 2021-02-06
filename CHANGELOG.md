@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.8 - 2021-02-06
+### Add
+- Caching node_modules directory when npm build is selected
+- add check for on events (just to avoid a mix of manual/automatic behaviour)
+
 ## 0.1.7 - 2021-02-05
 ### Add
 - Validation for some mandatory fields like name, "on events";
