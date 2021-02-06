@@ -84,12 +84,7 @@ jobs:
       if: steps.vendor-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 @endif
-@if ($stepNodejs)
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '{{ $stepNodejsVersion }}'
-@endif
+
     - name: Generate key
       run: php artisan key:generate
 @if ($stepFixStoragePermissions)
