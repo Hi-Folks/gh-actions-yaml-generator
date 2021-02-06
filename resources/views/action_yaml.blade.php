@@ -31,20 +31,21 @@ jobs:
       with:
         node-version: '{{ $stepNodejsVersion }}'
 @if ($stepCacheNpmModules)
-    - name: Cache Node.js modules
+    - name: Cache node_modules directory
       uses: actions/cache@v2
+      id: node_modules-cache
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm
-        key: $@{{ runner.OS }}-node-$@{{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          $@{{ runner.OS }}-node-
-          $@{{ runner.OS }}-
-@endif
+        path: node_modules
+        key: $@{{ runner.OS }}-build-$@{{ hashFiles('**/package.json') }}-$@{{ hashFiles('**/package-lock.json') }}
     - name: Install NPM packages
-      run: |
-        npm ci
-        npm run development
+      if: steps.node_modules-cache.outputs.cache-hit != 'true'
+      run: npm ci
+@else
+    - name: Install NPM packages
+      run: npm ci
+@endif
+    - name: Build frontend
+      run: npm run development
 @endif
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
@@ -83,12 +84,7 @@ jobs:
       if: steps.vendor-cache.outputs.cache-hit != 'true'
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 @endif
-@if ($stepNodejs)
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '{{ $stepNodejsVersion }}'
-@endif
+
     - name: Generate key
       run: php artisan key:generate
 @if ($stepFixStoragePermissions)
