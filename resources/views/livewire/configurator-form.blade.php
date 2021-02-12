@@ -90,7 +90,8 @@
                     wire:model="mysqlService"
                 >
 
-                  <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPassword: false }">
+                  <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPassword: {{ $mysqlPasswordType !== 'skip' ? 'true' : 'false' }} }">
+
                     <div class="col-span-1 ">
                       <x-form.input-text
                           model="mysqlVersion"
