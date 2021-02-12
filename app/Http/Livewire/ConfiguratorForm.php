@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -18,6 +20,11 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfiguratorForm extends Component
 {
+
+    public $code="";
+
+    protected $queryString = ['code' => ['except' => '']];
+
     public $name;
     public $onPush;
     public $onPushBranches;
@@ -64,41 +71,82 @@ class ConfiguratorForm extends Component
 
     public function mount()
     {
-        $this->name = "Test Laravel Github action";
-        $this->onPush = true;
-        $this->onPushBranches = ["main", "develop", "features/**"];
-        $this->onPullrequest = false;
-        $this->onPullrequestBranches = ["main", "develop"];
-        $this->manualTrigger = false;
-        $this->mysqlService = true;
-        $this->mysqlDatabase = "mysql";
-        $this->mysqlPasswordType = "skip";
-        $this->mysqlPassword = "DB_PASSWORD";
+        $this->fill(request()->only('code'));
+        Log::debug(__METHOD__.' Code : '.$this->code);
+        if ($this->code != "") {
+            $confModel = Configuration::getByCode($this->code);
+            $j = json_decode($confModel->configuration);
+            Log::debug(__METHOD__.' Name : '.$j->name);
 
-        $this->mysqlVersion = "5.7";
-        $this->mysqlDatabaseName = "db_test_laravel";
-        $this->mysqlDatabasePort = 33306;
-        $this->stepEnvTemplateFile = ".env.example";
-        $this->stepPhpVersions = ["8.0", "7.4"];
-        $this->stepNodejs = false;
-        $this->stepNodejsVersion = "14.x";
-        $this->stepCachePackages = true;
-        $this->stepCacheVendors = true;
-        $this->stepCacheNpmModules  = true;
-        $this->stepFixStoragePermissions = true;
-        $this->stepRunMigrations = true;
-        $this->stepExecutePhpunit = true;
-        $this->stepExecuteCodeSniffer = false;
-        $this->stepExecuteStaticAnalysis = false;
-        $this->stepDusk = false;
-        $this->matrixLaravel = false;
-        $this->matrixLaravelVersions = [];
-        $this->matrixTestbenchDependencies = [
-          "8.*" => "6.*",
-            "7.*" => "5.*",
-            "6.*" => "4.*"
-        ]; // mapping laravel versions with testbench version as dependency
-        // the key is the laravel ver, the value is the orchestratestbench version
+            $this->name = $j->name;
+            $this->onPush = $j->on_push;
+            $this->onPushBranches =  $j->on_push_branches;
+            $this->onPullrequest = $j->on_pullrequest;
+            $this->onPullrequestBranches = $j->on_pullrequest_branches;
+            $this->manualTrigger = $j->manual_trigger;
+            $this->mysqlService = $j->mysqlService;
+            $this->mysqlDatabase = $j->mysqlDatabase;
+            $this->mysqlPasswordType = $j->mysqlPasswordType;
+            $this->mysqlPassword = $j->mysqlPassword;
+
+            $this->mysqlVersion = $j->mysqlVersion;
+            $this->mysqlDatabaseName = $j->mysqlDatabaseName;
+            $this->mysqlDatabasePort = $j->mysqlDatabasePort;
+            $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
+            $this->stepPhpVersions = $j->stepPhpVersions;
+            $this->stepNodejs = $j->stepNodejs;
+            $this->stepNodejsVersion = $j->stepNodejsVersion;
+            $this->stepCachePackages = $j->stepCachePackages;
+            $this->stepCacheVendors = $j->stepCacheVendors;
+            $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
+            $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
+            $this->stepRunMigrations = $j->stepRunMigrations;
+            $this->stepExecutePhpunit = $j->stepExecutePhpunit;
+            $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
+            $this->stepExecuteStaticAnalysis = $j->stepExecuteStaticAnalysis;
+            $this->stepDusk = $j->stepDusk;
+            $this->matrixLaravel = $j->matrixLaravel;
+            $this->matrixLaravelVersions = $j->matrixLaravelVersions;
+            $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+
+        } else {
+            $this->name = "Test Laravel Github action";
+            $this->onPush = true;
+            $this->onPushBranches = ["main", "develop", "features/**"];
+            $this->onPullrequest = false;
+            $this->onPullrequestBranches = ["main", "develop"];
+            $this->manualTrigger = false;
+            $this->mysqlService = true;
+            $this->mysqlDatabase = "mysql";
+            $this->mysqlPasswordType = "skip";
+            $this->mysqlPassword = "DB_PASSWORD";
+
+            $this->mysqlVersion = "5.7";
+            $this->mysqlDatabaseName = "db_test_laravel";
+            $this->mysqlDatabasePort = 33306;
+            $this->stepEnvTemplateFile = ".env.example";
+            $this->stepPhpVersions = ["8.0", "7.4"];
+            $this->stepNodejs = false;
+            $this->stepNodejsVersion = "14.x";
+            $this->stepCachePackages = true;
+            $this->stepCacheVendors = true;
+            $this->stepCacheNpmModules  = true;
+            $this->stepFixStoragePermissions = true;
+            $this->stepRunMigrations = true;
+            $this->stepExecutePhpunit = true;
+            $this->stepExecuteCodeSniffer = false;
+            $this->stepExecuteStaticAnalysis = false;
+            $this->stepDusk = false;
+            $this->matrixLaravel = false;
+            $this->matrixLaravelVersions = [];
+            $this->matrixTestbenchDependencies = [
+                "8.*" => "6.*",
+                "7.*" => "5.*",
+                "6.*" => "4.*"
+            ]; // mapping laravel versions with testbench version as dependency
+            // the key is the laravel ver, the value is the orchestratestbench version
+
+        }
 
         $this->result = " ";
         $this->errorGeneration = "";
@@ -149,6 +197,7 @@ class ConfiguratorForm extends Component
 
     public function submitForm()
     {
+        Log::debug('Code:'.$this->code);
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
         if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
@@ -222,6 +271,11 @@ class ConfiguratorForm extends Component
         }
         try {
             $json = json_encode($array);
+            //$compressed = gzdeflate($json,  9);
+            $hashCode = md5($json);
+            Configuration::saveConfiguration($hashCode, json_encode($data));
+            $this->code = $hashCode;
+
             $seconds = 60 * 60 * 6; // 6 hours
             $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
                 return Schema::import('https://json.schemastore.org/github-workflow');
