@@ -328,16 +328,16 @@
               </button>
             </div>
             <div class="flex-grow-0 px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <!--button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <button type="submit" class="uppercase inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Generate Yaml File
-              </button-->
+              </button>
 
-              <button x-on:click="$wire.submitForm().then(result=>{
+              <!--button x-on:click="$wire.submitForm().then(result=>{
               let yc =document.getElementById('yaml-code');
               hljs.lineNumbersBlock(yc);
               hljs.highlightBlock(yc);
               })"
-              class="uppercase inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Generate Yaml File</button>
+              class="uppercase inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Generate Yaml File</button-->
             </div>
           </div>
         </div>
@@ -413,4 +413,21 @@
         class="h-full font-mono text-sm prettyprint linenums selectable {{ $errors->has('yaml')? "bg-red-200":"" }}" data-line-numbers="true"
       ><code id="yaml-code" class="hljs yaml">{{ $result }}</code></pre>
     </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Livewire.hook('component.initialized', (component) => {})
+      // Livewire.hook('element.initialized', (el, component) => {})
+      // Livewire.hook('element.updating', (fromEl, toEl, component) => {})
+      // Livewire.hook('element.updated', (el, component) => {})
+      // Livewire.hook('element.removed', (el, component) => {})
+      // Livewire.hook('message.sent', (message, component) => {})
+      // Livewire.hook('message.failed', (message, component) => {})
+      // Livewire.hook('message.received', (message, component) => {})
+      Livewire.hook('message.processed', (message, component) => {
+        let yc =document.getElementById('yaml-code');
+        hljs.lineNumbersBlock(yc);
+        hljs.highlightBlock(yc);
+      })
+    });
+  </script>
 </div>
