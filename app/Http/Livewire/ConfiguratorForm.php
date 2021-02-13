@@ -105,7 +105,6 @@ class ConfiguratorForm extends Component
             "6.*" => "4.*"
         ]; // mapping laravel versions with testbench version as dependency
         // the key is the laravel ver, the value is the orchestratestbench version
-
     }
 
     public function mount()
@@ -285,7 +284,7 @@ class ConfiguratorForm extends Component
             // Add Header to the View
             $dataHeader = [];
             $dataHeader["code"] = $this->code;
-            $dataHeader["configurationUrl"] =  url("/")."?code=". $this->code;
+            $dataHeader["configurationUrl"] =  url("/") . "?code=" . $this->code;
             $stringHeaderResult = view('yaml.header', $dataHeader)->render();
             //
 
