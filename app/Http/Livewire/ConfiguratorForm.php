@@ -114,6 +114,7 @@ class ConfiguratorForm extends Component
     {
         $this->fill(request()->only('code'));
         Log::debug(__METHOD__ . ' Code : ' . $this->code);
+        $codeNotFound = false;
         $this->loadDefaults();
         if ($this->code != "") {
             $confModel = Configuration::getByCode($this->code);
@@ -149,12 +150,17 @@ class ConfiguratorForm extends Component
                 $this->matrixLaravel = $j->matrixLaravel;
                 $this->matrixLaravelVersions = $j->matrixLaravelVersions;
                 $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+            } else {
+                $codeNotFound = true;
             }
         }
         $this->result = " ";
         $this->errorGeneration = "";
 
         $this->hints = [];
+        if ($codeNotFound) {
+            $this->hints[] = "The Code : " . $this->code . " was not found. So the default configuration was loaded.";
+        }
     }
 
     private static function split($somethingToSplit, $splitChars = ",")
