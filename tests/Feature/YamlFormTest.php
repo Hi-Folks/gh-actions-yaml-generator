@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\ConfiguratorForm;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
@@ -10,6 +11,7 @@ use Tests\TestCase;
 
 class YamlFormTest extends TestCase
 {
+    use DatabaseMigrations;
 
     /**
      * @description Loading form page.

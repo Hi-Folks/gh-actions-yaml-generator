@@ -19,7 +19,7 @@ class Configuration extends Model
         $confModel = self::getByCode($code);
 
         if (! $confModel) {
-            $confModel = new self;
+            $confModel = new self();
             $confModel->code = $code;
             $confModel->configuration = $json;
             $confModel->metadata = $metadata;
@@ -29,7 +29,5 @@ class Configuration extends Model
         $confModel->counts = $confModel->counts + 1;
 
         $confModel->save();
-
-
     }
 }

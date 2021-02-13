@@ -21,7 +21,7 @@ use Symfony\Component\Yaml\Yaml;
 class ConfiguratorForm extends Component
 {
 
-    public $code="";
+    public $code = "";
 
     protected $queryString = ['code' => ['except' => '']];
 
@@ -72,11 +72,11 @@ class ConfiguratorForm extends Component
     public function mount()
     {
         $this->fill(request()->only('code'));
-        Log::debug(__METHOD__.' Code : '.$this->code);
+        Log::debug(__METHOD__ . ' Code : ' . $this->code);
         if ($this->code != "") {
             $confModel = Configuration::getByCode($this->code);
             $j = json_decode($confModel->configuration);
-            Log::debug(__METHOD__.' Name : '.$j->name);
+            Log::debug(__METHOD__ . ' Name : ' . $j->name);
 
             $this->name = $j->name;
             $this->onPush = $j->on_push;
@@ -108,7 +108,6 @@ class ConfiguratorForm extends Component
             $this->matrixLaravel = $j->matrixLaravel;
             $this->matrixLaravelVersions = $j->matrixLaravelVersions;
             $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
-
         } else {
             $this->name = "Test Laravel Github action";
             $this->onPush = true;
@@ -145,7 +144,6 @@ class ConfiguratorForm extends Component
                 "6.*" => "4.*"
             ]; // mapping laravel versions with testbench version as dependency
             // the key is the laravel ver, the value is the orchestratestbench version
-
         }
 
         $this->result = " ";
@@ -197,7 +195,7 @@ class ConfiguratorForm extends Component
 
     public function submitForm()
     {
-        Log::debug('Code:'.$this->code);
+        Log::debug('Code:' . $this->code);
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
         if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
