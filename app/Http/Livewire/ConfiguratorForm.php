@@ -203,7 +203,12 @@ class ConfiguratorForm extends Component
         try {
             $this->rateLimit(60);
         } catch (TooManyRequestsException $exception) {
-            $this->addError('yaml', "Slow down! Please wait another " . $exception->secondsUntilAvailable . " seconds to generate a new yaml workflow.");
+            $this->addError(
+                'yaml',
+                "Slow down! Please wait another " .
+                $exception->secondsUntilAvailable .
+                " seconds to generate a new yaml workflow."
+            );
             return;
         }
         Log::debug('Code:' . $this->code);
