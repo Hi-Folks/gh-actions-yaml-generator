@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Configuration;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +22,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfiguratorForm extends Component
 {
+    use WithRateLimiting;
 
     public $code = "";
 
@@ -197,6 +200,12 @@ class ConfiguratorForm extends Component
 
     public function submitForm()
     {
+        try {
+            $this->rateLimit(60);
+        } catch (TooManyRequestsException $exception) {
+            $this->addError('yaml', "Slow down! Please wait another ".$exception->secondsUntilAvailable." seconds to generate a new yaml workflow.");
+            return;
+        }
         Log::debug('Code:' . $this->code);
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
