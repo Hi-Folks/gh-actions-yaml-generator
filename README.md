@@ -1,6 +1,6 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Hi-Folks/gh-actions-yaml-generator/Test%20Laravel%20Github%20action/main?style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge)
-![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen-5proe.ondigitalocean.app%2F)
+![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F)
 
 ![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
 
@@ -27,9 +27,9 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 
 This is a Work In Progress, we are adding new features...
 
-If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean App Platform:
+If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean Platform:
 
-- [Ghygen Demo](https://ghygen-5proe.ondigitalocean.app/).
+- [Ghygen Demo](https://ghygen.hi-folks.dev/).
 
 If you want to start using it locally you can clone the repo and install it following the instructions below.
 
