@@ -14,3 +14,5 @@ yarn-error.log
 public/css/app.css
 public/js/app.js
 public/mix-manifest.json
+/.env.prod
+/Makefile.param.prod
