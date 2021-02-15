@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 - 2021-02-15
+### Add
+- Add permalink to load saved configuration
+- Add Makefile for deploy
+- Add check for Rate Limit https://github.com/danharrin/livewire-rate-limiting
+- Add LaraLens package https://github.com/Hi-Folks/lara-lens
+### Change
+- Use database migrations in tests
+- Change Demo URL: https://ghygen.hi-folks.dev/
+- optimize js code after submit form
+
 ## 0.1.8 - 2021-02-06
 ### Add
 - Caching node_modules directory when npm build is selected
