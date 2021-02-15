@@ -1,0 +1,7 @@
+SSH_ALIAS=some.vm
+SSH_USER=deploy
+WEB_DIR=/var/www/htdocs/laravel8
+WEB_USER=www-data
+WEB_GROUP=www-data
+# DRY_RUN=--dry-run
+DRY_RUN=

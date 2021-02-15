@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.9 - WIP
+### Add
+- Add permalink to load saved configuration
+
+### Change
+- Use database migrations in tests
+
 ## 0.1.8 - 2021-02-06
 ### Add
 - Caching node_modules directory when npm build is selected

@@ -2,7 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Configuration;
+use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -18,6 +22,12 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfiguratorForm extends Component
 {
+    use WithRateLimiting;
+
+    public $code = "";
+
+    protected $queryString = ['code' => ['except' => '']];
+
     public $name;
     public $onPush;
     public $onPushBranches;
@@ -62,7 +72,7 @@ class ConfiguratorForm extends Component
         'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
     ];
 
-    public function mount()
+    private function loadDefaults()
     {
         $this->name = "Test Laravel Github action";
         $this->onPush = true;
@@ -74,7 +84,6 @@ class ConfiguratorForm extends Component
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
-
         $this->mysqlVersion = "5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
@@ -94,16 +103,64 @@ class ConfiguratorForm extends Component
         $this->matrixLaravel = false;
         $this->matrixLaravelVersions = [];
         $this->matrixTestbenchDependencies = [
-          "8.*" => "6.*",
+            "8.*" => "6.*",
             "7.*" => "5.*",
             "6.*" => "4.*"
         ]; // mapping laravel versions with testbench version as dependency
         // the key is the laravel ver, the value is the orchestratestbench version
+    }
 
+    public function mount()
+    {
+        $this->fill(request()->only('code'));
+        Log::debug(__METHOD__ . ' Code : ' . $this->code);
+        $codeNotFound = false;
+        $this->loadDefaults();
+        if ($this->code != "") {
+            $confModel = Configuration::getByCode($this->code);
+            if ($confModel) {
+                $j = json_decode($confModel->configuration);
+                Log::debug(__METHOD__ . ' Name : ' . $j->name);
+                $this->name = $j->name;
+                $this->onPush = $j->on_push;
+                $this->onPushBranches =  $j->on_push_branches;
+                $this->onPullrequest = $j->on_pullrequest;
+                $this->onPullrequestBranches = $j->on_pullrequest_branches;
+                $this->manualTrigger = $j->manual_trigger;
+                $this->mysqlService = $j->mysqlService;
+                $this->mysqlDatabase = $j->mysqlDatabase;
+                $this->mysqlPasswordType = $j->mysqlPasswordType;
+                $this->mysqlPassword = $j->mysqlPassword;
+                $this->mysqlVersion = $j->mysqlVersion;
+                $this->mysqlDatabaseName = $j->mysqlDatabaseName;
+                $this->mysqlDatabasePort = $j->mysqlDatabasePort;
+                $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
+                $this->stepPhpVersions = $j->stepPhpVersions;
+                $this->stepNodejs = $j->stepNodejs;
+                $this->stepNodejsVersion = $j->stepNodejsVersion;
+                $this->stepCachePackages = $j->stepCachePackages;
+                $this->stepCacheVendors = $j->stepCacheVendors;
+                $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
+                $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
+                $this->stepRunMigrations = $j->stepRunMigrations;
+                $this->stepExecutePhpunit = $j->stepExecutePhpunit;
+                $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
+                $this->stepExecuteStaticAnalysis = $j->stepExecuteStaticAnalysis;
+                $this->stepDusk = $j->stepDusk;
+                $this->matrixLaravel = $j->matrixLaravel;
+                $this->matrixLaravelVersions = $j->matrixLaravelVersions;
+                $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+            } else {
+                $codeNotFound = true;
+            }
+        }
         $this->result = " ";
         $this->errorGeneration = "";
 
         $this->hints = [];
+        if ($codeNotFound) {
+            $this->hints[] = "The Code : " . $this->code . " was not found. So the default configuration was loaded.";
+        }
     }
 
     private static function split($somethingToSplit, $splitChars = ",")
@@ -149,6 +206,18 @@ class ConfiguratorForm extends Component
 
     public function submitForm()
     {
+        try {
+            $this->rateLimit(60);
+        } catch (TooManyRequestsException $exception) {
+            $this->addError(
+                'yaml',
+                "Slow down! Please wait another " .
+                $exception->secondsUntilAvailable .
+                " seconds to generate a new yaml workflow."
+            );
+            return;
+        }
+        Log::debug('Code:' . $this->code);
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
         if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
@@ -222,13 +291,24 @@ class ConfiguratorForm extends Component
         }
         try {
             $json = json_encode($array);
+            //$compressed = gzdeflate($json,  9);
+            $hashCode = md5($json);
+            Configuration::saveConfiguration($hashCode, json_encode($data));
+            $this->code = $hashCode;
             $seconds = 60 * 60 * 6; // 6 hours
             $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
                 return Schema::import('https://json.schemastore.org/github-workflow');
             });
-
             $schema->in(json_decode($json));
-            $this->result = $stringResult;
+
+            // Add Header to the View
+            $dataHeader = [];
+            $dataHeader["code"] = $this->code;
+            $dataHeader["configurationUrl"] =  url("/") . "?code=" . $this->code;
+            $stringHeaderResult = view('yaml.header', $dataHeader)->render();
+            //
+
+            $this->result = $stringHeaderResult . $stringResult;
         } catch (\Exception $e) {
             $this->errorGeneration = $e->getMessage();
             $this->result = $stringResult;
