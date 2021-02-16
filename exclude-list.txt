@@ -103,3 +103,5 @@ public/files
 public/chunks
 public/storage
 bootstrap/cache/config.php
+
+.phpunit.result.cache
