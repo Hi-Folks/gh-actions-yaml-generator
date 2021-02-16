@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ConfiguratorController;
+use App\Http\Resources\ConfigurationResource;
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +31,8 @@ Route::post('/action', function () {
     return response()
         ->view('action_yaml', $data, 200)
         ->header('Content-Type', $type);
+});
+
+Route::get('/configurations', function () {
+    return ConfigurationResource::collection(Configuration::all());
 });
