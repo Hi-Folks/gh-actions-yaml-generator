@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ConfiguratorController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Resources\ConfigurationResource;
+use App\Models\Configuration;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ ConfiguratorController::class, 'index']);
+Route::get('/', [ ConfiguratorController::class, 'index'])->name("index");
+Route::get('/dashboard', [ DashboardController::class, 'index'])->name("dashboard");
 
 Route::post('/action', function () {
     //$type = "application/x-yaml";
@@ -29,4 +33,8 @@ Route::post('/action', function () {
     return response()
         ->view('action_yaml', $data, 200)
         ->header('Content-Type', $type);
+});
+
+Route::get('/configurations', function () {
+    return ConfigurationResource::collection(Configuration::all());
 });

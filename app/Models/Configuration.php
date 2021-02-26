@@ -9,6 +9,10 @@ class Configuration extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'configuration' => 'object',
+    ];
+
     public static function getByCode($code)
     {
         return self::firstWhere('code', $code);

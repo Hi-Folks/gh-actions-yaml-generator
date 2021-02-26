@@ -35,7 +35,13 @@
   </header>
   <main>
     <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
-      <livewire:configurator-form/>
+      <livewire:dashboard.metrics></livewire:dashboard.metrics>
+    </div>
+    <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
+      <livewire:dashboard.latest></livewire:dashboard.latest>
+    </div>
+    <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
+      <livewire:dashboard.top></livewire:dashboard.top>
     </div>
   </main>
   <x-footer></x-footer>
