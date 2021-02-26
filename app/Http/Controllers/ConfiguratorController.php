@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class ConfiguratorController extends Controller
 {
     public function index()

@@ -18,16 +18,21 @@ class Metrics extends Component
     {
         $this->count = Configuration::count();
         $this->total = Configuration::sum('counts');
-        $this->last4hours = Configuration::where('updated_at', '>',
+        $this->last4hours = Configuration::where(
+            'updated_at',
+            '>',
             Carbon::now()->subHours(3)->toDateTimeString()
         )->count();
-        $this->last24hours = Configuration::where('updated_at', '>',
+        $this->last24hours = Configuration::where(
+            'updated_at',
+            '>',
             Carbon::now()->subHours(24)->toDateTimeString()
         )->count();
-        $this->last3days = Configuration::where('updated_at', '>',
-            Carbon::now()->subHours(24*3)->toDateTimeString()
+        $this->last3days = Configuration::where(
+            'updated_at',
+            '>',
+            Carbon::now()->subHours(24 * 3)->toDateTimeString()
         )->count();
-
     }
 
     public function render()
