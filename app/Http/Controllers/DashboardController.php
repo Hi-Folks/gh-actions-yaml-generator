@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-class ConfiguratorController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {
@@ -12,6 +12,6 @@ class ConfiguratorController extends Controller
         $data["description"] = "Setup Database Service, use multiple PHP version,
             use multiple Laravel versions, build frontend, cache packages,
             execute Browser, Functional, and Unit tests…";
-        return view('configurator.index', $data);
+        return view('dashboard.index', $data);
     }
 }
