@@ -119,7 +119,8 @@ class ConfiguratorForm extends Component
         if ($this->code != "") {
             $confModel = Configuration::getByCode($this->code);
             if ($confModel) {
-                $j = json_decode($confModel->configuration);
+                //$j = json_decode($confModel->configuration);
+                $j = $confModel->configuration;
                 Log::debug(__METHOD__ . ' Name : ' . $j->name);
                 $this->name = $j->name;
                 $this->onPush = $j->on_push;
@@ -293,7 +294,7 @@ class ConfiguratorForm extends Component
             $json = json_encode($array);
             //$compressed = gzdeflate($json,  9);
             $hashCode = md5($json);
-            Configuration::saveConfiguration($hashCode, json_encode($data));
+            Configuration::saveConfiguration($hashCode, $data);
             $this->code = $hashCode;
             $seconds = 60 * 60 * 6; // 6 hours
             $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
