@@ -1,4 +1,8 @@
 # Changelog
+## 0.2.1 - 2021-02-26
+### Add
+- Add API for listing configurations
+- Add Dashboard for showing some infos from configurations
 
 ## 0.2.0 - 2021-02-15
 ### Add
