@@ -11,7 +11,7 @@ class Latest extends Component
 
     public function mount()
     {
-        $this->latest = Configuration::latest()->take(5)->get();
+        $this->latest = Configuration::latest("updated_at")->take(5)->get();
     }
     public function render()
     {
