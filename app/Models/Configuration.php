@@ -33,5 +33,9 @@ class Configuration extends Model
         $confModel->counts = $confModel->counts + 1;
 
         $confModel->save();
+
+        LogConfiguration::create([
+            'code' => $code,
+        ]);
     }
 }

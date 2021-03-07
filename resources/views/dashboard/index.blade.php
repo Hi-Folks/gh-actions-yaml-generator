@@ -43,6 +43,9 @@
     <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
       <livewire:dashboard.top></livewire:dashboard.top>
     </div>
+    <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
+      <livewire:dashboard.daily></livewire:dashboard.daily>
+    </div>
   </main>
   <x-footer></x-footer>
 </div>

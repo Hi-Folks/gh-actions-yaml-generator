@@ -41,6 +41,14 @@ cd gh-actions-yaml-generator
 cp .env.example .env
 composer install
 php artisan key:generate
+npm i
+npm run production
+```
+Then create your database and update the .env file with the right values for DB_* .
+
+Once your Database is configured you can execute the migrations:
+```shell
+php artisan migrate
 ```
 Start development server
 ```shell

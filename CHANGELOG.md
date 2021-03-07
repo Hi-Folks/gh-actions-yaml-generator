@@ -1,4 +1,14 @@
 # Changelog
+
+## 0.2.2 - 2021-03-07
+### Add
+- All Hashcode configurations are logged into log_configurations table;
+- Dashboard: Show the total configurations created daily;
+- Add About page with /about URL.
+
+### Change
+- Dashboard: sort latest configurations by updated_at.
+
 ## 0.2.1 - 2021-02-26
 ### Add
 - Add API for listing configurations
