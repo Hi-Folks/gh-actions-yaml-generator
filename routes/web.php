@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ ConfiguratorController::class, 'index'])->name("index");
+Route::get('/about', [ ConfiguratorController::class, 'about'])->name("about");
+
 Route::get('/dashboard', [ DashboardController::class, 'index'])->name("dashboard");
 
 Route::post('/action', function () {

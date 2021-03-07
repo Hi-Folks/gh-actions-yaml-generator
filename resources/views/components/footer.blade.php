@@ -12,12 +12,13 @@
                 <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
                     <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="https://github.com/Hi-Folks/gh-actions-yaml-generator">Source Code</a>
                 </div>
-                <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
-                    <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="https://docs.github.com/en/free-pro-team@latest/actions">Github Actions Doc</a>
-                </div>
+
                 <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
                     <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="{{ config("app.url") }}">Home</a>
                 </div>
+              <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
+                <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="{{ route("about") }}">What is Ghygen?</a>
+              </div>
             </div>
         </div>
     </footer>
