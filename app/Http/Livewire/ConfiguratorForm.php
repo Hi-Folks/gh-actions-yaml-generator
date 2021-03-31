@@ -70,6 +70,7 @@ class ConfiguratorForm extends Component
         'mysqlVersion' => 'exclude_unless:mysqlService,1|required',
         'mysqlDatabaseName' => 'exclude_unless:mysqlService,1|required',
         'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
+        'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
     private function loadDefaults()
