@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3 - WIP
+### Add
+- Add Validation for Laravel version
+
+### Change
+
+
 ## 0.2.2 - 2021-03-07
 ### Add
 - All Hashcode configurations are logged into log_configurations table;
