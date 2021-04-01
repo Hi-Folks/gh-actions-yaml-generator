@@ -158,7 +158,7 @@ class YamlFormTest extends TestCase
      *
      * @return void
      */
-    public function test_form_submit_test_strategy()
+    public function test_form_submit_test_matrix()
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
