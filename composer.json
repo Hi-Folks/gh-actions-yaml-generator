@@ -25,6 +25,7 @@
         "symfony/yaml": "^5.2"
     },
     "require-dev": {
+        "brianium/paratest": "^6.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^6.11",

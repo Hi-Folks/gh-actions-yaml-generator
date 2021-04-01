@@ -1,0 +1,10 @@
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: [ '8.0','7.4' ]
+        dependency-stability: [ prefer-stable ]
+
+        laravel: [ '8.*' ]
+        include:
+          - laravel:  8.*
+            testbench: 6.*
