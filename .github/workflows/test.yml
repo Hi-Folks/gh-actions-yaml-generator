@@ -66,6 +66,7 @@ jobs:
         env:
           SESSION_DRIVER: array
           DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
 
         run: php artisan migrate
 
@@ -81,7 +82,7 @@ jobs:
         env:
           SESSION_DRIVER: array
           DB_CONNECTION: sqlite
-
+          DB_DATABASE: ":memory:"
 
         run: vendor/bin/phpunit --testdox
 
