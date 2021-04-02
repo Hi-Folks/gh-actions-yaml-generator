@@ -148,7 +148,7 @@ class YamlFormTest extends TestCase
             ->set("name","Test")
             ->set("manualTrigger", false)
             ->set("onPush", true)
-            ->set("mysqlService", true)
+            ->set("databaseType", "mysql")
             ->call('submitForm')
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")));
 

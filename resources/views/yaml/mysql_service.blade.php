@@ -1,4 +1,4 @@
-@if ( $mysqlService )
+@if ( $databaseType === "mysql" )
     # Service container Mysql {{ $mysqlDatabase }}
     services:
       # Label used to access the service container

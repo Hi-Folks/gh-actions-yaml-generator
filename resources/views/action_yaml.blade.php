@@ -4,7 +4,9 @@ name: {{ $name }}
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+@if ( $databaseType === "mysql" )
 @include('yaml.mysql_service')
+@endif
 
     strategy:
       matrix:
@@ -91,19 +93,25 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 @endif
+@if ( $databaseType === "sqlite" )
+    - name: Create Database
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+@endif
 @if ($stepRunMigrations)
     - name: Run Migrations
 @include('yaml.set_env')
 
       run: php artisan migrate
 @endif
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
 
     - name: Show Laravel versions
       run: php artisan --version
+    - name: Show dir
+      run: pwd
+    - name: PHP Version
+      run: php --version
 
 @if ($stepExecutePhpunit)
     - name: Execute tests (Unit and Feature tests) via PHPUnit
@@ -139,7 +147,7 @@ jobs:
       run: |
         php artisan serve > /dev/null 2>&1 &
         chmod -R 0755 vendor/laravel/dusk/bin/
-@if ( $mysqlService )
+@if ( $stepRunMigrations )
         php artisan migrate
 @endif
         php artisan dusk
