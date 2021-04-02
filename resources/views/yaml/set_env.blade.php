@@ -24,5 +24,5 @@
 @endif
 @if ( $databaseType === "sqlite" )
         DB_CONNECTION: sqlite
-        DB_DATABASE: :memory:
+        DB_DATABASE: ":memory:"
 @endif

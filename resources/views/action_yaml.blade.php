@@ -93,12 +93,6 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 @endif
-@if ( $databaseType === "sqlite" )
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-@endif
 @if ($stepRunMigrations)
     - name: Run Migrations
 @include('yaml.set_env')
