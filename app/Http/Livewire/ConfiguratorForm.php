@@ -73,9 +73,9 @@ class ConfiguratorForm extends Component
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
         'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
-        'mysqlVersion' => 'exclude_unless:databaseType,'.self::DB_TYPE_MYSQL.'|required',
-        'mysqlDatabaseName' => 'exclude_unless:databaseType,'.self::DB_TYPE_MYSQL.'|required',
-        'mysqlDatabasePort' => 'exclude_unless:databaseType,'.self::DB_TYPE_MYSQL.'|required|integer',
+        'mysqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required|integer',
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
@@ -136,9 +136,9 @@ class ConfiguratorForm extends Component
                 $this->onPullrequestBranches = $j->on_pullrequest_branches;
                 $this->manualTrigger = $j->manual_trigger;
                 if (isset($j->mysqlService)) {
-                    if ($j->mysqlService === true ) {
+                    if ($j->mysqlService === true) {
                         $this->databaseType = self::DB_TYPE_MYSQL;
-                    } elseif ($j->mysqlService === false ) {
+                    } elseif ($j->mysqlService === false) {
                         $this->databaseType = self::DB_TYPE_NONE;
                     }
                 } else {
