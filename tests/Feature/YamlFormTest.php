@@ -16,15 +16,13 @@ class YamlFormTest extends TestCase
     const DIR_MOCK ="tests/Feature/mock-asserts/";
 
     /**
-     * @description Loading form page.
-     *
+     * @description Loading form page with defaults.
      * @return void
      */
     public function test_load_form()
     {
         $this->get('/')
             ->assertStatus(200);
-
     }
 
 
