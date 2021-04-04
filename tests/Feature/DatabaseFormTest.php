@@ -51,7 +51,8 @@ class DatabaseFormTest extends TestCase
             ->call('submitForm')
             ->assertHasNoErrors('yaml')
             ->assertSet('hints', [])
-            ->assertDontSee("image: mysql:");
+            ->assertDontSee("image: mysql:")
+            ->assertDontSee("DB_CONNECTION: sqlite");
     }
 
     /**
@@ -67,6 +68,23 @@ class DatabaseFormTest extends TestCase
             ->call('submitForm')
             ->assertHasNoErrors('yaml')
             ->assertCount('hints', 1)
+            ->assertDontSee("image: mysql:");
+    }
+
+    /**
+     * Testing with sqlite database and migrations
+     * @return void
+     */
+    public function test_sqlite_withmigration()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test No Database")
+            ->set("onPullrequest", true)
+            ->set("databaseType", "sqlite")
+            ->call('submitForm')
+            ->assertHasNoErrors('yaml')
+            ->assertCount('hints', 0)
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."sqlite-migration.yaml")))
             ->assertDontSee("image: mysql:");
     }
 
