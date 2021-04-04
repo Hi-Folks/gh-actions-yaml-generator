@@ -79,8 +79,8 @@ jobs:
           DB_HOST: postgres
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
-          DB_USER: postgres
-          DB_PASSWORD: DB_PASSWORD
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
 
         run: php artisan migrate
 
@@ -98,8 +98,8 @@ jobs:
           DB_HOST: postgres
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
-          DB_USER: postgres
-          DB_PASSWORD: DB_PASSWORD
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
 
         run: vendor/bin/phpunit --testdox
 
