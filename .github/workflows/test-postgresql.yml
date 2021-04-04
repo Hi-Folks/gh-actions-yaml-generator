@@ -19,8 +19,8 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: postgres
-          POSTGRESQL_PASSWORD: postgres
-          POSTGRESQL_DATABASE:  db_test_laravel
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB:  db_test_laravel
         ## map the "external" 55432 port with the "internal" 5432
         ports:
           - 55432:5432
