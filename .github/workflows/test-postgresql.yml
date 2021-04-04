@@ -14,7 +14,7 @@ jobs:
     # Service container Mysql postgresql
     services:
       # Label used to access the service container
-      mysql:
+      postgres:
         # Docker Hub image (also with version)
         image: postgres:latest
         env:
