@@ -14,7 +14,7 @@
           <tr>
             <x-table.th >Code</x-table.th>
             <x-table.th >Title</x-table.th>
-            <x-table.th >MySql</x-table.th>
+            <x-table.th >Database</x-table.th>
             <x-table.th >Updated At</x-table.th>
             <x-table.th >Counts</x-table.th>
 
@@ -32,11 +32,15 @@
               </x-table.td>
 
               <x-table.td align="left">
-                @if ($l->configuration->mysqlService)
+
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  {{ $l->configuration->mysqlVersion }}
-              </span>
-                @endif
+                    {{ $l->getDatabaseType() }}
+                    @if ($l->isMysqlService() )
+                      {{ $l->configuration->mysqlVersion }}
+                    @endif
+
+                  </span>
+
               </x-table.td>
               <x-table.td align="left">
                 {{ $l->updated_at }}

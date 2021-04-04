@@ -18,6 +18,35 @@ class Configuration extends Model
         return self::firstWhere('code', $code);
     }
 
+    public function isMysqlService()
+    {
+        if (isset($this->configuration->mysqlService)) {
+            return $this->configuration->mysqlService;
+        }
+        return $this->configuration->databaseType === "mysql";
+    }
+
+    public function isSqlite() {
+        if (isset($this->configuration->databaseType) ) {
+            return $this->configuration->databaseType === "sqlite";
+        }
+        return false;
+
+    }
+
+
+    public function getDatabaseType()
+    {
+        if ($this->isMysqlService()) {
+            return "Mysql";
+        }
+        if ($this->isSqlite()) {
+            return "Sqlite";
+        }
+        return "";
+
+    }
+
     public static function saveConfiguration($code, $json, $metadata = "{}")
     {
         $confModel = self::getByCode($code);
