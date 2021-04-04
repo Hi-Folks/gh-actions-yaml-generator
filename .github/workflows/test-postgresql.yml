@@ -16,7 +16,7 @@ jobs:
       # Label used to access the service container
       mysql:
         # Docker Hub image (also with version)
-        image: postgresql:10.8
+        image: postgres:latest
         env:
           POSTGRES_USER: postgres
           POSTGRESQL_PASSWORD: postgres
