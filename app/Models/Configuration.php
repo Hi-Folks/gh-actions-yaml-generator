@@ -26,12 +26,12 @@ class Configuration extends Model
         return $this->configuration->databaseType === "mysql";
     }
 
-    public function isSqlite() {
-        if (isset($this->configuration->databaseType) ) {
+    public function isSqlite()
+    {
+        if (isset($this->configuration->databaseType)) {
             return $this->configuration->databaseType === "sqlite";
         }
         return false;
-
     }
 
 
@@ -44,7 +44,6 @@ class Configuration extends Model
             return "Sqlite";
         }
         return "";
-
     }
 
     public static function saveConfiguration($code, $json, $metadata = "{}")
