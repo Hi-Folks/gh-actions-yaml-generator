@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.3 - 2021-04-04
+### Add
+- Add Sqlite (in memory) support in your workflow (now the user can select: none, mysql or sqlite);
+- Add Validation for Laravel version
+
+
+### Change
+
+
 ## 0.2.2 - 2021-03-07
 ### Add
 - All Hashcode configurations are logged into log_configurations table;

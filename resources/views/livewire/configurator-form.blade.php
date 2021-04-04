@@ -79,17 +79,19 @@
                 </div>
             </fieldset>
 
-            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Mysql Container Service</legend>
-                <x-form.input-conditional-checkbox
-                    model="mysqlService"
-                    name="mysqlService"
-                    label="Mysql Service"
-                    id="mysqlService"
-                    value=1
-                    wire:model="mysqlService"
-                >
+            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }} }">
+              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Select Database</legend>
+                <x-form.input-select
+                  model="databaseType"
+                  name="databaseType"
+                  label="Select the Database"
+                  :list="['none'=>'None', 'mysql'=>'MySql Service', 'sqlite' => 'Sqlite']"
+                  help="Database: *None* if you don't want a database in your workflow,o otherwise select Mysql or Sqlite"
+                  multiselect=0
+                  onChange='showMysqlService= $event.target.value==="mysql"'>
+                </x-form.input-select>
 
+                <div  x-show="showMysqlService">
                   <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPassword: {{ $mysqlPasswordType !== 'skip' ? 'true' : 'false' }} }">
 
                     <div class="col-span-1 ">
@@ -139,7 +141,7 @@
                         </x-form.input-text>
                     </div>
                   </div>
-                </x-form.input-conditional-checkbox>
+                </div>
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
