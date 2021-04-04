@@ -13,16 +13,16 @@ class YamlFormTest extends TestCase
 {
     use DatabaseMigrations;
 
+    const DIR_MOCK ="tests/Feature/mock-asserts/";
+
     /**
-     * @description Loading form page.
-     *
+     * @description Loading form page with defaults.
      * @return void
      */
     public function test_load_form()
     {
         $this->get('/')
             ->assertStatus(200);
-
     }
 
 
@@ -124,6 +124,54 @@ class YamlFormTest extends TestCase
             ->set("onPullrequest", true)
             ->call('submitForm')
             ->assertSet('hints', []);
+    }
+
+    /**
+     * Form Test: using manual triggering option.
+     *
+     * @return void
+     */
+    public function test_form_submit_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches.yaml")))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")));
+
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->set("databaseType", "mysql")
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")));
+
+    }
+    /**
+     * Form Test: using manual triggering option.
+     *
+     * @return void
+     */
+    public function test_form_submit_test_matrix()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->set("matrixLaravel",true)
+            ->set("matrixLaravelVersions",["8.*" => "8.*"])
+            ->set("stepPhpVersions",[ "8.0", "7.4"])
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches.yaml")))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."strategy-php-8-74.yaml")));
+
+
+
     }
 
 }

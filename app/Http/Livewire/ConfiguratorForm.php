@@ -28,13 +28,19 @@ class ConfiguratorForm extends Component
 
     protected $queryString = ['code' => ['except' => '']];
 
+    public const DB_TYPE_NONE = "none";
+    public const DB_TYPE_MYSQL = "mysql";
+    public const DB_TYPE_SQLITE = "sqlite";
+    public const DB_TYPE_POSTGRESQL = "postgresql";
+
+
     public $name;
     public $onPush;
     public $onPushBranches;
     public $onPullrequest;
     public $onPullrequestBranches;
     public $manualTrigger;
-    public $mysqlService;
+    public $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
     public $mysqlDatabase;
     public $mysqlPasswordType; // 'skip
     public $mysqlPassword; // password
@@ -67,9 +73,9 @@ class ConfiguratorForm extends Component
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
         'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
-        'mysqlVersion' => 'exclude_unless:mysqlService,1|required',
-        'mysqlDatabaseName' => 'exclude_unless:mysqlService,1|required',
-        'mysqlDatabasePort' => 'exclude_unless:mysqlService,1|required|integer',
+        'mysqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required|integer',
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
@@ -81,7 +87,7 @@ class ConfiguratorForm extends Component
         $this->onPullrequest = false;
         $this->onPullrequestBranches = ["main", "develop"];
         $this->manualTrigger = false;
-        $this->mysqlService = true;
+        $this->databaseType = self::DB_TYPE_MYSQL;
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
@@ -129,7 +135,15 @@ class ConfiguratorForm extends Component
                 $this->onPullrequest = $j->on_pullrequest;
                 $this->onPullrequestBranches = $j->on_pullrequest_branches;
                 $this->manualTrigger = $j->manual_trigger;
-                $this->mysqlService = $j->mysqlService;
+                if (isset($j->mysqlService)) {
+                    if ($j->mysqlService === true) {
+                        $this->databaseType = self::DB_TYPE_MYSQL;
+                    } elseif ($j->mysqlService === false) {
+                        $this->databaseType = self::DB_TYPE_NONE;
+                    }
+                } else {
+                    $this->databaseType = $j->databaseType;
+                }
                 $this->mysqlDatabase = $j->mysqlDatabase;
                 $this->mysqlPasswordType = $j->mysqlPasswordType;
                 $this->mysqlPassword = $j->mysqlPassword;
@@ -229,11 +243,11 @@ class ConfiguratorForm extends Component
 
         // Provide some suggestions
         $this->hints = [];
-        if ($values["mysqlService"] and ! $values["stepRunMigrations"]) {
-            $this->hints[] = "I suggest you to select run migration if you have MySqlService";
+        if ($values["databaseType"] !== self::DB_TYPE_NONE and ! $values["stepRunMigrations"]) {
+            $this->hints[] = "I suggest you to select run migration if you have a Database";
         }
-        if (! $values["mysqlService"] and $values["stepRunMigrations"]) {
-            $this->hints[] = "I suggest you to select Mysql Service if you want to run migrations";
+        if ($values["databaseType"] === self::DB_TYPE_NONE and $values["stepRunMigrations"]) {
+            $this->hints[] = "I suggest you to select a Database if you want to run migrations";
         }
         if ($values["stepDusk"] and ! $values["stepNodejs"]) {
             $this->hints[] = "I suggest you to select 'Install node for NPM Build' if you have 'Execute Browser tests'";
@@ -246,7 +260,7 @@ class ConfiguratorForm extends Component
         }
 
         $data = $this->compactThis(
-            "mysqlService",
+            "databaseType",
             "mysqlDatabase",
             "mysqlVersion",
             "mysqlDatabaseName",
@@ -297,9 +311,10 @@ class ConfiguratorForm extends Component
             $hashCode = md5($json);
             Configuration::saveConfiguration($hashCode, $data);
             $this->code = $hashCode;
-            $seconds = 60 * 60 * 6; // 6 hours
+            $seconds = 60 * 60 * 3 ; // 3 hours
             $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
-                return Schema::import('https://json.schemastore.org/github-workflow');
+                //return Schema::import('https://json.schemastore.org/github-workflow');
+                return Schema::import(json_decode(file_get_contents(base_path("github-workflow.json"))));
             });
             $schema->in(json_decode($json));
 
