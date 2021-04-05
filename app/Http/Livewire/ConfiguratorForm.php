@@ -166,12 +166,14 @@ class ConfiguratorForm extends Component
                 $this->mysqlVersion = $j->mysqlVersion;
                 $this->mysqlDatabaseName = $j->mysqlDatabaseName;
                 $this->mysqlDatabasePort = $j->mysqlDatabasePort;
-                $this->postgresqlDatabase = $j->postgresqlDatabase;
-                $this->postgresqlPasswordType = $j->postgresqlPasswordType;
-                $this->postgresqlPassword = $j->postgresqlPassword;
-                $this->postgresqlVersion = $j->postgresqlVersion;
-                $this->postgresqlDatabaseName = $j->postgresqlDatabaseName;
-                $this->postgresqlDatabasePort = $j->postgresqlDatabasePort;
+                if (isset($j->postgresqlDatabase)) {
+                    $this->postgresqlDatabase = $j->postgresqlDatabase;
+                    $this->postgresqlPasswordType = $j->postgresqlPasswordType;
+                    $this->postgresqlPassword = $j->postgresqlPassword;
+                    $this->postgresqlVersion = $j->postgresqlVersion;
+                    $this->postgresqlDatabaseName = $j->postgresqlDatabaseName;
+                    $this->postgresqlDatabasePort = $j->postgresqlDatabasePort;
+                }
                 $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
                 $this->stepPhpVersions = $j->stepPhpVersions;
                 $this->stepNodejs = $j->stepNodejs;
