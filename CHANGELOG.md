@@ -2,6 +2,7 @@
 
 ## 0.2.4 - WIP
 ### Add
+- Add Postgresql database
 
 ### Change
 - Fix Dashboard when some old data is loaded (isMysqlService vs dataType)

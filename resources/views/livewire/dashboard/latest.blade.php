@@ -36,6 +36,9 @@
                   @if ($l->isMysqlService() )
                     {{ $l->configuration->mysqlVersion }}
                   @endif
+                @if ($l->isPostgresqlService() )
+                  {{ $l->configuration->postgresqlVersion }}
+                @endif
               </span>
 
             </x-table.td>

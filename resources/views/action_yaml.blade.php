@@ -7,6 +7,9 @@ jobs:
 @if ( $databaseType === "mysql" )
 @include('yaml.mysql_service')
 @endif
+@if ( $databaseType === "postgresql" )
+@include('yaml.postgresql_service')
+@endif
 
     strategy:
       matrix:

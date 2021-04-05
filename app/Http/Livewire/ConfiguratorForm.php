@@ -47,6 +47,12 @@ class ConfiguratorForm extends Component
     public $mysqlVersion;
     public $mysqlDatabaseName;
     public $mysqlDatabasePort;
+    public $postgresqlDatabase;
+    public $postgresqlPasswordType; // 'skip
+    public $postgresqlPassword; // password
+    public $postgresqlVersion;
+    public $postgresqlDatabaseName;
+    public $postgresqlDatabasePort;
     public $stepEnvTemplateFile; // .env.ci
     public $stepPhpVersions; // 7.4
     public $stepNodejs; // false
@@ -76,6 +82,10 @@ class ConfiguratorForm extends Component
         'mysqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
         'mysqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
         'mysqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required|integer',
+        'postgresqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required|integer',
+
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
@@ -94,6 +104,12 @@ class ConfiguratorForm extends Component
         $this->mysqlVersion = "5.7";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
+        $this->postgresqlDatabase = "postgresql";
+        $this->postgresqlPasswordType = "hardcoded";
+        $this->postgresqlPassword = "postgres";
+        $this->postgresqlVersion = "10.8";
+        $this->postgresqlDatabaseName = "db_test_laravel";
+        $this->postgresqlDatabasePort = 55432;
         $this->stepEnvTemplateFile = ".env.example";
         $this->stepPhpVersions = ["8.0", "7.4"];
         $this->stepNodejs = false;
@@ -150,6 +166,12 @@ class ConfiguratorForm extends Component
                 $this->mysqlVersion = $j->mysqlVersion;
                 $this->mysqlDatabaseName = $j->mysqlDatabaseName;
                 $this->mysqlDatabasePort = $j->mysqlDatabasePort;
+                $this->postgresqlDatabase = $j->postgresqlDatabase;
+                $this->postgresqlPasswordType = $j->postgresqlPasswordType;
+                $this->postgresqlPassword = $j->postgresqlPassword;
+                $this->postgresqlVersion = $j->postgresqlVersion;
+                $this->postgresqlDatabaseName = $j->postgresqlDatabaseName;
+                $this->postgresqlDatabasePort = $j->postgresqlDatabasePort;
                 $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
                 $this->stepPhpVersions = $j->stepPhpVersions;
                 $this->stepNodejs = $j->stepNodejs;
@@ -267,6 +289,12 @@ class ConfiguratorForm extends Component
             "mysqlDatabasePort",
             "mysqlPassword",
             "mysqlPasswordType",
+            "postgresqlDatabase",
+            "postgresqlVersion",
+            "postgresqlDatabaseName",
+            "postgresqlDatabasePort",
+            "postgresqlPassword",
+            "postgresqlPasswordType",
             "name",
             "on_push",
             "on_push_branches",
