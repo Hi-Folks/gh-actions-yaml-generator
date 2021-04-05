@@ -76,7 +76,6 @@ jobs:
         # Set environment
         env:
           DB_CONNECTION: pgsql
-          DB_HOST: postgres
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
           DB_USERNAME: postgres
@@ -95,7 +94,6 @@ jobs:
         # Set environment
         env:
           DB_CONNECTION: pgsql
-          DB_HOST: postgres
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
           DB_USERNAME: postgres
