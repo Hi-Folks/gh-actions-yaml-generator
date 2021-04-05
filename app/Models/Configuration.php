@@ -34,11 +34,22 @@ class Configuration extends Model
         return false;
     }
 
+    public function isPostgresqlService()
+    {
+        if (isset($this->configuration->databaseType)) {
+            return $this->configuration->databaseType === "postgresql";
+        }
+        return false;
+    }
+
 
     public function getDatabaseType()
     {
         if ($this->isMysqlService()) {
             return "Mysql";
+        }
+        if ($this->isPostgresqlService()) {
+            return "Postgresql";
         }
         if ($this->isSqlite()) {
             return "Sqlite";
