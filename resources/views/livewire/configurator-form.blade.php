@@ -79,16 +79,16 @@
                 </div>
             </fieldset>
 
-            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }} }">
+            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Select Database</legend>
                 <x-form.input-select
                   model="databaseType"
                   name="databaseType"
                   label="Select the Database"
-                  :list="['none'=>'None', 'mysql'=>'MySql Service', 'sqlite' => 'Sqlite']"
+                  :list="['none'=>'None', 'mysql'=>'MySql Service', 'sqlite' => 'Sqlite', 'postgresql' => 'Postgresql']"
                   help="Database: *None* if you don't want a database in your workflow,o otherwise select Mysql or Sqlite"
                   multiselect=0
-                  onChange='showMysqlService= $event.target.value==="mysql"'>
+                  onChange='showMysqlService= $event.target.value==="mysql";showPostgresqlService= $event.target.value==="postgresql"'>
                 </x-form.input-select>
 
                 <div  x-show="showMysqlService">
@@ -142,6 +142,58 @@
                     </div>
                   </div>
                 </div>
+                <div  x-show="showPostgresqlService">
+                  <div class="md:grid md:grid-cols-3 md:gap-3" x-data="{ showInputPasswordPostgresql: {{ $postgresqlPasswordType !== 'skip' ? 'true' : 'false' }} }">
+
+                    <div class="col-span-1 ">
+                      <x-form.input-text
+                          model="postgresqlVersion"
+                          name="postgresqlVersion"
+                          label="Postgresql Version"
+                          help="Define the Postgresql Version">
+                      </x-form.input-text>
+                      @error('postgresqlVersion') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-1 ">
+                      <x-form.input-text
+                          model="postgresqlDatabaseName"
+                          name="postgresqlDatabaseName"
+                          label="Postgresql Database Name"
+                          help="Define the Postgresql database name">
+                      </x-form.input-text>
+                      @error('postgresqlDatabaseName') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-1 ">
+                      <x-form.input-text
+                          model="postgresqlDatabasePort"
+                          name="postgresqlDatabasePort"
+                          label="Postgresql Database Port"
+                          help="The Port exposed by the container, this is the external port.">
+                      </x-form.input-text>
+                      @error('postgresqlDatabasePort') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="col-span-2 ">
+                      <x-form.input-select
+                        model="postgresqlPasswordType"
+                        name="postgresqlPasswordType"
+                        label="Postgresql Password: skip, or read from secret or hardcoded"
+                        :list="['secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
+                        help="Postgresql Password: read from secret or hardcoded"
+                        multiselect=0
+                        onChange='showInputPasswordPostgresql= $event.target.value!=="skip"'>
+                      </x-form.input-select>
+                    </div>
+                    <div class="col-span-1 " x-show="showInputPasswordPostgresql">
+                        <x-form.input-text
+                          model="postgresqlPassword"
+                          name="postgresqlPassword"
+                          label="Postgresqll Password"
+                          help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
+                        </x-form.input-text>
+                    </div>
+                  </div>
+                </div>
+
             </fieldset>
 
             <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">

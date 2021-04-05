@@ -1,5 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=f6057d1792446de0d97898542edb1b7b
+# Original configuration: http://gh-actions-yaml-generator.test?code=88087e9e46cb297901790a7eb7aa424c
 name: Test Sqlite
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0' ]
+        php-versions: [ '7.4' ]
         dependency-stability: [ prefer-stable ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
@@ -26,7 +26,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+      - name: Cache node_modules directory
+        uses: actions/cache@v2
+        id: node_modules-cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install NPM packages
+        if: steps.node_modules-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build frontend
         run: npm run development
@@ -34,6 +41,23 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
+      - name: Get Composer Cache Directory 2
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        id: actions-cache
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+      - name: Cache PHP dependencies
+        uses: actions/cache@v2
+        id: vendor-cache
+        with:
+          path: vendor
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies

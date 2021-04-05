@@ -13,9 +13,13 @@ class Daily extends Component
 
     public function mount()
     {
+        $date = DB::raw('DATE(`created_at`) as `date`');
+        if (config('database.default') === 'pgsql') {
+            $date = DB::raw("date_trunc('day', created_at) as date");
+        }
         $this->daily = LogConfiguration::select(array(
-            DB::raw('DATE(`created_at`) as `date`'),
-            DB::raw('count(*) as `count`')
+            $date,
+            DB::raw('count(*) as count')
         ))
             ->groupBy('date')
             ->orderBy('date', 'DESC') // or ASC

@@ -88,6 +88,40 @@ class DatabaseFormTest extends TestCase
             ->assertDontSee("image: mysql:");
     }
 
+    /**
+     * Testing with sqlite database and migrations
+     * @return void
+     */
+    public function test_postgresql_withmigration()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test Postgresql")
+            ->set("onPullrequest", true)
+            ->set("databaseType", "postgresql")
+            ->call('submitForm')
+            ->assertHasNoErrors('yaml')
+            ->assertCount('hints', 0)
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."postgresql-service.yaml")))
+            ->assertDontSee("image: mysql:");
+    }
+
+    /**
+     * Testing with sqlite database and migrations
+     * @return void
+     */
+    public function test_postgresql_withnomigration()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test Postgresql")
+            ->set("onPullrequest", true)
+            ->set("databaseType", "postgresql")
+            ->set("stepRunMigrations", false)
+            ->call('submitForm')
+            ->assertHasNoErrors('yaml')
+            ->assertCount('hints', 1)
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."postgresql-service.yaml")))
+            ->assertDontSee("image: mysql:");
+    }
 
 
 }
