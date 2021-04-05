@@ -1,5 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=7189441c104c06fa492db399b49aef9c
+# Original configuration: http://gh-actions-yaml-generator.test?code=98e5e699690e3ac2ae0ffe404d0ed3e9
 name: Test Postgresql
 on:
   push:
@@ -94,7 +94,7 @@ jobs:
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
           DB_USERNAME: postgres
-          DB_PASSWORD: DB_PASSWORD
+          DB_PASSWORD: postgres
 
         run: php artisan migrate
 
@@ -112,7 +112,7 @@ jobs:
           DB_DATABASE: db_test_laravel
           DB_PORT: 55432
           DB_USERNAME: postgres
-          DB_PASSWORD: DB_PASSWORD
+          DB_PASSWORD: postgres
 
         run: vendor/bin/phpunit --testdox
 
