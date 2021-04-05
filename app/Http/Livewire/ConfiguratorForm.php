@@ -107,7 +107,7 @@ class ConfiguratorForm extends Component
         $this->postgresqlDatabase = "postgresql";
         $this->postgresqlPasswordType = "hardcoded";
         $this->postgresqlPassword = "postgres";
-        $this->postgresqlVersion = "10.8";
+        $this->postgresqlVersion = "latest";
         $this->postgresqlDatabaseName = "db_test_laravel";
         $this->postgresqlDatabasePort = 55432;
         $this->stepEnvTemplateFile = ".env.example";
