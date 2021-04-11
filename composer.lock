@@ -173,43 +173,6 @@
             "time": "2021-02-01T20:46:01+00:00"
         },
         {
-            "name": "dnoegel/php-xdg-base-dir",
-            "version": "v0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dnoegel/php-xdg-base-dir.git",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dnoegel/php-xdg-base-dir/zipball/8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~7.0|~6.0|~5.0|~4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "XdgBaseDir\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "implementation of xdg base directory specification for php",
-            "support": {
-                "issues": "https://github.com/dnoegel/php-xdg-base-dir/issues",
-                "source": "https://github.com/dnoegel/php-xdg-base-dir/tree/v0.1.1"
-            },
-            "time": "2019-12-04T15:06:13+00:00"
-        },
-        {
             "name": "doctrine/inflector",
             "version": "2.0.3",
             "source": {
@@ -949,16 +912,16 @@
         },
         {
             "name": "hi-folks/lara-lens",
-            "version": "v0.2.2",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hi-Folks/lara-lens.git",
-                "reference": "a7b771f8eb51dd6d17a78a2dd74fa1599934e635"
+                "reference": "79e586045f874f6f8c27a5e8cfbe1de342c89724"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/a7b771f8eb51dd6d17a78a2dd74fa1599934e635",
-                "reference": "a7b771f8eb51dd6d17a78a2dd74fa1599934e635",
+                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/79e586045f874f6f8c27a5e8cfbe1de342c89724",
+                "reference": "79e586045f874f6f8c27a5e8cfbe1de342c89724",
                 "shasum": ""
             },
             "require": {
@@ -968,8 +931,10 @@
                 "php": "^7.2|^8.0"
             },
             "require-dev": {
+                "nunomaduro/larastan": "^0.7.2",
                 "orchestra/testbench": "4.*|5.*|6.*",
-                "phpunit/phpunit": "^8.0|^9.3"
+                "phpunit/phpunit": "^8.0|^9.3",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "extra": {
@@ -1011,22 +976,22 @@
             ],
             "support": {
                 "issues": "https://github.com/Hi-Folks/lara-lens/issues",
-                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.2.2"
+                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.2.3"
             },
-            "time": "2020-11-05T17:37:07+00:00"
+            "time": "2021-04-10T20:05:02+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.35.1",
+            "version": "v8.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602"
+                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d118c0df39e7524131176aaf76493eae63a8a602",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
+                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
                 "shasum": ""
             },
             "require": {
@@ -1181,7 +1146,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-30T21:34:17+00:00"
+            "time": "2021-04-07T12:37:22+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1822,16 +1787,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.6.1",
+            "version": "3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5"
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6",
                 "shasum": ""
             },
             "require": {
@@ -1881,9 +1846,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.1"
+                "source": "https://github.com/opis/closure/tree/3.6.2"
             },
-            "time": "2020-11-07T02:01:34+00:00"
+            "time": "2021-04-09T13:42:10+00:00"
         },
         {
             "name": "phplang/scope-exit",
@@ -2308,20 +2273,19 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.7",
+            "version": "v0.10.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c"
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a395af46999a12006213c0c8346c9445eb31640c",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e4573f47750dd6c92dca5aee543fa77513cbd8d3",
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3",
                 "shasum": ""
             },
             "require": {
-                "dnoegel/php-xdg-base-dir": "0.1.*",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "nikic/php-parser": "~4.0|~3.0|~2.0|~1.3",
@@ -2378,9 +2342,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.10.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.8"
             },
-            "time": "2021-03-14T02:14:56+00:00"
+            "time": "2021-04-10T16:23:39+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5824,16 +5788,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.5.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17"
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/9dd6f2b56486d939c4467b3f35475d44af57cf17",
-                "reference": "9dd6f2b56486d939c4467b3f35475d44af57cf17",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/f2b0969f2d9594704be74dbeb25b201570a98098",
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098",
                 "shasum": ""
             },
             "require": {
@@ -5877,7 +5841,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.5.0"
+                "source": "https://github.com/facade/flare-client-php/tree/1.6.1"
             },
             "funding": [
                 {
@@ -5885,26 +5849,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-31T07:32:54+00:00"
+            "time": "2021-04-08T08:50:01+00:00"
         },
         {
             "name": "facade/ignition",
-            "version": "2.7.0",
+            "version": "2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d"
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/bdc8b0b32c888f6edc838ca641358322b3d9506d",
-                "reference": "bdc8b0b32c888f6edc838ca641358322b3d9506d",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/a8201d51aae83addceaef9344592a3b068b5d64d",
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facade/flare-client-php": "^1.3.7",
+                "facade/flare-client-php": "^1.6",
                 "facade/ignition-contracts": "^1.0.2",
                 "filp/whoops": "^2.4",
                 "illuminate/support": "^7.0|^8.0",
@@ -5962,7 +5926,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-03-30T15:55:38+00:00"
+            "time": "2021-04-09T20:45:59+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -6276,16 +6240,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v6.14.0",
+            "version": "v6.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "c0560c3b2ebcb491bf2b45d275817e80f1851f0b"
+                "reference": "45b55fa20321086c4f8cc4e712cbe54db644e21c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/c0560c3b2ebcb491bf2b45d275817e80f1851f0b",
-                "reference": "c0560c3b2ebcb491bf2b45d275817e80f1851f0b",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/45b55fa20321086c4f8cc4e712cbe54db644e21c",
+                "reference": "45b55fa20321086c4f8cc4e712cbe54db644e21c",
                 "shasum": ""
             },
             "require": {
@@ -6343,9 +6307,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v6.14.0"
+                "source": "https://github.com/laravel/dusk/tree/v6.15.0"
             },
-            "time": "2021-03-23T17:05:41+00:00"
+            "time": "2021-04-06T14:14:57+00:00"
         },
         {
             "name": "laravel/sail",
@@ -6538,16 +6502,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v5.3.0",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a"
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/aca63581f380f63a492b1e3114604e411e39133a",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/41b7e9999133d5082700d31a1d0977161df8322a",
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a",
                 "shasum": ""
             },
             "require": {
@@ -6622,20 +6586,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-25T15:34:13+00:00"
+            "time": "2021-04-09T13:38:32+00:00"
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.7.1",
+            "version": "v0.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "bbbe09ec16a565e6423878bd17fc4355fa0d0a4c"
+                "reference": "cb7fa0b5af3738772e3568c0a0c7a080851e281d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/bbbe09ec16a565e6423878bd17fc4355fa0d0a4c",
-                "reference": "bbbe09ec16a565e6423878bd17fc4355fa0d0a4c",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/cb7fa0b5af3738772e3568c0a0c7a080851e281d",
+                "reference": "cb7fa0b5af3738772e3568c0a0c7a080851e281d",
                 "shasum": ""
             },
             "require": {
@@ -6650,7 +6614,7 @@
                 "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0",
                 "mockery/mockery": "^0.9 || ^1.0",
                 "php": "^7.2 || ^8.0",
-                "phpstan/phpstan": "0.12.81",
+                "phpstan/phpstan": "^0.12.83",
                 "symfony/process": "^4.3 || ^5.0"
             },
             "require-dev": {
@@ -6699,7 +6663,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.1"
+                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.2"
             },
             "funding": [
                 {
@@ -6719,7 +6683,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-03-19T09:41:48+00:00"
+            "time": "2021-04-08T10:51:16+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7130,16 +7094,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.81",
+            "version": "0.12.83",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "0dd5b0ebeff568f7000022ea5f04aa86ad3124b8"
+                "reference": "4a967cec6efb46b500dd6d768657336a3ffe699f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/0dd5b0ebeff568f7000022ea5f04aa86ad3124b8",
-                "reference": "0dd5b0ebeff568f7000022ea5f04aa86ad3124b8",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a967cec6efb46b500dd6d768657336a3ffe699f",
+                "reference": "4a967cec6efb46b500dd6d768657336a3ffe699f",
                 "shasum": ""
             },
             "require": {
@@ -7170,7 +7134,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.81"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.83"
             },
             "funding": [
                 {
@@ -7186,7 +7150,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-08T22:03:02+00:00"
+            "time": "2021-04-03T15:35:45+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
