@@ -206,6 +206,14 @@ class YamlFormTest extends TestCase
             ->call('submitForm')
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-install.yaml")));
 
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepDirCodeSniffer", "src")
+            ->set("stepInstallCodeSniffer", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-srcdir.yaml")));
+
     }
 
 }

@@ -12,6 +12,16 @@
       </div>
     </div>
     <div class="col-span-1 ">
+      <div class="pl-3 pb-2 mt-2 space-y-4">
+        <x-form.input-checkbox
+          model="stepDusk"
+          name="stepDusk"
+          label="Execute Browser Test"
+          help="Execute Browser Test via Laravel Dusk">
+        </x-form.input-checkbox>
+      </div>
+    </div>
+    <div class="col-span-1 ">
       <x-form.input-conditional-checkbox
         model="stepExecuteCodeSniffer"
         name="stepExecuteCodeSniffer"
@@ -20,6 +30,12 @@
         value=1
         wire:model="stepExecuteCodeSniffer"
       >
+        <x-form.input-text
+          model="stepDirCodeSniffer"
+          name="stepDirCodeSniffer"
+          label="Dir to check with phpcs"
+          help=" ">
+        </x-form.input-text>
         <x-form.input-checkbox
           model="stepInstallCodeSniffer"
           name="stepInstallCodeSniffer"
@@ -39,6 +55,13 @@
         value=1
         wire:model="stepExecuteStaticAnalysis"
       >
+
+        <x-form.input-text
+          model="stepDirStaticAnalysis"
+          name="stepDirStaticAnalysis"
+          label="Dir to check with phpstan"
+          help=" ">
+        </x-form.input-text>
         <x-form.input-checkbox
           model="stepInstallStaticAnalysis"
           name="stepInstallStaticAnalysis"
@@ -50,15 +73,6 @@
     </div>
 
 
-    <div class="col-span-1 ">
-      <div class="pl-3 pb-2 mt-2 space-y-4">
-        <x-form.input-checkbox
-          model="stepDusk"
-          name="stepDusk"
-          label="Execute Browser Test"
-          help="Execute Browser Test via Laravel Dusk">
-        </x-form.input-checkbox>
-      </div>
-    </div>
+
   </div>
 </fieldset>

@@ -12,7 +12,7 @@
 @if ($stepInstallCodeSniffer)
         composer require --dev squizlabs/php_codesniffer
 @endif
-        vendor/bin/phpcs --standard=PSR12 app
+        vendor/bin/phpcs --standard=PSR12 {{ $stepDirCodeSniffer }}
 @endif
 
 @if ($stepExecuteStaticAnalysis)
@@ -21,7 +21,7 @@
 @if ($stepInstallStaticAnalysis)
         composer require --dev nunomaduro/larastan
 @endif
-        vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
 @endif
 
 
