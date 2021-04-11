@@ -17,7 +17,9 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - select __multiple Laravel__ versions (8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
 - select __Node__ version for NPM (npm run something);
 - caching node packages;
-- setup __Mysql__ service;
+- setup __Mysql__ Database service;
+- setup __PostgreSQL__ Database service;
+- setup __Sqlite__ in memory database;
 - run migrations;
 - __execute tests__ via phpunit;
 - static __code analysis__; 
