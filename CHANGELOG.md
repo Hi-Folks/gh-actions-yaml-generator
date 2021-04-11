@@ -1,6 +1,14 @@
 # Changelog
 
-## 0.2.4 - WIP
+## 0.2.5 - WIP
+### Add
+- 
+
+### Change
+- 
+
+
+## 0.2.4 - 2021-04-05
 ### Add
 - Add Postgresql database
 
