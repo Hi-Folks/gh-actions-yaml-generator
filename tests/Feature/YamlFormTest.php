@@ -174,4 +174,46 @@ class YamlFormTest extends TestCase
 
     }
 
+    /**
+     * Form Test: code quality section.
+     *
+     * @return void
+     */
+    public function test_form_codequality_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", false)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-noinstall.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepInstallCodeSniffer", false)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-noinstall.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepInstallCodeSniffer", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-install.yaml")));
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepDirCodeSniffer", "src")
+            ->set("stepInstallCodeSniffer", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-srcdir.yaml")));
+
+    }
+
 }

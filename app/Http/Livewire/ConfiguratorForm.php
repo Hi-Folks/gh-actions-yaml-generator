@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Configuration;
+use App\Traits\Form\CodeQuality;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Cache;
@@ -23,6 +24,7 @@ use Symfony\Component\Yaml\Yaml;
 class ConfiguratorForm extends Component
 {
     use WithRateLimiting;
+    use CodeQuality;
 
     public $code = "";
 
@@ -32,7 +34,6 @@ class ConfiguratorForm extends Component
     public const DB_TYPE_MYSQL = "mysql";
     public const DB_TYPE_SQLITE = "sqlite";
     public const DB_TYPE_POSTGRESQL = "postgresql";
-
 
     public $name;
     public $onPush;
@@ -62,10 +63,7 @@ class ConfiguratorForm extends Component
     public $stepCacheNpmModules; // true
     public $stepFixStoragePermissions; //true
     public $stepRunMigrations; // true
-    public $stepExecutePhpunit; //true
-    public $stepExecuteCodeSniffer; //false
-    public $stepExecuteStaticAnalysis; // false
-    public $stepDusk; // false
+
     public $matrixLaravel; // false
     public $matrixLaravelVersions; // []
     public $matrixTestbenchDependencies;
@@ -119,10 +117,7 @@ class ConfiguratorForm extends Component
         $this->stepCacheNpmModules  = true;
         $this->stepFixStoragePermissions = true;
         $this->stepRunMigrations = true;
-        $this->stepExecutePhpunit = true;
-        $this->stepExecuteCodeSniffer = false;
-        $this->stepExecuteStaticAnalysis = false;
-        $this->stepDusk = false;
+        $this->loadDefaultsCodeQuality();
         $this->matrixLaravel = false;
         $this->matrixLaravelVersions = [];
         $this->matrixTestbenchDependencies = [
@@ -198,10 +193,9 @@ class ConfiguratorForm extends Component
                 $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
                 $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
                 $this->stepRunMigrations = $j->stepRunMigrations;
-                $this->stepExecutePhpunit = $j->stepExecutePhpunit;
-                $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
-                $this->stepExecuteStaticAnalysis = $j->stepExecuteStaticAnalysis;
-                $this->stepDusk = $j->stepDusk;
+
+                $this->loadCodeQualityFromJson($j);
+
                 $this->matrixLaravel = $j->matrixLaravel;
                 $this->matrixLaravelVersions = $j->matrixLaravelVersions;
                 $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
@@ -327,14 +321,12 @@ class ConfiguratorForm extends Component
             "stepCacheNpmModules",
             "stepFixStoragePermissions",
             "stepRunMigrations",
-            "stepExecutePhpunit",
-            "stepExecuteCodeSniffer",
-            "stepExecuteStaticAnalysis",
-            "stepDusk",
             "matrixLaravel",
             "matrixLaravelVersions",
             "matrixTestbenchDependencies"
         );
+        $data = $this->setDataCodeQuality($data);
+
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);

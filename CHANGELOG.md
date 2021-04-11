@@ -2,7 +2,11 @@
 
 ## 0.2.5 - WIP
 ### Add
-- 
+- New option for installing phpstan in workflow
+- New option for installing phpcs in workflow
+- New option for defining directory to check for phpcs ("app" default )
+- New option for defining directory to check for phpstan ("app" default)
+
 
 ### Change
 - 
