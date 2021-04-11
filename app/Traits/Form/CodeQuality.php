@@ -34,13 +34,14 @@ trait CodeQuality
         $this->stepDusk = $j->stepDusk;
     }
 
-    public function setDataCodeQuality($data) {
-        $data["stepExecutePhpunit"]= $this->stepExecutePhpunit;
-        $data["stepExecuteCodeSniffer"]= $this->stepExecuteCodeSniffer;
-        $data["stepInstallCodeSniffer"]= $this->stepInstallCodeSniffer;
-        $data["stepExecuteStaticAnalysis"]= $this->stepExecuteStaticAnalysis;
-        $data["stepInstallStaticAnalysis"]= $this->stepInstallStaticAnalysis;
-        $data["stepDusk"]= $this->stepDusk;
+    public function setDataCodeQuality($data)
+    {
+        $data["stepExecutePhpunit"] = $this->stepExecutePhpunit;
+        $data["stepExecuteCodeSniffer"] = $this->stepExecuteCodeSniffer;
+        $data["stepInstallCodeSniffer"] = $this->stepInstallCodeSniffer;
+        $data["stepExecuteStaticAnalysis"] = $this->stepExecuteStaticAnalysis;
+        $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
+        $data["stepDusk"] = $this->stepDusk;
 
         return $data;
     }

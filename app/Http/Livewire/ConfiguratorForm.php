@@ -321,7 +321,6 @@ class ConfiguratorForm extends Component
             "stepCacheNpmModules",
             "stepFixStoragePermissions",
             "stepRunMigrations",
-
             "matrixLaravel",
             "matrixLaravelVersions",
             "matrixTestbenchDependencies"
