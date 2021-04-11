@@ -12,25 +12,41 @@
       </div>
     </div>
     <div class="col-span-1 ">
-      <div class="pl-3 pb-2 mt-2 space-y-4">
+      <x-form.input-conditional-checkbox
+        model="stepExecuteCodeSniffer"
+        name="stepExecuteCodeSniffer"
+        label="Execute Code Sniffer with phpcs"
+        id="stepExecuteCodeSniffer"
+        value=1
+        wire:model="stepExecuteCodeSniffer"
+      >
         <x-form.input-checkbox
-          model="stepExecuteCodeSniffer"
-          name="stepExecuteCodeSniffer"
-          label="Execute Code Sniffer with phpcs"
-          help="Execute Code Sniffer with phpcs">
+          model="stepInstallCodeSniffer"
+          name="stepInstallCodeSniffer"
+          label="Install Code Sniffer phpcs"
+          help="Install Code Sniffer phpcs">
         </x-form.input-checkbox>
-      </div>
+      </x-form.input-conditional-checkbox>
+
     </div>
 
     <div class="col-span-1 ">
-      <div class="pl-3 pb-2 mt-2 space-y-4">
+      <x-form.input-conditional-checkbox
+        model="stepExecuteStaticAnalysis"
+        name="stepExecuteStaticAnalysis"
+        label="Execute Code Static Analysis"
+        id="stepExecuteStaticAnalysis"
+        value=1
+        wire:model="stepExecuteStaticAnalysis"
+      >
         <x-form.input-checkbox
-          model="stepExecuteStaticAnalysis"
-          name="stepExecuteStaticAnalysis"
-          label="Execute Code Static Analysis"
-          help="Execute Code Static Analysis via phpstan and larastan">
+          model="stepInstallStaticAnalysis"
+          name="stepInstallStaticAnalysis"
+          label="Install Phpstan"
+          help="Install Larastan and Phpstan">
         </x-form.input-checkbox>
-      </div>
+      </x-form.input-conditional-checkbox>
+
     </div>
 
 

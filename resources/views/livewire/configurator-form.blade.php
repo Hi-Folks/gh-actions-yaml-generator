@@ -276,6 +276,7 @@
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
+
                   <x-form.input-conditional-checkbox
                     model="matrixLaravel"
                     name="matrixLaravel"
@@ -295,6 +296,7 @@
 
 
                   </x-form.input-conditional-checkbox>
+
                 </div>
                 <div class="col-span-1 ">
                     <x-form.input-text
