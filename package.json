@@ -24,9 +24,9 @@
         "alpinejs": "^2.8.2",
         "autoprefixer": "^10.2.5",
         "clipboard": "^2.0.8",
-        "highlight.js": "^10.7.1",
+        "highlight.js": "^10.7.2",
         "highlightjs-line-numbers.js": "^2.8.0",
-        "postcss": "^8.2.9",
-        "tailwindcss": "^2.0.4"
+        "postcss": "^8.2.10",
+        "tailwindcss": "^2.1.1"
     }
 }
