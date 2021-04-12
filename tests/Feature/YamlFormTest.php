@@ -216,4 +216,28 @@ class YamlFormTest extends TestCase
 
     }
 
+    /**
+     * Form Test: key generate.
+     *
+     * @return void
+     */
+    public function test_form_keygenerate_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepGenerateKey", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "generate-key.yaml")));
+
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepGenerateKey", false)
+            ->call('submitForm')
+            ->assertDontSee("run: php artisan key:generate");
+
+
+
+    }
+
 }
