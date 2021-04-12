@@ -6,6 +6,7 @@
 - New option for installing phpcs in workflow
 - New option for defining directory to check for phpcs ("app" default )
 - New option for defining directory to check for phpstan ("app" default)
+- New option for execute (or not) 'php artisan key:generate'
 
 
 ### Change

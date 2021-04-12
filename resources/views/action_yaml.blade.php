@@ -90,8 +90,10 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 @endif
 
+@if ($stepGenerateKey)
     - name: Generate key
       run: php artisan key:generate
+@endif
 @if ($stepFixStoragePermissions)
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache

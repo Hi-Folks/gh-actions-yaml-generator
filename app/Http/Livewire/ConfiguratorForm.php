@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Configuration;
 use App\Traits\Form\CodeQuality;
+use App\Traits\Form\LaravelStuff;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Illuminate\Support\Facades\Cache;
@@ -25,6 +26,7 @@ class ConfiguratorForm extends Component
 {
     use WithRateLimiting;
     use CodeQuality;
+    use LaravelStuff;
 
     public $code = "";
 
@@ -61,12 +63,8 @@ class ConfiguratorForm extends Component
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepCacheNpmModules; // true
-    public $stepFixStoragePermissions; //true
-    public $stepRunMigrations; // true
 
-    public $matrixLaravel; // false
-    public $matrixLaravelVersions; // []
-    public $matrixTestbenchDependencies;
+
 
     public $result;
     public $errorGeneration;
@@ -115,17 +113,9 @@ class ConfiguratorForm extends Component
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
-        $this->stepFixStoragePermissions = true;
-        $this->stepRunMigrations = true;
+
         $this->loadDefaultsCodeQuality();
-        $this->matrixLaravel = false;
-        $this->matrixLaravelVersions = [];
-        $this->matrixTestbenchDependencies = [
-            "8.*" => "6.*",
-            "7.*" => "5.*",
-            "6.*" => "4.*"
-        ]; // mapping laravel versions with testbench version as dependency
-        // the key is the laravel ver, the value is the orchestratestbench version
+        $this->loadDefaultsLaravelStuff();
     }
 
     public function mount()
@@ -191,14 +181,9 @@ class ConfiguratorForm extends Component
                 $this->stepCachePackages = $j->stepCachePackages;
                 $this->stepCacheVendors = $j->stepCacheVendors;
                 $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
-                $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
-                $this->stepRunMigrations = $j->stepRunMigrations;
 
                 $this->loadCodeQualityFromJson($j);
-
-                $this->matrixLaravel = $j->matrixLaravel;
-                $this->matrixLaravelVersions = $j->matrixLaravelVersions;
-                $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+                $this->loadLaravelStuffFromJson($j);
             } else {
                 $codeNotFound = true;
             }
@@ -318,19 +303,15 @@ class ConfiguratorForm extends Component
             "stepNodejsVersion",
             "stepCachePackages",
             "stepCacheVendors",
-            "stepCacheNpmModules",
-            "stepFixStoragePermissions",
-            "stepRunMigrations",
-            "matrixLaravel",
-            "matrixLaravelVersions",
-            "matrixTestbenchDependencies"
+            "stepCacheNpmModules"
         );
         $data = $this->setDataCodeQuality($data);
+        $data = $this->setDataLaravelStuff($data);
 
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
-        $data["matrixLaravelVersionsString"] = self::arrayToString($this->matrixLaravelVersions);
+
 
         $stringResult = view('action_yaml', $data)->render();
         $this->errorGeneration = "";
