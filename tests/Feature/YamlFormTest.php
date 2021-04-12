@@ -174,4 +174,104 @@ class YamlFormTest extends TestCase
 
     }
 
+    /**
+     * Form Test: code quality section.
+     *
+     * @return void
+     */
+    public function test_form_codequality_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", false)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-noinstall.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepInstallCodeSniffer", false)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-noinstall.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepInstallCodeSniffer", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-install.yaml")));
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteCodeSniffer", true)
+            ->set("stepDirCodeSniffer", "src")
+            ->set("stepInstallCodeSniffer", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-srcdir.yaml")));
+
+    }
+
+    /**
+     * Form Test: key generate.
+     *
+     * @return void
+     */
+    public function test_form_keygenerate_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepGenerateKey", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "generate-key.yaml")));
+
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepGenerateKey", false)
+            ->call('submitForm')
+            ->assertDontSee("run: php artisan key:generate");
+
+    }
+
+    /**
+     * Form Test: copyenv.
+     *
+     * @return void
+     */
+    public function test_form_copyenv_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml")));
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", true)
+            ->set("stepEnvTemplateFile", ".env.ci")
+            ->call('submitForm')
+            ->assertSee(
+                str_replace(
+                    ".env.example",
+                    ".env.ci",
+                    file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml"))
+                ));
+
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", false)
+            ->call('submitForm')
+            ->assertDontSee("- name: Copy .env");
+
+    }
+
+
+
 }

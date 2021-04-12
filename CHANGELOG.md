@@ -1,6 +1,20 @@
 # Changelog
 
-## 0.2.4 - WIP
+## 0.2.5 - 2021-04-12
+### Add
+- New option for installing phpstan in workflow
+- New option for installing phpcs in workflow
+- New option for defining directory to check for phpcs ("app" default )
+- New option for defining directory to check for phpstan ("app" default)
+- New option for execute (or not) 'php artisan key:generate'
+- New option for copying .env template
+- Install Phpstan and phpcs as composer dev
+
+### Change
+- Upgrade PHP packages
+
+
+## 0.2.4 - 2021-04-05
 ### Add
 - Add Postgresql database
 

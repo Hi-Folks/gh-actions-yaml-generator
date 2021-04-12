@@ -77,8 +77,10 @@ jobs:
         path: vendor
         key: $@{{ runner.OS }}-build-$@{{ hashFiles('**/composer.lock') }}
 @endif
+@if ($stepCopyEnvTemplateFile)
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('{{ $stepEnvTemplateFile }}', '.env');"
+@endif
 @if ($matrixLaravel)
     - name: Install Laravel Dependencies
       run: |
@@ -90,8 +92,10 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 @endif
 
+@if ($stepGenerateKey)
     - name: Generate key
       run: php artisan key:generate
+@endif
 @if ($stepFixStoragePermissions)
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
@@ -103,50 +107,9 @@ jobs:
       run: php artisan migrate
 @endif
 
-    - name: Show Laravel versions
-      run: php artisan --version
     - name: Show dir
       run: pwd
     - name: PHP Version
       run: php --version
 
-@if ($stepExecutePhpunit)
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-@include('yaml.set_env')
-
-      run: vendor/bin/phpunit --testdox
-@endif
-
-@if ($stepExecuteCodeSniffer)
-    - name: Execute Code Sniffer via phpcs
-      run: |
-        composer require --dev squizlabs/php_codesniffer
-        vendor/bin/phpcs --standard=PSR12 app
-@endif
-
-@if ($stepExecuteStaticAnalysis)
-    - name: Execute Code Static Analysis (PHP Stan + Larastan)
-      run: |
-        composer require --dev nunomaduro/larastan
-        vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
-@endif
-
-
-
-
-@if ($stepDusk)
-    - name: Browser Test - upgrade and start Chrome Driver
-      run: |
-        composer require --dev laravel/dusk
-        php artisan dusk:chrome-driver --detect
-        ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
-    - name: Run Dusk Tests
-      run: |
-        php artisan serve > /dev/null 2>&1 &
-        chmod -R 0755 vendor/laravel/dusk/bin/
-@if ( $stepRunMigrations )
-        php artisan migrate
-@endif
-        php artisan dusk
-@include('yaml.set_env')
-@endif
+@include('yaml.code_quality')
