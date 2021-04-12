@@ -77,8 +77,10 @@ jobs:
         path: vendor
         key: $@{{ runner.OS }}-build-$@{{ hashFiles('**/composer.lock') }}
 @endif
+@if ($stepCopyEnvTemplateFile)
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('{{ $stepEnvTemplateFile }}', '.env');"
+@endif
 @if ($matrixLaravel)
     - name: Install Laravel Dependencies
       run: |
