@@ -7,6 +7,8 @@ trait LaravelStuff
     public $stepFixStoragePermissions; //true
     public $stepRunMigrations; // true
     public $stepGenerateKey; // true
+    public $stepEnvTemplateFile; // ".env.example"
+    public $stepCopyEnvTemplateFile; // true
     public $matrixLaravel; // false
     public $matrixLaravelVersions; // []
     public $matrixTestbenchDependencies;
@@ -16,6 +18,8 @@ trait LaravelStuff
         $this->stepFixStoragePermissions = true;
         $this->stepRunMigrations = true;
         $this->stepGenerateKey = true;
+        $this->stepEnvTemplateFile = ".env.example";
+        $this->stepCopyEnvTemplateFile = true;
         $this->matrixLaravel = false;
         $this->matrixLaravelVersions = [];
         $this->matrixTestbenchDependencies = [
@@ -29,9 +33,12 @@ trait LaravelStuff
     public function loadLaravelStuffFromJson($j)
     {
         data_fill($j, "stepGenerateKey", true);
+        data_fill($j, "stepCopyEnvTemplateFile", true);
         $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
         $this->stepRunMigrations = $j->stepRunMigrations;
         $this->stepGenerateKey = $j->stepGenerateKey;
+        $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
+        $this->stepCopyEnvTemplateFile = $j->stepCopyEnvTemplateFile;
         $this->matrixLaravel = $j->matrixLaravel;
         $this->matrixLaravelVersions = $j->matrixLaravelVersions;
         $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
@@ -42,6 +49,8 @@ trait LaravelStuff
         $data["stepFixStoragePermissions"] = $this->stepFixStoragePermissions;
         $data["stepRunMigrations"] = $this->stepRunMigrations;
         $data["stepGenerateKey"] = $this->stepGenerateKey;
+        $data["stepEnvTemplateFile"] = $this->stepEnvTemplateFile;
+        $data["stepCopyEnvTemplateFile"] = $this->stepCopyEnvTemplateFile;
         $data["matrixLaravel"] = $this->matrixLaravel;
         $data["matrixLaravelVersions"] = $this->matrixLaravelVersions;
         $data["matrixTestbenchDependencies"] = $this->matrixTestbenchDependencies;

@@ -24,12 +24,21 @@
 
     </div>
     <div class="col-span-1 ">
-      <x-form.input-text
-        model="stepEnvTemplateFile"
-        name="stepEnvTemplateFile"
-        label="Env template file"
-        help="Define env template file to use in actions">
-      </x-form.input-text>
+      <x-form.input-conditional-checkbox
+        model="stepCopyEnvTemplateFile"
+        name="stepCopyEnvTemplateFile"
+        label="Copy .env file"
+        id="stepCopyEnvTemplateFile"
+        value=1
+        wire:model="stepCopyEnvTemplateFile"
+      >
+        <x-form.input-text
+          model="stepEnvTemplateFile"
+          name="stepEnvTemplateFile"
+          label="Env template file"
+          help="Define env template file to use in actions">
+        </x-form.input-text>
+      </x-form.input-conditional-checkbox>
     </div>
     <div class="col-span-1 ">
       <div class="pl-3 pb-2 mt-2 space-y-4">

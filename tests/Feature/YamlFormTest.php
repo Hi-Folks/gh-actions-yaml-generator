@@ -236,8 +236,42 @@ class YamlFormTest extends TestCase
             ->call('submitForm')
             ->assertDontSee("run: php artisan key:generate");
 
+    }
 
+    /**
+     * Form Test: copyenv.
+     *
+     * @return void
+     */
+    public function test_form_copyenv_tests()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml")));
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", true)
+            ->set("stepEnvTemplateFile", ".env.ci")
+            ->call('submitForm')
+            ->assertSee(
+                str_replace(
+                    ".env.example",
+                    ".env.ci",
+                    file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml"))
+                ));
+
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepCopyEnvTemplateFile", false)
+            ->call('submitForm')
+            ->assertDontSee("- name: Copy .env");
 
     }
+
+
 
 }

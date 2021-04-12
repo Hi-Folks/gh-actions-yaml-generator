@@ -56,7 +56,6 @@ class ConfiguratorForm extends Component
     public $postgresqlVersion;
     public $postgresqlDatabaseName;
     public $postgresqlDatabasePort;
-    public $stepEnvTemplateFile; // .env.ci
     public $stepPhpVersions; // 7.4
     public $stepNodejs; // false
     public $stepNodejsVersion; // 12.x
@@ -106,7 +105,6 @@ class ConfiguratorForm extends Component
         $this->postgresqlVersion = "latest";
         $this->postgresqlDatabaseName = "db_test_laravel";
         $this->postgresqlDatabasePort = 55432;
-        $this->stepEnvTemplateFile = ".env.example";
         $this->stepPhpVersions = ["8.0", "7.4"];
         $this->stepNodejs = false;
         $this->stepNodejsVersion = "14.x";
@@ -174,7 +172,6 @@ class ConfiguratorForm extends Component
                             $j->postgresqlDatabasePort :
                             $this->postgresqlDatabasePort;
                 }
-                $this->stepEnvTemplateFile = $j->stepEnvTemplateFile;
                 $this->stepPhpVersions = $j->stepPhpVersions;
                 $this->stepNodejs = $j->stepNodejs;
                 $this->stepNodejsVersion = $j->stepNodejsVersion;
@@ -297,7 +294,6 @@ class ConfiguratorForm extends Component
             "on_pullrequest",
             "on_pullrequest_branches",
             "manual_trigger",
-            "stepEnvTemplateFile",
             "stepPhpVersions",
             "stepNodejs",
             "stepNodejsVersion",
