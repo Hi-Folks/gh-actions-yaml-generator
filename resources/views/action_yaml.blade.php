@@ -107,8 +107,6 @@ jobs:
       run: php artisan migrate
 @endif
 
-    - name: Show Laravel versions
-      run: php artisan --version
     - name: Show dir
       run: pwd
     - name: PHP Version
