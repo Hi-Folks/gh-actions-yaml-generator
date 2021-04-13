@@ -50,4 +50,7 @@ buildfrontend: ## execute npm task to compile frontend assets (js and css...)
 optimize: ## Optimize application in production
 	ssh ${SSH_ALIAS} "cd ${WEB_DIR}; php artisan config:cache; php artisan route:cache; php artisan view:cache"
 
+laralens: ## Execute Diagnostic on the server
+	ssh ${SSH_ALIAS} "cd ${WEB_DIR}; php artisan laralens:diagnostic"
+
 deploy: buildfrontend rsynca copyenvprod migrate
