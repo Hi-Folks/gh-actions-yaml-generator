@@ -29,8 +29,12 @@ class ConfiguratorForm extends Component
     use LaravelStuff;
 
     public $code = "";
+    public $template = "";
 
-    protected $queryString = ['code' => ['except' => '']];
+    protected $queryString = [
+        'code' => ['except' => ''],
+        'template' => ['except' => '']
+    ];
 
     public const DB_TYPE_NONE = "none";
     public const DB_TYPE_MYSQL = "mysql";
@@ -116,71 +120,77 @@ class ConfiguratorForm extends Component
         $this->loadDefaultsLaravelStuff();
     }
 
+    private function loadFromJson($j)
+    {
+        data_fill($j, "stepDirCodeSniffer", "app");
+        $this->name = $j->name;
+        $this->onPush = $j->on_push;
+        $this->onPushBranches =  $j->on_push_branches;
+        $this->onPullrequest = $j->on_pullrequest;
+        $this->onPullrequestBranches = $j->on_pullrequest_branches;
+        $this->manualTrigger = $j->manual_trigger;
+        if (isset($j->mysqlService)) {
+            if ($j->mysqlService === true) {
+                $this->databaseType = self::DB_TYPE_MYSQL;
+            } elseif ($j->mysqlService === false) {
+                $this->databaseType = self::DB_TYPE_NONE;
+            }
+        } else {
+            $this->databaseType = $j->databaseType;
+        }
+        $this->mysqlDatabase = $j->mysqlDatabase;
+        $this->mysqlPasswordType = $j->mysqlPasswordType;
+        $this->mysqlPassword = $j->mysqlPassword;
+        $this->mysqlVersion = $j->mysqlVersion;
+        $this->mysqlDatabaseName = $j->mysqlDatabaseName;
+        $this->mysqlDatabasePort = $j->mysqlDatabasePort;
+        if (isset($j->postgresqlDatabase)) {
+            $this->postgresqlDatabase = $j->postgresqlDatabase;
+            $this->postgresqlPasswordType =
+                isset($j->postgresqlPasswordType) ?
+                    $j->postgresqlPasswordType :
+                    $this->postgresqlPasswordType;
+            $this->postgresqlPassword =
+                isset($j->postgresqlPassword) ?
+                    $j->postgresqlPassword :
+                    $this->postgresqlPassword;
+            $this->postgresqlVersion =
+                isset($j->postgresqlVersion) ?
+                    $j->postgresqlVersion :
+                    $this->postgresqlVersion;
+            $this->postgresqlDatabaseName =
+                isset($j->postgresqlDatabaseName) ?
+                    $j->postgresqlDatabaseName :
+                    $this->postgresqlDatabaseName;
+            $this->postgresqlDatabasePort =
+                isset($j->postgresqlDatabasePort) ?
+                    $j->postgresqlDatabasePort :
+                    $this->postgresqlDatabasePort;
+        }
+        $this->stepPhpVersions = $j->stepPhpVersions;
+        $this->stepNodejs = $j->stepNodejs;
+        $this->stepNodejsVersion = $j->stepNodejsVersion;
+        $this->stepCachePackages = $j->stepCachePackages;
+        $this->stepCacheVendors = $j->stepCacheVendors;
+        $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
+
+        $this->loadCodeQualityFromJson($j);
+        $this->loadLaravelStuffFromJson($j);
+    }
     public function mount()
     {
         $this->fill(request()->only('code'));
         Log::debug(__METHOD__ . ' Code : ' . $this->code);
         $codeNotFound = false;
         $this->loadDefaults();
+        if ($this->template != "") {
+            $this->template($this->template);
+        }
         if ($this->code != "") {
             $confModel = Configuration::getByCode($this->code);
             if ($confModel) {
-                //$j = json_decode($confModel->configuration);
                 $j = $confModel->configuration;
-                Log::debug(__METHOD__ . ' Name : ' . $j->name);
-                $this->name = $j->name;
-                $this->onPush = $j->on_push;
-                $this->onPushBranches =  $j->on_push_branches;
-                $this->onPullrequest = $j->on_pullrequest;
-                $this->onPullrequestBranches = $j->on_pullrequest_branches;
-                $this->manualTrigger = $j->manual_trigger;
-                if (isset($j->mysqlService)) {
-                    if ($j->mysqlService === true) {
-                        $this->databaseType = self::DB_TYPE_MYSQL;
-                    } elseif ($j->mysqlService === false) {
-                        $this->databaseType = self::DB_TYPE_NONE;
-                    }
-                } else {
-                    $this->databaseType = $j->databaseType;
-                }
-                $this->mysqlDatabase = $j->mysqlDatabase;
-                $this->mysqlPasswordType = $j->mysqlPasswordType;
-                $this->mysqlPassword = $j->mysqlPassword;
-                $this->mysqlVersion = $j->mysqlVersion;
-                $this->mysqlDatabaseName = $j->mysqlDatabaseName;
-                $this->mysqlDatabasePort = $j->mysqlDatabasePort;
-                if (isset($j->postgresqlDatabase)) {
-                    $this->postgresqlDatabase = $j->postgresqlDatabase;
-                    $this->postgresqlPasswordType =
-                        isset($j->postgresqlPasswordType) ?
-                            $j->postgresqlPasswordType :
-                            $this->postgresqlPasswordType;
-                    $this->postgresqlPassword =
-                        isset($j->postgresqlPassword) ?
-                            $j->postgresqlPassword :
-                            $this->postgresqlPassword;
-                    $this->postgresqlVersion =
-                        isset($j->postgresqlVersion) ?
-                            $j->postgresqlVersion :
-                            $this->postgresqlVersion;
-                    $this->postgresqlDatabaseName =
-                        isset($j->postgresqlDatabaseName) ?
-                            $j->postgresqlDatabaseName :
-                            $this->postgresqlDatabaseName;
-                    $this->postgresqlDatabasePort =
-                        isset($j->postgresqlDatabasePort) ?
-                            $j->postgresqlDatabasePort :
-                            $this->postgresqlDatabasePort;
-                }
-                $this->stepPhpVersions = $j->stepPhpVersions;
-                $this->stepNodejs = $j->stepNodejs;
-                $this->stepNodejsVersion = $j->stepNodejsVersion;
-                $this->stepCachePackages = $j->stepCachePackages;
-                $this->stepCacheVendors = $j->stepCacheVendors;
-                $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
-
-                $this->loadCodeQualityFromJson($j);
-                $this->loadLaravelStuffFromJson($j);
+                $this->loadFromJson($j);
             } else {
                 $codeNotFound = true;
             }
@@ -234,6 +244,18 @@ class ConfiguratorForm extends Component
         $this->result = " ";
     }
 
+
+    public function template($x)
+    {
+        if (in_array($x, ["laravelapp", "laravelpackage", "phppackage"])) {
+            $this->template = $x;
+            $this->code = "";
+            $j = json_decode(file_get_contents(resource_path('templates/json/' . $x . '.json')));
+            $this->loadFromJson($j);
+        } else {
+            $this->template = "";
+        }
+    }
 
     public function submitForm()
     {
