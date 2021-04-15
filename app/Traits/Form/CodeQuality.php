@@ -10,6 +10,7 @@ trait CodeQuality
     public $stepInstallCodeSniffer; //true
     public $stepExecuteStaticAnalysis; // false
     public $stepDirStaticAnalysis; // app
+    public $stepToolStaticAnalysis; // phpstan|larastan
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
 
@@ -21,6 +22,7 @@ trait CodeQuality
         $this->stepInstallCodeSniffer = true;
         $this->stepExecuteStaticAnalysis = false;
         $this->stepDirStaticAnalysis = "app";
+        $this->stepToolStaticAnalysis = "larastan";
         $this->stepInstallStaticAnalysis = true;
         $this->stepDusk = false;
     }
@@ -31,12 +33,14 @@ trait CodeQuality
         data_fill($j, "stepInstallCodeSniffer", true);
         data_fill($j, "stepDirStaticAnalysis", "app");
         data_fill($j, "stepInstallStaticAnalysis", true);
+        data_fill($j, "stepToolStaticAnalysis", 'larastan');
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
         $this->stepDirCodeSniffer = $j->stepDirCodeSniffer;
         $this->stepInstallCodeSniffer = $j->stepInstallCodeSniffer;
         $this->stepExecuteStaticAnalysis = $j->stepExecuteStaticAnalysis;
         $this->stepDirStaticAnalysis = $j->stepDirStaticAnalysis;
+        $this->stepToolStaticAnalysis = $j->stepToolStaticAnalysis;
         $this->stepInstallStaticAnalysis = $j->stepInstallStaticAnalysis;
         $this->stepDusk = $j->stepDusk;
     }
@@ -49,6 +53,7 @@ trait CodeQuality
         $data["stepInstallCodeSniffer"] = $this->stepInstallCodeSniffer;
         $data["stepExecuteStaticAnalysis"] = $this->stepExecuteStaticAnalysis;
         $data["stepDirStaticAnalysis"] = $this->stepDirStaticAnalysis;
+        $data["stepToolStaticAnalysis"] = $this->stepToolStaticAnalysis;
         $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
         $data["stepDusk"] = $this->stepDusk;
 

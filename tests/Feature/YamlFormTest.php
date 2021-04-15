@@ -193,6 +193,32 @@ class YamlFormTest extends TestCase
             ->set("stepInstallStaticAnalysis", true)
             ->call('submitForm')
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", true)
+            ->set("stepToolStaticAnalysis", 'larastan')
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", true)
+            ->set("stepToolStaticAnalysis", 'phpstan')
+            ->call('submitForm')
+            ->assertDontSee("composer require --dev nunomaduro/larastan")
+            ->assertSee("composer require --dev phpstan/phpstan");
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", false)
+            ->call('submitForm')
+            ->assertDontSee("composer require --dev nunomaduro/larastan")
+            ->assertDontSee("composer require --dev phpstan/phpstan");
+
+
+
         Livewire::test(ConfiguratorForm::class)
             ->set("name", "Test")
             ->set("stepExecuteCodeSniffer", true)

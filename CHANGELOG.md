@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2021-04-15
+### Add
+- Select Template option: Laravel application, PHP package, Laravel package ( #62 );
+- Select tool for code static analysis ( #63 )  
+
+
 ## 0.2.5 - 2021-04-12
 ### Add
 - New option for installing phpstan in workflow
