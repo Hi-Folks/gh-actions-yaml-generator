@@ -55,6 +55,17 @@
         value=1
         wire:model="stepExecuteStaticAnalysis"
       >
+        <x-form.input-select
+          model="stepToolStaticAnalysis"
+          name="stepToolStaticAnalysis"
+          label="Select Code Analysis Tool"
+          :list="[
+            'larastan'=>'Larastan (for Laravel projects)',
+            'phpstan'=>'PHPstan']"
+          help="Select Code Analysis Tool, Larastan for Laravel project,
+PHPstan for generic PHP projects"
+          >
+        </x-form.input-select>
 
         <x-form.input-text
           model="stepDirStaticAnalysis"
