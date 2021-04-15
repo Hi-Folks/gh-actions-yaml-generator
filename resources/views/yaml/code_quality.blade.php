@@ -16,12 +16,21 @@
 @endif
 
 @if ($stepExecuteStaticAnalysis)
+@if ($stepToolStaticAnalysis == 'larastan')
     - name: Execute Code Static Analysis (PHP Stan + Larastan)
       run: |
 @if ($stepInstallStaticAnalysis)
         composer require --dev nunomaduro/larastan
 @endif
         vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+@else
+    - name: Execute Code Static Analysis (PHP Stan)
+      run: |
+@if ($stepInstallStaticAnalysis)
+        composer require --dev phpstan/phpstan
+@endif
+        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} --level=4 --no-progress
+@endif
 @endif
 
 

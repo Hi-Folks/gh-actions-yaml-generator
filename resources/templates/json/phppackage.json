@@ -17,6 +17,7 @@
         "7.3"
     ],
     "on_push_branches": [
+        "master",
         "main",
         "develop",
         "features/**"
@@ -43,12 +44,13 @@
     "postgresqlPasswordType": "hardcoded",
     "stepExecuteCodeSniffer": "1",
     "stepInstallCodeSniffer": true,
+    "stepToolStaticAnalysis": "phpstan",
     "on_pullrequest_branches": [
         "main",
         "develop"
     ],
     "stepCopyEnvTemplateFile": false,
-    "stepExecuteStaticAnalysis": false,
+    "stepExecuteStaticAnalysis": "1",
     "stepFixStoragePermissions": false,
     "stepInstallStaticAnalysis": true,
     "matrixLaravelVersionsString": "[  ]",
