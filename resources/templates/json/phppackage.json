@@ -21,12 +21,12 @@
         "develop",
         "features/**"
     ],
-    "stepCacheVendors": true,
+    "stepCacheVendors": false,
     "mysqlDatabaseName": "db_test_laravel",
     "mysqlDatabasePort": 33306,
     "mysqlPasswordType": "skip",
     "postgresqlVersion": "latest",
-    "stepCachePackages": true,
+    "stepCachePackages": false,
     "stepNodejsVersion": "14.x",
     "stepRunMigrations": false,
     "postgresqlDatabase": "postgresql",
@@ -48,7 +48,7 @@
         "develop"
     ],
     "stepCopyEnvTemplateFile": false,
-    "stepExecuteStaticAnalysis": "1",
+    "stepExecuteStaticAnalysis": false,
     "stepFixStoragePermissions": false,
     "stepInstallStaticAnalysis": true,
     "matrixLaravelVersionsString": "[  ]",
