@@ -88,7 +88,7 @@
                             model="onPushBranches"
                             name="onPushBranches"
                             label="Branches"
-                            help="Branches for the push, comma separated for example main,develop.">
+                            help="Branches for the push, comma separated for example: 'main,develop'.">
                         </x-form.input-text>
                     </x-form.input-conditional-checkbox>
                     @error('onPushBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
@@ -106,7 +106,7 @@
                         model="onPullrequestBranches"
                         name="onPullrequestBranches"
                         label="Branches"
-                        help="Branches for the PR, comma separated for example main,develop.">
+                        help="Branches for the PR, comma separated for example: 'main,develop'.">
                       </x-form.input-text>
                     </x-form.input-conditional-checkbox>
                     @error('onPullrequestBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
@@ -122,7 +122,7 @@
                   name="databaseType"
                   label="Select the Database"
                   :list="['none'=>'None', 'mysql'=>'MySql Service', 'sqlite' => 'Sqlite', 'postgresql' => 'Postgresql']"
-                  help="Database: *None* if you don't want a database in your workflow,o otherwise select Mysql or Sqlite"
+                  help="Database: *None* if you don't want a database in your workflow. Otherwise select Mysql or Postgresql or Sqlite"
                   multiselect=0
                   onChange='showMysqlService= $event.target.value==="mysql";showPostgresqlService= $event.target.value==="postgresql"'>
                 </x-form.input-select>
