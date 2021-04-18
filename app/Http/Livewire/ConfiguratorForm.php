@@ -62,7 +62,7 @@ class ConfiguratorForm extends Component
     public $postgresqlDatabasePort;
     public $stepPhpVersions; // 7.4
     public $stepNodejs; // false
-    public $stepNodejsVersion; // 12.x
+    public $stepNodejsVersion; // 15.x
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepCacheNpmModules; // true
@@ -111,7 +111,7 @@ class ConfiguratorForm extends Component
         $this->postgresqlDatabasePort = 55432;
         $this->stepPhpVersions = ["8.0", "7.4"];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion = "14.x";
+        $this->stepNodejsVersion = "15.x";
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
