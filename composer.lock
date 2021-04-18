@@ -912,16 +912,16 @@
         },
         {
             "name": "hi-folks/lara-lens",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hi-Folks/lara-lens.git",
-                "reference": "79e586045f874f6f8c27a5e8cfbe1de342c89724"
+                "reference": "7a7fbec926503219d7c8fe7e8343862a52068d4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/79e586045f874f6f8c27a5e8cfbe1de342c89724",
-                "reference": "79e586045f874f6f8c27a5e8cfbe1de342c89724",
+                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/7a7fbec926503219d7c8fe7e8343862a52068d4b",
+                "reference": "7a7fbec926503219d7c8fe7e8343862a52068d4b",
                 "shasum": ""
             },
             "require": {
@@ -976,9 +976,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Hi-Folks/lara-lens/issues",
-                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.2.3"
+                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.2.4"
             },
-            "time": "2021-04-10T20:05:02+00:00"
+            "time": "2021-04-18T12:51:06+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1470,16 +1470,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
+                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
+                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
                 "shasum": ""
             },
             "require": {
@@ -1530,7 +1530,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.3"
             },
             "funding": [
                 {
@@ -1538,7 +1538,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-04T15:46:50+00:00"
+            "time": "2021-04-16T14:27:45+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6590,16 +6590,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.7.3",
+            "version": "v0.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "9c515d46851dca5a99fc82c0a69392c362b7affd"
+                "reference": "0ceef2a39b45be9d7f7dd96192a1721ba5112278"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/9c515d46851dca5a99fc82c0a69392c362b7affd",
-                "reference": "9c515d46851dca5a99fc82c0a69392c362b7affd",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/0ceef2a39b45be9d7f7dd96192a1721ba5112278",
+                "reference": "0ceef2a39b45be9d7f7dd96192a1721ba5112278",
                 "shasum": ""
             },
             "require": {
@@ -6663,7 +6663,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.3"
+                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.4"
             },
             "funding": [
                 {
@@ -6683,7 +6683,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-04-12T11:01:46+00:00"
+            "time": "2021-04-16T08:25:31+00:00"
         },
         {
             "name": "phar-io/manifest",

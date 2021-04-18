@@ -28,7 +28,7 @@
     "mysqlPasswordType": "skip",
     "postgresqlVersion": "latest",
     "stepCachePackages": false,
-    "stepNodejsVersion": "14.x",
+    "stepNodejsVersion": "15.x",
     "stepRunMigrations": false,
     "postgresqlDatabase": "postgresql",
     "postgresqlPassword": "postgres",

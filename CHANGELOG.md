@@ -1,4 +1,9 @@
 # Changelog
+## 0.3.1 - 2021-04-18
+### Change
+- Update default Node version to 15.x (stable)
+- Fix some typos in the help labels in the Form
+- Upgraded Node packages
 
 ## 0.3.0 - 2021-04-15
 ### Add
