@@ -247,7 +247,7 @@ class ConfiguratorForm extends Component
 
     public function template($x)
     {
-        if (in_array($x, ["laravelapp", "laravelpackage", "phppackage"])) {
+        if (in_array($x, ["laravelapp", "laravelpostgresql", "laravelpackage", "phppackage"])) {
             $this->template = $x;
             $this->code = "";
             $j = json_decode(file_get_contents(resource_path('templates/json/' . $x . '.json')));

@@ -10,9 +10,11 @@
           </div>
           <div>
             <p class="text-2xl font-bold text-gray-900">Laravel App</p>
-            <p class="h-16 text-gray-500 text-sm mb-3">Setup Workflow for Laravel, with MySql, PHPstan, Phpcs, PHPunit</p>
+            <p class="h-16 text-gray-500 text-sm mb-3">Setup Workflow for Laravel, with MySql, PHPstan, Phpcs, PHPunit.</p><p><b class="text-xl">Select template</b>:</p>
             <button wire:click="template('laravelapp')"
-                    class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Select</button>
+                    class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Mysql</button>
+            <button wire:click="template('laravelpostgresql')"
+                    class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Postgesql</button>
           </div>
         </div>
       <div  class="bg-white p-4 bg-opacity-80 rounded-3xl flex space-x-12 items-center shadow-md hover:shadow-xl">

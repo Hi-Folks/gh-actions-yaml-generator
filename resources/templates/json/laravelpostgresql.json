@@ -1,0 +1,60 @@
+{
+    "name": "Template - Laravel application",
+    "on_push": true,
+    "stepDusk": false,
+    "stepNodejs": "1",
+    "databaseType": "postgresql",
+    "mysqlVersion": "5.7",
+    "matrixLaravel": false,
+    "mysqlDatabase": "mysql",
+    "mysqlPassword": "DB_PASSWORD",
+    "manual_trigger": false,
+    "on_pullrequest": false,
+    "stepGenerateKey": true,
+    "stepPhpVersions": [
+        "8.0",
+        "7.4"
+    ],
+    "on_push_branches": [
+        "main",
+        "develop",
+        "features/**"
+    ],
+    "stepCacheVendors": true,
+    "mysqlDatabaseName": "db_test_laravel",
+    "mysqlDatabasePort": 33306,
+    "mysqlPasswordType": "skip",
+    "postgresqlVersion": "latest",
+    "stepCachePackages": true,
+    "stepNodejsVersion": "15.x",
+    "stepRunMigrations": true,
+    "postgresqlDatabase": "postgresql",
+    "postgresqlPassword": "postgres",
+    "stepDirCodeSniffer": "app",
+    "stepExecutePhpunit": true,
+    "stepCacheNpmModules": true,
+    "stepEnvTemplateFile": ".env.example",
+    "matrixLaravelVersions": [],
+    "stepDirStaticAnalysis": "app",
+    "stepPhpVersionsString": "[ '8.0','7.4' ]",
+    "postgresqlDatabaseName": "db_test_laravel",
+    "postgresqlDatabasePort": 55432,
+    "postgresqlPasswordType": "hardcoded",
+    "stepExecuteCodeSniffer": "1",
+    "stepInstallCodeSniffer": true,
+    "stepToolStaticAnalysis": "larastan",
+    "on_pullrequest_branches": [
+        "main",
+        "develop"
+    ],
+    "stepCopyEnvTemplateFile": true,
+    "stepExecuteStaticAnalysis": "1",
+    "stepFixStoragePermissions": true,
+    "stepInstallStaticAnalysis": true,
+    "matrixLaravelVersionsString": "[  ]",
+    "matrixTestbenchDependencies": {
+        "6.*": "4.*",
+        "7.*": "5.*",
+        "8.*": "6.*"
+    }
+}
