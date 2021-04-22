@@ -23,7 +23,9 @@
 <div>
   <header class=" ">
     <div class=" flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
-      <img class="w-48  " src="{{ asset('ghygen-title.png') }}">
+      <div>
+      <img class="object-scale-down h-20 w-full  " alt="Ghygen, GitHub Actions configurator for your Laravel / PHP Application" src="{{ asset('ghygen-title.png') }}">
+      </div>
       <div>
         <h1 class="pl-20 text-xl text-gray-900">
           {{ $title }}
