@@ -1,9 +1,9 @@
 {
-    "name": "Template - Laravel application (Mysql)",
+    "name": "Template - Laravel app with Postgresql",
     "on_push": true,
     "stepDusk": false,
     "stepNodejs": "1",
-    "databaseType": "mysql",
+    "databaseType": "postgresql",
     "mysqlVersion": "5.7",
     "matrixLaravel": false,
     "mysqlDatabase": "mysql",
@@ -42,6 +42,7 @@
     "postgresqlPasswordType": "hardcoded",
     "stepExecuteCodeSniffer": "1",
     "stepInstallCodeSniffer": true,
+    "stepToolStaticAnalysis": "larastan",
     "on_pullrequest_branches": [
         "main",
         "develop"

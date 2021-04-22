@@ -21,16 +21,19 @@
 </head>
 <body class="antialiased">
 <div>
-  <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
-      <img class="w-48  " src="{{ asset('ghygen-title.png') }}">
-      <h1 class="pl-20 text-gray-800">
-        {{ $title }}
-      </h1>
-      <p class="pl-20 text-gray-500 text-sm">
-        {{ $description }}
-      </p>
-
+  <header class=" ">
+    <div class=" flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
+      <div>
+      <img class="object-scale-down h-20 w-full  " alt="Ghygen, GitHub Actions configurator for your Laravel / PHP Application" src="{{ asset('ghygen-title.png') }}">
+      </div>
+      <div>
+        <h1 class="pl-20 text-xl text-gray-900">
+          {{ $title }}
+        </h1>
+        <p class="pl-24 pt-2 text-gray-600">
+          {{ $description }}
+        </p>
+      </div>
     </div>
   </header>
   <main>

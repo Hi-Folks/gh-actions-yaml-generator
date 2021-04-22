@@ -1,4 +1,12 @@
 # Changelog
+
+## 0.3.2 - 2021-04-22
+### Add
+- Postgresql template option
+
+### Change
+- Update some style (template cards and header)
+
 ## 0.3.1 - 2021-04-18
 ### Change
 - Update default Node version to 15.x (stable)
