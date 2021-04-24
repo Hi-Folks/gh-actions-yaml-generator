@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.3.3 - WIP
+## 0.3.3 - 2021-04-24
 ## Add
 - Psalm as Static Code Analysis Tool
+- Add composer install --no-dev before deploy
 
 ## 0.3.2 - 2021-04-22
 ### Add
