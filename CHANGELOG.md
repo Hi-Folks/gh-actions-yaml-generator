@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3 - WIP
+## Add
+- Psalm as Static Code Analysis Tool
+
 ## 0.3.2 - 2021-04-22
 ### Add
 - Postgresql template option

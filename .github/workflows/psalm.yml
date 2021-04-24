@@ -1,0 +1,54 @@
+# GithHub Actions Workflow generated with Ghygen
+# Original configuration: http://gh-actions-yaml-generator.test?code=5fe95b386cf1ea527fff904fafff0a67
+name: Test Laravel Github action
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - features/**
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: [ '8.0','7.4' ]
+        dependency-stability: [ prefer-stable ]
+
+    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install PHP versions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Show dir
+        run: pwd
+      - name: PHP Version
+        run: php --version
+
+      # Code quality
+
+
+      - name: Execute Code Static Analysis (PSALM)
+        run: |
+          composer require --dev vimeo/psalm
+          ./vendor/bin/psalm --init
+          composer require --dev psalm/plugin-laravel
+          ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
+          vendor/bin/psalm
