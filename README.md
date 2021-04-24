@@ -22,7 +22,7 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - setup __Sqlite__ in memory database;
 - run migrations;
 - __execute tests__ via phpunit;
-- static __code analysis__; 
+- static __code analysis__ with phpstan or psalm; 
 - code sniffer (via phpcs for __PSR12__ compatibility);
 - __validate Yaml__ file;
 - execute __Browser Test__ via Laravel Dusk.
