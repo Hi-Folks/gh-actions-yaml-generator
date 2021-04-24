@@ -10,7 +10,7 @@ trait CodeQuality
     public $stepInstallCodeSniffer; //true
     public $stepExecuteStaticAnalysis; // false
     public $stepDirStaticAnalysis; // app
-    public $stepToolStaticAnalysis; // phpstan|larastan
+    public $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
 

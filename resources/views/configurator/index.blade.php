@@ -22,15 +22,15 @@
 <body class="antialiased">
 <div>
   <header class=" ">
-    <div class=" flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
+    <div class=" md:flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
       <div>
       <img class="object-scale-down h-20 w-full  " alt="Ghygen, GitHub Actions configurator for your Laravel / PHP Application" src="{{ asset('ghygen-title.png') }}">
       </div>
       <div>
-        <h1 class="pl-20 text-xl text-gray-900">
+        <h1 class="md:pl-20 text-xl text-gray-900">
           {{ $title }}
         </h1>
-        <p class="pl-24 pt-2 text-gray-600">
+        <p class="md:pl-24 pt-2 text-gray-600">
           {{ $description }}
         </p>
       </div>

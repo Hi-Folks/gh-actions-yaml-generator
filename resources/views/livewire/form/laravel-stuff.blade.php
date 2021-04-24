@@ -1,4 +1,4 @@
-<fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
+<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
   <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
   <div class="md:grid md:grid-cols-2 md:gap-2">
     <div class="col-span-1 ">

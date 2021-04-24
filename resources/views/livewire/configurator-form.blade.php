@@ -51,7 +51,7 @@
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form wire:submit.prevent="submitForm"  action="#" method="POST">
         @csrf
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
+        <div class=" sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
             <x-form.input-text
                 model="name"
@@ -63,7 +63,7 @@
             @error('name') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
 
 
-            <fieldset  class="border-2 shadow-2xl p-4 rounded-2xl">
+            <fieldset  class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
                 <legend class="text-xl font-medium text-gray-900 px-2 pb-2">On - GitHub event that triggers the workflow.</legend>
                 <div class="md:grid md:grid-cols-3 md:gap-3">
                   <div class="col-span-1 ">
@@ -118,7 +118,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
+            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Select Database</legend>
                 <x-form.input-select
                   model="databaseType"
@@ -235,7 +235,7 @@
 
             </fieldset>
 
-            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
+            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Caching</legend>
               <div class="md:grid md:grid-cols-3 md:gap-3">
                 <div class="col-span-1 ">
@@ -278,7 +278,7 @@
               </div>
             </fieldset>
 
-            <fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
+            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
               <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
@@ -318,13 +318,13 @@ Select 14.x if you want to use LTS version.">
 
           </div>
 
-          <div class="flex flex-row w-full text-right">
-            <div class="flex-grow px-4 py-3 bg-gray-50 text-right sm:px-6">
-              <x-button data-clipboard-text="{{ $result }}">
+          <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">
+            <div class="flex-grow px-4 py-1  text-right sm:px-6">
+              <x-button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
                 Copy
               </x-button>
             </div>
-            <div class="flex-grow-0 px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div class="flex-grow-0 px-4 py-1 bg-gray-50 text-right sm:px-6">
               <x-button type="submit">
                 Generate Yaml File
               </x-button>

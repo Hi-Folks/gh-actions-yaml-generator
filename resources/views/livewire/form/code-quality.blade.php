@@ -1,4 +1,4 @@
-<fieldset class="border-2 shadow-2xl p-4 rounded-2xl">
+<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
   <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Code Quality</legend>
   <div class="md:grid md:grid-cols-2 md:gap-2">
     <div class="col-span-1 ">
@@ -58,26 +58,27 @@
         <x-form.input-select
           model="stepToolStaticAnalysis"
           name="stepToolStaticAnalysis"
-          label="Select Code Analysis Tool"
+          label="Select Static Code Analysis Tool"
           :list="[
             'larastan'=>'Larastan (for Laravel projects)',
-            'phpstan'=>'PHPstan']"
+            'phpstan'=>'PHPstan',
+            'psalmlaravel' => 'Psalm for Laravel']"
           help="Select Code Analysis Tool, Larastan for Laravel project,
-PHPstan for generic PHP projects"
+PHPstan for generic PHP projects, or Psalm with Laravel plugin"
           >
         </x-form.input-select>
 
         <x-form.input-text
           model="stepDirStaticAnalysis"
           name="stepDirStaticAnalysis"
-          label="Dir to check with phpstan"
+          label="Dir to check with Static Code Analysis Tool"
           help=" ">
         </x-form.input-text>
         <x-form.input-checkbox
           model="stepInstallStaticAnalysis"
           name="stepInstallStaticAnalysis"
-          label="Install Phpstan"
-          help="Install Larastan and Phpstan">
+          label="Install Static Code Analysis Tool"
+          help="Install Static Code Analysis Tool (larastan or phpstan or psalm)">
         </x-form.input-checkbox>
       </x-form.input-conditional-checkbox>
 
