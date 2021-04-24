@@ -1,5 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=5fe95b386cf1ea527fff904fafff0a67
+# Original configuration: http://gh-actions-yaml-generator.test?code=320394a6c722d6fda58bc80bb96900a8
 name: Test Laravel Github action
 on:
   push:
@@ -47,8 +47,4 @@ jobs:
 
       - name: Execute Code Static Analysis (PSALM)
         run: |
-          composer require --dev vimeo/psalm
-          ./vendor/bin/psalm --init
-          composer require --dev psalm/plugin-laravel
-          ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
           vendor/bin/psalm
