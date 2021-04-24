@@ -53,4 +53,7 @@ optimize: ## Optimize application in production
 laralens: ## Execute Diagnostic on the server
 	ssh ${SSH_ALIAS} "cd ${WEB_DIR}; php artisan laralens:diagnostic"
 
-deploy: buildfrontend rsynca copyenvprod migrate
+composerinstallnodev:
+	composer install --no-dev
+
+deploy: buildfrontend composerinstallnodev rsynca copyenvprod migrate
