@@ -58,26 +58,27 @@
         <x-form.input-select
           model="stepToolStaticAnalysis"
           name="stepToolStaticAnalysis"
-          label="Select Code Analysis Tool"
+          label="Select Static Code Analysis Tool"
           :list="[
             'larastan'=>'Larastan (for Laravel projects)',
-            'phpstan'=>'PHPstan']"
+            'phpstan'=>'PHPstan',
+            'psalmlaravel' => 'Psalm for Laravel']"
           help="Select Code Analysis Tool, Larastan for Laravel project,
-PHPstan for generic PHP projects"
+PHPstan for generic PHP projects, or Psalm with Laravel plugin"
           >
         </x-form.input-select>
 
         <x-form.input-text
           model="stepDirStaticAnalysis"
           name="stepDirStaticAnalysis"
-          label="Dir to check with phpstan"
+          label="Dir to check with Static Code Analysis Tool"
           help=" ">
         </x-form.input-text>
         <x-form.input-checkbox
           model="stepInstallStaticAnalysis"
           name="stepInstallStaticAnalysis"
-          label="Install Phpstan"
-          help="Install Larastan and Phpstan">
+          label="Install Static Code Analysis Tool"
+          help="Install Static Code Analysis Tool (larastan or phpstan or psalm)">
         </x-form.input-checkbox>
       </x-form.input-conditional-checkbox>
 

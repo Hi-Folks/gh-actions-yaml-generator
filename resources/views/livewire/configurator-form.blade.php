@@ -320,7 +320,7 @@ Select 14.x if you want to use LTS version.">
 
           <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">
             <div class="flex-grow px-4 py-1  text-right sm:px-6">
-              <x-button data-clipboard-text="{{ $result }}">
+              <x-button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
                 Copy
               </x-button>
             </div>
