@@ -8,7 +8,7 @@ phpstan: ## Execute phpstan
 	vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
 
 test: ## Execute phpunit
-	vendor/bin/phpunit --testdox
+	php artisan test
 
 coverage: ## Execute the coverage test
 	vendor/bin/phpunit --coverage-text

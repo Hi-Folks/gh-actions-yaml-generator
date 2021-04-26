@@ -56,4 +56,9 @@ laralens: ## Execute Diagnostic on the server
 composerinstallnodev:
 	composer install --no-dev
 
-deploy: buildfrontend composerinstallnodev rsynca copyenvprod migrate
+installdevdeps:
+	composer install
+	npm run dev
+	php artisan config:clear
+
+deploy: buildfrontend composerinstallnodev rsynca copyenvprod migrate installdevdeps
