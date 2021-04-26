@@ -4,9 +4,7 @@ name: Test Laravel Github action
 on:
   push:
     branches:
-      - main
-      - develop
-      - features/**
+      - tests/**
 
 jobs:
   laravel-tests:

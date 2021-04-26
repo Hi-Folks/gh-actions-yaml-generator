@@ -4,9 +4,7 @@ name: Template - Laravel application
 on:
   push:
     branches:
-      - main
-      - develop
-      - features/**
+      - tests/**
 
 jobs:
   laravel-tests:
