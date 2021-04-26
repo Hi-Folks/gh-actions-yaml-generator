@@ -11,7 +11,7 @@ class Daily extends Component
 {
     public $daily;
 
-    public function mount()
+    public function mount(): void
     {
         $date = DB::raw('DATE(`created_at`) as `date`');
         if (config('database.default') === 'pgsql') {
@@ -25,7 +25,7 @@ class Daily extends Component
             ->orderBy('date', 'DESC') // or ASC
             ->pluck('count', 'date');
     }
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.dashboard.daily');
     }

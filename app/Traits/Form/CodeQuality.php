@@ -14,7 +14,7 @@ trait CodeQuality
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
 
-    public function loadDefaultsCodeQuality()
+    public function loadDefaultsCodeQuality(): void
     {
         $this->stepExecutePhpunit = true;
         $this->stepExecuteCodeSniffer = false;
@@ -27,7 +27,7 @@ trait CodeQuality
         $this->stepDusk = false;
     }
 
-    public function loadCodeQualityFromJson($j)
+    public function loadCodeQualityFromJson($j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "stepInstallCodeSniffer", true);

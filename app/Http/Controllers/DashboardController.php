@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\View\View
     {
         $data = [];
         $data["title"] = "Ghygen is a GitHub Actions configurator for your Laravel Application.";

@@ -88,7 +88,7 @@ class ConfiguratorForm extends Component
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
-    private function loadDefaults()
+    private function loadDefaults(): void
     {
         $this->name = "Test Laravel Github action";
         $this->onPush = true;
@@ -120,7 +120,7 @@ class ConfiguratorForm extends Component
         $this->loadDefaultsLaravelStuff();
     }
 
-    private function loadFromJson($j)
+    private function loadFromJson($j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         $this->name = $j->name;
@@ -177,7 +177,7 @@ class ConfiguratorForm extends Component
         $this->loadCodeQualityFromJson($j);
         $this->loadLaravelStuffFromJson($j);
     }
-    public function mount()
+    public function mount(): void
     {
         $this->fill(request()->only('code'));
         Log::debug(__METHOD__ . ' Code : ' . $this->code);
@@ -212,7 +212,7 @@ class ConfiguratorForm extends Component
         return $somethingToSplit;
     }
 
-    private static function arrayToString($array)
+    private static function arrayToString($array): string
     {
         return "[ " . implode(
             ",",
@@ -225,7 +225,12 @@ class ConfiguratorForm extends Component
         ) . " ]";
     }
 
-    private function compactThis(...$args)
+    /**
+     * @return (array|mixed)[]
+     *
+     * @psalm-return array<array-key, array|mixed>
+     */
+    private function compactThis(string ...$args): array
     {
         $vars = get_object_vars($this);
         $retVal = [];
@@ -239,13 +244,13 @@ class ConfiguratorForm extends Component
         return $retVal;
     }
 
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         $this->result = " ";
     }
 
 
-    public function template($x)
+    public function template($x): void
     {
         if (in_array($x, ["laravelapp", "laravelpostgresql", "laravelpackage", "phppackage"])) {
             $this->template = $x;
@@ -257,6 +262,9 @@ class ConfiguratorForm extends Component
         }
     }
 
+    /**
+     * @return void
+     */
     public function submitForm()
     {
         try {
@@ -370,7 +378,7 @@ class ConfiguratorForm extends Component
         }
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.configurator-form');
     }

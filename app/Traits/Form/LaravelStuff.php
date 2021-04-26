@@ -13,7 +13,7 @@ trait LaravelStuff
     public $matrixLaravelVersions; // []
     public $matrixTestbenchDependencies;
 
-    public function loadDefaultsLaravelStuff()
+    public function loadDefaultsLaravelStuff(): void
     {
         $this->stepFixStoragePermissions = true;
         $this->stepRunMigrations = true;
@@ -30,7 +30,7 @@ trait LaravelStuff
         // the key is the laravel ver, the value is the orchestratestbench version
     }
 
-    public function loadLaravelStuffFromJson($j)
+    public function loadLaravelStuffFromJson($j): void
     {
         data_fill($j, "stepGenerateKey", true);
         data_fill($j, "stepCopyEnvTemplateFile", true);
