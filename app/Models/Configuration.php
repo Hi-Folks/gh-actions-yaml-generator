@@ -13,7 +13,7 @@ class Configuration extends Model
         'configuration' => 'object',
     ];
 
-    public static function getByCode($code): static|Model
+    public static function getByCode($code)
     {
         return self::firstWhere('code', $code);
     }
