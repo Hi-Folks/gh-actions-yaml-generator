@@ -9,11 +9,11 @@ class Latest extends Component
 {
     public $latest;
 
-    public function mount()
+    public function mount(): void
     {
         $this->latest = Configuration::latest("updated_at")->take(5)->get();
     }
-    public function render()
+    public function render(): \Illuminate\View\View
     {
 
         return view('livewire.dashboard.latest');

@@ -26,7 +26,7 @@ class Configuration extends Model
         return $this->configuration->databaseType === "mysql";
     }
 
-    public function isSqlite()
+    public function isSqlite(): bool
     {
         if (isset($this->configuration->databaseType)) {
             return $this->configuration->databaseType === "sqlite";
@@ -34,7 +34,7 @@ class Configuration extends Model
         return false;
     }
 
-    public function isPostgresqlService()
+    public function isPostgresqlService(): bool
     {
         if (isset($this->configuration->databaseType)) {
             return $this->configuration->databaseType === "postgresql";
@@ -43,7 +43,7 @@ class Configuration extends Model
     }
 
 
-    public function getDatabaseType()
+    public function getDatabaseType(): string
     {
         if ($this->isMysqlService()) {
             return "Mysql";
@@ -57,7 +57,7 @@ class Configuration extends Model
         return "";
     }
 
-    public static function saveConfiguration($code, $json, $metadata = "{}")
+    public static function saveConfiguration(string $code, $json, $metadata = "{}"): void
     {
         $confModel = self::getByCode($code);
 

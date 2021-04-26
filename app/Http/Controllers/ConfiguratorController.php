@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class ConfiguratorController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\View\View
     {
         $data = [];
         $data["title"] = "Ghygen is a GitHub Actions configurator for your Laravel Application.";
@@ -14,7 +14,7 @@ class ConfiguratorController extends Controller
         return view('configurator.index', $data);
     }
 
-    public function about()
+    public function about(): \Illuminate\View\View
     {
         $data = [];
         $data["title"] = "Generate GitHub Actions Config for Laravel Projects with Ghygen";

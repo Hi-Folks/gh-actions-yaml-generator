@@ -14,7 +14,7 @@ class Metrics extends Component
     public $last24hours;
     public $last3days;
 
-    public function mount()
+    public function mount(): void
     {
         $this->count = Configuration::count();
         $this->total = Configuration::sum('counts');
@@ -35,7 +35,7 @@ class Metrics extends Component
         )->count();
     }
 
-    public function render()
+    public function render(): \Illuminate\View\View
     {
         return view('livewire.dashboard.metrics');
     }
