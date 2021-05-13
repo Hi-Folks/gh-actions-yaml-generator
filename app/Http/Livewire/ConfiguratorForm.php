@@ -117,7 +117,7 @@ class ConfiguratorForm extends Component
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
-        $this->sdeployType = 'none';
+        $this->deployType = 'none';
         $this->webhookType = 'hardcoded';
         $this->webhookUrl = "WEBHOOK_URL";
 
