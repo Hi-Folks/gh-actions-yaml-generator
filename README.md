@@ -26,6 +26,7 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - code sniffer (via phpcs for __PSR12__ compatibility);
 - __validate Yaml__ file;
 - execute __Browser Test__ via Laravel Dusk.
+- Run __Deployments__ via Ploi using [Ploi Deploy Action](https://github.com/Glennmen/ploi-deploy-action).
 
 This is a Work In Progress, we are adding new features...
 

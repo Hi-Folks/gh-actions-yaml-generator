@@ -44,9 +44,6 @@
 @endif
 @endif
 
-
-
-
 @if ($stepDusk)
     - name: Browser Test - upgrade and start Chrome Driver
       run: |
