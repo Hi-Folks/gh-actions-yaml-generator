@@ -1,13 +1,13 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=4bbce953328360c37961ba3ccb399135
+# Original configuration: http://gh-actions-yaml-generator.test?code=472d350ac131237dbae5c08b8c15b097
 name: Template - Laravel application
 on:
   push:
     branches:
-      - '*'
+      - '**'
   pull_request:
     branches:
-      - '*'
+      - '**'
 
 jobs:
   laravel-tests:
