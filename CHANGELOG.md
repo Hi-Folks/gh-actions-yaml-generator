@@ -1,7 +1,15 @@
 # Changelog
 
+## 0.3.4 - 2021-05-13
+### Add
+- Add wildcard for branch names
+### Change
+- Psalm fix MissingReturnType,MissingParamType
+- clean up developments stuff after deploy
+- cleaning some test workflows for GitHub Actions
+
 ## 0.3.3 - 2021-04-24
-## Add
+### Add
 - Psalm as Static Code Analysis Tool
 - Add composer install --no-dev before deploy
 
