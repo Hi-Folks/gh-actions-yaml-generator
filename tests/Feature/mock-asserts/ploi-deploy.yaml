@@ -1,6 +1,5 @@
-# Deployment Step    
-    - name: Deploy
-# Deploy to Ploi
+# Deployment Step
+    - name: Deploy via Ploi
       uses: Glennmen/ploi-deploy-action@v1.2.0
       with:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
