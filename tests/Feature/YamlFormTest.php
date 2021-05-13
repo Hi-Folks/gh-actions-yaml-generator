@@ -298,6 +298,22 @@ class YamlFormTest extends TestCase
 
     }
 
+    /**
+     * Form Test: using wildcards in branch names.
+     *
+     * @return void
+     */
+    public function test_form_branches_wildcard()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test Wildcard")
+            ->set("manualTrigger", false)
+            ->set("onPush", true)
+            ->set("onPushBranches", "*")
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches-wildcard.yaml")));
+
+    }
 
 
 }
