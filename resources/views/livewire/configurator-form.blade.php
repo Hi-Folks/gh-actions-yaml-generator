@@ -176,7 +176,7 @@
                           model="mysqlPassword"
                           name="mysqlPassword"
                           label="MySql Password"
-                          help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
+                          help="For secret, fill with the name of your parameter for example DB_PASSWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
                         </x-form.input-text>
                     </div>
                   </div>
@@ -227,7 +227,7 @@
                           model="postgresqlPassword"
                           name="postgresqlPassword"
                           label="Postgresqll Password"
-                          help="For secret, fill with the name of your parameter for example DB_PASSOWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
+                          help="For secret, fill with the name of your parameter for example DB_PASSWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
                         </x-form.input-text>
                     </div>
                   </div>
@@ -315,7 +315,7 @@ Select 14.x if you want to use LTS version.">
 
             @include('livewire.form.laravel-stuff')
             @include('livewire.form.code-quality')
-
+            @include('livewire.form.deploy')
           </div>
 
           <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">

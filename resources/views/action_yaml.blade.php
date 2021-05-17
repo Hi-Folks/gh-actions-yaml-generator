@@ -113,3 +113,7 @@ jobs:
       run: php --version
 
 @include('yaml.code_quality')
+
+@if ($stepDeployType === "ploi")
+@include('yaml.deploy_ploi')
+@endif

@@ -1,6 +1,12 @@
 # Changelog
 
+## 0.3.5 - 2021-05-17
+
+### Add
+- Deploy step with Ploi service. Thank you to @ashwind-19
+
 ## 0.3.4 - 2021-05-13
+
 ### Add
 - Add wildcard for branch names
 ### Change
@@ -9,11 +15,13 @@
 - cleaning some test workflows for GitHub Actions
 
 ## 0.3.3 - 2021-04-24
+
 ### Add
 - Psalm as Static Code Analysis Tool
 - Add composer install --no-dev before deploy
 
 ## 0.3.2 - 2021-04-22
+
 ### Add
 - Postgresql template option
 
@@ -21,18 +29,21 @@
 - Update some style (template cards and header)
 
 ## 0.3.1 - 2021-04-18
+
 ### Change
 - Update default Node version to 15.x (stable)
 - Fix some typos in the help labels in the Form
 - Upgraded Node packages
 
 ## 0.3.0 - 2021-04-15
+
 ### Add
 - Select Template option: Laravel application, PHP package, Laravel package ( #62 );
 - Select tool for code static analysis ( #63 )  
 
 
 ## 0.2.5 - 2021-04-12
+
 ### Add
 - New option for installing phpstan in workflow
 - New option for installing phpcs in workflow
@@ -47,6 +58,7 @@
 
 
 ## 0.2.4 - 2021-04-05
+
 ### Add
 - Add Postgresql database
 
@@ -54,15 +66,14 @@
 - Fix Dashboard when some old data is loaded (isMysqlService vs dataType)
 
 ## 0.2.3 - 2021-04-04
+
 ### Add
 - Add Sqlite (in memory) support in your workflow (now the user can select: none, mysql or sqlite);
 - Add Validation for Laravel version
 
 
-### Change
-
-
 ## 0.2.2 - 2021-03-07
+
 ### Add
 - All Hashcode configurations are logged into log_configurations table;
 - Dashboard: Show the total configurations created daily;
