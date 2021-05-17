@@ -2,4 +2,5 @@
     - name: Deploy via Ploi
       uses: Glennmen/ploi-deploy-action@v1.2.0
       with:
+        # loaded from secret
         webhook_url: ${{ secrets.WEBHOOK_URL }}

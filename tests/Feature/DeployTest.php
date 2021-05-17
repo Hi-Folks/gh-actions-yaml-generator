@@ -10,7 +10,7 @@ use App\Http\Livewire\ConfiguratorForm;
 
 class DeployTest extends TestCase
 {
-    
+
     use DatabaseMigrations;
 
     const DIR_MOCK ="tests/Feature/mock-asserts/";
@@ -19,8 +19,8 @@ class DeployTest extends TestCase
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
-            ->set("deployType","ploi")
-            ->set("webhookType","secret")
+            ->set("stepDeployType","ploi")
+            ->set("stepDeployWebhookType","secret")
             ->call('submitForm')
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK."ploi-deploy.yaml")));
     }
