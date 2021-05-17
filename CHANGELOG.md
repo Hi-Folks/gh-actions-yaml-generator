@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.5 - 2021-05-17
+### Add
+- Deploy step with Ploi service. Thank you to @ashwind-19
+
 ## 0.3.4 - 2021-05-13
 ### Add
 - Add wildcard for branch names

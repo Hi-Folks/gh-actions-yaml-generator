@@ -114,6 +114,6 @@ jobs:
 
 @include('yaml.code_quality')
 
-@if ($deployType === "ploi")
+@if ($stepDeployType === "ploi")
 @include('yaml.deploy_ploi')
 @endif

@@ -66,9 +66,9 @@ class ConfiguratorForm extends Component
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepCacheNpmModules; // true
-    public $deployType;
-    public $webhookType;
-    public $webhookUrl;
+    public $stepDeployType;
+    public $stepDeployWebhookType;
+    public $stepDeployWebhookUrl;
 
 
     public $result;
@@ -117,9 +117,9 @@ class ConfiguratorForm extends Component
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
-        $this->deployType = 'none';
-        $this->webhookType = 'hardcoded';
-        $this->webhookUrl = "WEBHOOK_URL";
+        $this->stepDeployType = 'none';
+        $this->stepDeployWebhookType = 'secret';
+        $this->stepDeployWebhookUrl = "WEBHOOK_URL";
 
         $this->loadDefaultsCodeQuality();
         $this->loadDefaultsLaravelStuff();
@@ -335,9 +335,9 @@ class ConfiguratorForm extends Component
             "stepCachePackages",
             "stepCacheVendors",
             "stepCacheNpmModules",
-            "deployType",
-            "webhookType",
-            "webhookUrl"
+            "stepDeployType",
+            "stepDeployWebhookType",
+            "stepDeployWebhookUrl"
         );
         $data = $this->setDataCodeQuality($data);
         $data = $this->setDataLaravelStuff($data);
