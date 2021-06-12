@@ -1,4 +1,8 @@
 # Changelog
+## 0.3.6 - 2021-06-13
+
+### Add
+- Deploy Serverless Application via Vapor
 
 ## 0.3.5 - 2021-05-17
 
