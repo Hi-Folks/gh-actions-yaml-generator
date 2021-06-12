@@ -24,7 +24,7 @@
       <div class="col-span-3">
 
         You need to set a GitHub Secret in settings/secrets/actions/new named VAPOR_API_TOKEN.
-        Take a look the documentation about Vapor <a href="https://docs.vapor.build/1.0/projects/deployments.html#deploying-from-ci">Laravel Vapor, Deploying From CI</a>
+        Take a look the documentation about <a href="https://docs.vapor.build/1.0/projects/deployments.html#deploying-from-ci">Laravel Vapor, Deploying From CI</a>
       </div>
     </div>
   </div>
