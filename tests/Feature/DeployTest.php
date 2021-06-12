@@ -23,6 +23,17 @@ class DeployTest extends TestCase
             ->set("stepDeployWebhookType","secret")
             ->call('submitForm')
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK."ploi-deploy.yaml")));
+
+    }
+    public function testVaporDeploy()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("stepDeployType","vapor")
+
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."vapor-deploy.yaml")));
+
     }
 
 }

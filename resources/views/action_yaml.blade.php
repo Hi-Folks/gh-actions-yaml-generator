@@ -117,3 +117,6 @@ jobs:
 @if ($stepDeployType === "ploi")
 @include('yaml.deploy_ploi')
 @endif
+@if ($stepDeployType === "vapor")
+  @include('yaml.deploy_vapor')
+@endif
