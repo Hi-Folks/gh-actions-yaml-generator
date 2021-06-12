@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Configuration;
 use App\Traits\Form\CodeQuality;
+use App\Traits\Form\Deploy;
 use App\Traits\Form\LaravelStuff;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
@@ -27,6 +28,7 @@ class ConfiguratorForm extends Component
     use WithRateLimiting;
     use CodeQuality;
     use LaravelStuff;
+    use Deploy;
 
     public $code = "";
     public $template = "";
@@ -66,9 +68,7 @@ class ConfiguratorForm extends Component
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepCacheNpmModules; // true
-    public $stepDeployType;
-    public $stepDeployWebhookType;
-    public $stepDeployWebhookUrl;
+
 
 
     public $result;
@@ -117,12 +117,11 @@ class ConfiguratorForm extends Component
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
-        $this->stepDeployType = 'none';
-        $this->stepDeployWebhookType = 'secret';
-        $this->stepDeployWebhookUrl = "WEBHOOK_URL";
+
 
         $this->loadDefaultsCodeQuality();
         $this->loadDefaultsLaravelStuff();
+        $this->loadDefaultsDeploy();
     }
 
     private function loadFromJson($j): void
@@ -181,6 +180,7 @@ class ConfiguratorForm extends Component
 
         $this->loadCodeQualityFromJson($j);
         $this->loadLaravelStuffFromJson($j);
+        $this->loadDeployFromJson($j);
     }
     public function mount(): void
     {
@@ -334,14 +334,11 @@ class ConfiguratorForm extends Component
             "stepNodejsVersion",
             "stepCachePackages",
             "stepCacheVendors",
-            "stepCacheNpmModules",
-            "stepDeployType",
-            "stepDeployWebhookType",
-            "stepDeployWebhookUrl"
+            "stepCacheNpmModules"
         );
         $data = $this->setDataCodeQuality($data);
         $data = $this->setDataLaravelStuff($data);
-
+        $data = $this->setDeployData($data);
         $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
         $data["on_push_branches"] = self::split($this->onPushBranches);
