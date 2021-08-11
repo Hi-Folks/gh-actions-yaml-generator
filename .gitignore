@@ -17,3 +17,6 @@ public/mix-manifest.json
 /.env.prod
 /Makefile.param.prod
 /public/google*.html
+
+/output/
+/.vscode/

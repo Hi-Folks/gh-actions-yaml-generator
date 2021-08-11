@@ -6,6 +6,13 @@
       run: vendor/bin/phpunit --testdox
 @endif
 
+@if ($stepExecutePestphp)
+    - name: Execute tests (Unit and Feature tests) via PestPHP
+@include('yaml.set_env')
+
+      run: vendor/bin/pest
+@endif
+
 @if ($stepExecuteCodeSniffer)
     - name: Execute Code Sniffer via phpcs
       run: |
