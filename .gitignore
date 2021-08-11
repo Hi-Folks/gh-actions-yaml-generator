@@ -19,3 +19,4 @@ public/mix-manifest.json
 /public/google*.html
 
 /output/
+/.vscode/
