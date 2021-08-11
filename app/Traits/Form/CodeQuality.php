@@ -5,6 +5,7 @@ namespace App\Traits\Form;
 trait CodeQuality
 {
     public $stepExecutePhpunit; //true
+    public $stepExecutePestphp; //false
     public $stepExecuteCodeSniffer; //false
     public $stepDirCodeSniffer; // app
     public $stepInstallCodeSniffer; //true
@@ -17,6 +18,7 @@ trait CodeQuality
     public function loadDefaultsCodeQuality(): void
     {
         $this->stepExecutePhpunit = true;
+        $this->stepExecutePestphp = false;
         $this->stepExecuteCodeSniffer = false;
         $this->stepDirCodeSniffer = "app";
         $this->stepInstallCodeSniffer = true;
@@ -34,7 +36,9 @@ trait CodeQuality
         data_fill($j, "stepDirStaticAnalysis", "app");
         data_fill($j, "stepInstallStaticAnalysis", true);
         data_fill($j, "stepToolStaticAnalysis", 'larastan');
+        data_fill($j, "stepExecutePestphp", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
+        $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
         $this->stepDirCodeSniffer = $j->stepDirCodeSniffer;
         $this->stepInstallCodeSniffer = $j->stepInstallCodeSniffer;
@@ -48,6 +52,7 @@ trait CodeQuality
     public function setDataCodeQuality($data)
     {
         $data["stepExecutePhpunit"] = $this->stepExecutePhpunit;
+        $data["stepExecutePestphp"] = $this->stepExecutePestphp;
         $data["stepExecuteCodeSniffer"] = $this->stepExecuteCodeSniffer;
         $data["stepDirCodeSniffer"] = $this->stepDirCodeSniffer;
         $data["stepInstallCodeSniffer"] = $this->stepInstallCodeSniffer;

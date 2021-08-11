@@ -1,4 +1,9 @@
 # Changelog
+
+## 0.3.7 - 2021-08-11
+
+- Add launching tests via PestPHP
+
 ## 0.3.6 - 2021-06-13
 
 ### Add

@@ -14,6 +14,17 @@
     <div class="col-span-1 ">
       <div class="pl-3 pb-2 mt-2 space-y-4">
         <x-form.input-checkbox
+          model="stepExecutePestphp"
+          name="stepExecutePestphp"
+          label="Execute Tests via PestPHP"
+          help="Execute Tests via PestPHP">
+        </x-form.input-checkbox>
+      </div>
+    </div>
+
+    <div class="col-span-2 ">
+      <div class="pl-3 pb-2 mt-2 space-y-4">
+        <x-form.input-checkbox
           model="stepDusk"
           name="stepDusk"
           label="Execute Browser Test"
