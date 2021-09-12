@@ -125,4 +125,21 @@ class WorkflowGenerator
 
         return $envConfiguration;
     }
+
+    public function readNvmrc(string $fileNvmrc)
+    {
+        if (!is_readable($fileNvmrc)) {
+            return "";
+        }
+
+        $lines = file($fileNvmrc, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos(trim($line), '#') === 0) {
+                continue;
+            }
+            return $line;
+        }
+
+        return "";
+    }
 }

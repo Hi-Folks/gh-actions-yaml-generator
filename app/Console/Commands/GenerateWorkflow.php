@@ -49,13 +49,15 @@ class GenerateWorkflow extends Command
         $cache = $this->option("cache");
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
-        $packageFile = base_path("packages.json");
+        $nvmrcFile = base_path(".nvmrc");
+        $packageFile = base_path("package.json");
         $migrationsDir = base_path("database" . DIRECTORY_SEPARATOR . "migrations");
 
         if ($projectdir !== "") {
             $composerFile = $projectdir . DIRECTORY_SEPARATOR . "composer.json";
             $envFile = $projectdir . DIRECTORY_SEPARATOR . ".env";
-            $packageFile = $projectdir . DIRECTORY_SEPARATOR . "packages.json";
+            $nvmrcFile = $projectdir . DIRECTORY_SEPARATOR . ".nvmrc";
+            $packageFile = $projectdir . DIRECTORY_SEPARATOR . "package.json";
             $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
         }
         $this->line("Composer : " . $composerFile);
@@ -99,6 +101,14 @@ class GenerateWorkflow extends Command
                 if (count($migrationFiles) > 4) {
                     $generator->stepRunMigrations = true;
                 }
+            }
+        }
+        if (is_file($packageFile)) {
+            $generator->stepNodejs = true;
+            $generator->stepNodejsVersion = "16.x";
+            $versionFromNvmrc = $generator->readNvmrc($nvmrcFile);
+            if ($versionFromNvmrc !== "") {
+                $generator->stepNodejsVersion = $versionFromNvmrc;
             }
         }
 
