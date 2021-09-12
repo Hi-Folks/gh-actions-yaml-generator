@@ -17,7 +17,9 @@ class GenerateWorkflow extends Command
      */
     protected $signature = 'ghygen:generate
     {--projectdir= : the directory of the project with composer.json}
-    {--cache : enable caching packages in the workflow}';
+    {--cache : enable caching packages in the workflow}
+    {--envfile=.env.example : the .env file to use in the workflow}
+    ';
 
 
     /**
@@ -47,8 +49,11 @@ class GenerateWorkflow extends Command
     {
         $projectdir = $this->option("projectdir");
         $cache = $this->option("cache");
+        $optionEnvWorkflowFile = $this->option("envfile");
+
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
+        $envWorkflowFile = base_path($optionEnvWorkflowFile);
         $nvmrcFile = base_path(".nvmrc");
         $packageFile = base_path("package.json");
         $migrationsDir = base_path("database" . DIRECTORY_SEPARATOR . "migrations");
@@ -56,6 +61,7 @@ class GenerateWorkflow extends Command
         if ($projectdir !== "") {
             $composerFile = $projectdir . DIRECTORY_SEPARATOR . "composer.json";
             $envFile = $projectdir . DIRECTORY_SEPARATOR . ".env";
+            $envWorkflowFile = $projectdir . DIRECTORY_SEPARATOR . $optionEnvWorkflowFile;
             $nvmrcFile = $projectdir . DIRECTORY_SEPARATOR . ".nvmrc";
             $packageFile = $projectdir . DIRECTORY_SEPARATOR . "package.json";
             $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
@@ -110,6 +116,12 @@ class GenerateWorkflow extends Command
             if ($versionFromNvmrc !== "") {
                 $generator->stepNodejsVersion = $versionFromNvmrc;
             }
+        }
+        if (is_file($envWorkflowFile)) {
+            $generator->stepCopyEnvTemplateFile = true;
+            $generator->stepEnvTemplateFile = $optionEnvWorkflowFile;
+        } else {
+            $generator->stepCopyEnvTemplateFile = false;
         }
 
         $data = $generator->setData();
