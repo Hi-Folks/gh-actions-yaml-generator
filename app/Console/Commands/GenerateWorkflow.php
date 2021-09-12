@@ -51,11 +51,13 @@ class GenerateWorkflow extends Command
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
         $packageFile = base_path("packages.json");
+        $migrationsDir = base_path("database" . DIRECTORY_SEPARATOR . "migrations");
 
         if ($projectdir !== "") {
             $composerFile = $projectdir . DIRECTORY_SEPARATOR . "composer.json";
             $envFile = $projectdir . DIRECTORY_SEPARATOR . ".env";
             $packageFile = $projectdir . DIRECTORY_SEPARATOR . "packages.json";
+            $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
         }
         $this->line("Composer : " . $composerFile);
         $this->line("Env file : " . $envFile);
@@ -78,7 +80,31 @@ class GenerateWorkflow extends Command
         }
         $generator->detectCache($cache);
 
+        $generator->databaseType = WorkflowGenerator::DB_TYPE_NONE;
+        $generator->stepRunMigrations = false;
 
+        if (is_file($envFile)) {
+            $envArray = $generator->readDotEnv($envFile);
+            $databaseType = Arr::get($envArray, "DB_CONNECTION", "");
+            $this->line("DATABASE:" . $databaseType);
+            $generator->databaseType = WorkflowGenerator::DB_TYPE_NONE;
+            $generator->stepRunMigrations = false;
+            if ($databaseType === "mysql") {
+                $generator->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
+            }
+            if ($databaseType === "sqlite") {
+                $generator->databaseType = WorkflowGenerator::DB_TYPE_SQLITE;
+            }
+            if ($databaseType === "postgresql") {
+                $generator->databaseType = WorkflowGenerator::DB_TYPE_POSTGRESQL;
+            }
+            if ($generator->databaseType !== WorkflowGenerator::DB_TYPE_NONE) {
+                $migrationFiles = scandir($migrationsDir);
+                if (count($migrationFiles) > 4 ) {
+                    $generator->stepRunMigrations = true;
+                }
+            }
+        }
 
         $data = $generator->setData();
 
