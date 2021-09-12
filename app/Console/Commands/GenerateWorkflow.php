@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 
 use App\Objects\WorkflowGenerator;
+use Composer\Semver\Semver;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 
@@ -15,7 +16,8 @@ class GenerateWorkflow extends Command
      *
      * @var string
      */
-    protected $signature = 'ghygen:generate';
+    protected $signature = 'ghygen:generate
+    {--projectdir= : the directory of the project with composer.json}';
 
     /**
      * The console command description.
@@ -42,12 +44,23 @@ class GenerateWorkflow extends Command
      */
     public function handle()
     {
+        $projectdir = $this->option("projectdir");
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
         $packageFile = base_path("packages.json");
+
+        if ($projectdir !== "") {
+            $composerFile = $projectdir . DIRECTORY_SEPARATOR . "composer.json";
+            $envFile = $projectdir . DIRECTORY_SEPARATOR . ".env";
+            $packageFile = $projectdir . DIRECTORY_SEPARATOR . "packages.json";
+        }
         $this->line("Composer : " . $composerFile);
         $this->line("Env file : " . $envFile);
         $this->line("Package  : " . $packageFile);
+        if ( ! is_file($composerFile)) {
+            $this->error("Composer file not found". getcwd());
+            return -1;
+        }
         $generator = new WorkflowGenerator();
         $generator->loadDefaults();
 
@@ -55,11 +68,14 @@ class GenerateWorkflow extends Command
             $composer = json_decode(file_get_contents($composerFile), true);
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
-            if ($phpversion !="") {
-                echo $phpversion;
-            }
+            $generator->detectPhpVersion($phpversion);
+
+
 
         }
+        $generator->detectCache();
+
+
 
         $data = $generator->setData();
 

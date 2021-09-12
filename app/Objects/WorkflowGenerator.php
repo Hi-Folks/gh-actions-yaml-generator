@@ -6,6 +6,7 @@ use App\Traits\Form\BaseWorkflow;
 use App\Traits\Form\CodeQuality;
 use App\Traits\Form\Deploy;
 use App\Traits\Form\LaravelStuff;
+use Composer\Semver\Semver;
 use Illuminate\Support\Str;
 
 class WorkflowGenerator
@@ -78,6 +79,29 @@ class WorkflowGenerator
     {
         $stringResult = view('action_yaml', $data)->render();
         return $stringResult;
+    }
+
+    public function detectPhpVersion($phpversion)
+    {
+        $listPhpVersions= [ "7.3", "7.4", "8.0"];
+        $stepPhp=[];
+        foreach ($listPhpVersions as $php) {
+            if (Semver::satisfies($php, $phpversion)) {
+                $stepPhp[] = $php;
+            }
+        }
+        $this->stepPhpVersions = $stepPhp;
+        return $stepPhp;
+    }
+
+    /**
+     * Detect cache, for now the behavior is to disable cache
+     */
+    public function detectCache()
+    {
+        $this->stepCacheNpmModules = false;
+        $this->stepCachePackages = false;
+        $this->stepCacheVendors = false;
     }
 
 }
