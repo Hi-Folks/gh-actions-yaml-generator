@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-
 use App\Objects\WorkflowGenerator;
 use Composer\Semver\Semver;
 use Illuminate\Console\Command;
@@ -62,8 +61,8 @@ class GenerateWorkflow extends Command
         $this->line("Composer : " . $composerFile);
         $this->line("Env file : " . $envFile);
         $this->line("Package  : " . $packageFile);
-        if ( ! is_file($composerFile)) {
-            $this->error("Composer file not found". getcwd());
+        if (! is_file($composerFile)) {
+            $this->error("Composer file not found" . getcwd());
             return -1;
         }
         $generator = new WorkflowGenerator();
@@ -74,9 +73,6 @@ class GenerateWorkflow extends Command
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
             $generator->detectPhpVersion($phpversion);
-
-
-
         }
         $generator->detectCache($cache);
 
@@ -100,7 +96,7 @@ class GenerateWorkflow extends Command
             }
             if ($generator->databaseType !== WorkflowGenerator::DB_TYPE_NONE) {
                 $migrationFiles = scandir($migrationsDir);
-                if (count($migrationFiles) > 4 ) {
+                if (count($migrationFiles) > 4) {
                     $generator->stepRunMigrations = true;
                 }
             }

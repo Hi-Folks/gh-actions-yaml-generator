@@ -57,7 +57,6 @@ trait BaseWorkflow
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
-
     }
 
     public function loadBaseWorkflowFromJson($j): void

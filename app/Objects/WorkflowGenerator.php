@@ -46,14 +46,14 @@ class WorkflowGenerator
     private static function arrayToString($array): string
     {
         return "[ " . implode(
-                ",",
-                array_map(
-                    function ($str) {
-                        return "'$str'";
-                    },
-                    $array
-                )
-            ) . " ]";
+            ",",
+            array_map(
+                function ($str) {
+                    return "'$str'";
+                },
+                $array
+            )
+        ) . " ]";
     }
 
     private static function split($somethingToSplit, $splitChars = ",")
@@ -83,8 +83,8 @@ class WorkflowGenerator
 
     public function detectPhpVersion($phpversion)
     {
-        $listPhpVersions= [ "7.3", "7.4", "8.0"];
-        $stepPhp=[];
+        $listPhpVersions = [ "7.3", "7.4", "8.0"];
+        $stepPhp = [];
         foreach ($listPhpVersions as $php) {
             if (Semver::satisfies($php, $phpversion)) {
                 $stepPhp[] = $php;
@@ -113,7 +113,6 @@ class WorkflowGenerator
 
         $lines = file($fileEnv, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($lines as $line) {
-
             if (strpos(trim($line), '#') === 0) {
                 continue;
             }
@@ -122,10 +121,8 @@ class WorkflowGenerator
             $name = trim($name);
             $value = trim($value);
             $envConfiguration[$name] = $value;
-
         }
 
         return $envConfiguration;
     }
-
 }
