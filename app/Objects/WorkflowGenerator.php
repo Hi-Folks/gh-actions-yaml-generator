@@ -97,11 +97,11 @@ class WorkflowGenerator
     /**
      * Detect cache, for now the behavior is to disable cache
      */
-    public function detectCache()
+    public function detectCache(bool $cache)
     {
-        $this->stepCacheNpmModules = false;
-        $this->stepCachePackages = false;
-        $this->stepCacheVendors = false;
+        $this->stepCacheNpmModules = $cache;
+        $this->stepCachePackages = $cache;
+        $this->stepCacheVendors = $cache;
     }
 
 }

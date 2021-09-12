@@ -17,7 +17,9 @@ class GenerateWorkflow extends Command
      * @var string
      */
     protected $signature = 'ghygen:generate
-    {--projectdir= : the directory of the project with composer.json}';
+    {--projectdir= : the directory of the project with composer.json}
+    {--cache : enable caching packages in the workflow}';
+
 
     /**
      * The console command description.
@@ -45,6 +47,7 @@ class GenerateWorkflow extends Command
     public function handle()
     {
         $projectdir = $this->option("projectdir");
+        $cache = $this->option("cache");
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
         $packageFile = base_path("packages.json");
@@ -73,7 +76,7 @@ class GenerateWorkflow extends Command
 
 
         }
-        $generator->detectCache();
+        $generator->detectCache($cache);
 
 
 
