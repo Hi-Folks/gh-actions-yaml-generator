@@ -56,6 +56,7 @@ class GenerateWorkflow extends Command
         $envWorkflowFile = base_path($optionEnvWorkflowFile);
         $nvmrcFile = base_path(".nvmrc");
         $packageFile = base_path("package.json");
+        $artisanFile = base_path("artisan");
         $migrationsDir = base_path("database" . DIRECTORY_SEPARATOR . "migrations");
 
         if ($projectdir !== "") {
@@ -64,13 +65,14 @@ class GenerateWorkflow extends Command
             $envWorkflowFile = $projectdir . DIRECTORY_SEPARATOR . $optionEnvWorkflowFile;
             $nvmrcFile = $projectdir . DIRECTORY_SEPARATOR . ".nvmrc";
             $packageFile = $projectdir . DIRECTORY_SEPARATOR . "package.json";
+            $artisanFile = $projectdir . DIRECTORY_SEPARATOR . "artisan";
             $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
         }
-        $this->line("Composer : " . $composerFile);
+        $this->line("Composer : " . realpath($composerFile));
         $this->line("Env file : " . $envFile);
         $this->line("Package  : " . $packageFile);
-        if (! is_file($composerFile)) {
-            $this->error("Composer file not found" . getcwd());
+        if (! file_exists(realpath($composerFile))) {
+            $this->error("Composer file not found");
             return -1;
         }
         $generator = new WorkflowGenerator();
@@ -124,22 +126,18 @@ class GenerateWorkflow extends Command
             $generator->stepCopyEnvTemplateFile = false;
         }
 
+        if (is_file($artisanFile)) {
+            //artisan file so:
+            // fix storage permissions
+            $generator->stepFixStoragePermissions = true;
+        }
+
         $data = $generator->setData();
 
         $result = $generator->generate($data);
         $this->line($result);
 
-        /*
-        foreach ($data as $key => $value) {
 
-            if (is_string($value)) {
-                $this->line($key . " - " . $value);
-            } else {
-                $this->line($key . " - no string value");
-            }
-
-        }
-        */
 
 
 
