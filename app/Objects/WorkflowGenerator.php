@@ -29,9 +29,9 @@ class WorkflowGenerator
         $this->loadDefaultsDeploy();
     }
 
-    private function compactThis(string ...$args): array
+    public static function compactObject(object $object, string ...$args,): array
     {
-        $vars = get_object_vars($this);
+        $vars = get_object_vars($object);
         $retVal = [];
         foreach ($args as $arg) {
             if (key_exists($arg, $vars)) {
@@ -43,7 +43,7 @@ class WorkflowGenerator
         return $retVal;
     }
 
-    private static function arrayToString($array): string
+    public static function arrayToString($array): string
     {
         return "[ " . implode(
             ",",
@@ -56,7 +56,7 @@ class WorkflowGenerator
         ) . " ]";
     }
 
-    private static function split($somethingToSplit, $splitChars = ",")
+    public static function split($somethingToSplit, $splitChars = ",")
     {
         if (\is_string($somethingToSplit)) {
             return array_map('trim', explode($splitChars, $somethingToSplit));

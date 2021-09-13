@@ -2,6 +2,8 @@
 
 namespace App\Traits\Form;
 
+use App\Objects\WorkflowGenerator;
+
 trait BaseWorkflow
 {
     public $name;
@@ -38,7 +40,7 @@ trait BaseWorkflow
         $this->onPullrequest = false;
         $this->onPullrequestBranches = ["main", "develop"];
         $this->manualTrigger = false;
-        $this->databaseType = self::DB_TYPE_MYSQL;
+        $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
@@ -53,7 +55,7 @@ trait BaseWorkflow
         $this->postgresqlDatabasePort = 55432;
         $this->stepPhpVersions = ["8.0", "7.4"];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion = "15.x";
+        $this->stepNodejsVersion = "16.x";
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
@@ -70,9 +72,9 @@ trait BaseWorkflow
         $this->manualTrigger = $j->manual_trigger;
         if (isset($j->mysqlService)) {
             if ($j->mysqlService === true) {
-                $this->databaseType = self::DB_TYPE_MYSQL;
+                $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
             } elseif ($j->mysqlService === false) {
-                $this->databaseType = self::DB_TYPE_NONE;
+                $this->databaseType = WorkflowGenerator::DB_TYPE_NONE;
             }
         } else {
             $this->databaseType = $j->databaseType;
@@ -116,7 +118,8 @@ trait BaseWorkflow
 
     public function setDataBaseWorkflow($data)
     {
-        $data = $this->compactThis(
+        $data = WorkflowGenerator::compactObject(
+            $this,
             "databaseType",
             "mysqlDatabase",
             "mysqlVersion",
@@ -143,9 +146,9 @@ trait BaseWorkflow
             "stepCacheVendors",
             "stepCacheNpmModules"
         );
-        $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
-        $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
-        $data["on_push_branches"] = self::split($this->onPushBranches);
+        $data["stepPhpVersionsString"] = WorkflowGenerator::arrayToString($this->stepPhpVersions);
+        $data["on_pullrequest_branches"] = WorkflowGenerator::split($this->onPullrequestBranches);
+        $data["on_push_branches"] = WorkflowGenerator::split($this->onPushBranches);
 
         return $data;
     }

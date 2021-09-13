@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Configuration;
+use App\Objects\WorkflowGenerator;
 use App\Traits\Form\BaseWorkflow;
 use App\Traits\Form\CodeQuality;
 use App\Traits\Form\Deploy;
@@ -27,6 +28,7 @@ use Symfony\Component\Yaml\Yaml;
 class ConfiguratorForm extends Component
 {
     use WithRateLimiting;
+
     use BaseWorkflow;
     use CodeQuality;
     use LaravelStuff;
@@ -40,10 +42,7 @@ class ConfiguratorForm extends Component
         'template' => ['except' => '']
     ];
 
-    public const DB_TYPE_NONE = "none";
-    public const DB_TYPE_MYSQL = "mysql";
-    public const DB_TYPE_SQLITE = "sqlite";
-    public const DB_TYPE_POSTGRESQL = "postgresql";
+
 
 
 
@@ -58,23 +57,28 @@ class ConfiguratorForm extends Component
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
         'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
-        'mysqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
-        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
-        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required|integer',
-        'postgresqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
-        'postgresqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
-        'postgresqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required|integer',
+        'mysqlVersion' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required|integer',
+        'postgresqlVersion' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabaseName' =>
+            'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabasePort' =>
+            'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required|integer',
 
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
+
     private function loadDefaults(): void
     {
+
         $this->loadDefaultsBaseWorkflow();
         $this->loadDefaultsCodeQuality();
         $this->loadDefaultsLaravelStuff();
         $this->loadDefaultsDeploy();
     }
+
 
     private function loadFromJson($j): void
     {
@@ -110,45 +114,9 @@ class ConfiguratorForm extends Component
         }
     }
 
-    private static function split($somethingToSplit, $splitChars = ",")
-    {
-        if (\is_string($somethingToSplit)) {
-            return array_map('trim', explode($splitChars, $somethingToSplit));
-        }
-        return $somethingToSplit;
-    }
 
-    private static function arrayToString($array): string
-    {
-        return "[ " . implode(
-            ",",
-            array_map(
-                function ($str) {
-                    return "'$str'";
-                },
-                $array
-            )
-        ) . " ]";
-    }
 
-    /**
-     * @return (array|mixed)[]
-     *
-     * @psalm-return array<array-key, array|mixed>
-     */
-    private function compactThis(string ...$args): array
-    {
-        $vars = get_object_vars($this);
-        $retVal = [];
-        foreach ($args as $arg) {
-            if (key_exists($arg, $vars)) {
-                $retVal[$arg] = $vars[$arg];
-            } elseif (key_exists(Str::camel($arg), $vars)) {
-                $retVal[$arg] = $vars[Str::camel($arg)];
-            }
-        }
-        return $retVal;
-    }
+
 
     public function updated($propertyName): void
     {
@@ -194,10 +162,10 @@ class ConfiguratorForm extends Component
 
         // Provide some suggestions
         $this->hints = [];
-        if ($values["databaseType"] !== self::DB_TYPE_NONE and ! $values["stepRunMigrations"]) {
+        if ($values["databaseType"] !== WorkflowGenerator::DB_TYPE_NONE and ! $values["stepRunMigrations"]) {
             $this->hints[] = "I suggest you to select run migration if you have a Database";
         }
-        if ($values["databaseType"] === self::DB_TYPE_NONE and $values["stepRunMigrations"]) {
+        if ($values["databaseType"] === WorkflowGenerator::DB_TYPE_NONE and $values["stepRunMigrations"]) {
             $this->hints[] = "I suggest you to select a Database if you want to run migrations";
         }
         if ($values["stepDusk"] and ! $values["stepNodejs"]) {
