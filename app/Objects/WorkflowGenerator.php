@@ -29,7 +29,7 @@ class WorkflowGenerator
         $this->loadDefaultsDeploy();
     }
 
-    public static function compactObject(object $object, string ...$args,): array
+    public static function compactObject(object $object, string ...$args): array
     {
         $vars = get_object_vars($object);
         $retVal = [];
