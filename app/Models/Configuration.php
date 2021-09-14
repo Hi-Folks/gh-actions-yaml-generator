@@ -14,7 +14,7 @@ class Configuration extends Model
     ];
 
     /**
-     * @return Model|null|static
+     * @return Configuration|null|static
      */
     public static function getByCode(string $code)
     {

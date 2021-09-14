@@ -5,7 +5,7 @@ help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 phpstan: ## Execute phpstan
-	vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+	vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=5 --no-progress
 
 test: ## Execute phpunit
 	php artisan test
