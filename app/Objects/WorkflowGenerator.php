@@ -21,7 +21,7 @@ class WorkflowGenerator
     public const DB_TYPE_SQLITE = "sqlite";
     public const DB_TYPE_POSTGRESQL = "postgresql";
 
-    public function loadDefaults()
+    public function loadDefaults(): void
     {
         $this->loadDefaultsBaseWorkflow();
         $this->loadDefaultsCodeQuality();
@@ -75,13 +75,21 @@ class WorkflowGenerator
         return $data;
     }
 
+    /**
+     * @return array|string
+     */
     public function generate($data)
     {
         $stringResult = view('action_yaml', $data)->render();
         return $stringResult;
     }
 
-    public function detectPhpVersion($phpversion)
+    /**
+     * @return string[]
+     *
+     * @psalm-return list<'7.3'|'7.4'|'8.0'>
+     */
+    public function detectPhpVersion($phpversion): array
     {
         $listPhpVersions = [ "7.3", "7.4", "8.0"];
         $stepPhp = [];
@@ -96,15 +104,22 @@ class WorkflowGenerator
 
     /**
      * Detect cache, for now the behavior is to disable cache
+     *
+     * @return void
      */
-    public function detectCache(bool $cache)
+    public function detectCache(bool $cache): void
     {
         $this->stepCacheNpmModules = $cache;
         $this->stepCachePackages = $cache;
         $this->stepCacheVendors = $cache;
     }
 
-    public function readDotEnv(string $fileEnv)
+    /**
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
+     */
+    public function readDotEnv(string $fileEnv): array
     {
         $envConfiguration = [];
         if (!is_readable($fileEnv)) {
@@ -126,7 +141,7 @@ class WorkflowGenerator
         return $envConfiguration;
     }
 
-    public function readNvmrc(string $fileNvmrc)
+    public function readNvmrc(string $fileNvmrc): string
     {
         if (!is_readable($fileNvmrc)) {
             return "";

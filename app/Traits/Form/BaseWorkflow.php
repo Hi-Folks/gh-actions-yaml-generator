@@ -116,7 +116,7 @@ trait BaseWorkflow
         $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
     }
 
-    public function setDataBaseWorkflow($data)
+    public function setDataBaseWorkflow($data): array
     {
         $data = WorkflowGenerator::compactObject(
             $this,
