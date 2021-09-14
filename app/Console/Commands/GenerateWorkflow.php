@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Objects\GuesserFiles;
 use App\Objects\WorkflowGenerator;
 use Composer\Semver\Semver;
 use Illuminate\Console\Command;
@@ -18,7 +19,7 @@ class GenerateWorkflow extends Command
     protected $signature = 'ghygen:generate
     {--projectdir= : the directory of the project with composer.json}
     {--cache : enable caching packages in the workflow}
-    {--envfile=.env.example : the .env file to use in the workflow}
+    {--envfile=' . GuesserFiles::ENV_DEFAULT_TEMPLATE_FILE . ' : the .env file to use in the workflow}
     ';
 
 
@@ -51,6 +52,10 @@ class GenerateWorkflow extends Command
         $cache = $this->option("cache");
         $optionEnvWorkflowFile = $this->option("envfile");
 
+        $guesserFiles = new GuesserFiles();
+        $guesserFiles->pathFiles($projectdir, $optionEnvWorkflowFile);
+
+        /*
         $composerFile = base_path("composer.json");
         $envFile = base_path(".env");
         $envWorkflowFile = base_path($optionEnvWorkflowFile);
@@ -68,18 +73,17 @@ class GenerateWorkflow extends Command
             $artisanFile = $projectdir . DIRECTORY_SEPARATOR . "artisan";
             $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
         }
-        $this->line("Composer : " . realpath($composerFile));
-        $this->line("Env file : " . $envFile);
-        $this->line("Package  : " . $packageFile);
-        if (! file_exists(realpath($composerFile))) {
+        */
+        $this->line("Composer : " . $guesserFiles->getComposerPath());
+        if (! $guesserFiles->composerExists()) {
             $this->error("Composer file not found");
             return -1;
         }
         $generator = new WorkflowGenerator();
         $generator->loadDefaults();
 
-        if (is_file($composerFile)) {
-            $composer = json_decode(file_get_contents($composerFile), true);
+        if ($guesserFiles->composerExists()) {
+            $composer = json_decode(file_get_contents($guesserFiles->getComposerPath()), true);
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
             $generator->detectPhpVersion($phpversion);
@@ -89,8 +93,8 @@ class GenerateWorkflow extends Command
         $generator->databaseType = WorkflowGenerator::DB_TYPE_NONE;
         $generator->stepRunMigrations = false;
 
-        if (is_file($envFile)) {
-            $envArray = $generator->readDotEnv($envFile);
+        if ($guesserFiles->envExists()) {
+            $envArray = $generator->readDotEnv($guesserFiles->getEnvPath());
             $databaseType = Arr::get($envArray, "DB_CONNECTION", "");
             $this->line("DATABASE:" . $databaseType);
             $generator->databaseType = WorkflowGenerator::DB_TYPE_NONE;
@@ -105,29 +109,30 @@ class GenerateWorkflow extends Command
                 $generator->databaseType = WorkflowGenerator::DB_TYPE_POSTGRESQL;
             }
             if ($generator->databaseType !== WorkflowGenerator::DB_TYPE_NONE) {
-                $migrationFiles = scandir($migrationsDir);
+                $migrationFiles = scandir($guesserFiles->getMigrationsPath());
                 if (count($migrationFiles) > 4) {
                     $generator->stepRunMigrations = true;
                 }
             }
         }
-        if (is_file($packageFile)) {
+        if ($guesserFiles->packageExists()) {
             $generator->stepNodejs = true;
             $generator->stepNodejsVersion = "16.x";
-            $versionFromNvmrc = $generator->readNvmrc($nvmrcFile);
+            $versionFromNvmrc = $generator->readNvmrc($guesserFiles
+            ->getNvmrcPath());
             if ($versionFromNvmrc !== "") {
                 $generator->stepNodejsVersion = $versionFromNvmrc;
             }
         }
-        if (is_file($envWorkflowFile)) {
+        if ($guesserFiles->envDefaultTemplateExists()) {
             $generator->stepCopyEnvTemplateFile = true;
             $generator->stepEnvTemplateFile = $optionEnvWorkflowFile;
         } else {
             $generator->stepCopyEnvTemplateFile = false;
         }
 
-        if (is_file($artisanFile)) {
-            //artisan file so:
+        if ($guesserFiles->artisanExists()) {
+            //artisan file so:ENV_TEMPLATE_FILE_DEFAULT.
             // fix storage permissions
             $generator->stepFixStoragePermissions = true;
         }

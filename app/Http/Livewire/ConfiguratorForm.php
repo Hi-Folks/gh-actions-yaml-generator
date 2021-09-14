@@ -43,11 +43,6 @@ class ConfiguratorForm extends Component
     ];
 
 
-
-
-
-
-
     public $result;
     public $errorGeneration;
 
@@ -72,7 +67,6 @@ class ConfiguratorForm extends Component
 
     private function loadDefaults(): void
     {
-
         $this->loadDefaultsBaseWorkflow();
         $this->loadDefaultsCodeQuality();
         $this->loadDefaultsLaravelStuff();
