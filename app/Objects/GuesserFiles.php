@@ -74,7 +74,7 @@ class GuesserFiles
 
     public function getEnvDefaultTemplatePath(): string
     {
-        return Arr::get($this->filePaths, self::ENV_DEFAULT_TEMPLATE_FILE, "");
+        return Arr::get($this->filePaths, self::ENV_DEFAULT_TEMPLATE_VAR, "");
     }
     public function envDefaultTemplateExists(): bool
     {
@@ -82,7 +82,7 @@ class GuesserFiles
     }
     public function getPackagePath(): string
     {
-        return Arr::get($this->filePaths, self::PACKAGE_FILE, "");
+        return Arr::get($this->filePaths, self::PACKAGE_VAR, "");
     }
     public function packageExists(): bool
     {
@@ -90,7 +90,7 @@ class GuesserFiles
     }
     public function getNvmrcPath(): string
     {
-        return Arr::get($this->filePaths, self::NVMRC_FILE, "");
+        return Arr::get($this->filePaths, self::NVMRC_VAR, "");
     }
     public function nvmrcExists(): bool
     {
@@ -98,7 +98,7 @@ class GuesserFiles
     }
     public function getArtisanPath(): string
     {
-        return Arr::get($this->filePaths, self::ARTISAN_FILE, "");
+        return Arr::get($this->filePaths, self::ARTISAN_VAR, "");
     }
     public function artisanExists(): bool
     {

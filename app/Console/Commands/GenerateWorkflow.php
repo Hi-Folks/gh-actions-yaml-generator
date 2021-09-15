@@ -86,7 +86,8 @@ class GenerateWorkflow extends Command
         if ($guesserFiles->envExists()) {
             $envArray = $generator->readDotEnv($guesserFiles->getEnvPath());
             $databaseType = Arr::get($envArray, "DB_CONNECTION", "");
-            $this->line("DATABASE:" . $databaseType);
+
+
             $generator->databaseType = WorkflowGenerator::DB_TYPE_NONE;
             $generator->stepRunMigrations = false;
             if ($databaseType === "mysql") {
@@ -114,13 +115,21 @@ class GenerateWorkflow extends Command
                 $generator->stepNodejsVersion = $versionFromNvmrc;
             }
         }
+        $appKey = "";
+        $generator->stepGenerateKey = false;
+
         if ($guesserFiles->envDefaultTemplateExists()) {
             $generator->stepCopyEnvTemplateFile = true;
             $generator->stepEnvTemplateFile = $optionEnvWorkflowFile;
+            // Generate Key
+            $envArray = $generator->readDotEnv($guesserFiles->getEnvDefaultTemplatePath());
+            $appKey = Arr::get($envArray, "APP_KEY", "");
+
+            $generator->stepGenerateKey = $appKey === "";
         } else {
             $generator->stepCopyEnvTemplateFile = false;
         }
-
+        $generator->stepFixStoragePermissions = false;
         if ($guesserFiles->artisanExists()) {
             //artisan file so:ENV_TEMPLATE_FILE_DEFAULT.
             // fix storage permissions

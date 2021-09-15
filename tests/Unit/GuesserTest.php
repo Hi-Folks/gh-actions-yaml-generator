@@ -10,8 +10,7 @@ use Tests\TestCase;
 class GuesserTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
+     * Test for Testbench.
      * @return void
      */
     public function testLaravelVersions()
@@ -28,6 +27,20 @@ class GuesserTest extends TestCase
         $this->assertIsArray($arr);
         $this->assertCount(2, $arr);
         $this->assertEquals("8.*", $arr[1]);
+    }
+
+    /**
+     * Test for path guesser.
+     * @return void
+     */
+    public function testPathGuesser()
+    {
+        $guesserFiles = new GuesserFiles();
+        $guesserFiles->pathFiles("../test");
+
+        $this->assertEquals($guesserFiles->getEnvDefaultTemplatePath(), "../test/.env.example");
 
     }
+
+
 }
