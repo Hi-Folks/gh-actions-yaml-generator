@@ -304,7 +304,7 @@
                       model="stepNodejsVersion"
                       name="stepNodejsVersion"
                       label="Node Js Version"
-                      help="Define the nodejs Version. 15.x is the current stable and it is the default value.
+                      help="Define the nodejs Version. 16.x is the current stable and it is the default value.
 Select 14.x if you want to use LTS version.">
                     </x-form.input-text>
                   </x-form.input-conditional-checkbox>

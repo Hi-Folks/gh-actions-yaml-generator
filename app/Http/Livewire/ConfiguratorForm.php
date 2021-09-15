@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Configuration;
+use App\Objects\WorkflowGenerator;
+use App\Traits\Form\BaseWorkflow;
 use App\Traits\Form\CodeQuality;
 use App\Traits\Form\Deploy;
 use App\Traits\Form\LaravelStuff;
@@ -26,6 +28,8 @@ use Symfony\Component\Yaml\Yaml;
 class ConfiguratorForm extends Component
 {
     use WithRateLimiting;
+
+    use BaseWorkflow;
     use CodeQuality;
     use LaravelStuff;
     use Deploy;
@@ -38,38 +42,6 @@ class ConfiguratorForm extends Component
         'template' => ['except' => '']
     ];
 
-    public const DB_TYPE_NONE = "none";
-    public const DB_TYPE_MYSQL = "mysql";
-    public const DB_TYPE_SQLITE = "sqlite";
-    public const DB_TYPE_POSTGRESQL = "postgresql";
-
-    public $name;
-    public $onPush;
-    public $onPushBranches;
-    public $onPullrequest;
-    public $onPullrequestBranches;
-    public $manualTrigger;
-    public $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
-    public $mysqlDatabase;
-    public $mysqlPasswordType; // 'skip
-    public $mysqlPassword; // password
-    public $mysqlVersion;
-    public $mysqlDatabaseName;
-    public $mysqlDatabasePort;
-    public $postgresqlDatabase;
-    public $postgresqlPasswordType; // 'skip
-    public $postgresqlPassword; // password
-    public $postgresqlVersion;
-    public $postgresqlDatabaseName;
-    public $postgresqlDatabasePort;
-    public $stepPhpVersions; // 7.4
-    public $stepNodejs; // false
-    public $stepNodejsVersion; // 15.x
-    public $stepCachePackages; //true
-    public $stepCacheVendors; //true
-    public $stepCacheNpmModules; // true
-
-
 
     public $result;
     public $errorGeneration;
@@ -80,104 +52,31 @@ class ConfiguratorForm extends Component
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
         'onPullrequestBranches' => 'exclude_unless:onPullrequest,1|required',
-        'mysqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
-        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required',
-        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_MYSQL . '|required|integer',
-        'postgresqlVersion' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
-        'postgresqlDatabaseName' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required',
-        'postgresqlDatabasePort' => 'exclude_unless:databaseType,' . self::DB_TYPE_POSTGRESQL . '|required|integer',
+        'mysqlVersion' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabaseName' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required',
+        'mysqlDatabasePort' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_MYSQL . '|required|integer',
+        'postgresqlVersion' => 'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabaseName' =>
+            'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required',
+        'postgresqlDatabasePort' =>
+            'exclude_unless:databaseType,' . WorkflowGenerator::DB_TYPE_POSTGRESQL . '|required|integer',
 
         'matrixLaravelVersions' => 'exclude_unless:matrixLaravel,1|required',
     ];
 
+
     private function loadDefaults(): void
     {
-        $this->name = "Test Laravel Github action";
-        $this->onPush = true;
-        $this->onPushBranches = ["main", "develop", "features/**"];
-        $this->onPullrequest = false;
-        $this->onPullrequestBranches = ["main", "develop"];
-        $this->manualTrigger = false;
-        $this->databaseType = self::DB_TYPE_MYSQL;
-        $this->mysqlDatabase = "mysql";
-        $this->mysqlPasswordType = "skip";
-        $this->mysqlPassword = "DB_PASSWORD";
-        $this->mysqlVersion = "5.7";
-        $this->mysqlDatabaseName = "db_test_laravel";
-        $this->mysqlDatabasePort = 33306;
-        $this->postgresqlDatabase = "postgresql";
-        $this->postgresqlPasswordType = "hardcoded";
-        $this->postgresqlPassword = "postgres";
-        $this->postgresqlVersion = "latest";
-        $this->postgresqlDatabaseName = "db_test_laravel";
-        $this->postgresqlDatabasePort = 55432;
-        $this->stepPhpVersions = ["8.0", "7.4"];
-        $this->stepNodejs = false;
-        $this->stepNodejsVersion = "15.x";
-        $this->stepCachePackages = true;
-        $this->stepCacheVendors = true;
-        $this->stepCacheNpmModules  = true;
-
-
+        $this->loadDefaultsBaseWorkflow();
         $this->loadDefaultsCodeQuality();
         $this->loadDefaultsLaravelStuff();
         $this->loadDefaultsDeploy();
     }
 
+
     private function loadFromJson($j): void
     {
-        data_fill($j, "stepDirCodeSniffer", "app");
-        $this->name = $j->name;
-        $this->onPush = $j->on_push;
-        $this->onPushBranches =  $j->on_push_branches;
-        $this->onPullrequest = $j->on_pullrequest;
-        $this->onPullrequestBranches = $j->on_pullrequest_branches;
-        $this->manualTrigger = $j->manual_trigger;
-        if (isset($j->mysqlService)) {
-            if ($j->mysqlService === true) {
-                $this->databaseType = self::DB_TYPE_MYSQL;
-            } elseif ($j->mysqlService === false) {
-                $this->databaseType = self::DB_TYPE_NONE;
-            }
-        } else {
-            $this->databaseType = $j->databaseType;
-        }
-        $this->mysqlDatabase = $j->mysqlDatabase;
-        $this->mysqlPasswordType = $j->mysqlPasswordType;
-        $this->mysqlPassword = $j->mysqlPassword;
-        $this->mysqlVersion = $j->mysqlVersion;
-        $this->mysqlDatabaseName = $j->mysqlDatabaseName;
-        $this->mysqlDatabasePort = $j->mysqlDatabasePort;
-        if (isset($j->postgresqlDatabase)) {
-            $this->postgresqlDatabase = $j->postgresqlDatabase;
-            $this->postgresqlPasswordType =
-                isset($j->postgresqlPasswordType) ?
-                    $j->postgresqlPasswordType :
-                    $this->postgresqlPasswordType;
-            $this->postgresqlPassword =
-                isset($j->postgresqlPassword) ?
-                    $j->postgresqlPassword :
-                    $this->postgresqlPassword;
-            $this->postgresqlVersion =
-                isset($j->postgresqlVersion) ?
-                    $j->postgresqlVersion :
-                    $this->postgresqlVersion;
-            $this->postgresqlDatabaseName =
-                isset($j->postgresqlDatabaseName) ?
-                    $j->postgresqlDatabaseName :
-                    $this->postgresqlDatabaseName;
-            $this->postgresqlDatabasePort =
-                isset($j->postgresqlDatabasePort) ?
-                    $j->postgresqlDatabasePort :
-                    $this->postgresqlDatabasePort;
-        }
-        $this->stepPhpVersions = $j->stepPhpVersions;
-        $this->stepNodejs = $j->stepNodejs;
-        $this->stepNodejsVersion = $j->stepNodejsVersion;
-        $this->stepCachePackages = $j->stepCachePackages;
-        $this->stepCacheVendors = $j->stepCacheVendors;
-        $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
-
+        $this->loadBaseWorkflowFromJson($j);
         $this->loadCodeQualityFromJson($j);
         $this->loadLaravelStuffFromJson($j);
         $this->loadDeployFromJson($j);
@@ -209,45 +108,9 @@ class ConfiguratorForm extends Component
         }
     }
 
-    private static function split($somethingToSplit, $splitChars = ",")
-    {
-        if (\is_string($somethingToSplit)) {
-            return array_map('trim', explode($splitChars, $somethingToSplit));
-        }
-        return $somethingToSplit;
-    }
 
-    private static function arrayToString($array): string
-    {
-        return "[ " . implode(
-            ",",
-            array_map(
-                function ($str) {
-                    return "'$str'";
-                },
-                $array
-            )
-        ) . " ]";
-    }
 
-    /**
-     * @return (array|mixed)[]
-     *
-     * @psalm-return array<array-key, array|mixed>
-     */
-    private function compactThis(string ...$args): array
-    {
-        $vars = get_object_vars($this);
-        $retVal = [];
-        foreach ($args as $arg) {
-            if (key_exists($arg, $vars)) {
-                $retVal[$arg] = $vars[$arg];
-            } elseif (key_exists(Str::camel($arg), $vars)) {
-                $retVal[$arg] = $vars[Str::camel($arg)];
-            }
-        }
-        return $retVal;
-    }
+
 
     public function updated($propertyName): void
     {
@@ -293,10 +156,10 @@ class ConfiguratorForm extends Component
 
         // Provide some suggestions
         $this->hints = [];
-        if ($values["databaseType"] !== self::DB_TYPE_NONE and ! $values["stepRunMigrations"]) {
+        if ($values["databaseType"] !== WorkflowGenerator::DB_TYPE_NONE and ! $values["stepRunMigrations"]) {
             $this->hints[] = "I suggest you to select run migration if you have a Database";
         }
-        if ($values["databaseType"] === self::DB_TYPE_NONE and $values["stepRunMigrations"]) {
+        if ($values["databaseType"] === WorkflowGenerator::DB_TYPE_NONE and $values["stepRunMigrations"]) {
             $this->hints[] = "I suggest you to select a Database if you want to run migrations";
         }
         if ($values["stepDusk"] and ! $values["stepNodejs"]) {
@@ -309,39 +172,11 @@ class ConfiguratorForm extends Component
             $this->hints[] = "I selected automatically a 'Manual Trigger' for you.";
         }
 
-        $data = $this->compactThis(
-            "databaseType",
-            "mysqlDatabase",
-            "mysqlVersion",
-            "mysqlDatabaseName",
-            "mysqlDatabasePort",
-            "mysqlPassword",
-            "mysqlPasswordType",
-            "postgresqlDatabase",
-            "postgresqlVersion",
-            "postgresqlDatabaseName",
-            "postgresqlDatabasePort",
-            "postgresqlPassword",
-            "postgresqlPasswordType",
-            "name",
-            "on_push",
-            "on_push_branches",
-            "on_pullrequest",
-            "on_pullrequest_branches",
-            "manual_trigger",
-            "stepPhpVersions",
-            "stepNodejs",
-            "stepNodejsVersion",
-            "stepCachePackages",
-            "stepCacheVendors",
-            "stepCacheNpmModules"
-        );
+        $data = $this->setDataBaseWorkflow([]);
         $data = $this->setDataCodeQuality($data);
         $data = $this->setDataLaravelStuff($data);
         $data = $this->setDeployData($data);
-        $data["stepPhpVersionsString"] = self::arrayToString($this->stepPhpVersions);
-        $data["on_pullrequest_branches"] = self::split($this->onPullrequestBranches);
-        $data["on_push_branches"] = self::split($this->onPushBranches);
+
 
 
         $stringResult = view('action_yaml', $data)->render();

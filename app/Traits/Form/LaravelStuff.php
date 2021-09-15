@@ -2,6 +2,8 @@
 
 namespace App\Traits\Form;
 
+use App\Objects\WorkflowGenerator;
+
 trait LaravelStuff
 {
     public $stepFixStoragePermissions; //true
@@ -54,7 +56,7 @@ trait LaravelStuff
         $data["matrixLaravel"] = $this->matrixLaravel;
         $data["matrixLaravelVersions"] = $this->matrixLaravelVersions;
         $data["matrixTestbenchDependencies"] = $this->matrixTestbenchDependencies;
-        $data["matrixLaravelVersionsString"] = self::arrayToString($this->matrixLaravelVersions);
+        $data["matrixLaravelVersionsString"] = WorkflowGenerator::arrayToString($this->matrixLaravelVersions);
 
         return $data;
     }
