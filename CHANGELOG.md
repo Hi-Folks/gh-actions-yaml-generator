@@ -1,4 +1,6 @@
 # Changelog
+## 0.4.0 - 2021-09-15
+- Add command to generate automatically GitHub Actions workflow from composer.json, .env, migrations, packages.json
 
 ## 0.3.7 - 2021-08-11
 

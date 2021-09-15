@@ -37,6 +37,20 @@ If you want to test and use quickly this tool, I deployed the codebase (main bra
 
 If you want to start using it locally you can clone the repo and install it following the instructions below.
 
+## Command line
+Experimental and "magical" feature: Ghygen ships also a command for generating **automatically** a GitHub Actions workflow Yaml file.
+Once you installed locally Ghygen (see next section), you can execute:
+```shell
+php artisan ghygen:generate --projectdir=../otherproject
+```
+Where "../otherproject" is the directory (absolute or relative path name) with your Laravel project (application or package) that yuo want to automatically generate the GitHub Actions workflow yaml file.
+This "magic" command, will extract information from:
+- composer.json
+- package.json (if it exists)
+- .env file
+- ... and other assets
+- in order to guess a configuration for your GitHub Actions workflow.
+
 ## Install
 Clone source code, enter the new directory and perform a couple of instructions:
 ```shell
