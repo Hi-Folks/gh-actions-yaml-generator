@@ -48,6 +48,9 @@ class GenerateWorkflow extends Command
     public function handle()
     {
         $projectdir = $this->option("projectdir");
+        if (is_null($projectdir)) {
+            $projectdir = "";
+        }
         $cache = $this->option("cache");
         $optionEnvWorkflowFile = $this->option("envfile");
 
@@ -76,6 +79,39 @@ class GenerateWorkflow extends Command
                 $laravelVersions = GuesserFiles::detectLaravelVersionFromTestbench($testbenchVersions);
                 $generator->matrixLaravel = true;
                 $generator->matrixLaravelVersions = $laravelVersions;
+            }
+            // squizlabs/php_codesniffer
+            $phpCodesniffer = Arr::get($devPackages, "squizlabs/php_codesniffer", "");
+            if ($phpCodesniffer !== "") {
+                $generator->stepExecuteCodeSniffer = true;
+                $generator->stepInstallCodeSniffer = false;
+            }
+            // nunomaduro/larastan
+            $larastan = Arr::get($devPackages, "nunomaduro/larastan", "");
+            if ($larastan !== "") {
+                $generator->stepExecuteStaticAnalysis = true;
+                $generator->stepInstallStaticAnalysis = false;
+                $generator->stepToolStaticAnalysis = "larastan";
+            } else {
+                $phpstan = Arr::get($devPackages, "phpstan/phpstan", "");
+                if ($phpstan !== "") {
+                    $generator->stepExecuteStaticAnalysis = true;
+                    $generator->stepInstallStaticAnalysis = false;
+                    $generator->stepToolStaticAnalysis = "phpstan";
+                }
+            }
+            $generator->stepDusk = false;
+            // phpunit/phpunit
+            $generator->stepExecutePhpunit = false;
+            $phpunit = Arr::get($devPackages, "phpunit/phpunit", "");
+            if ($phpunit !== "") {
+                $generator->stepExecutePhpunit = true;
+            }
+            // phpunit/phpunit
+            $generator->stepExecutePestphp = false;
+            $pestphp = Arr::get($devPackages, "pestphp/pest", "");
+            if ($pestphp !== "") {
+                $generator->stepExecutePestphp = true;
             }
         }
         $generator->detectCache($cache);
