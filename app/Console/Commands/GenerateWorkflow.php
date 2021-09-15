@@ -54,26 +54,7 @@ class GenerateWorkflow extends Command
         $guesserFiles = new GuesserFiles();
         $guesserFiles->pathFiles($projectdir, $optionEnvWorkflowFile);
 
-        /*
-        $composerFile = base_path("composer.json");
-        $envFile = base_path(".env");
-        $envWorkflowFile = base_path($optionEnvWorkflowFile);
-        $nvmrcFile = base_path(".nvmrc");
-        $packageFile = base_path("package.json");
-        $artisanFile = base_path("artisan");
-        $migrationsDir = base_path("database" . DIRECTORY_SEPARATOR . "migrations");
-
-        if ($projectdir !== "") {
-            $composerFile = $projectdir . DIRECTORY_SEPARATOR . "composer.json";
-            $envFile = $projectdir . DIRECTORY_SEPARATOR . ".env";
-            $envWorkflowFile = $projectdir . DIRECTORY_SEPARATOR . $optionEnvWorkflowFile;
-            $nvmrcFile = $projectdir . DIRECTORY_SEPARATOR . ".nvmrc";
-            $packageFile = $projectdir . DIRECTORY_SEPARATOR . "package.json";
-            $artisanFile = $projectdir . DIRECTORY_SEPARATOR . "artisan";
-            $migrationsDir = $projectdir . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR . "migrations";
-        }
-        */
-        $this->line("Composer : " . $guesserFiles->getComposerPath());
+        //$this->line("Composer : " . $guesserFiles->getComposerPath());
         if (! $guesserFiles->composerExists()) {
             $this->error("Composer file not found");
             return -1;

@@ -144,12 +144,10 @@ class GuesserFiles
                 }
                 $i++;
             }
-
         } catch (\Exception $e) {
             $stepLaravelVersions = [];
         }
         //$this->ste = $stepPhp;
         return $stepLaravelVersions;
     }
-
 }
