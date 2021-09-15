@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Objects\GuesserFiles;
 use App\Objects\WorkflowGenerator;
-use Composer\Semver\Semver;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 
@@ -87,6 +86,16 @@ class GenerateWorkflow extends Command
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
             $generator->detectPhpVersion($phpversion);
+
+            // detect packages
+            $devPackages = Arr::get($composer, 'require-dev');
+            // testbench
+            $testbenchVersions = Arr::get($devPackages, "orchestra/testbench", "");
+            if ($testbenchVersions !== "") {
+                $laravelVersions = GuesserFiles::detectLaravelVersionFromTestbench($testbenchVersions);
+                $generator->matrixLaravel = true;
+                $generator->matrixLaravelVersions = $laravelVersions;
+            }
         }
         $generator->detectCache($cache);
 
@@ -136,6 +145,7 @@ class GenerateWorkflow extends Command
             // fix storage permissions
             $generator->stepFixStoragePermissions = true;
         }
+
 
         $data = $generator->setData();
 

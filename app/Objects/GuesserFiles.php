@@ -2,6 +2,7 @@
 
 namespace App\Objects;
 
+use Composer\Semver\Semver;
 use Illuminate\Support\Arr;
 
 class GuesserFiles
@@ -128,4 +129,27 @@ class GuesserFiles
         }
         return is_file($path);
     }
+
+    public static function detectLaravelVersionFromTestbench($testbenchVersion): array
+    {
+        $listLaravelVersions = [ "6.*", "7.*", "8.*"];
+        $listTestBenchVersions = [ "4.0", "5.0", "6.0"];
+        $stepLaravelVersions = [];
+        $i = 0;
+
+        try {
+            foreach ($listTestBenchVersions as $testbench) {
+                if (Semver::satisfies($testbench, $testbenchVersion)) {
+                    $stepLaravelVersions[] = $listLaravelVersions[$i];
+                }
+                $i++;
+            }
+
+        } catch (\Exception $e) {
+            $stepLaravelVersions = [];
+        }
+        //$this->ste = $stepPhp;
+        return $stepLaravelVersions;
+    }
+
 }
