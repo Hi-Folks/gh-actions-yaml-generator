@@ -1,4 +1,11 @@
 # Changelog
+
+## 0.4.1 - 2021-10-03
+It is time for Hacktoberfest!!!
+- With template laravelpackage (no composer.lock), avoid cache vendors and cache package. Thanks to @hetpatel33 for the hacktoberfest contribution;
+- Update PHP packages, also [Laralens 0.2.6](https://github.com/Hi-Folks/lara-lens);
+- Update contributing file for new contributors.
+- 
 ## 0.4.0 - 2021-09-15
 - Add command to generate automatically GitHub Actions workflow from composer.json, .env, migrations, packages.json
 
