@@ -36,11 +36,23 @@ Before submitting a pull request:
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 
-## Requirements
+## Open a Pull Request
 
-If the project maintainer has any additional requirements, you will find them listed here.
+In order to maintain consistency in the source code we are following PSR12 coding standard, and using PHP stan for static code analysis.
+You can use the command:
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer).
+make allcheck
+
+to launch
+- **[PSR-12 Coding Standard](https://www.php-fig.org/psr/psr-12/)**, under the hood is used [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer);
+- **PHPstan** with [level 5](https://phpstan.org/user-guide/rule-levels)
+- **Phpunit** to execute all tests from ./tests/*
+
+I suggest to launch *make allchecks* before to commit or before to create PR.
+
+If you want to work on a PR, I suggest you to creating a new branch starting from **develop branch**, and use it also when you will submit your new **P**ull **R**equest on the original repository.
+
+If you want to contribute with an high quality PR, I suggest you to focus not just on the source code but also:
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
