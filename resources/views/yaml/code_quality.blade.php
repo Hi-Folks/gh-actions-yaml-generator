@@ -44,10 +44,14 @@
 @else
     - name: Execute Code Static Analysis (PHP Stan)
       run: |
+@php ($phpstanNeon = '')
+@if ($stepPhpstanUseNeon)
+    @php($phpstanNeon = 'phpstan.neon')
+@endif
 @if ($stepInstallStaticAnalysis)
         composer require --dev phpstan/phpstan
 @endif
-        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} --level=4 --no-progress
+        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} {{ $phpstanNeon }} --level=4 --no-progress
 @endif
 @endif
 
