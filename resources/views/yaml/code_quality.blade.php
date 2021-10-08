@@ -51,7 +51,7 @@
 @if ($stepInstallStaticAnalysis)
         composer require --dev phpstan/phpstan
 @endif
-        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} {{ $phpstanNeon }} --level=4 --no-progress
+        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} {{ $phpstanNeon }} --no-progress
 @endif
 @endif
 
