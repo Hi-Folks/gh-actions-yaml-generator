@@ -28,6 +28,7 @@ trait CodeQuality
         $this->stepToolStaticAnalysis = "larastan";
         $this->stepInstallStaticAnalysis = true;
         $this->stepDusk = false;
+        $this->stepPhpstanUseNeon = false;
     }
 
     public function loadCodeQualityFromJson($j): void
