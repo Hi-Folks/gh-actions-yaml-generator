@@ -14,6 +14,7 @@ trait CodeQuality
     public $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
+    public $stepPhpstanUseNeon; // false
 
     public function loadDefaultsCodeQuality(): void
     {
