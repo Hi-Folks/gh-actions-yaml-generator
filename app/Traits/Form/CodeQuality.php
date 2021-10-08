@@ -39,6 +39,7 @@ trait CodeQuality
         data_fill($j, "stepInstallStaticAnalysis", true);
         data_fill($j, "stepToolStaticAnalysis", 'larastan');
         data_fill($j, "stepExecutePestphp", false);
+        data_fill($j, "stepPhpstanUseNeon", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
