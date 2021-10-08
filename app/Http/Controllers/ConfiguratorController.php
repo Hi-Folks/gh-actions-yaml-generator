@@ -11,6 +11,9 @@ class ConfiguratorController extends Controller
 
     public function about(): \Illuminate\View\View
     {
-        return view('configurator.about');
+        return view('configurator.about', [
+            'title' => config('gh-action-yaml-generator.data.title_about'),
+            'description' => config('gh-action-yaml-generator.data.description'),
+        ]);
     }
 }

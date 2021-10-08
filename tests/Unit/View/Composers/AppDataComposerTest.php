@@ -9,7 +9,7 @@ use Tests\TestCase;
 class AppDataComposerTest extends TestCase
 {
     /** @test */
-    public function can_pass_title_and_description_to_any_view()
+    public function can_pass_title_and_description_to_the_view()
     {
         /** @var \Illuminate\View\View $view */
         $view = $this->spy(View::class);
