@@ -64,6 +64,7 @@ trait CodeQuality
         $data["stepToolStaticAnalysis"] = $this->stepToolStaticAnalysis;
         $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
         $data["stepDusk"] = $this->stepDusk;
+        $data["stepPhpstanUseNeon"] = $this->stepPhpstanUseNeon;
 
         return $data;
     }
