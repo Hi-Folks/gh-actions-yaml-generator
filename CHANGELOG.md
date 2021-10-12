@@ -1,4 +1,7 @@
 # Changelog
+## 0.4.2 - WIP
+Hacktoberfest, goes on...
+
 
 ## 0.4.1 - 2021-10-03
 It is time for Hacktoberfest!!!
