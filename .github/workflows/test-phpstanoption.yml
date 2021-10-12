@@ -1,6 +1,6 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=127664b4e9d425191096b63581053ceb
-name: Test phpstan option
+# Original configuration: http://gh-actions-yaml-generator.test?code=bb2e7e3279c771efaea3812cad069ce7
+name: fix-phpstan-option
 on:
   push:
     branches:
@@ -38,6 +38,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '15.x'
+      - name: Cache node_modules directory
+        uses: actions/cache@v2
+        id: node_modules-cache
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install NPM packages
+        if: steps.node_modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Build frontend
+        run: npm run development
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
@@ -96,6 +111,9 @@ jobs:
         run: vendor/bin/phpunit --testdox
 
 
+      - name: Execute Code Sniffer via phpcs
+        run: |
+          vendor/bin/phpcs --standard=PSR12 app
 
       - name: Execute Code Static Analysis (PHP Stan + Larastan)
         run: |
