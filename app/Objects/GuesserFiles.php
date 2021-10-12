@@ -13,6 +13,7 @@ class GuesserFiles
     public const NVMRC_FILE = ".nvmrc";
     public const PACKAGE_FILE = "package.json";
     public const ARTISAN_FILE = "artisan";
+    public const PHPSTANNEON_FILE = "phpstan.neon";
     public const MIGRATIONS_DIR = "database" . DIRECTORY_SEPARATOR . "migrations";
 
     public const COMPOSER_VAR = "composerFile";
@@ -22,6 +23,8 @@ class GuesserFiles
     public const NVMRC_VAR = "nvmrcFile";
     public const PACKAGE_VAR = "packageFile";
     public const ARTISAN_VAR = "artisanFile";
+    public const PHPSTANNEON_VAR = "phpstanNeonFile";
+
 
     public array $filePaths = [];
 
@@ -35,6 +38,7 @@ class GuesserFiles
             self::PACKAGE_VAR => self::PACKAGE_FILE,
             self::ARTISAN_VAR => self::ARTISAN_FILE,
             self::MIGRATIONS_VAR => self::MIGRATIONS_DIR,
+            self::PHPSTANNEON_VAR => self::PHPSTANNEON_FILE,
         ];
         foreach ($arrayFiles as $variable => $file) {
             $this->filePaths[$variable] = base_path($file);
@@ -103,6 +107,15 @@ class GuesserFiles
     public function artisanExists(): bool
     {
         return $this->somethingExists("getArtisanPath");
+    }
+
+    public function getPhpstanNeonPath(): string
+    {
+        return Arr::get($this->filePaths, self::PHPSTANNEON_VAR, "");
+    }
+    public function phpstanNeonExists(): bool
+    {
+        return $this->somethingExists("getPhpstanNeonPath");
     }
 
 

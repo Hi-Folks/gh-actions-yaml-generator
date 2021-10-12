@@ -91,6 +91,12 @@ PHPstan for generic PHP projects, or Psalm with Laravel plugin"
           label="Install Static Code Analysis Tool"
           help="Install Static Code Analysis Tool (larastan or phpstan or psalm)">
         </x-form.input-checkbox>
+        <x-form.input-checkbox
+          model="stepPhpstanUseNeon"
+          name="stepPhpstanUseNeon"
+          label="Use phpstan.neon"
+          help="Use phpstan.neon file for PHPStan configuration">
+        </x-form.input-checkbox>
       </x-form.input-conditional-checkbox>
 
     </div>

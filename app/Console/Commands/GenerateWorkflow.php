@@ -92,12 +92,14 @@ class GenerateWorkflow extends Command
                 $generator->stepExecuteStaticAnalysis = true;
                 $generator->stepInstallStaticAnalysis = false;
                 $generator->stepToolStaticAnalysis = "larastan";
+                $generator->stepPhpstanUseNeon = $guesserFiles->phpstanNeonExists();
             } else {
                 $phpstan = Arr::get($devPackages, "phpstan/phpstan", "");
                 if ($phpstan !== "") {
                     $generator->stepExecuteStaticAnalysis = true;
                     $generator->stepInstallStaticAnalysis = false;
                     $generator->stepToolStaticAnalysis = "phpstan";
+                    $generator->stepPhpstanUseNeon = $guesserFiles->phpstanNeonExists();
                 }
             }
             $generator->stepDusk = false;

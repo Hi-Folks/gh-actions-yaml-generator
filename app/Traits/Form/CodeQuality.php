@@ -14,6 +14,7 @@ trait CodeQuality
     public $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
+    public $stepPhpstanUseNeon; // false
 
     public function loadDefaultsCodeQuality(): void
     {
@@ -27,6 +28,7 @@ trait CodeQuality
         $this->stepToolStaticAnalysis = "larastan";
         $this->stepInstallStaticAnalysis = true;
         $this->stepDusk = false;
+        $this->stepPhpstanUseNeon = false;
     }
 
     public function loadCodeQualityFromJson($j): void
@@ -37,6 +39,7 @@ trait CodeQuality
         data_fill($j, "stepInstallStaticAnalysis", true);
         data_fill($j, "stepToolStaticAnalysis", 'larastan');
         data_fill($j, "stepExecutePestphp", false);
+        data_fill($j, "stepPhpstanUseNeon", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
@@ -61,6 +64,7 @@ trait CodeQuality
         $data["stepToolStaticAnalysis"] = $this->stepToolStaticAnalysis;
         $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
         $data["stepDusk"] = $this->stepDusk;
+        $data["stepPhpstanUseNeon"] = $this->stepPhpstanUseNeon;
 
         return $data;
     }
