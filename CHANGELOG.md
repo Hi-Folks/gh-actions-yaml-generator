@@ -1,6 +1,10 @@
 # Changelog
-## 0.4.2 - WIP
+## 0.4.2 - 2021-10-12
 Hacktoberfest, goes on...
+- Updated Cover image
+- Using phpstan.neon file, thanks to @ActuallyConnor
+- autodetect usage of phpstan.neon from command line
+- better management of title and description in meta html tags. Thanks to @zaratedev
 
 
 ## 0.4.1 - 2021-10-03
