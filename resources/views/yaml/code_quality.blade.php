@@ -29,7 +29,11 @@
 @if ($stepInstallStaticAnalysis)
         composer require --dev nunomaduro/larastan
 @endif
+@if ($stepPhpstanUseNeon)
+        vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress
+@else
         vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+@endif
 @elseif ($stepToolStaticAnalysis == 'psalmlaravel')
     - name: Execute Code Static Analysis (PSALM)
       run: |
@@ -47,7 +51,11 @@
 @if ($stepInstallStaticAnalysis)
         composer require --dev phpstan/phpstan
 @endif
+@if ($stepPhpstanUseNeon)
+        vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress
+@else
         vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} --level=4 --no-progress
+@endif
 @endif
 @endif
 

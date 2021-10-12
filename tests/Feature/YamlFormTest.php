@@ -216,6 +216,13 @@ class YamlFormTest extends TestCase
             ->call('submitForm')
             ->assertDontSee("composer require --dev nunomaduro/larastan")
             ->assertDontSee("composer require --dev phpstan/phpstan");
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test")
+            ->set("stepExecuteStaticAnalysis", true)
+            ->set("stepInstallStaticAnalysis", false)
+            ->set("stepPhpstanUseNeon", true)
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-conffile.yaml")));
 
 
 
