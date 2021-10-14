@@ -1,0 +1,43 @@
+# GithHub Actions Workflow generated with Ghygen
+# Original configuration: http://gh-actions-yaml-generator.test?code=069e3579e76204437ee3cd99e6e8fc5c
+name: Psalm - Sarif report
+on:
+  push:
+    branches:
+      - sarif
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: [ '8.0','7.4' ]
+        dependency-stability: [ prefer-stable ]
+
+    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install PHP versions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+      - name: Install Dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+
+      - name: Show dir
+        run: pwd
+      - name: PHP Version
+        run: php --version
+
+      # Code quality
+
+
+
+      - name: Execute Code Static Analysis (PSALM)
+        run: |
+          vendor/bin/psalm
