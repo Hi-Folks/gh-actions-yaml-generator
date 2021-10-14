@@ -57,7 +57,7 @@
 
     </div>
 
-    <div class="col-span-1 ">
+    <div class="col-span-1 " x-data="{ showPsalmOption: {{ $stepToolStaticAnalysis === 'psalmlaravel' ? 'true' : 'false' }} }">
       <x-form.input-conditional-checkbox
         model="stepExecuteStaticAnalysis"
         name="stepExecuteStaticAnalysis"
@@ -76,27 +76,30 @@
             'psalmlaravel' => 'Psalm for Laravel']"
           help="Select Code Analysis Tool, Larastan for Laravel project,
 PHPstan for generic PHP projects, or Psalm with Laravel plugin"
+          onChange='showPsalmOption= $event.target.value==="psalmlaravel";'>
           >
         </x-form.input-select>
-
-        <x-form.input-text
-          model="stepDirStaticAnalysis"
-          name="stepDirStaticAnalysis"
-          label="Dir to check with Static Code Analysis Tool"
-          help=" ">
-        </x-form.input-text>
         <x-form.input-checkbox
           model="stepInstallStaticAnalysis"
           name="stepInstallStaticAnalysis"
           label="Install Static Code Analysis Tool"
           help="Install Static Code Analysis Tool (larastan or phpstan or psalm)">
         </x-form.input-checkbox>
-        <x-form.input-checkbox
-          model="stepPhpstanUseNeon"
-          name="stepPhpstanUseNeon"
-          label="Use phpstan.neon"
-          help="Use phpstan.neon file for PHPStan configuration">
-        </x-form.input-checkbox>
+
+        <div  x-show="!showPsalmOption">
+          <x-form.input-text
+            model="stepDirStaticAnalysis"
+            name="stepDirStaticAnalysis"
+            label="Dir to check with Static Code Analysis Tool"
+            help=" ">
+          </x-form.input-text>
+          <x-form.input-checkbox
+            model="stepPhpstanUseNeon"
+            name="stepPhpstanUseNeon"
+            label="Use phpstan.neon"
+            help="Use phpstan.neon file for PHPStan configuration">
+          </x-form.input-checkbox>
+        </div>
       </x-form.input-conditional-checkbox>
 
     </div>
