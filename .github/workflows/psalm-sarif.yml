@@ -45,4 +45,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: results.sarif
+          sarif_file: result.sarif
