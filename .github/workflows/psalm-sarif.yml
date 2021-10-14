@@ -40,4 +40,9 @@ jobs:
 
       - name: Execute Code Static Analysis (PSALM)
         run: |
-          vendor/bin/psalm
+          vendor/bin/psalm --report=result.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: results.sarif
