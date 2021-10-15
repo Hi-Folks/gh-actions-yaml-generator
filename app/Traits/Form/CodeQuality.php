@@ -15,6 +15,7 @@ trait CodeQuality
     public $stepInstallStaticAnalysis; //true
     public $stepDusk; // false
     public $stepPhpstanUseNeon; // false
+    public $stepPsalmReport; // false
 
     public function loadDefaultsCodeQuality(): void
     {
@@ -29,6 +30,7 @@ trait CodeQuality
         $this->stepInstallStaticAnalysis = true;
         $this->stepDusk = false;
         $this->stepPhpstanUseNeon = false;
+        $this->stepPsalmReport = false;
     }
 
     public function loadCodeQualityFromJson($j): void
@@ -40,6 +42,7 @@ trait CodeQuality
         data_fill($j, "stepToolStaticAnalysis", 'larastan');
         data_fill($j, "stepExecutePestphp", false);
         data_fill($j, "stepPhpstanUseNeon", false);
+        data_fill($j, "stepPsalmReport", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
@@ -50,6 +53,8 @@ trait CodeQuality
         $this->stepToolStaticAnalysis = $j->stepToolStaticAnalysis;
         $this->stepInstallStaticAnalysis = $j->stepInstallStaticAnalysis;
         $this->stepDusk = $j->stepDusk;
+        $this->stepPhpstanUseNeon = $j->stepPhpstanUseNeon;
+        $this->stepPsalmReport = $j->stepPsalmReport;
     }
 
     public function setDataCodeQuality($data)
@@ -65,6 +70,7 @@ trait CodeQuality
         $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
         $data["stepDusk"] = $this->stepDusk;
         $data["stepPhpstanUseNeon"] = $this->stepPhpstanUseNeon;
+        $data["stepPsalmReport"] = $this->stepPsalmReport;
 
         return $data;
     }

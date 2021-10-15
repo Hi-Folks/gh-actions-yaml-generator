@@ -415,8 +415,8 @@ Select 14.x if you want to use LTS version.">
       // Livewire.hook('message.received', (message, component) => {})
       Livewire.hook('message.processed', (message, component) => {
         let yc =document.getElementById('yaml-code');
-        hljs.lineNumbersBlock(yc);
-        hljs.highlightBlock(yc);
+        //hljs.lineNumbersBlock(yc);
+        hljs.highlightElement(yc);
       })
     });
   </script>

@@ -1,4 +1,9 @@
 # Changelog
+
+## 0.4.3 - WIP
+- Psalm, create Sarif report for GitHub code scanning integration
+- update to Alpinejs 3
+
 ## 0.4.2 - 2021-10-12
 Hacktoberfest, goes on...
 - Updated Cover image
