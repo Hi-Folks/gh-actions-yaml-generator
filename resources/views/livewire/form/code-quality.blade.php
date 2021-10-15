@@ -100,6 +100,15 @@ PHPstan for generic PHP projects, or Psalm with Laravel plugin"
             help="Use phpstan.neon file for PHPStan configuration">
           </x-form.input-checkbox>
         </div>
+        <div  x-show="showPsalmOption">
+          <x-form.input-checkbox
+            model="stepPsalmReport"
+            name="stepPsalmReport"
+            label="Sarif report"
+            help="Create report and publish it on GitHub, Security, Code Scanning Alerts">
+          </x-form.input-checkbox>
+        </div>
+
       </x-form.input-conditional-checkbox>
 
     </div>

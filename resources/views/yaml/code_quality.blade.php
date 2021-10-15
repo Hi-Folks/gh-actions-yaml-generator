@@ -43,7 +43,16 @@
         composer require --dev psalm/plugin-laravel
         ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
 @endif
+@if (! $stepPsalmReport)
         vendor/bin/psalm
+@else
+        vendor/bin/psalm --report=result.sarif
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        # Path to SARIF file relative to the root of the repository
+        sarif_file: result.sarif
+@endif
 
 @else
     - name: Execute Code Static Analysis (PHP Stan)
