@@ -1,6 +1,6 @@
 # GithHub Actions Workflow generated with Ghygen
 # Original configuration: http://gh-actions-yaml-generator.test?code=0474d45a28912052376865b4b926c66f
-name: Template - Laravel application (Mysql)
+name: Code scanning (Sarif)
 on:
   push:
     branches:
