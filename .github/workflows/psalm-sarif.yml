@@ -46,10 +46,6 @@ jobs:
 
       - name: Execute Code Static Analysis (PSALM)
         run: |
-          composer require --dev vimeo/psalm
-          ./vendor/bin/psalm --init
-          composer require --dev psalm/plugin-laravel
-          ./vendor/bin/psalm-plugin enable psalm/plugin-laravel
           vendor/bin/psalm --report=result.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
