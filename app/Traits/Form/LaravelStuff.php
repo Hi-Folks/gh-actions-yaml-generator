@@ -38,6 +38,7 @@ trait LaravelStuff
     {
         data_fill($j, "stepGenerateKey", true);
         data_fill($j, "stepCopyEnvTemplateFile", true);
+        data_fill($j, "dependencyStability", [ 'prefer-stable' ]);
         $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
         $this->stepRunMigrations = $j->stepRunMigrations;
         $this->stepGenerateKey = $j->stepGenerateKey;
