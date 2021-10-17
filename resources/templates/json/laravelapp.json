@@ -55,5 +55,6 @@
         "6.*": "4.*",
         "7.*": "5.*",
         "8.*": "6.*"
-    }
+    },
+    "dependencyStability": [ "prefer-stable" ]
 }
