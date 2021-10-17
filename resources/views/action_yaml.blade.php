@@ -15,7 +15,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: {!! $stepPhpVersionsString !!}
-        dependency-stability: [ prefer-stable ]
+        dependency-stability: {!! $dependencyStabilityString !!}
 @if ($matrixLaravel)
 
         laravel: {!! $matrixLaravelVersionsString !!}

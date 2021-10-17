@@ -19,6 +19,8 @@ class GenerateWorkflow extends Command
     {--projectdir= : the directory of the project with composer.json}
     {--cache : enable caching packages in the workflow}
     {--envfile=' . GuesserFiles::ENV_DEFAULT_TEMPLATE_FILE . ' : the .env file to use in the workflow}
+    {--prefer-stable : Prefer stable versions of dependencies}
+    {--prefer-lowest : Prefer lowest versions of dependencies}
     ';
 
 
@@ -79,6 +81,14 @@ class GenerateWorkflow extends Command
                 $laravelVersions = GuesserFiles::detectLaravelVersionFromTestbench($testbenchVersions);
                 $generator->matrixLaravel = true;
                 $generator->matrixLaravelVersions = $laravelVersions;
+
+                if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
+                    $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
+                } elseif ($this->option("prefer-lowest")) {
+                    $generator->dependencyStability = [ 'prefer-lowest' ];
+                } else {
+                    $generator->dependencyStability = [ 'prefer-stable' ];
+                }
             }
             // squizlabs/php_codesniffer
             $phpCodesniffer = Arr::get($devPackages, "squizlabs/php_codesniffer", "");

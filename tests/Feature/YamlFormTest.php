@@ -322,5 +322,36 @@ class YamlFormTest extends TestCase
 
     }
 
+    /**
+     * Form Test: dependency stability level
+     *
+     * @return void
+     */
+    public function test_laravel_dependency_stability_level()
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test Dependency Level")
+            ->set("dependencyStability", [ "prefer-stable" ])
+            ->call('submitForm')
+            ->assertSee("dependency-stability: [ 'prefer-stable' ]");
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test Dependency Level")
+            ->set("dependencyStability", [ "prefer-lowest" ])
+            ->call('submitForm')
+            ->assertSee("dependency-stability: [ 'prefer-lowest' ]");
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test Dependency Level")
+            ->set("dependencyStability", [ "prefer-lowest", "prefer-stable" ])
+            ->call('submitForm')
+            ->assertSee("dependency-stability: [ 'prefer-lowest','prefer-stable' ]");
+
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name", "Test Without Dependency Level")
+            ->call('submitForm')
+            ->assertSee("dependency-stability: [ 'prefer-stable' ]");
+    }
+
 
 }
