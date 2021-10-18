@@ -1,10 +1,10 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: https://ghygen.hi-folks.dev?code=47de8093530ab0c2bf407f7742ffa4b1
-name: Ghygen (Mysql) Quality Code PHP 8
+# Original configuration: https://ghygen.hi-folks.dev?code=921c74fd8d6b9292da63b842055f94c0
+name: Ghygen (Mysql) Quality Code PHP 8,7
 on:
   push:
     branches:
-      - features/**
+      - tests/**
 
 jobs:
   laravel-tests:
@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0' ]
+        php-versions: [ '8.0','7.4' ]
         dependency-stability: [ prefer-stable ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
