@@ -350,7 +350,7 @@ class YamlFormTest extends TestCase
         Livewire::test(ConfiguratorForm::class)
             ->set("name", "Test Without Dependency Level")
             ->call('submitForm')
-            ->assertSee("dependency-stability: [ 'prefer-stable' ]");
+            ->assertSee("dependency-stability: [ 'prefer-none' ]");
     }
 
 
