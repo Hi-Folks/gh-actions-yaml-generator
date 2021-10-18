@@ -89,7 +89,16 @@ jobs:
 @else
     - name: Install Dependencies
       if: steps.vendor-cache.outputs.cache-hit != 'true'
-      run: composer update --$@{{ matrix.dependency-stability }} -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+@endif
+
+@if (is_array($dependencyStability) && count($dependencyStability) > 0)
+    - name: Update Dependencies with latest stable
+      if: matrix.dependency-stability === 'prefer-stable'
+      run: composer update --prefer-stable
+    - name: Update Dependencies with lowest stable
+      if: matrix.dependency-stability === 'prefer-lowest'
+      run: composer update --prefer-stable --prefer-lowest
 @endif
 
 @if ($stepGenerateKey)

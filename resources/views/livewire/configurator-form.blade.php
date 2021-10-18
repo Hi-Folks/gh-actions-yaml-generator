@@ -316,9 +316,10 @@ Select 14.x if you want to use LTS version.">
                       name="dependencyStability"
                       label="Dependency Stability Level"
                       :list="[
-                        'prefer-lowest'=>'Prefer Lowest',
-                        'prefer-stable'=>'Prefer Stable']"
-                      help="Select the level of the stability for the Laravel dependency"
+                        'prefer-none'=>'Default',
+                        'prefer-stable'=>'Update composer to latest Stable',
+                        'prefer-lowest'=>'Update composer to lowest stable']"
+                      help="Select the level of the stability for the composer packages dependency"
                       multiselect=1>
                       >
                     </x-form.input-select>
