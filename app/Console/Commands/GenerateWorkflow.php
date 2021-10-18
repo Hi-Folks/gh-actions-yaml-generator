@@ -72,6 +72,15 @@ class GenerateWorkflow extends Command
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
             $generator->detectPhpVersion($phpversion);
+            if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
+                $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
+            } elseif ($this->option("prefer-lowest")) {
+                $generator->dependencyStability = [ 'prefer-lowest' ];
+            } elseif ($this->option("prefer-stable")) {
+                $generator->dependencyStability = [ 'prefer-stable' ];
+            } else {
+                $generator->dependencyStability = [ 'prefer-none' ];
+            }
 
             // detect packages
             $devPackages = Arr::get($composer, 'require-dev');
@@ -81,14 +90,6 @@ class GenerateWorkflow extends Command
                 $laravelVersions = GuesserFiles::detectLaravelVersionFromTestbench($testbenchVersions);
                 $generator->matrixLaravel = true;
                 $generator->matrixLaravelVersions = $laravelVersions;
-
-                if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
-                    $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
-                } elseif ($this->option("prefer-lowest")) {
-                    $generator->dependencyStability = [ 'prefer-lowest' ];
-                } else {
-                    $generator->dependencyStability = [ 'prefer-stable' ];
-                }
             }
             // squizlabs/php_codesniffer
             $phpCodesniffer = Arr::get($devPackages, "squizlabs/php_codesniffer", "");
