@@ -1,5 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=c1c2014fb966debe79ba7a790bdcaa76
+# Original configuration: http://gh-actions-yaml-generator.test?code=598d9be9c7539d79c6fc033ff98593d7
 name: dependency stability
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php-versions: [ '8.0','7.4' ]
-        dependency-stability: [ 'prefer-stable' ]
+        dependency-stability: [ 'prefer-none','prefer-stable','prefer-lowest' ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
