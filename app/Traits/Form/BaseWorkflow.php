@@ -31,6 +31,9 @@ trait BaseWorkflow
     public $stepCachePackages; //true
     public $stepCacheVendors; //true
     public $stepCacheNpmModules; // true
+    public array $dependencyStability; // []
+
+
 
     public function loadDefaultsBaseWorkflow(): void
     {
@@ -59,11 +62,13 @@ trait BaseWorkflow
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
+        $this->dependencyStability = [ 'prefer-none' ];
     }
 
     public function loadBaseWorkflowFromJson($j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
+        data_fill($j, "dependencyStability", [ 'prefer-none' ]);
         $this->name = $j->name;
         $this->onPush = $j->on_push;
         $this->onPushBranches =  $j->on_push_branches;
@@ -114,6 +119,7 @@ trait BaseWorkflow
         $this->stepCachePackages = $j->stepCachePackages;
         $this->stepCacheVendors = $j->stepCacheVendors;
         $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
+        $this->dependencyStability = (array) $j->dependencyStability;
     }
 
     public function setDataBaseWorkflow($data): array
@@ -149,6 +155,8 @@ trait BaseWorkflow
         $data["stepPhpVersionsString"] = WorkflowGenerator::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = WorkflowGenerator::split($this->onPullrequestBranches);
         $data["on_push_branches"] = WorkflowGenerator::split($this->onPushBranches);
+        $data["dependencyStabilityString"] = WorkflowGenerator::arrayToString($this->dependencyStability);
+        $data["dependencyStability"] = $this->dependencyStability;
 
         return $data;
     }

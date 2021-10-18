@@ -309,6 +309,22 @@ Select 14.x if you want to use LTS version.">
                     </x-form.input-text>
                   </x-form.input-conditional-checkbox>
                 </div>
+                <div class="col-span-1 ">
+                  <div class="pl-3 pb-2 mt-2 space-y-4">
+                    <x-form.input-select
+                      model="dependencyStability"
+                      name="dependencyStability"
+                      label="Dependency Stability Level"
+                      :list="[
+                        'prefer-none'=>'Default',
+                        'prefer-stable'=>'Update composer to latest Stable',
+                        'prefer-lowest'=>'Update composer to lowest stable']"
+                      help="Select the level of the stability for the composer packages dependency"
+                      multiselect=1>
+                      >
+                    </x-form.input-select>
+                  </div>
+                </div>
               </div>
             </fieldset>
 

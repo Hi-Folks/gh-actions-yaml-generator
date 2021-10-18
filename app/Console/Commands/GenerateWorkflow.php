@@ -19,6 +19,8 @@ class GenerateWorkflow extends Command
     {--projectdir= : the directory of the project with composer.json}
     {--cache : enable caching packages in the workflow}
     {--envfile=' . GuesserFiles::ENV_DEFAULT_TEMPLATE_FILE . ' : the .env file to use in the workflow}
+    {--prefer-stable : Prefer stable versions of dependencies}
+    {--prefer-lowest : Prefer lowest versions of dependencies}
     ';
 
 
@@ -70,6 +72,15 @@ class GenerateWorkflow extends Command
             $generator->name = Arr::get($composer, 'name');
             $phpversion = Arr::get($composer, 'require.php', "");
             $generator->detectPhpVersion($phpversion);
+            if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
+                $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
+            } elseif ($this->option("prefer-lowest")) {
+                $generator->dependencyStability = [ 'prefer-lowest' ];
+            } elseif ($this->option("prefer-stable")) {
+                $generator->dependencyStability = [ 'prefer-stable' ];
+            } else {
+                $generator->dependencyStability = [ 'prefer-none' ];
+            }
 
             // detect packages
             $devPackages = Arr::get($composer, 'require-dev');
