@@ -14,7 +14,6 @@ trait LaravelStuff
     public $matrixLaravel; // false
     public $matrixLaravelVersions; // []
     public $matrixTestbenchDependencies;
-    public $dependencyStability; // []
 
     public function loadDefaultsLaravelStuff(): void
     {
@@ -31,14 +30,12 @@ trait LaravelStuff
             "6.*" => "4.*"
         ]; // mapping laravel versions with testbench version as dependency
         // the key is the laravel ver, the value is the orchestratestbench version
-        $this->dependencyStability = [ 'prefer-stable' ];
     }
 
     public function loadLaravelStuffFromJson($j): void
     {
         data_fill($j, "stepGenerateKey", true);
         data_fill($j, "stepCopyEnvTemplateFile", true);
-        data_fill($j, "dependencyStability", [ 'prefer-stable' ]);
         $this->stepFixStoragePermissions = $j->stepFixStoragePermissions;
         $this->stepRunMigrations = $j->stepRunMigrations;
         $this->stepGenerateKey = $j->stepGenerateKey;
@@ -47,7 +44,6 @@ trait LaravelStuff
         $this->matrixLaravel = $j->matrixLaravel;
         $this->matrixLaravelVersions = $j->matrixLaravelVersions;
         $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
-        $this->dependencyStability = (array) $j->dependencyStability;
     }
 
     public function setDataLaravelStuff($data)
@@ -61,7 +57,6 @@ trait LaravelStuff
         $data["matrixLaravelVersions"] = $this->matrixLaravelVersions;
         $data["matrixTestbenchDependencies"] = $this->matrixTestbenchDependencies;
         $data["matrixLaravelVersionsString"] = WorkflowGenerator::arrayToString($this->matrixLaravelVersions);
-        $data["dependencyStabilityString"] = WorkflowGenerator::arrayToString($this->dependencyStability);
 
         return $data;
     }
