@@ -327,7 +327,7 @@ class YamlFormTest extends TestCase
      *
      * @return void
      */
-    public function test_laravel_dependency_stability_level()
+    public function test_dependency_stability_level()
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name", "Test Dependency Level")

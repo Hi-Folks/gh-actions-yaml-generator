@@ -70,20 +70,5 @@
         </x-form.input-checkbox>
       </div>
     </div>
-    <div class="col-span-1 ">
-      <div class="pl-3 pb-2 mt-2 space-y-4">
-        <x-form.input-select
-          model="dependencyStability"
-          name="dependencyStability"
-          label="Dependency Stability Level"
-          :list="[
-            'prefer-lowest'=>'Prefer Lowest',
-            'prefer-stable'=>'Prefer Stable']"
-          help="Select the level of the stability for the Laravel dependency"
-          multiselect=1>
-          >
-        </x-form.input-select>
-      </div>
-    </div>
   </div>
 </fieldset>

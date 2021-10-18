@@ -89,7 +89,7 @@ jobs:
 @else
     - name: Install Dependencies
       if: steps.vendor-cache.outputs.cache-hit != 'true'
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer update --$@{{ matrix.dependency-stability }} -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 @endif
 
 @if ($stepGenerateKey)
