@@ -1,6 +1,6 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=15dfb28bc83469330eb37764a3771430
-name: Test Laravel Github action
+# Original configuration: http://gh-actions-yaml-generator.test?code=c1c2014fb966debe79ba7a790bdcaa76
+name: dependency stability
 on:
   push:
     branches:
