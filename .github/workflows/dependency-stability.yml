@@ -49,10 +49,10 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Update Dependencies with latest stable
-        if: matrix.dependency-stability === 'prefer-stable'
+        if: matrix.dependency-stability == 'prefer-stable'
         run: composer update --prefer-stable
       - name: Update Dependencies with lowest stable
-        if: matrix.dependency-stability === 'prefer-lowest'
+        if: matrix.dependency-stability == 'prefer-lowest'
         run: composer update --prefer-stable --prefer-lowest
 
       - name: Generate key
