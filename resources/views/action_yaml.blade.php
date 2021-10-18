@@ -94,10 +94,10 @@ jobs:
 
 @if (is_array($dependencyStability) && count($dependencyStability) > 0)
     - name: Update Dependencies with latest stable
-      if: matrix.dependency-stability === 'prefer-stable'
+      if: matrix.dependency-stability == 'prefer-stable'
       run: composer update --prefer-stable
     - name: Update Dependencies with lowest stable
-      if: matrix.dependency-stability === 'prefer-lowest'
+      if: matrix.dependency-stability == 'prefer-lowest'
       run: composer update --prefer-stable --prefer-lowest
 @endif
 

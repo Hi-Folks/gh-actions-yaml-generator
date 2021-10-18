@@ -1,5 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=52b79fa863fa26529df41d44531635e9
+# Original configuration: http://gh-actions-yaml-generator.test?code=15dfb28bc83469330eb37764a3771430
 name: Test Laravel Github action
 on:
   push:
@@ -38,6 +38,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install NPM packages
+        run: npm ci
+      - name: Build frontend
+        run: npm run development
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
