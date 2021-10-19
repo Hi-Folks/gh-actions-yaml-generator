@@ -28,7 +28,7 @@ class GuesserFiles
 
     public array $filePaths = [];
 
-    public function pathFiles(string $projectDir, string $optionEnvWorkflowFile = self::ENV_DEFAULT_TEMPLATE_FILE)
+    public function pathFiles(string $projectDir, string $optionEnvWorkflowFile = self::ENV_DEFAULT_TEMPLATE_FILE): void
     {
         $arrayFiles = [
             self::COMPOSER_VAR => self::COMPOSER_FILE,
@@ -130,7 +130,7 @@ class GuesserFiles
 
 
 
-    private function somethingExists($methodPath, $isDirCheck = false): bool
+    private function somethingExists(string $methodPath, bool $isDirCheck = false): bool
     {
         $path = call_user_func([$this, $methodPath]);
         $exists = $path;

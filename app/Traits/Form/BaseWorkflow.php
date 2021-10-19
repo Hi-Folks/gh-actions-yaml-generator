@@ -6,31 +6,33 @@ use App\Objects\WorkflowGenerator;
 
 trait BaseWorkflow
 {
-    public $name;
-    public $onPush;
+    public string $name;
+    public bool $onPush;
+
     public $onPushBranches;
-    public $onPullrequest;
-    public $onPullrequestBranches;
-    public $manualTrigger;
-    public $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
-    public $mysqlDatabase;
-    public $mysqlPasswordType; // 'skip
-    public $mysqlPassword; // password
-    public $mysqlVersion;
-    public $mysqlDatabaseName;
-    public $mysqlDatabasePort;
-    public $postgresqlDatabase;
-    public $postgresqlPasswordType; // 'skip
-    public $postgresqlPassword; // password
-    public $postgresqlVersion;
-    public $postgresqlDatabaseName;
-    public $postgresqlDatabasePort;
-    public $stepPhpVersions; // 7.4
-    public $stepNodejs; // false
-    public $stepNodejsVersion; // 15.x
-    public $stepCachePackages; //true
-    public $stepCacheVendors; //true
-    public $stepCacheNpmModules; // true
+
+    public bool $onPullrequest;
+    public array $onPullrequestBranches;
+    public bool $manualTrigger;
+    public string $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
+    public string $mysqlDatabase;
+    public string $mysqlPasswordType; // 'skip
+    public string $mysqlPassword; // password
+    public string $mysqlVersion;
+    public string $mysqlDatabaseName;
+    public int $mysqlDatabasePort;
+    public string $postgresqlDatabase;
+    public string $postgresqlPasswordType; // 'skip
+    public string $postgresqlPassword; // password
+    public string $postgresqlVersion;
+    public string $postgresqlDatabaseName;
+    public int $postgresqlDatabasePort;
+    public array $stepPhpVersions; // 7.4
+    public bool $stepNodejs; // false
+    public string $stepNodejsVersion; // 15.x
+    public bool $stepCachePackages; //true
+    public bool $stepCacheVendors; //true
+    public bool $stepCacheNpmModules; // true
     public array $dependencyStability; // []
 
 
@@ -93,9 +95,7 @@ trait BaseWorkflow
         if (isset($j->postgresqlDatabase)) {
             $this->postgresqlDatabase = $j->postgresqlDatabase;
             $this->postgresqlPasswordType =
-                isset($j->postgresqlPasswordType) ?
-                    $j->postgresqlPasswordType :
-                    $this->postgresqlPasswordType;
+                $j->postgresqlPasswordType ?? $this->postgresqlPasswordType;
             $this->postgresqlPassword =
                 isset($j->postgresqlPassword) ?
                     $j->postgresqlPassword :

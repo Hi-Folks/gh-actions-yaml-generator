@@ -43,7 +43,7 @@ class WorkflowGenerator
         return $retVal;
     }
 
-    public static function arrayToString($array): string
+    public static function arrayToString(array $array): string
     {
         return "[ " . implode(
             ",",
