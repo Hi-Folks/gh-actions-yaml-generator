@@ -34,20 +34,29 @@ class ConfiguratorForm extends Component
     use LaravelStuff;
     use Deploy;
 
-    public $code = "";
-    public $template = "";
+    public string $code = "";
+    public string $template = "";
 
+    /**
+     * @var array<mixed>
+     */
     protected $queryString = [
         'code' => ['except' => ''],
         'template' => ['except' => '']
     ];
 
 
-    public $result;
-    public $errorGeneration;
+    public string $result;
+    public string $errorGeneration;
 
+    /**
+     * @var array<mixed>
+     */
     public $hints;
 
+    /**
+     * @var array<mixed>
+     */
     protected $rules = [
         'name' => 'required|string',
         'onPushBranches' => 'exclude_unless:onPush,1|required',
@@ -74,7 +83,7 @@ class ConfiguratorForm extends Component
     }
 
 
-    private function loadFromJson($j): void
+    private function loadFromJson(object $j): void
     {
         $this->loadBaseWorkflowFromJson($j);
         $this->loadCodeQualityFromJson($j);
@@ -112,13 +121,13 @@ class ConfiguratorForm extends Component
 
 
 
-    public function updated($propertyName): void
+    public function updated(string $propertyName): void
     {
         $this->result = " ";
     }
 
 
-    public function template($x): void
+    public function template(string $x): void
     {
         if (in_array($x, ["laravelapp", "laravelpostgresql", "laravelpackage", "phppackage"])) {
             $this->template = $x;

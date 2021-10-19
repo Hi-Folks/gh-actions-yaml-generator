@@ -4,17 +4,18 @@ namespace App\Traits\Form;
 
 trait CodeQuality
 {
-    public $stepExecutePhpunit; //true
-    public $stepExecutePestphp; //false
-    public $stepExecuteCodeSniffer; //false
-    public $stepDirCodeSniffer; // app
-    public $stepInstallCodeSniffer; //true
-    public $stepExecuteStaticAnalysis; // false
-    public $stepDirStaticAnalysis; // app
-    public $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
-    public $stepInstallStaticAnalysis; //true
-    public $stepDusk; // false
-    public $stepPhpstanUseNeon; // false
+    public bool $stepExecutePhpunit; //true
+    public bool $stepExecutePestphp; //false
+    public bool $stepExecuteCodeSniffer; //false
+    public string $stepDirCodeSniffer; // app
+    public bool $stepInstallCodeSniffer; //true
+    public bool $stepExecuteStaticAnalysis; // false
+    public string $stepDirStaticAnalysis; // app
+    public string $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
+    public bool $stepInstallStaticAnalysis; //true
+    public bool $stepDusk; // false
+    public bool $stepPhpstanUseNeon; // false
+    public bool $stepPsalmReport; // false
 
     public function loadDefaultsCodeQuality(): void
     {
@@ -29,9 +30,10 @@ trait CodeQuality
         $this->stepInstallStaticAnalysis = true;
         $this->stepDusk = false;
         $this->stepPhpstanUseNeon = false;
+        $this->stepPsalmReport = false;
     }
 
-    public function loadCodeQualityFromJson($j): void
+    public function loadCodeQualityFromJson(object $j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "stepInstallCodeSniffer", true);
@@ -40,6 +42,7 @@ trait CodeQuality
         data_fill($j, "stepToolStaticAnalysis", 'larastan');
         data_fill($j, "stepExecutePestphp", false);
         data_fill($j, "stepPhpstanUseNeon", false);
+        data_fill($j, "stepPsalmReport", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
@@ -50,9 +53,15 @@ trait CodeQuality
         $this->stepToolStaticAnalysis = $j->stepToolStaticAnalysis;
         $this->stepInstallStaticAnalysis = $j->stepInstallStaticAnalysis;
         $this->stepDusk = $j->stepDusk;
+        $this->stepPhpstanUseNeon = $j->stepPhpstanUseNeon;
+        $this->stepPsalmReport = $j->stepPsalmReport;
     }
 
-    public function setDataCodeQuality($data)
+    /**
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    public function setDataCodeQuality(array $data): array
     {
         $data["stepExecutePhpunit"] = $this->stepExecutePhpunit;
         $data["stepExecutePestphp"] = $this->stepExecutePestphp;
@@ -65,6 +74,7 @@ trait CodeQuality
         $data["stepInstallStaticAnalysis"] = $this->stepInstallStaticAnalysis;
         $data["stepDusk"] = $this->stepDusk;
         $data["stepPhpstanUseNeon"] = $this->stepPhpstanUseNeon;
+        $data["stepPsalmReport"] = $this->stepPsalmReport;
 
         return $data;
     }

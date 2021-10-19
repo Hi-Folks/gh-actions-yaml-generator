@@ -4,9 +4,9 @@ namespace App\Traits\Form;
 
 trait Deploy
 {
-    public $stepDeployType;
-    public $stepDeployWebhookType;
-    public $stepDeployWebhookUrl;
+    public string $stepDeployType;
+    public string $stepDeployWebhookType;
+    public string $stepDeployWebhookUrl;
     //public $stepDeployApiToken;
 
     public function loadDefaultsDeploy(): void
@@ -17,7 +17,7 @@ trait Deploy
         //$this->stepDeployApiToken = "VAPOR_API_TOKEN";
     }
 
-    public function loadDeployFromJson($j): void
+    public function loadDeployFromJson(object $j): void
     {
         data_fill($j, "stepDeployType", 'none');
         data_fill($j, "stepDeployWebhookType", 'secret');
@@ -30,7 +30,11 @@ trait Deploy
         //$this->stepDeployApiToken = $j->stepDeployApiToken;
     }
 
-    public function setDeployData($data)
+    /**
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    public function setDeployData(array $data)
     {
         $data["stepDeployType"] = $this->stepDeployType;
         $data["stepDeployWebhookType"] = $this->stepDeployWebhookType;

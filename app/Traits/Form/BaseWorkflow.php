@@ -6,31 +6,49 @@ use App\Objects\WorkflowGenerator;
 
 trait BaseWorkflow
 {
-    public $name;
-    public $onPush;
+    public string $name;
+    public bool $onPush;
+
+    /**
+     * @var array<string>|string $onPushBranches
+     */
     public $onPushBranches;
-    public $onPullrequest;
-    public $onPullrequestBranches;
-    public $manualTrigger;
-    public $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
-    public $mysqlDatabase;
-    public $mysqlPasswordType; // 'skip
-    public $mysqlPassword; // password
-    public $mysqlVersion;
-    public $mysqlDatabaseName;
-    public $mysqlDatabasePort;
-    public $postgresqlDatabase;
-    public $postgresqlPasswordType; // 'skip
-    public $postgresqlPassword; // password
-    public $postgresqlVersion;
-    public $postgresqlDatabaseName;
-    public $postgresqlDatabasePort;
-    public $stepPhpVersions; // 7.4
-    public $stepNodejs; // false
-    public $stepNodejsVersion; // 15.x
-    public $stepCachePackages; //true
-    public $stepCacheVendors; //true
-    public $stepCacheNpmModules; // true
+
+    public bool $onPullrequest;
+    /**
+     * @var array<string> $onPullrequestBranches
+     */
+    public array $onPullrequestBranches;
+    public bool $manualTrigger;
+    public string $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
+    public string $mysqlDatabase;
+    public string $mysqlPasswordType; // 'skip
+    public string $mysqlPassword; // password
+    public string $mysqlVersion;
+    public string $mysqlDatabaseName;
+    public int $mysqlDatabasePort;
+    public string $postgresqlDatabase;
+    public string $postgresqlPasswordType; // 'skip
+    public string $postgresqlPassword; // password
+    public string $postgresqlVersion;
+    public string $postgresqlDatabaseName;
+    public int $postgresqlDatabasePort;
+
+    /**
+     * @var array<string> $stepPhpVersions
+     */
+    public array $stepPhpVersions; // 7.4
+    public bool $stepNodejs; // false
+    public string $stepNodejsVersion; // 15.x
+    public bool $stepCachePackages; //true
+    public bool $stepCacheVendors; //true
+    public bool $stepCacheNpmModules; // true
+    /**
+     * @var array<string> $dependencyStability
+     */
+    public array $dependencyStability; // []
+
+
 
     public function loadDefaultsBaseWorkflow(): void
     {
@@ -59,11 +77,13 @@ trait BaseWorkflow
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
+        $this->dependencyStability = [ 'prefer-none' ];
     }
 
-    public function loadBaseWorkflowFromJson($j): void
+    public function loadBaseWorkflowFromJson(object $j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
+        data_fill($j, "dependencyStability", [ 'prefer-none' ]);
         $this->name = $j->name;
         $this->onPush = $j->on_push;
         $this->onPushBranches =  $j->on_push_branches;
@@ -114,9 +134,14 @@ trait BaseWorkflow
         $this->stepCachePackages = $j->stepCachePackages;
         $this->stepCacheVendors = $j->stepCacheVendors;
         $this->stepCacheNpmModules  = $j->stepCacheNpmModules;
+        $this->dependencyStability = (array) $j->dependencyStability;
     }
 
-    public function setDataBaseWorkflow($data): array
+    /**
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    public function setDataBaseWorkflow(array $data): array
     {
         $data = WorkflowGenerator::compactObject(
             $this,
@@ -149,6 +174,8 @@ trait BaseWorkflow
         $data["stepPhpVersionsString"] = WorkflowGenerator::arrayToString($this->stepPhpVersions);
         $data["on_pullrequest_branches"] = WorkflowGenerator::split($this->onPullrequestBranches);
         $data["on_push_branches"] = WorkflowGenerator::split($this->onPushBranches);
+        $data["dependencyStabilityString"] = WorkflowGenerator::arrayToString($this->dependencyStability);
+        $data["dependencyStability"] = $this->dependencyStability;
 
         return $data;
     }

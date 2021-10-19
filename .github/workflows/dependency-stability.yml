@@ -1,10 +1,10 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: https://ghygen.hi-folks.dev?code=47de8093530ab0c2bf407f7742ffa4b1
-name: Ghygen (Mysql) Quality Code PHP 8
+# Original configuration: http://gh-actions-yaml-generator.test?code=598d9be9c7539d79c6fc033ff98593d7
+name: dependency stability
 on:
   push:
     branches:
-      - features/**
+      - features/add_stability_level_options
 
 jobs:
   laravel-tests:
@@ -31,8 +31,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0' ]
-        dependency-stability: [ prefer-stable ]
+        php-versions: [ '8.0','7.4' ]
+        dependency-stability: [ 'prefer-none','prefer-stable','prefer-lowest' ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
@@ -41,15 +41,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '15.x'
-      - name: Cache node_modules directory
-        uses: actions/cache@v2
-        id: node_modules-cache
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-lock.json') }}
+          node-version: '16.x'
       - name: Install NPM packages
-        if: steps.node_modules-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build frontend
         run: npm run development
@@ -57,12 +50,18 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Update Dependencies with latest stable
+        if: matrix.dependency-stability == 'prefer-stable'
+        run: composer update --prefer-stable
+      - name: Update Dependencies with lowest stable
+        if: matrix.dependency-stability == 'prefer-lowest'
+        run: composer update --prefer-stable --prefer-lowest
 
       - name: Generate key
         run: php artisan key:generate
@@ -93,13 +92,3 @@ jobs:
           DB_USER: root
 
         run: vendor/bin/phpunit --testdox
-
-      - name: Execute Code Sniffer via phpcs
-        run: |
-          composer require --dev squizlabs/php_codesniffer
-          vendor/bin/phpcs --standard=PSR12 app
-
-      - name: Execute Code Static Analysis (PHP Stan + Larastan)
-        run: |
-          composer require --dev nunomaduro/larastan
-          vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress

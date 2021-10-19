@@ -1,6 +1,6 @@
 {
     "name": "hifolks/gh-actions-yaml-generator",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "type": "project",
     "description": "Ghygen is a GitHub Actions configurator for your Laravel Application.",
     "keywords": [
@@ -14,15 +14,16 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
+        "doctrine/dbal": "^3.0",
         "composer/semver": "^3.2",
         "danharrin/livewire-rate-limiting": "^0.2.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "hi-folks/lara-lens": "^0.2.2",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.3",
+        "livewire/livewire": "^2.6",
         "swaggest/json-schema": "^0.12.31",
         "symfony/yaml": "^5.2"
     },
@@ -31,11 +32,12 @@
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^6.11",
-        "laravel/sail": "^0.0.5",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^0.7.2",
-        "phpunit/phpunit": "^9.3.3",
+        "phpstan/phpstan": "^0.12.99",
+        "phpunit/phpunit": "^9.5.8",
         "psalm/plugin-laravel": "^1.4",
         "squizlabs/php_codesniffer": "^3.6",
         "vimeo/psalm": "^4.7"

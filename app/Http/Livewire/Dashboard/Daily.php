@@ -9,6 +9,9 @@ use Livewire\Component;
 
 class Daily extends Component
 {
+    /**
+     * @var \Illuminate\Support\Collection $daily
+     */
     public $daily;
 
     public function mount(): void

@@ -9,6 +9,9 @@ class Configuration extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $casts = [
         'configuration' => 'object',
     ];
@@ -21,7 +24,7 @@ class Configuration extends Model
         return self::firstWhere('code', $code);
     }
 
-    public function isMysqlService()
+    public function isMysqlService(): bool
     {
         if (isset($this->configuration->mysqlService)) {
             return $this->configuration->mysqlService;
@@ -60,7 +63,12 @@ class Configuration extends Model
         return "";
     }
 
-    public static function saveConfiguration(string $code, $json, $metadata = "{}"): void
+    /**
+     * @param string $code
+     * @param array<mixed>|object|mixed $json
+     * @param string $metadata
+     */
+    public static function saveConfiguration(string $code, $json, string $metadata = "{}"): void
     {
         $confModel = self::getByCode($code);
 

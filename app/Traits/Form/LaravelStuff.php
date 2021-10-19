@@ -6,14 +6,20 @@ use App\Objects\WorkflowGenerator;
 
 trait LaravelStuff
 {
-    public $stepFixStoragePermissions; //true
-    public $stepRunMigrations; // true
-    public $stepGenerateKey; // true
-    public $stepEnvTemplateFile; // ".env.example"
-    public $stepCopyEnvTemplateFile; // true
-    public $matrixLaravel; // false
+    public bool $stepFixStoragePermissions; //true
+    public bool $stepRunMigrations; // true
+    public bool $stepGenerateKey; // true
+    public string $stepEnvTemplateFile; // ".env.example"
+    public bool $stepCopyEnvTemplateFile; // true
+    public bool $matrixLaravel; // false
+    /**
+     * @var array<mixed> $matrixLaravelVersions
+     */
     public $matrixLaravelVersions; // []
-    public $matrixTestbenchDependencies;
+    /**
+     * @var array<mixed> $matrixTestbenchDependencies
+     */
+    public array $matrixTestbenchDependencies;
 
     public function loadDefaultsLaravelStuff(): void
     {
@@ -32,7 +38,7 @@ trait LaravelStuff
         // the key is the laravel ver, the value is the orchestratestbench version
     }
 
-    public function loadLaravelStuffFromJson($j): void
+    public function loadLaravelStuffFromJson(object $j): void
     {
         data_fill($j, "stepGenerateKey", true);
         data_fill($j, "stepCopyEnvTemplateFile", true);
@@ -46,7 +52,11 @@ trait LaravelStuff
         $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
     }
 
-    public function setDataLaravelStuff($data)
+    /**
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    public function setDataLaravelStuff(array $data): array
     {
         $data["stepFixStoragePermissions"] = $this->stepFixStoragePermissions;
         $data["stepRunMigrations"] = $this->stepRunMigrations;

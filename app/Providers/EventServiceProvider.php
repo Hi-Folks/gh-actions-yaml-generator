@@ -12,7 +12,7 @@ class EventServiceProvider extends ServiceProvider
     /**
      * The event listener mappings for the application.
      *
-     * @var array
+     * @var array<mixed>
      */
     protected $listen = [
         Registered::class => [
