@@ -3,7 +3,7 @@
 ## 0.4.3 - WIP
 - Psalm, create Sarif report for GitHub code scanning integration
 - update to Alpinejs 3
-- Allow user to set dependency stability (none, the latest stable, the lowest stable)
+- Allow user to set dependency stability (none, the latest stable, the lowest stable), thanks to @marulitua
 
 ## 0.4.2 - 2021-10-12
 Hacktoberfest, goes on...
