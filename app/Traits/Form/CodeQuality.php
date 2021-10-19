@@ -4,18 +4,18 @@ namespace App\Traits\Form;
 
 trait CodeQuality
 {
-    public $stepExecutePhpunit; //true
-    public $stepExecutePestphp; //false
-    public $stepExecuteCodeSniffer; //false
-    public $stepDirCodeSniffer; // app
-    public $stepInstallCodeSniffer; //true
-    public $stepExecuteStaticAnalysis; // false
-    public $stepDirStaticAnalysis; // app
-    public $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
-    public $stepInstallStaticAnalysis; //true
-    public $stepDusk; // false
-    public $stepPhpstanUseNeon; // false
-    public $stepPsalmReport; // false
+    public bool $stepExecutePhpunit; //true
+    public bool $stepExecutePestphp; //false
+    public bool $stepExecuteCodeSniffer; //false
+    public string $stepDirCodeSniffer; // app
+    public bool $stepInstallCodeSniffer; //true
+    public bool $stepExecuteStaticAnalysis; // false
+    public string $stepDirStaticAnalysis; // app
+    public string $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
+    public bool $stepInstallStaticAnalysis; //true
+    public bool $stepDusk; // false
+    public bool $stepPhpstanUseNeon; // false
+    public bool $stepPsalmReport; // false
 
     public function loadDefaultsCodeQuality(): void
     {

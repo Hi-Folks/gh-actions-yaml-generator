@@ -95,7 +95,9 @@ trait BaseWorkflow
         if (isset($j->postgresqlDatabase)) {
             $this->postgresqlDatabase = $j->postgresqlDatabase;
             $this->postgresqlPasswordType =
-                $j->postgresqlPasswordType ?? $this->postgresqlPasswordType;
+                isset($j->postgresqlPasswordType) ?
+                    $j->postgresqlPasswordType :
+                    $this->postgresqlPasswordType;
             $this->postgresqlPassword =
                 isset($j->postgresqlPassword) ?
                     $j->postgresqlPassword :
