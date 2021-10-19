@@ -1,6 +1,8 @@
 includes:
     - ./vendor/nunomaduro/larastan/extension.neon
 parameters:
+    reportUnmatchedIgnoredErrors: false
+
     level: 6
     paths:
         - app
