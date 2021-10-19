@@ -33,10 +33,7 @@ trait CodeQuality
         $this->stepPsalmReport = false;
     }
 
-    /**
-     * @param array<mixed> $j
-     */
-    public function loadCodeQualityFromJson(array $j): void
+    public function loadCodeQualityFromJson(object $j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "stepInstallCodeSniffer", true);
