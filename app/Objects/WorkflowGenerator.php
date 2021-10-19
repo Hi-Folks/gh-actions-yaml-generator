@@ -73,7 +73,6 @@ class WorkflowGenerator
     public static function split($somethingToSplit, string $splitChars = ",")
     {
         if (\is_string($somethingToSplit)) {
-            // @phpstan-ignore-next-line
             return array_map('trim', explode($splitChars, $somethingToSplit));
         }
         return $somethingToSplit;
