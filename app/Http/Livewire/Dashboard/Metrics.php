@@ -8,11 +8,11 @@ use Livewire\Component;
 
 class Metrics extends Component
 {
-    public $count;
-    public $total;
-    public $last4hours;
-    public $last24hours;
-    public $last3days;
+    public int $count;
+    public int $total;
+    public int $last4hours;
+    public int $last24hours;
+    public int $last3days;
 
     public function mount(): void
     {

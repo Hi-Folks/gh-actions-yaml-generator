@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class Latest extends Component
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Collection<\App\Models\Configuration> $latest
+     */
     public $latest;
 
     public function mount(): void
