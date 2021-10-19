@@ -26,6 +26,9 @@ class GuesserFiles
     public const PHPSTANNEON_VAR = "phpstanNeonFile";
 
 
+    /**
+     * @var array<string> $filePaths
+     */
     public array $filePaths = [];
 
     public function pathFiles(string $projectDir, string $optionEnvWorkflowFile = self::ENV_DEFAULT_TEMPLATE_FILE): void
@@ -143,7 +146,11 @@ class GuesserFiles
         return is_file($path);
     }
 
-    public static function detectLaravelVersionFromTestbench($testbenchVersion): array
+    /**
+     * @param string $testbenchVersion
+     * @return array<string>
+     */
+    public static function detectLaravelVersionFromTestbench(string $testbenchVersion): array
     {
         $listLaravelVersions = [ "6.*", "7.*", "8.*"];
         $listTestBenchVersions = [ "4.0", "5.0", "6.0"];

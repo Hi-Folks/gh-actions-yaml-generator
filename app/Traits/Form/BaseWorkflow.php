@@ -9,9 +9,15 @@ trait BaseWorkflow
     public string $name;
     public bool $onPush;
 
+    /**
+     * @var array<string>|string $onPushBranches
+     */
     public $onPushBranches;
 
     public bool $onPullrequest;
+    /**
+     * @var array<string> $onPullrequestBranches
+     */
     public array $onPullrequestBranches;
     public bool $manualTrigger;
     public string $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
@@ -27,12 +33,19 @@ trait BaseWorkflow
     public string $postgresqlVersion;
     public string $postgresqlDatabaseName;
     public int $postgresqlDatabasePort;
+
+    /**
+     * @var array<string> $stepPhpVersions
+     */
     public array $stepPhpVersions; // 7.4
     public bool $stepNodejs; // false
     public string $stepNodejsVersion; // 15.x
     public bool $stepCachePackages; //true
     public bool $stepCacheVendors; //true
     public bool $stepCacheNpmModules; // true
+    /**
+     * @var array<string> $dependencyStability
+     */
     public array $dependencyStability; // []
 
 
@@ -67,7 +80,7 @@ trait BaseWorkflow
         $this->dependencyStability = [ 'prefer-none' ];
     }
 
-    public function loadBaseWorkflowFromJson($j): void
+    public function loadBaseWorkflowFromJson(object $j): void
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "dependencyStability", [ 'prefer-none' ]);
@@ -124,7 +137,11 @@ trait BaseWorkflow
         $this->dependencyStability = (array) $j->dependencyStability;
     }
 
-    public function setDataBaseWorkflow($data): array
+    /**
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    public function setDataBaseWorkflow(array $data): array
     {
         $data = WorkflowGenerator::compactObject(
             $this,

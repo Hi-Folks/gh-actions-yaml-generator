@@ -29,6 +29,11 @@ class WorkflowGenerator
         $this->loadDefaultsDeploy();
     }
 
+    /**
+     * @param object $object
+     * @param string ...$args
+     * @return array<mixed>
+     */
     public static function compactObject(object $object, string ...$args): array
     {
         $vars = get_object_vars($object);
@@ -43,6 +48,10 @@ class WorkflowGenerator
         return $retVal;
     }
 
+    /**
+     * @param array<mixed> $array
+     * @return string
+     */
     public static function arrayToString(array $array): string
     {
         return "[ " . implode(
@@ -56,16 +65,24 @@ class WorkflowGenerator
         ) . " ]";
     }
 
-    public static function split($somethingToSplit, $splitChars = ",")
+    /**
+     * @param array<mixed>|string $somethingToSplit
+     * @param string $splitChars
+     * @return array<mixed>|mixed
+     */
+    public static function split($somethingToSplit, string $splitChars = ",")
     {
         if (\is_string($somethingToSplit)) {
+            // @phpstan-ignore-next-line
             return array_map('trim', explode($splitChars, $somethingToSplit));
         }
         return $somethingToSplit;
     }
 
-
-    public function setData()
+    /**
+     * @return array<mixed>
+     */
+    public function setData(): array
     {
         $data = [];
         $data = $this->setDataBaseWorkflow($data);
@@ -76,9 +93,10 @@ class WorkflowGenerator
     }
 
     /**
-     * @return array|string
+     * @param array<mixed> $data
+     * @return array<mixed>|string
      */
-    public function generate($data)
+    public function generate(array $data)
     {
         $stringResult = view('action_yaml', $data)->render();
         return $stringResult;
@@ -89,7 +107,7 @@ class WorkflowGenerator
      *
      * @psalm-return list<'7.3'|'7.4'|'8.0'>
      */
-    public function detectPhpVersion($phpversion): array
+    public function detectPhpVersion(string $phpversion): array
     {
         $listPhpVersions = [ "7.3", "7.4", "8.0"];
         $stepPhp = [];
