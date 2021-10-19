@@ -1,9 +1,11 @@
 # Changelog
 
-## 0.4.3 - WIP
+## 0.4.3 - 2021-10-19
+It is still Hacktoberfest!
 - Psalm, create Sarif report for GitHub code scanning integration
 - update to Alpinejs 3
 - Allow user to set dependency stability (none, the latest stable, the lowest stable), thanks to @marulitua
+- Phpstan Level 6 (from 5 to 6, report missing typehints)
 
 ## 0.4.2 - 2021-10-12
 Hacktoberfest, goes on...
