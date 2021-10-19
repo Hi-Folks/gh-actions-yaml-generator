@@ -16,7 +16,7 @@ class DatabaseFormTest extends TestCase
     const DIR_MOCK ="tests/Feature/mock-asserts/";
 
 
-    public function test_databasedefault()
+    public function test_databasedefault(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
@@ -26,7 +26,7 @@ class DatabaseFormTest extends TestCase
     }
 
 
-    public function test_databasedefault_hintsformigration()
+    public function test_databasedefault_hintsformigration(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
@@ -41,7 +41,7 @@ class DatabaseFormTest extends TestCase
      * Testing with no database and no migrations.
      * @return void
      */
-    public function test_nodatabase()
+    public function test_nodatabase(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test No Database")
@@ -59,7 +59,7 @@ class DatabaseFormTest extends TestCase
      * Testing with no database and migrations, it generates hint.
      * @return void
      */
-    public function test_nodatabase_withmigration()
+    public function test_nodatabase_withmigration(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test No Database")
@@ -75,7 +75,7 @@ class DatabaseFormTest extends TestCase
      * Testing with sqlite database and migrations
      * @return void
      */
-    public function test_sqlite_withmigration()
+    public function test_sqlite_withmigration(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test No Database")
@@ -92,7 +92,7 @@ class DatabaseFormTest extends TestCase
      * Testing with sqlite database and migrations
      * @return void
      */
-    public function test_postgresql_withmigration()
+    public function test_postgresql_withmigration(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test Postgresql")
@@ -109,7 +109,7 @@ class DatabaseFormTest extends TestCase
      * Testing with sqlite database and migrations
      * @return void
      */
-    public function test_postgresql_withnomigration()
+    public function test_postgresql_withnomigration(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test Postgresql")

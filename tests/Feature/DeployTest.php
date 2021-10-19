@@ -15,7 +15,7 @@ class DeployTest extends TestCase
 
     const DIR_MOCK ="tests/Feature/mock-asserts/";
 
-    public function testPloiDeploy()
+    public function testPloiDeploy(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
@@ -25,7 +25,7 @@ class DeployTest extends TestCase
             ->assertSee(file_get_contents(base_path(self::DIR_MOCK."ploi-deploy.yaml")));
 
     }
-    public function testVaporDeploy()
+    public function testVaporDeploy(): void
     {
         Livewire::test(ConfiguratorForm::class)
             ->set("name","Test")
