@@ -63,7 +63,12 @@ class Configuration extends Model
         return "";
     }
 
-    public static function saveConfiguration(string $code, mixed $json, string $metadata = "{}"): void
+    /**
+     * @param string $code
+     * @param array<mixed>|object|mixed $json
+     * @param string $metadata
+     */
+    public static function saveConfiguration(string $code, $json, string $metadata = "{}"): void
     {
         $confModel = self::getByCode($code);
 
