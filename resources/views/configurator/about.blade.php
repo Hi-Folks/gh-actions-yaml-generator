@@ -16,7 +16,12 @@
   <meta property="og:title" content="{{ config("app.name") }} - {{ $title }}"/>
   <meta property="og:description" content="{{ $description }}"/>
   <meta property="og:image"
-        content="{{ asset('ghygen-title.png') }}"/>
+        content="{{ asset('ghygen-github-actions-yaml-generator-laravel.png') }}"/>
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ghygen">
+  <meta name="twitter:description" content="Ghygen is a GitHub Actions configurator for your Laravel/PHP project. Setup Database Service, use multiple PHP version, use multiple Laravel versions, build frontend, cache packages, execute tests">
+  <meta name="twitter:image" content="{{ asset('ghygen-github-actions-yaml-generator-laravel.png') }}">
 
 </head>
 <body class="antialiased">
