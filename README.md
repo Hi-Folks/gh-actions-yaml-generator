@@ -52,6 +52,23 @@ This "magic" command, will extract information from:
 - ... and other assets
 - in order to guess a configuration for your GitHub Actions workflow.
 
+By default the command will show the Yaml workflow file in the standard output. If you want to save it in a file for example "my-workflow.yml" you can use --save option:
+```shell
+php artisan ghygen:generate  --save=my-workflow.yml
+```
+
+If you want to autogenerate Yaml file in the .github/workflows directory use --save=auto
+```shell
+php artisan ghygen:generate  --save=auto
+```
+The file name will be created with the name found in composer.json (slugified).
+
+So if you are *superlazy* and want to generate the workflow for the project in the directory ../myproject , you can execute:
+```shell
+php artisan ghygen:generate --projectdir=../myproject/ --save=auto
+```
+
+
 ## Install
 Clone source code, enter the new directory and perform a couple of instructions:
 ```shell

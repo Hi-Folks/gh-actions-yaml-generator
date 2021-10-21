@@ -4,6 +4,8 @@ namespace App\Objects;
 
 use Composer\Semver\Semver;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class GuesserFiles
 {
@@ -169,5 +171,29 @@ class GuesserFiles
         }
         //$this->ste = $stepPhp;
         return $stepLaravelVersions;
+    }
+
+
+    public static function generateYamlFilename(
+        string $path = "",
+        string $title = ""
+    ): string {
+        if ($title === "") {
+            $title = "Ghygen Auto Workflow";
+        }
+        $timeStamp = date("Ymd-His");
+        $fileName = Str::slug($title, '_') . "-" . $timeStamp . ".yml";
+        return $path . $fileName;
+    }
+
+    public static function getGithubWorkflowDirectory(
+        string $projectdir = ""
+    ): string {
+        return $projectdir . ".github/workflows/";
+    }
+    public static function existsGithubWorkflowDirectory(
+        string $projectdir = ""
+    ): bool {
+        return is_dir(self::getGithubWorkflowDirectory($projectdir));
     }
 }

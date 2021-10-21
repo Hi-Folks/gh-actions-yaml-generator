@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Objects\GuesserFiles;
 use App\Objects\WorkflowGenerator;
+use Illuminate\Auth\GenericUser;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 
@@ -21,6 +22,7 @@ class GenerateWorkflow extends Command
     {--envfile=' . GuesserFiles::ENV_DEFAULT_TEMPLATE_FILE . ' : the .env file to use in the workflow}
     {--prefer-stable : Prefer stable versions of dependencies}
     {--prefer-lowest : Prefer lowest versions of dependencies}
+    {--save= : the yaml file to save the workflow}
     ';
 
 
@@ -45,7 +47,7 @@ class GenerateWorkflow extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return mixed
      */
     public function handle()
     {
@@ -53,6 +55,18 @@ class GenerateWorkflow extends Command
         if (is_null($projectdir)) {
             $projectdir = "";
         }
+        $yamlFile = $this->option("save");
+        $saveFile = ! is_null($yamlFile);
+        if ($saveFile) {
+            if ($yamlFile === "auto") {
+                $yamlFile = GuesserFiles::generateYamlFilename(GuesserFiles::getGithubWorkflowDirectory($projectdir));
+            }
+            if (file_exists($yamlFile)) {
+                $this->alert("File " . $yamlFile . " exists");
+                return;
+            }
+        }
+
         $cache = $this->option("cache");
         $optionEnvWorkflowFile = $this->option("envfile");
 
@@ -69,8 +83,12 @@ class GenerateWorkflow extends Command
 
         if ($guesserFiles->composerExists()) {
             $composer = json_decode(file_get_contents($guesserFiles->getComposerPath()), true);
-            $generator->name = Arr::get($composer, 'name');
-            $phpversion = Arr::get($composer, 'require.php', "");
+            $generator->name = Arr::get($composer, 'name', "");
+            $yamlFile = GuesserFiles::generateYamlFilename(
+                GuesserFiles::getGithubWorkflowDirectory($projectdir),
+                $generator->name
+            );
+            $phpversion = Arr::get($composer, 'require.php', "8.0");
             $generator->detectPhpVersion($phpversion);
             if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
                 $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
@@ -189,8 +207,23 @@ class GenerateWorkflow extends Command
         $data = $generator->setData();
 
         $result = $generator->generate($data);
-        $this->line($result);
-
+        if ($saveFile) {
+            try {
+                $size = file_put_contents($yamlFile, $result);
+                $this->info("File " . $yamlFile . " saved (" . $size . " bytes)");
+            } catch (\Exception $e) {
+                if (! GuesserFiles::existsGithubWorkflowDirectory($projectdir)) {
+                    $this->error(
+                        "Workflow directory doesn't exist : " .
+                        GuesserFiles::getGithubWorkflowDirectory($projectdir)
+                    );
+                } else {
+                    $this->error($e->getMessage());
+                }
+            }
+        } else {
+            $this->line($result);
+        }
 
 
 

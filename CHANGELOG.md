@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.4 - WIP
+It's still Hacktoberfest!
+- Welcome --save option for CLI (you can define the filename of the workflow file);
+- Set automatically the workflow filename for auto generation (to much automation ;) with --save=auto option
+- Twitter card :)
+
 ## 0.4.3 - 2021-10-19
 It is still Hacktoberfest!
 - Psalm, create Sarif report for GitHub code scanning integration
