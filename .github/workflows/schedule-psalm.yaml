@@ -1,9 +1,9 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=f1e066070aaa40677f16436ff706e2d6
-name: Scheduled Psalm
+# Original configuration: http://gh-actions-yaml-generator.test?code=df3a4e80ff3c65ea70c52acf07f9d199
+name: Scheduled Psalm and security
 on:
   schedule:
-    - cron: '30 20 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   laravel-tests:
@@ -46,6 +46,8 @@ jobs:
 
       # Code quality
 
+
+      - uses: symfonycorp/security-checker-action@v2
 
 
       - name: Execute Code Static Analysis (PSALM)
