@@ -1,9 +1,12 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=df3a4e80ff3c65ea70c52acf07f9d199
+# Original configuration: http://gh-actions-yaml-generator.test?code=6ce68f1bde02c4ee1c54c18d4c3e91de
 name: Scheduled Psalm and security
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+      - develop
+      - features/**
 
 jobs:
   laravel-tests:
