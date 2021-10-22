@@ -3,7 +3,7 @@
 name: Scheduled Psalm
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '30 20 * * *'
 
 jobs:
   laravel-tests:
