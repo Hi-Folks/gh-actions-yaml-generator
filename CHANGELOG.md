@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.5 - WIP
+## 0.4.5 - 2021-10-22
 It's still Hacktoberfest!
 - You can schedule a workflow to run at specific UTC times using POSIX cron syntax;
 - Security check
