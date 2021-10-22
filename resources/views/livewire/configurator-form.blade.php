@@ -65,34 +65,22 @@
 
             <fieldset  class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
                 <legend class="text-xl font-medium text-gray-900 px-2 pb-2">On - GitHub event that triggers the workflow.</legend>
-                <div class="md:grid md:grid-cols-3 md:gap-3">
-                  <div class="col-span-1 ">
-                    <div class="pl-3 pb-2 mt-2 space-y-4">
-                      <x-form.input-checkbox
-                        model="manualTrigger"
-                        name="manualTrigger"
-                        label="Manual Trigger"
-                        value="1"
-                        help=""
-                      >
-                      </x-form.input-checkbox>
-                    </div>
-                  </div>
+                <div class="md:grid md:grid-cols-2 md:gap-2">
                   <div class="col-span-1 ">
                     <x-form.input-conditional-checkbox
-                        model="onPush"
-                        name="onPush"
-                        label="On Push"
-                        id="onPush"
-                        value=1
-                        wire:model="onPush"
+                      model="onPush"
+                      name="onPush"
+                      label="On Push"
+                      id="onPush"
+                      value=1
+                      wire:model="onPush"
                     >
-                        <x-form.input-text
-                            model="onPushBranches"
-                            name="onPushBranches"
-                            label="Branches"
-                            help="Branches for the push, comma separated for example: 'main,develop'.">
-                        </x-form.input-text>
+                      <x-form.input-text
+                        model="onPushBranches"
+                        name="onPushBranches"
+                        label="Branches"
+                        help="Branches for the push, comma separated for example: 'main,develop'.">
+                      </x-form.input-text>
                     </x-form.input-conditional-checkbox>
                     @error('onPushBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
@@ -114,6 +102,38 @@
                     </x-form.input-conditional-checkbox>
                     @error('onPullrequestBranches') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                   </div>
+
+                  <div class="col-span-1 ">
+                    <div class="pl-3 pb-2 mt-2 space-y-4">
+                      <x-form.input-checkbox
+                        model="manualTrigger"
+                        name="manualTrigger"
+                        label="Manual Trigger"
+                        value="1"
+                        help=""
+                      >
+                      </x-form.input-checkbox>
+                    </div>
+                  </div>
+                  <div class="col-span-1 ">
+                    <x-form.input-conditional-checkbox
+                      model="onSchedule"
+                      name="onSchedule"
+                      label="On Schedule"
+                      id="onSchedule"
+                      value=1
+                      wire:model="onSchedule"
+                    >
+                      <x-form.input-text
+                        model="onScheduleCron"
+                        name="onScheduleCron"
+                        label="Cron"
+                        help="When is scheduled, in cron format. Daily: '0 0 * * *'">
+                      </x-form.input-text>
+                    </x-form.input-conditional-checkbox>
+                    @error('onScheduleCron') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
+                  </div>
+
                   @error('onEvents') <div class="col-span-3 "><span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span></div> @enderror
                 </div>
             </fieldset>

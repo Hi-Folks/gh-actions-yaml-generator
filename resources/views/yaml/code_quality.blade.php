@@ -13,6 +13,10 @@
       run: vendor/bin/pest
 @endif
 
+@if ($stepSecurityCheck)
+    - uses: symfonycorp/security-checker-action@v2
+@endif
+
 @if ($stepExecuteCodeSniffer)
     - name: Execute Code Sniffer via phpcs
       run: |
