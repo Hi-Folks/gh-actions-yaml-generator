@@ -1,6 +1,9 @@
 # Changelog
 
-## 0.4.4 - WIP
+## 0.4.5 - WIP
+
+
+## 0.4.4 - 2021-10-21
 It's still Hacktoberfest!
 - Welcome --save option for CLI (you can define the filename of the workflow file);
 - Set automatically the workflow filename for auto generation (to much automation ;) with --save=auto option

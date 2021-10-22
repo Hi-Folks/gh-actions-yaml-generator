@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ca75231947b063dbe0cbd35a5b78e57",
+    "content-hash": "35f2d60be6997649b620c9fcbe73bdfc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1645,16 +1645,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.65.0",
+            "version": "v8.66.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6db59afadca28dfdb2f719e7d79f93885ede17e4"
+                "reference": "b757fe143a3ab802a08a191032fc7046b582f107"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6db59afadca28dfdb2f719e7d79f93885ede17e4",
-                "reference": "6db59afadca28dfdb2f719e7d79f93885ede17e4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b757fe143a3ab802a08a191032fc7046b582f107",
+                "reference": "b757fe143a3ab802a08a191032fc7046b582f107",
                 "shasum": ""
             },
             "require": {
@@ -1812,7 +1812,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-10-19T13:59:41+00:00"
+            "time": "2021-10-21T14:20:46+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -2286,16 +2286,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.7.0",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "7795843505d4f8f3819bae7cae2a200f414d9658"
+                "reference": "991e5bd8a48e450d23cd55336964f916e92a6464"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/7795843505d4f8f3819bae7cae2a200f414d9658",
-                "reference": "7795843505d4f8f3819bae7cae2a200f414d9658",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/991e5bd8a48e450d23cd55336964f916e92a6464",
+                "reference": "991e5bd8a48e450d23cd55336964f916e92a6464",
                 "shasum": ""
             },
             "require": {
@@ -2346,7 +2346,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.7.0"
+                "source": "https://github.com/livewire/livewire/tree/v2.7.2"
             },
             "funding": [
                 {
@@ -2354,7 +2354,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-18T01:30:22+00:00"
+            "time": "2021-10-20T02:27:35+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7802,16 +7802,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v6.19.1",
+            "version": "v6.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "9689f78bfdcef35a8ffd67950a398528454d99ce"
+                "reference": "c042f8d389b8fdcd9543032d1ef8dbe47c8a245f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/9689f78bfdcef35a8ffd67950a398528454d99ce",
-                "reference": "9689f78bfdcef35a8ffd67950a398528454d99ce",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/c042f8d389b8fdcd9543032d1ef8dbe47c8a245f",
+                "reference": "c042f8d389b8fdcd9543032d1ef8dbe47c8a245f",
                 "shasum": ""
             },
             "require": {
@@ -7869,9 +7869,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v6.19.1"
+                "source": "https://github.com/laravel/dusk/tree/v6.19.2"
             },
-            "time": "2021-10-19T15:05:44+00:00"
+            "time": "2021-10-20T10:10:26+00:00"
         },
         {
             "name": "laravel/sail",
@@ -8354,24 +8354,24 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v6.21.1",
+            "version": "v6.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "f61383c001a97f0a116b0c58f74385424aa9de33"
+                "reference": "e91dbf9402f1f635c00bd0b3bc4d6501beff76ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/f61383c001a97f0a116b0c58f74385424aa9de33",
-                "reference": "f61383c001a97f0a116b0c58f74385424aa9de33",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/e91dbf9402f1f635c00bd0b3bc4d6501beff76ad",
+                "reference": "e91dbf9402f1f635c00bd0b3bc4d6501beff76ad",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^8.54",
-                "mockery/mockery": "^1.4.2",
-                "orchestra/testbench-core": "^6.25.2",
+                "laravel/framework": "^8.65",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench-core": "^6.26",
                 "php": "^7.3 || ^8.0",
-                "phpunit/phpunit": "^8.4 || ^9.3.3",
+                "phpunit/phpunit": "^8.5.21 || ^9.5.10",
                 "spatie/laravel-ray": "^1.18"
             },
             "type": "library",
@@ -8403,7 +8403,7 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v6.21.1"
+                "source": "https://github.com/orchestral/testbench/tree/v6.22.0"
             },
             "funding": [
                 {
@@ -8415,20 +8415,20 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-09-18T09:37:03+00:00"
+            "time": "2021-10-21T06:32:17+00:00"
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.25.2",
+            "version": "v6.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "03d8cce6e500a9c64da4cbaa776236c91b2572a1"
+                "reference": "d4df6eda45104043da7a99e0a272b1507c6d4fe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/03d8cce6e500a9c64da4cbaa776236c91b2572a1",
-                "reference": "03d8cce6e500a9c64da4cbaa776236c91b2572a1",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/d4df6eda45104043da7a99e0a272b1507c6d4fe0",
+                "reference": "d4df6eda45104043da7a99e0a272b1507c6d4fe0",
                 "shasum": ""
             },
             "require": {
@@ -8438,20 +8438,20 @@
                 "vlucas/phpdotenv": "^5.1"
             },
             "require-dev": {
-                "laravel/framework": "^8.54",
+                "laravel/framework": "^8.65",
                 "laravel/laravel": "8.x-dev",
-                "mockery/mockery": "^1.4.2",
+                "mockery/mockery": "^1.4.4",
                 "orchestra/canvas": "^6.1",
-                "phpunit/phpunit": "^8.4 || ^9.3.3 || ^10.0",
+                "phpunit/phpunit": "^8.5.21 || ^9.5.10 || ^10.0",
                 "spatie/laravel-ray": "^1.7.1",
                 "symfony/process": "^5.0"
             },
             "suggest": {
-                "laravel/framework": "Required for testing (^8.54).",
-                "mockery/mockery": "Allow using Mockery for testing (^1.4.2).",
+                "laravel/framework": "Required for testing (^8.65).",
+                "mockery/mockery": "Allow using Mockery for testing (^1.4.4).",
                 "orchestra/testbench-browser-kit": "Allow using legacy Laravel BrowserKit for testing (^6.0).",
                 "orchestra/testbench-dusk": "Allow using Laravel Dusk for testing (^6.0).",
-                "phpunit/phpunit": "Allow using PHPUnit for testing (^8.4|^9.3.3)."
+                "phpunit/phpunit": "Allow using PHPUnit for testing (^8.5.21|^9.5.10|^10.0)."
             },
             "bin": [
                 "testbench"
@@ -8505,7 +8505,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-09-18T01:47:58+00:00"
+            "time": "2021-10-21T06:20:26+00:00"
         },
         {
             "name": "phar-io/manifest",

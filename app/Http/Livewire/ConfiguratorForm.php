@@ -158,7 +158,10 @@ class ConfiguratorForm extends Component
         Log::debug('Code:' . $this->code);
         $values = $this->getDataForValidation($this->rules);
         $this->validate();
-        if (! $values["onPush"] && !  $values["onPullrequest"] && ! $values["manualTrigger"]) {
+        if (
+            ! $values["onPush"] && !  $values["onPullrequest"]
+            && ! $values["manualTrigger"] && ! $values["onSchedule"]
+        ) {
             $this->addError("onEvents", "You need to select at least one of GitHub event that triggers the workflow");
             return;
         }
