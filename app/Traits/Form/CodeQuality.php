@@ -6,6 +6,7 @@ trait CodeQuality
 {
     public bool $stepExecutePhpunit; //true
     public bool $stepExecutePestphp; //false
+    public bool $stepSecurityCheck; //false
     public bool $stepExecuteCodeSniffer; //false
     public string $stepDirCodeSniffer; // app
     public bool $stepInstallCodeSniffer; //true
@@ -21,6 +22,7 @@ trait CodeQuality
     {
         $this->stepExecutePhpunit = true;
         $this->stepExecutePestphp = false;
+        $this->stepSecurityCheck = false;
         $this->stepExecuteCodeSniffer = false;
         $this->stepDirCodeSniffer = "app";
         $this->stepInstallCodeSniffer = true;
@@ -43,6 +45,7 @@ trait CodeQuality
         data_fill($j, "stepExecutePestphp", false);
         data_fill($j, "stepPhpstanUseNeon", false);
         data_fill($j, "stepPsalmReport", false);
+        data_fill($j, "stepSecurityCheck", false);
         $this->stepExecutePhpunit = $j->stepExecutePhpunit;
         $this->stepExecutePestphp = $j->stepExecutePestphp;
         $this->stepExecuteCodeSniffer = $j->stepExecuteCodeSniffer;
@@ -55,6 +58,7 @@ trait CodeQuality
         $this->stepDusk = $j->stepDusk;
         $this->stepPhpstanUseNeon = $j->stepPhpstanUseNeon;
         $this->stepPsalmReport = $j->stepPsalmReport;
+        $this->stepSecurityCheck = $j->stepSecurityCheck;
     }
 
     /**
@@ -75,6 +79,7 @@ trait CodeQuality
         $data["stepDusk"] = $this->stepDusk;
         $data["stepPhpstanUseNeon"] = $this->stepPhpstanUseNeon;
         $data["stepPsalmReport"] = $this->stepPsalmReport;
+        $data["stepSecurityCheck"] = $this->stepSecurityCheck;
 
         return $data;
     }

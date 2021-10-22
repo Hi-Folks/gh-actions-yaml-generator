@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="col-span-2 ">
+    <div class="col-span-1 ">
       <div class="pl-3 pb-2 mt-2 space-y-4">
         <x-form.input-checkbox
           model="stepDusk"
@@ -32,6 +32,21 @@
         </x-form.input-checkbox>
       </div>
     </div>
+
+
+    <div class="col-span-1 ">
+      <div class="pl-3 pb-2 mt-2 space-y-4">
+        <x-form.input-checkbox
+          model="stepSecurityCheck"
+          name="stepSecurityCheck"
+          label="Execute Security Check"
+          help="Execute Security Check">
+        </x-form.input-checkbox>
+      </div>
+    </div>
+
+
+
     <div class="col-span-1 ">
       <x-form.input-conditional-checkbox
         model="stepExecuteCodeSniffer"
