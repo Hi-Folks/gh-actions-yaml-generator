@@ -1,5 +1,9 @@
 @if ( $manual_trigger )
 on: [ workflow_dispatch ]
+@elseif ( $on_schedule )
+on:
+  schedule:
+    - cron: '{{ $on_schedule_cron }}'
 @else
 on:
 @if ( $on_push )

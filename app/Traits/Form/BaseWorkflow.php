@@ -20,6 +20,8 @@ trait BaseWorkflow
      */
     public array $onPullrequestBranches;
     public bool $manualTrigger;
+    public bool $onSchedule; // false
+    public string $onScheduleCron; // "0 0 * * *"
     public string $databaseType; // 'none', 'mysql', 'postgresql', 'sqlite'
     public string $mysqlDatabase;
     public string $mysqlPasswordType; // 'skip
@@ -58,6 +60,8 @@ trait BaseWorkflow
         $this->onPullrequest = false;
         $this->onPullrequestBranches = ["main", "develop"];
         $this->manualTrigger = false;
+        $this->onSchedule = false;
+        $this->onScheduleCron = "0 0 * * *";
         $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
@@ -84,12 +88,16 @@ trait BaseWorkflow
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "dependencyStability", [ 'prefer-none' ]);
+        data_fill($j, "onSchedule", false);
+        data_fill($j, "onScheduleCron", "0 0 * * *");
         $this->name = $j->name;
         $this->onPush = $j->on_push;
         $this->onPushBranches =  $j->on_push_branches;
         $this->onPullrequest = $j->on_pullrequest;
         $this->onPullrequestBranches = $j->on_pullrequest_branches;
         $this->manualTrigger = $j->manual_trigger;
+        $this->onSchedule = $j->on_schedule;
+        $this->onScheduleCron = $j->on_schedule_cron;
         if (isset($j->mysqlService)) {
             if ($j->mysqlService === true) {
                 $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
@@ -164,6 +172,8 @@ trait BaseWorkflow
             "on_pullrequest",
             "on_pullrequest_branches",
             "manual_trigger",
+            "on_schedule",
+            "on_schedule_cron",
             "stepPhpVersions",
             "stepNodejs",
             "stepNodejsVersion",
