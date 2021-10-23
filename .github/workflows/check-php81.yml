@@ -1,9 +1,12 @@
-name: "Check compatibility with PHP 8.1"
+# GithHub Actions Workflow generated with Ghygen
+# Original configuration: http://gh-actions-yaml-generator.test?code=b413e31439eb1761fe5906f1681dfb60
+name: Test Laravel Github action
 on:
   push:
     branches:
       - main
       - develop
+      - features/**
 
 jobs:
   laravel-tests:
@@ -30,8 +33,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: [ '8.0', '8.1' ]
-        dependency-stability: [ 'prefer-stable' ]
+        php-versions: [ '8.0','8.1' ]
+        dependency-stability: [ 'prefer-none' ]
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
@@ -54,6 +57,13 @@ jobs:
       - name: Install Dependencies
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Update Dependencies with latest stable
+        if: matrix.dependency-stability == 'prefer-stable'
+        run: composer update --prefer-stable
+      - name: Update Dependencies with lowest stable
+        if: matrix.dependency-stability == 'prefer-lowest'
+        run: composer update --prefer-stable --prefer-lowest
 
       - name: Generate key
         run: php artisan key:generate
@@ -86,11 +96,7 @@ jobs:
         run: vendor/bin/phpunit --testdox
 
 
+
       - name: Execute Code Sniffer via phpcs
         run: |
           vendor/bin/phpcs --standard=PSR12 app
-
-
-
-
-
