@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.6 - WIP
+## 0.4.6 - 2021-10-23
 It's still Hacktoberfest!
 - Welcome to PHP 8.1, you can select PHP8.1 (experimetal) to check the compatibility of your application in CICD
 
