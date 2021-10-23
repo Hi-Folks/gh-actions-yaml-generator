@@ -1,6 +1,6 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=b413e31439eb1761fe5906f1681dfb60
-name: Test Laravel Github action
+# Original configuration: http://gh-actions-yaml-generator.test?code=b709406b0bcb65c155f50ff5dcf7c6b2
+name: Test PHP 8.1 compatibility
 on:
   push:
     branches:
@@ -100,3 +100,7 @@ jobs:
       - name: Execute Code Sniffer via phpcs
         run: |
           vendor/bin/phpcs --standard=PSR12 app
+
+      - name: Execute Code Static Analysis (PSALM)
+        run: |
+          vendor/bin/psalm
