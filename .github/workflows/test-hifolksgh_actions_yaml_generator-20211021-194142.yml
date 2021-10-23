@@ -2,9 +2,7 @@ name: hifolks/gh-actions-yaml-generator
 on:
   push:
     branches:
-      - main
-      - develop
-      - features/**
+      - tests/**
 
 jobs:
   laravel-tests:
