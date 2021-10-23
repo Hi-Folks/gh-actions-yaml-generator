@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.6 - 2021-10-23
+It's still Hacktoberfest!
+- Welcome to PHP 8.1, you can select PHP8.1 (experimetal) to check the compatibility of your application in CICD
+
 ## 0.4.5 - 2021-10-22
 It's still Hacktoberfest!
 - You can schedule a workflow to run at specific UTC times using POSIX cron syntax;
