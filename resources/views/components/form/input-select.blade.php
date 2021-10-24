@@ -13,7 +13,7 @@
 
 <div class="pl-2">
   <label for="{{ $id ?? $name }}" class="block  font-medium text-gray-700">{{ $label }}</label>
-  <select @change="{{ $onChange }}" wire:model.lazy="{{ $model }}" class="{{ $multiselect ? 'form-multiselect' : 'form-select' }} block w-full mt-1 text-xl    mt-1 focus:ring-blue-500 focus:bg-blue-100 focus:border-blue-500 block w-full shadow-sm  border-gray-300 rounded-md" {{ $multiselect ? 'multiple' : '' }} name="{{ $name }}" id="{{ $id ?? $name }}">
+  <select @change="{{ $onChange }}" wire:model.lazy="{{ $model }}" class="{{ $multiselect ? 'form-multiselect' : 'form-select' }} select select-bordered w-full max-w-xs" {{ $multiselect ? 'multiple' : '' }} name="{{ $name }}" id="{{ $id ?? $name }}">
     @foreach( $list as $key=> $item)
     <option value="{{ $key }}">{{  $item }}</option>
     @endforeach

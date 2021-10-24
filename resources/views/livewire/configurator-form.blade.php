@@ -10,9 +10,9 @@
       >
         <div>
           <p><b class="text-xl">Select template</b>:</p>
-          <x-button onClick="template('laravelapp')">
+          <x-daisyui.button onClick="template('laravelapp')">
             Mysql
-          </x-button>
+          </x-daisyui.button>
           <x-button onClick="template('laravelpostgresql')">
             Postgresql
           </x-button>

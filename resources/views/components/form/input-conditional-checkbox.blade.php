@@ -7,7 +7,7 @@
     'model' => '',
 ])
 
-<div class="pl-3 pb-2 mt-2 space-y-4"  x-data="{ show{{ $id }}: @entangle($attributes->wire('model')) }">
+<div class="pl-3 pb-2 mt-2 "  x-data="{ show{{ $id }}: @entangle($attributes->wire('model')) }">
     <!-- div class="pl-3 pb-2 mt-2 space-y-4"-->
     <div>
         <x-form.input-checkbox

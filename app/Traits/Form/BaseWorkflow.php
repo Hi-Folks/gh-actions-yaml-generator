@@ -96,8 +96,8 @@ trait BaseWorkflow
         $this->onPullrequest = $j->on_pullrequest;
         $this->onPullrequestBranches = $j->on_pullrequest_branches;
         $this->manualTrigger = $j->manual_trigger;
-        $this->onSchedule = $j->on_schedule;
-        $this->onScheduleCron = $j->on_schedule_cron;
+        $this->onSchedule = $j->onSchedule;
+        $this->onScheduleCron = $j->onScheduleCron;
         if (isset($j->mysqlService)) {
             if ($j->mysqlService === true) {
                 $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;

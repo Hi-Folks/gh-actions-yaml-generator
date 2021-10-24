@@ -25,23 +25,14 @@
 </head>
 <body class="antialiased">
 <div>
-  <header class=" ">
-    <div class=" md:flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 ">
-      <div>
-      <img class="object-scale-down h-20 w-full  " alt="Ghygen, GitHub Actions configurator for your Laravel / PHP Application" src="{{ asset('ghygen-title.png') }}">
-      </div>
-      <div>
-        <h1 class="md:pl-20 text-xl text-gray-900">
-          {{ $title }}
-        </h1>
-        <p class="md:pl-24 pt-2 text-gray-600">
-          {{ $description }}
-        </p>
-      </div>
-    </div>
-  </header>
+
+
   <main>
     <div class="max-w-7xl mx-auto py-1 sm:px-6 lg:px-8">
+      <x-daisyui.header
+        imageUrl="{{ asset('ghygen-square.png') }}"
+        title="Ghygen is a GitHub Actions configurator for your Laravel/PHP project."
+        description="Setup Database Service, use multiple PHP version, use multiple Laravel versions, build frontend, cache packages, execute Browser, Functional, and Unit tests…"></x-daisyui.header>
       <livewire:configurator-form/>
     </div>
   </main>
