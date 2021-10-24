@@ -246,7 +246,7 @@
                         <x-form.input-text
                           model="postgresqlPassword"
                           name="postgresqlPassword"
-                          label="Postgresqll Password"
+                          label="Postgresql Password"
                           help="For secret, fill with the name of your parameter for example DB_PASSWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
                         </x-form.input-text>
                     </div>
