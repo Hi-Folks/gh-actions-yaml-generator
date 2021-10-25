@@ -88,16 +88,16 @@ trait BaseWorkflow
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "dependencyStability", [ 'prefer-none' ]);
-        data_fill($j, "onSchedule", false);
-        data_fill($j, "onScheduleCron", "0 0 * * *");
+        data_fill($j, "on_schedule", false);
+        data_fill($j, "on_schedule_cron", "0 0 * * *");
         $this->name = $j->name;
         $this->onPush = $j->on_push;
         $this->onPushBranches =  $j->on_push_branches;
         $this->onPullrequest = $j->on_pullrequest;
         $this->onPullrequestBranches = $j->on_pullrequest_branches;
         $this->manualTrigger = $j->manual_trigger;
-        $this->onSchedule = $j->onSchedule;
-        $this->onScheduleCron = $j->onScheduleCron;
+        $this->onSchedule = $j->on_schedule;
+        $this->onScheduleCron = $j->on_schedule_cron;
         if (isset($j->mysqlService)) {
             if ($j->mysqlService === true) {
                 $this->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;

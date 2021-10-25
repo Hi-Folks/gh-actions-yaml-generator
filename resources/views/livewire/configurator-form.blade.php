@@ -1,23 +1,20 @@
 <div x-data="{ yaml: '' }">
 
   <div class="">
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
+    <div class="grid grid-cols-1 gap-6 lg:p-10 xl:grid-cols-3 lg:bg-base-200 rounded-box">
+      <h2 class="card-title col-span-3">Select a workflow template</h2>
       <x-card-template
         title="Laravel App"
         description="Setup Workflow for Laravel with database and Code Quality."
         icon="laravel"
       >
-        <div>
-          <p><b class="text-xl">Select template</b>:</p>
           <x-daisyui.button onClick="template('laravelapp')">
             Mysql
           </x-daisyui.button>
-          <x-button onClick="template('laravelpostgresql')">
+          <x-daisyui.button onClick="template('laravelpostgresql')">
             Postgresql
-          </x-button>
-        </div>
-
+          </x-daisyui.button>
       </x-card-template>
 
       <x-card-template
@@ -25,28 +22,24 @@
         description="Setup Workflow for PHP Package."
         icon="php"
       >
-        <p><b class="text-xl">Select template</b>:</p>
-        <x-button onClick="template('phppackage')">
+        <x-daisyui.button onClick="template('phppackage')">
           PHP
-        </x-button>
+        </x-daisyui.button>
       </x-card-template>
       <x-card-template
         title="Laravel Package"
         description="Setup Workflow for Laravel Package."
         icon="laravel"
       >
-        <div>
-          <p><b class="text-xl">Select template</b>:</p>
-          <x-button onClick="template('laravelpackage')">
+
+          <x-daisyui.button onClick="template('laravelpackage')">
             Laravel Package
-          </x-button>
-        </div>
+          </x-daisyui.button>
 
       </x-card-template>
 
-
-
     </div>
+    <div class="divider">OR compile some details...</div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form wire:submit.prevent="submitForm"  action="#" method="POST">

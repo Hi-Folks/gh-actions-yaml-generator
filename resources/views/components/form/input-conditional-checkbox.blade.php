@@ -20,7 +20,7 @@
         </x-form.input-checkbox>
     </div>
 
-    <div class="pl-5 pt-2 pb-2 pr-5 bg-blue-50 rounded-2xl" x-show="show{{ $id }}">
+    <div class="card" x-show="show{{ $id }}">
         {{ $slot }}
 
     </div>
