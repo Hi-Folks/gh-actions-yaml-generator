@@ -1,7 +1,8 @@
 @props([
-    'type' => 'secondary',
+    'type' => '',
     'id' => '',
     'onClick' => '',
+    'classType' => 'primary'
     ]
 )
 
@@ -12,6 +13,9 @@ id="{{ $id }}"
   @if ($onClick != '')
     wire:click="{{ $onClick }}"
   @endif
+@if ($type !== '')
+type="{{ $type }}"
+  @endif
   {{ $attributes->whereStartsWith('data-') }}
 {{ $attributes->merge(['class' => 'btn btn-outline   ' . $type . '']) }}
->{{ $slot }}</button> 
+>{{ $slot }}</button>

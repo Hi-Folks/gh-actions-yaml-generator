@@ -4,7 +4,7 @@
     'description' => '',
     ]
 )
-  <div class="card shadow-lg compact side bg-base-100">
+  <div class="card shadow-lg compact side bg-base-100 m-4">
     <div class="flex-row items-center space-x-4 card-body">
       <div>
         <div class="mx-auto  avatar">

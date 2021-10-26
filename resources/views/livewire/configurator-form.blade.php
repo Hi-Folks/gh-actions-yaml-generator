@@ -2,7 +2,7 @@
 
   <div class="">
 
-    <div class="grid grid-cols-1 gap-6 lg:p-10 xl:grid-cols-3 lg:bg-base-200 rounded-box">
+    <div class="grid grid-cols-1 gap-6 p-4 lg:p-10 xl:grid-cols-3 lg:bg-base-200 rounded-box">
       <h2 class="card-title col-span-3">Select a workflow template</h2>
       <x-card-template
         title="Laravel App"
@@ -349,14 +349,15 @@ Select 14.x if you want to use LTS version.">
 
           <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">
             <div class="flex-grow px-4 py-1  text-right sm:px-6">
-              <x-button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
+              <x-daisyui.button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
                 Copy
-              </x-button>
+              </x-daisyui.button>
             </div>
             <div class="flex-grow-0 px-4 py-1 bg-gray-50 text-right sm:px-6">
-              <x-button type="submit">
+              <x-daisyui.button type="submit">
                 Generate Yaml File
-              </x-button>
+              </x-daisyui.button>
+
 
           </div>
         </div>
