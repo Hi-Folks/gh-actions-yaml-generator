@@ -56,8 +56,8 @@
             @error('name') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
 
 
-            <fieldset  class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-                <legend class="text-xl font-medium text-gray-900 px-2 pb-2">On - GitHub event that triggers the workflow.</legend>
+            <fieldset  class="card bordered shadow-lg ">
+                <legend class="card-title">On - GitHub event that triggers the workflow.</legend>
                 <div class="md:grid md:grid-cols-2 md:gap-2">
                   <div class="col-span-1 ">
                     <x-form.input-conditional-checkbox
@@ -108,7 +108,7 @@
                       </x-form.input-checkbox>
                     </div>
                   </div>
-                  <div class="col-span-1 ">
+                  <div class="col-span-1">
                     <x-form.input-conditional-checkbox
                       model="onSchedule"
                       name="onSchedule"
@@ -131,8 +131,8 @@
                 </div>
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Select Database</legend>
+            <fieldset class="card bordered shadow-lg" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
+              <legend class="card-title">Select Database</legend>
                 <x-form.input-select
                   model="databaseType"
                   name="databaseType"
@@ -177,7 +177,7 @@
                       <x-form.input-select
                         model="mysqlPasswordType"
                         name="mysqlPasswordType"
-                        label="Mysql Password: skip, or read from secret or hardcoded"
+                        label="Mysql Password"
                         :list="['skip'=>'Skip', 'secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
                         help="Mysql Password: skip, or read from secret or hardcoded"
                         multiselect=0
@@ -248,8 +248,8 @@
 
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Caching</legend>
+            <fieldset class="card bordered shadow-lg">
+              <legend class="card-title">Caching</legend>
               <div class="md:grid md:grid-cols-3 md:gap-3">
                 <div class="col-span-1 ">
                   <div class="pl-3 pb-2 mt-2 space-y-4">
@@ -291,8 +291,8 @@
               </div>
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
+            <fieldset class="card bordered shadow-lg">
+              <legend class="card-title">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
                   <x-form.input-select

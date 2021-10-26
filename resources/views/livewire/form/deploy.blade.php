@@ -1,7 +1,7 @@
-<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl" x-data="{ showPloiService: {{ $stepDeployType === 'ploi'? 'true' : 'false' }},
+<fieldset class="card bordered shadow-lg" x-data="{ showPloiService: {{ $stepDeployType === 'ploi'? 'true' : 'false' }},
  showVaporService: {{ $stepDeployType === 'vapor'? 'true' : 'false' }}
   }">
-    <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Deployment (Experimental feature)</legend>
+    <legend class="card-title">Deployment (Experimental feature)</legend>
     <x-form.input-select model="stepDeployType" name="stepDeployType" label="Select Deployment Step" :list="['none'=>'None', 'ploi'=>'Ploi', 'vapor' => 'Vapor']" help="Deployment: *None* if you don't want to deploy the code in your workflow. Otherwise select from available options" multiselect=0 onChange='showPloiService= $event.target.value==="ploi";'>
     </x-form.input-select>
 

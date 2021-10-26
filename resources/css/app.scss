@@ -3,6 +3,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
 .hljs {
     @apply bg-white;
 }
@@ -14,4 +15,11 @@
 }
 .hljs-ln td.hljs-ln-line {
     @apply py-1;
+}
+
+select[multiple] {
+    min-height: 6rem;
+}
+.label {
+    font-weight: bold;
 }

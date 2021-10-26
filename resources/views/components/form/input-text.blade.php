@@ -7,6 +7,7 @@
     'model' => '',
     ]
 )
+<div class="px-2">
 <div class="form-control">
   <label for="{{ $id ?? $name }}" class="label">
     <span class="label-text">{{ $label }}</span>
@@ -19,4 +20,5 @@
     </p>
   @endif
 
+</div>
 </div>
