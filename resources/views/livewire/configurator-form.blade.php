@@ -347,18 +347,14 @@ Select 14.x if you want to use LTS version.">
             @include('livewire.form.deploy')
           </div>
 
-          <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">
-            <div class="flex-grow px-4 py-1  text-right sm:px-6">
+          <div class="card shadow-lg compact px-4 bg-base-100 m-4">
+            <div class="card-actions justify-end">
               <x-daisyui.button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
                 Copy
               </x-daisyui.button>
-            </div>
-            <div class="flex-grow-0 px-4 py-1 bg-gray-50 text-right sm:px-6">
               <x-daisyui.button type="submit">
                 Generate Yaml File
               </x-daisyui.button>
-
-
           </div>
         </div>
       </form>
@@ -420,7 +416,7 @@ Select 14.x if you want to use LTS version.">
   @endforeach
 
 
-    <div class="px-4 mt-3  ">
+    <div class="px-4 mt-3 shadow-lg  ">
       <div wire:loading wire:target="submitForm">
         <div class="w-full bg-blue-500 border border-blue-200 text-blue-900  pl-4 pr-8 py-3 rounded relative" role="info">
           <strong class="font-bold">Loading</strong>

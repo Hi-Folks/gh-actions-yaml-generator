@@ -1,4 +1,4 @@
-<footer class="p-10 footer bg-base-200 text-base-content">
+<footer class=" px-20 py-10 footer bg-base-200 text-base-content">
   <div>
     <svg width="50" height="50"  id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
