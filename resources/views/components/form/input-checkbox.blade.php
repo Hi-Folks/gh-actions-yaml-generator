@@ -9,11 +9,16 @@
 )
 
 <div class="flex items-start">
-    <div class="flex items-center">
-    <input  wire:model.lazy="{{ $model }}" id="{{ $id ?? $name }}" value="{{ $value }}" name="{{ $name }}" type="checkbox" class="focus:ring-blue-500 h-5 w-5 text-blue-600 border-gray-300 rounded">
-    </div>
-    <div class="ml-3 text-base">
-    <label for="{{ $id ?? $name }}" class="font-medium text-gray-700">{{ $label }}</label>
-    <p class="text-gray-500">{{ $help}}</p>
+    <div class="flex items-center label">
+      <label class="cursor-pointer label" for="{{ $id ?? $name }}" >
+        <input wire:model.lazy="{{ $model }}" id="{{ $id ?? $name }}" value="{{ $value }}" name="{{ $name }}" type="checkbox"  class="checkbox checkbox-accent">
+        <span class="mx-1 label-text">{{ $label }}</span>
+      </label>
     </div>
 </div>
+<p class=" text-base-content text-opacity-40">{{ $help}}</p>
+
+
+
+
+

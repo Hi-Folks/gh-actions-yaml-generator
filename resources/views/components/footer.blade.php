@@ -1,24 +1,104 @@
+<footer class=" px-20 py-10 footer bg-base-200 text-base-content">
+  <div>
+    <svg width="50" height="50"  id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
+<g>
+  <g>
+    <path d="M424.464,226.038h-31.289c-4.637,0-8.394,3.758-8.394,8.394v17.485H370.51v-17.485c0-4.636-3.757-8.394-8.394-8.394
+			h-34.743v-17.351h34.743c4.637,0,8.394-3.758,8.394-8.394V66.121c0-20.285-16.502-36.787-36.787-36.787h-69.329V8.394
+			c0-4.636-3.757-8.394-8.394-8.394c-4.637,0-8.394,3.758-8.394,8.394v20.939h-69.33c-20.285,0-36.787,16.503-36.787,36.787v134.173
+			c0,4.636,3.757,8.394,8.394,8.394h34.744v17.351h-34.744c-4.637,0-8.394,3.758-8.394,8.394v17.485h-14.271v-17.485
+			c0-4.636-3.757-8.394-8.394-8.394h-31.29c-4.637,0-8.394,3.758-8.394,8.394v169.096c0,4.636,3.757,8.394,8.394,8.394h31.289
+			c4.637,0,8.394-3.758,8.394-8.394V303.215h14.271v68.203c0,4.636,3.757,8.394,8.394,8.394h14.9v75.713h-10.586
+			c-4.637,0-8.394,3.758-8.394,8.394v39.686c0,4.636,3.757,8.394,8.394,8.394h70.744c4.637,0,8.394-3.758,8.394-8.394v-39.686
+			c0-4.636-3.757-8.394-8.394-8.394h-10.585v-75.713h83.289v75.713h-10.586c-4.637,0-8.394,3.758-8.394,8.394v39.686
+			c0,4.636,3.757,8.394,8.394,8.394h70.744c4.637,0,8.394-3.758,8.394-8.394v-39.686c0-4.636-3.757-8.394-8.394-8.394h-10.585
+			v-75.713h14.9c4.637,0,8.394-3.758,8.394-8.394v-68.203h14.271v100.312c0,4.636,3.757,8.394,8.394,8.394h31.289
+			c4.637,0,8.394-3.758,8.394-8.394V234.431C432.857,229.796,429.1,226.038,424.464,226.038z M110.43,395.134H95.929V242.826h14.501
+			V395.134z M141.489,286.428h-14.271v-17.723h14.271V286.428z M158.276,191.9V66.121c0-11.028,8.972-20,20-20h155.447
+			c11.028,0,20,8.972,20,20V191.9H158.276z M310.586,208.686v17.351H201.414v-17.351H310.586z M216.547,472.314v22.898h-53.957
+			v-22.898H216.547z M181.571,455.526v-75.713h15.998v75.713H181.571z M349.409,472.314v22.898h-53.957v-22.898H349.409z
+			 M314.433,455.526v-75.713h15.998v75.713h0H314.433z M353.723,363.024H158.276V242.826h195.446V363.024z M384.781,286.428H370.51
+			v-17.723h14.271V286.428z M416.07,395.134h-14.501V242.826h14.501V395.134z"/>
+  </g>
+</g>
+      <g>
+        <g>
+          <path d="M204.236,84.744c-20.803,0-37.727,16.924-37.727,37.726c0,20.802,16.924,37.726,37.727,37.726
+			c20.802,0.001,37.726-16.923,37.726-37.726C241.963,101.668,225.039,84.744,204.236,84.744z M204.236,143.409
+			c-11.545,0-20.94-9.392-20.94-20.939c0-11.545,9.394-20.939,20.94-20.939c11.545,0,20.939,9.393,20.939,20.939
+			C225.175,134.016,215.782,143.409,204.236,143.409z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M307.765,84.744c-20.803,0-37.727,16.924-37.727,37.726c0,20.802,16.924,37.727,37.727,37.727
+			c20.802,0,37.726-16.924,37.726-37.726S328.567,84.744,307.765,84.744z M307.765,143.409c-11.545,0-20.94-9.393-20.94-20.939
+			c0-11.545,9.393-20.939,20.94-20.939c11.545,0,20.939,9.393,20.939,20.939C328.703,134.016,319.31,143.409,307.765,143.409z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <path d="M256.001,270.9c-30.317,0-54.982,24.664-54.982,54.982c0,4.636,3.757,8.394,8.394,8.394h93.176
+			c4.637,0,8.394-3.758,8.394-8.394C310.982,295.565,286.318,270.9,256.001,270.9z M218.735,317.488
+			c3.835-17.036,19.089-29.8,37.265-29.8c18.177,0,33.43,12.764,37.265,29.8H218.735z"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <circle cx="326.744" cy="267.215" r="8.394"/>
+        </g>
+      </g>
+      <g>
+        <g>
+          <circle cx="185.257" cy="267.215" r="8.394"/>
+        </g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+</svg>
 
-    <footer class="w-full text-gray-700 bg-gray-100 body-font">
-        <div
-            class="container flex flex-col flex-wrap px-5 py-10 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap">
-            <div class="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
-                <a class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-                {{ config("app.name") }}
-                </a>
-                <p class="mt-2 text-sm text-gray-500">Github Actions Workflow Configurator</p>
-            </div>
-            <div class="flex flex-wrap flex-grow text-center lg:-mb-10 md:mt-0">
-                <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
-                    <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="https://github.com/Hi-Folks/gh-actions-yaml-generator">Source Code</a>
-                </div>
+    <p><h2>{{ config("app.name") }}</h2>
+      <br>Github Actions Workflow Configurator
+    </p>
+  </div>
+  <div>
+    <span class="footer-title">Ghygen</span>
+    <a href="{{ config("app.url") }}" class="link link-hover">Home</a>
+    <a href="{{ route("about") }}" class="link link-hover">What is Ghygen?</a>
+  </div>
+  <div>
+    <span class="footer-title">Open Source</span>
+    <a href="https://github.com/Hi-Folks/gh-actions-yaml-generator" target="_blank" class="link link-hover">Source code</a>
+    <a href="https://github.com/Hi-Folks/lara-lens" target="_blank" class="link link-hover">Used package: Laralens</a>
+  </div>
 
-                <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
-                    <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="{{ config("app.url") }}">Home</a>
-                </div>
-              <div class="w-full px-4 mt-4 lg:w-1/3 md:w-1/3">
-                <a class="text-gray-500 cursor-pointer hover:text-gray-900" href="{{ route("about") }}">What is Ghygen?</a>
-              </div>
-            </div>
-        </div>
-    </footer>
+</footer>
