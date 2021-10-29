@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.7 - WIP
+It's still Hacktoberfest!
+- Now you can deploy with Forge with your CI workflow
+
 ## 0.4.6 - 2021-10-23
 It's still Hacktoberfest!
 - Welcome to PHP 8.1, you can select PHP8.1 (experimental) to check the compatibility of your application in CICD
