@@ -47,10 +47,11 @@ class GenerateWorkflow extends Command
         parent::__construct();
     }
 
-    public function title($title) {
-        $this->line(str_pad("",  strlen($title) + 12, "*"), "info");
+    public function title($title)
+    {
+        $this->line(str_pad("", strlen($title) + 12, "*"), "info");
         $this->line("***   " . $title . "   ***", "info");
-        $this->line(str_pad("",  strlen($title) + 12, "*"), "info");
+        $this->line(str_pad("", strlen($title) + 12, "*"), "info");
         $this->newLine();
         $this->line("Auto detecting characteristics of your project");
         $this->line("To generate a GitHub Actions workflow");
@@ -147,7 +148,6 @@ class GenerateWorkflow extends Command
                 $generator->stepToolStaticAnalysis = "larastan";
                 $generator->stepPhpstanUseNeon = $guesserFiles->phpstanNeonExists();
                 $reportExecution->addInfo("Static code analysis", "Larastan and PHPStan");
-
             } else {
                 $phpstan = Arr::get($devPackages, "phpstan/phpstan", "");
                 if ($phpstan !== "") {

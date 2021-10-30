@@ -99,8 +99,7 @@ class ReportExecution
         foreach ($this->result as $r) {
             $label = Arr::get($r, "label", "");
             $value = Arr::get($r, "value", "");
-            $retArray[] = ["label"=>$label, "value"=>$value];
-
+            $retArray[] = ["label" => $label, "value" => $value];
         }
         return $retArray;
     }
