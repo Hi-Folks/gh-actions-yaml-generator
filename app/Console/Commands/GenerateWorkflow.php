@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Objects\GuesserFiles;
+use App\Objects\ReportExecution;
 use App\Objects\WorkflowGenerator;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Console\Command;
@@ -46,11 +47,14 @@ class GenerateWorkflow extends Command
         parent::__construct();
     }
 
-    private function printline(string $string, string $string2 = ""): void
-    {
-        if ($this->saveFile) {
-            $this->line($string . " <info>" . $string2 . "</info>");
-        }
+    public function title($title) {
+        $this->line(str_pad("",  strlen($title) + 12, "*"), "info");
+        $this->line("***   " . $title . "   ***", "info");
+        $this->line(str_pad("",  strlen($title) + 12, "*"), "info");
+        $this->newLine();
+        $this->line("Auto detecting characteristics of your project");
+        $this->line("To generate a GitHub Actions workflow");
+        $this->newLine();
     }
 
     /**
@@ -60,6 +64,7 @@ class GenerateWorkflow extends Command
      */
     public function handle()
     {
+        $reportExecution = new ReportExecution();
         $this->saveFile = false;
         $projectdir = $this->option("projectdir");
         if (is_null($projectdir)) {
@@ -93,10 +98,10 @@ class GenerateWorkflow extends Command
         $generator->loadDefaults();
 
         if ($guesserFiles->composerExists()) {
-            $this->printline("Composer file loaded");
+            $reportExecution->addInfo("Composer file", "Loaded");
             $composer = json_decode(file_get_contents($guesserFiles->getComposerPath()), true);
             $generator->name = Arr::get($composer, 'name', "");
-            $this->printline("Project name", $generator->name);
+            $reportExecution->addInfo("Project name", $generator->name);
             $yamlFile = GuesserFiles::generateYamlFilename(
                 GuesserFiles::getGithubWorkflowDirectory($projectdir),
                 $generator->name
@@ -105,7 +110,8 @@ class GenerateWorkflow extends Command
             $phpversion = Arr::get($composer, 'require.php', "8.0");
 
             $stepPhp = $generator->detectPhpVersion($phpversion);
-            $this->printline("PHP versions", implode(",", $stepPhp));
+            $reportExecution->addInfo("PHP versions", $stepPhp);
+
             if ($this->option("prefer-stable") && $this->option("prefer-lowest")) {
                 $generator->dependencyStability = [ 'prefer-stable', 'prefer-lowest' ];
             } elseif ($this->option("prefer-lowest")) {
@@ -115,8 +121,7 @@ class GenerateWorkflow extends Command
             } else {
                 $generator->dependencyStability = [ 'prefer-none' ];
             }
-            $this->printline("Dependency stability", implode(",", $generator->dependencyStability));
-
+            $reportExecution->addInfo("Dependency stability", $generator->dependencyStability);
             // detect packages
             $devPackages = Arr::get($composer, 'require-dev');
             // testbench
@@ -125,14 +130,14 @@ class GenerateWorkflow extends Command
                 $laravelVersions = GuesserFiles::detectLaravelVersionFromTestbench($testbenchVersions);
                 $generator->matrixLaravel = true;
                 $generator->matrixLaravelVersions = $laravelVersions;
-                $this->printline("Laravel versions", implode(",", $laravelVersions));
+                $reportExecution->addInfo("Laravel versions", $laravelVersions);
             }
             // squizlabs/php_codesniffer
             $phpCodesniffer = Arr::get($devPackages, "squizlabs/php_codesniffer", "");
             if ($phpCodesniffer !== "") {
                 $generator->stepExecuteCodeSniffer = true;
                 $generator->stepInstallCodeSniffer = false;
-                $this->printline("Code sniffer", "Install");
+                $reportExecution->addInfo("Code sniffer", "Install");
             }
             // nunomaduro/larastan
             $larastan = Arr::get($devPackages, "nunomaduro/larastan", "");
@@ -141,7 +146,8 @@ class GenerateWorkflow extends Command
                 $generator->stepInstallStaticAnalysis = false;
                 $generator->stepToolStaticAnalysis = "larastan";
                 $generator->stepPhpstanUseNeon = $guesserFiles->phpstanNeonExists();
-                $this->printline("Static code analysis", "Larastan and PHPStan");
+                $reportExecution->addInfo("Static code analysis", "Larastan and PHPStan");
+
             } else {
                 $phpstan = Arr::get($devPackages, "phpstan/phpstan", "");
                 if ($phpstan !== "") {
@@ -149,7 +155,7 @@ class GenerateWorkflow extends Command
                     $generator->stepInstallStaticAnalysis = false;
                     $generator->stepToolStaticAnalysis = "phpstan";
                     $generator->stepPhpstanUseNeon = $guesserFiles->phpstanNeonExists();
-                    $this->printline("Static code analysis", "PHPStan");
+                    $reportExecution->addInfo("Static code analysis", "PHPStan");
                 }
             }
             $generator->stepDusk = false;
@@ -158,14 +164,14 @@ class GenerateWorkflow extends Command
             $phpunit = Arr::get($devPackages, "phpunit/phpunit", "");
             if ($phpunit !== "") {
                 $generator->stepExecutePhpunit = true;
-                $this->printline("Automated test", "PHPUnit");
+                $reportExecution->addInfo("Automated test", "PHPUnit");
             }
             // phpunit/phpunit
             $generator->stepExecutePestphp = false;
             $pestphp = Arr::get($devPackages, "pestphp/pest", "");
             if ($pestphp !== "") {
                 $generator->stepExecutePestphp = true;
-                $this->printline("Automated test", "Pest");
+                $reportExecution->addInfo("Automated test", "Pest");
             }
         }
         $generator->detectCache($cache);
@@ -182,21 +188,21 @@ class GenerateWorkflow extends Command
             $generator->stepRunMigrations = false;
             if ($databaseType === "mysql") {
                 $generator->databaseType = WorkflowGenerator::DB_TYPE_MYSQL;
-                $this->printline("Detected Mysql", "will setup Mysql service");
+                $reportExecution->addInfo("Detected Mysql", "will setup Mysql service");
             }
             if ($databaseType === "sqlite") {
                 $generator->databaseType = WorkflowGenerator::DB_TYPE_SQLITE;
-                $this->printline("Detected Sqlite", "done");
+                $reportExecution->addInfo("Detected Sqlite", "done");
             }
             if ($databaseType === "postgresql") {
                 $generator->databaseType = WorkflowGenerator::DB_TYPE_POSTGRESQL;
-                $this->printline("Detected PostgreSQL", "will setup pgsql service");
+                $reportExecution->addInfo("Detected PostgreSQL", "will setup pgsql service");
             }
             if ($generator->databaseType !== WorkflowGenerator::DB_TYPE_NONE) {
                 $migrationFiles = scandir($guesserFiles->getMigrationsPath());
                 if (count($migrationFiles) > 4) {
                     $generator->stepRunMigrations = true;
-                    $this->printline("I will execute also migrations", "done");
+                    $reportExecution->addInfo("I will execute also migrations", "done");
                 }
             }
         }
@@ -208,7 +214,7 @@ class GenerateWorkflow extends Command
             if ($versionFromNvmrc !== "") {
                 $generator->stepNodejsVersion = $versionFromNvmrc;
             }
-            $this->printline("NodeJS detected", "version " .  $generator->stepNodejsVersion);
+            $reportExecution->addInfo("NodeJS detected", "version " .  $generator->stepNodejsVersion);
         }
         $appKey = "";
         $generator->stepGenerateKey = false;
@@ -238,7 +244,10 @@ class GenerateWorkflow extends Command
         if ($this->saveFile) {
             try {
                 $size = file_put_contents($yamlFile, $result);
-                $this->info("File " . $yamlFile . " saved (" . $size . " bytes)");
+                $this->title("Ghygen");
+                $this->table(["Report", "status"], $reportExecution->toArrayLabelValue());
+                $this->info("File " . $yamlFile);
+                $this->info("File created (" . $size . " bytes)");
             } catch (\Exception $e) {
                 if (! GuesserFiles::existsGithubWorkflowDirectory($projectdir)) {
                     $this->error(
