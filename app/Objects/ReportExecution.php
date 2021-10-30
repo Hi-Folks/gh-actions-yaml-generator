@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 class ReportExecution
 {
     private Collection $result;
-    private $idx = -1;
+    private int $idx = -1;
 
     public const LINE_TYPE_ERROR   = 'error';
     public const LINE_TYPE_WARNING = 'warning';
@@ -28,16 +28,16 @@ class ReportExecution
         $this->idx = -1;
     }
 
-    public function addError($label, $value): void
+    public function addError(string $label, string $value): void
     {
         $this->add($label, $value, true, self::LINE_TYPE_ERROR);
     }
 
-    public function addWarning($label, $value): void
+    public function addWarning(string $label, string $value): void
     {
         $this->add($label, $value, true, self::LINE_TYPE_WARNING);
     }
-    public function addInfo($label, $value): void
+    public function addInfo(string $label, mixed $value): void
     {
         if (is_array($value)) {
             $value = implode(",", $value);
@@ -46,28 +46,41 @@ class ReportExecution
     }
 
 
-    public function addHint($value): void
+    public function addHint(string $value): void
     {
         $this->add("*** HINT", $value, true, self::LINE_TYPE_HINT);
     }
-    public function addErrorAndHint($label, $errorMessage, $hintMessage): void
-    {
+    public function addErrorAndHint(
+        string $label,
+        string $errorMessage,
+        string $hintMessage
+    ): void {
         $this->addError($label, $errorMessage);
         $this->addHint($hintMessage);
     }
-    public function addWarningAndHint($label, $warningMessage, $hintMessage): void
-    {
+    public function addWarningAndHint(
+        string $label,
+        string $warningMessage,
+        string $hintMessage
+    ): void {
         $this->addWarning($label, $warningMessage);
         $this->addHint($hintMessage);
     }
-    public function addInfoAndHint($label, $infoMessage, $hintMessage): void
-    {
+    public function addInfoAndHint(
+        string $label,
+        string $infoMessage,
+        string $hintMessage
+    ): void {
         $this->addInfo($label, $infoMessage);
         $this->addHint($hintMessage);
     }
 
-    public function add($label, $value, $forceLine = false, $lineType = self::LINE_TYPE_DEFAULT): void
-    {
+    public function add(
+        string $label,
+        string $value,
+        bool $forceLine = false,
+        string $lineType = self::LINE_TYPE_DEFAULT
+    ): void {
         $this->result->push(
             [
                 "label" => $label,
@@ -82,18 +95,21 @@ class ReportExecution
     /**
      * @return bool
      */
-    public static function isMessageLine(string $lineType)
+    public static function isMessageLine(string $lineType): bool
     {
         return (($lineType === self::LINE_TYPE_ERROR) ||
             ($lineType === self::LINE_TYPE_WARNING) ||
             ($lineType === self::LINE_TYPE_INFO));
     }
-    public static function isHintLine($lineType): bool
+    public static function isHintLine(string $lineType): bool
     {
         return ($lineType === self::LINE_TYPE_HINT);
     }
 
-    public function toArrayLabelValue()
+    /**
+     * @return array<mixed>
+     */
+    public function toArrayLabelValue(): array
     {
         $retArray = [];
         foreach ($this->result as $r) {
@@ -103,7 +119,11 @@ class ReportExecution
         }
         return $retArray;
     }
-    public function toArray()
+
+    /**
+     * @return array<mixed>
+     */
+    public function toArray(): array
     {
         return $this->result->toArray();
     }

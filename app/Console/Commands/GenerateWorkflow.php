@@ -47,7 +47,7 @@ class GenerateWorkflow extends Command
         parent::__construct();
     }
 
-    public function title($title)
+    public function title(string $title): void
     {
         $this->line(str_pad("", strlen($title) + 12, "*"), "info");
         $this->line("***   " . $title . "   ***", "info");
