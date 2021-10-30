@@ -37,6 +37,11 @@ class ReportExecution
     {
         $this->add($label, $value, true, self::LINE_TYPE_WARNING);
     }
+    /**
+     * @param string|string[] $value
+     *
+     * @psalm-param array<string>|string $value
+     */
     public function addInfo(string $label, mixed $value): void
     {
         if (is_array($value)) {
