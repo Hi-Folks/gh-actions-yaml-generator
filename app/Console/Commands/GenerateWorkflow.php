@@ -98,7 +98,7 @@ class GenerateWorkflow extends Command
         $generator = new WorkflowGenerator();
         $generator->loadDefaults();
 
-        if ($guesserFiles->composerExists()) {
+        if ($guesserFiles->composerExists() === true) {
             $reportExecution->addInfo("Composer file", "Loaded");
             $composer = json_decode(file_get_contents($guesserFiles->getComposerPath()), true);
             $generator->name = Arr::get($composer, 'name', "");
