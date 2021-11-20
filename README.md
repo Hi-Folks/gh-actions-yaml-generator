@@ -40,7 +40,12 @@ If you want to start using it locally you can clone the repo and install it foll
 
 ## Command line
 Experimental and "magical" feature: Ghygen ships also a command for generating **automatically** a GitHub Actions workflow Yaml file.
-Once you installed locally Ghygen (see next section), you can execute:
+You can install Gygen as project with composer:
+```shell
+composer create-project hi-folks/ghygen
+cd ghygen
+```
+Once you installed Ghygen, you can execute:
 ```shell
 php artisan ghygen:generate --projectdir=../otherproject
 ```
