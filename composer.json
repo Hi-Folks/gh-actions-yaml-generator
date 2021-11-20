@@ -1,5 +1,5 @@
 {
-    "name": "hifolks/gh-actions-yaml-generator",
+    "name": "hi-folks/ghygen",
     "version": "0.4.7",
     "type": "project",
     "description": "Ghygen is a GitHub Actions configurator for your Laravel Application.",
