@@ -256,6 +256,10 @@ class GenerateWorkflow extends Command
                         "Workflow directory doesn't exist : " .
                         GuesserFiles::getGithubWorkflowDirectory($projectdir)
                     );
+                    $this->info(
+                        "Hint: create Workflow directory: " .
+                        GuesserFiles::getGithubWorkflowDirectory($projectdir)
+                    );
                 } else {
                     $this->error($e->getMessage());
                 }
