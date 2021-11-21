@@ -1,8 +1,13 @@
 # Changelog
 
-## 0.4.7 - WIP
-It's still Hacktoberfest!
-- Now you can deploy with Forge with your CI workflow
+## 0.5.0 - 2021-11-21
+- Now you can **deploy with Forge** with your CI workflow
+- **UI refactoring**: Introducing DaisyUI components
+- **Report** for command line execution
+- Upgrade to **PHPstan 1**
+- Command line: added --dry-run option
+- Now is possible to **install Ghygen** with composer create-project hi-folks/ghygen
+
 
 ## 0.4.6 - 2021-10-23
 It's still Hacktoberfest!
