@@ -59,13 +59,16 @@ class GuesserFiles
     {
         return Arr::get($this->filePaths, self::COMPOSER_VAR, "");
     }
+
+
     public function composerExists(): bool
     {
         $exists = $this->getComposerPath();
-        if ($exists == "") {
+        if ($exists === "") {
             return false;
+        } else {
+            return is_file($this->getComposerPath());
         }
-        return is_file($this->getComposerPath());
     }
 
     public function getEnvPath(): string

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2852e2faeb8a736dda948f6967621552",
+    "content-hash": "6e2593fa505232bdf6f5417256bd817c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1641,16 +1641,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.73.0",
+            "version": "v8.73.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f60e5ceccac453864edbf001b665450886cda8fc"
+                "reference": "36dfae9d9ef7f88e8f9489c484a0a0609592bc21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f60e5ceccac453864edbf001b665450886cda8fc",
-                "reference": "f60e5ceccac453864edbf001b665450886cda8fc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/36dfae9d9ef7f88e8f9489c484a0a0609592bc21",
+                "reference": "36dfae9d9ef7f88e8f9489c484a0a0609592bc21",
                 "shasum": ""
             },
             "require": {
@@ -1809,7 +1809,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-11-19T14:10:17+00:00"
+            "time": "2021-11-20T19:20:02+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -11143,16 +11143,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.12.0",
+            "version": "4.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "e42bc4a23f67acba28a23bb09c348e2ff38a1d87"
+                "reference": "cd489407a0219b93cadd04d5aff9845a942f7e5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e42bc4a23f67acba28a23bb09c348e2ff38a1d87",
-                "reference": "e42bc4a23f67acba28a23bb09c348e2ff38a1d87",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/cd489407a0219b93cadd04d5aff9845a942f7e5d",
+                "reference": "cd489407a0219b93cadd04d5aff9845a942f7e5d",
                 "shasum": ""
             },
             "require": {
@@ -11198,7 +11198,8 @@
                 "weirdan/prophecy-shim": "^1.0 || ^2.0"
             },
             "suggest": {
-                "ext-igbinary": "^2.0.5"
+                "ext-curl": "In order to send data to shepherd",
+                "ext-igbinary": "^2.0.5 is required, used to serialize caching data"
             },
             "bin": [
                 "psalm",
@@ -11242,9 +11243,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.12.0"
+                "source": "https://github.com/vimeo/psalm/tree/4.13.0"
             },
-            "time": "2021-11-06T10:31:17+00:00"
+            "time": "2021-11-19T20:24:40+00:00"
         },
         {
             "name": "webmozart/path-util",
