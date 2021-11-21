@@ -43,7 +43,7 @@ class ReportExecution
      * @param string $style
      * @psalm-param array<string>|string $value
      */
-    public function addValue(string $label, $value, $style = ""): void
+    public function addValue(string $label, $value, string $style = ""): void
     {
         if (is_array($value)) {
             $value = implode(",", $value);
@@ -54,11 +54,21 @@ class ReportExecution
         $this->add($label, $value, true, self::LINE_TYPE_INFO);
     }
 
-    public function addValueInfo(string $label, mixed $value): void
+    /**
+     * @param string $label
+     * @param string|string[] $value
+     * @psalm-param array<string>|string $value
+     */
+    public function addValueInfo(string $label, $value): void
     {
         $this->addValue($label, $value, "info");
     }
-    public function addValueComment(string $label, mixed $value): void
+    /**
+     * @param string $label
+     * @param string|string[] $value
+     * @psalm-param array<string>|string $value
+     */
+    public function addValueComment(string $label, $value): void
     {
         $this->addValue($label, $value, "comment");
     }
