@@ -70,6 +70,8 @@ class GenerateWorkflow extends Command
         $projectdir = $this->option("projectdir");
         if (is_null($projectdir)) {
             $projectdir = "";
+        } else {
+            $projectdir = rtrim($projectdir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         }
         $yamlFile = $this->option("save");
         $this->saveFile = ! is_null($yamlFile);
