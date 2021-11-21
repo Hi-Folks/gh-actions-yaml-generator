@@ -38,16 +38,29 @@ class ReportExecution
         $this->add($label, $value, true, self::LINE_TYPE_WARNING);
     }
     /**
+     * @param string $label
      * @param string|string[] $value
-     *
+     * @param string $style
      * @psalm-param array<string>|string $value
      */
-    public function addInfo(string $label, mixed $value): void
+    public function addValue(string $label, $value, $style = ""): void
     {
         if (is_array($value)) {
             $value = implode(",", $value);
         }
+        if ($style !== "") {
+            $value = sprintf("<%s>%s</%s>", $style, $value, $style);
+        }
         $this->add($label, $value, true, self::LINE_TYPE_INFO);
+    }
+
+    public function addValueInfo(string $label, mixed $value): void
+    {
+        $this->addValue($label, $value, "info");
+    }
+    public function addValueComment(string $label, mixed $value): void
+    {
+        $this->addValue($label, $value, "comment");
     }
 
 
@@ -76,7 +89,7 @@ class ReportExecution
         string $infoMessage,
         string $hintMessage
     ): void {
-        $this->addInfo($label, $infoMessage);
+        $this->addValue($label, $infoMessage);
         $this->addHint($hintMessage);
     }
 
