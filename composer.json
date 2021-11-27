@@ -12,7 +12,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4|^8.0|^8.1",
         "ext-json": "*",
         "doctrine/dbal": "^3.0",
         "composer/semver": "^3.2",
@@ -47,7 +47,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         }
     },
     "extra": {
