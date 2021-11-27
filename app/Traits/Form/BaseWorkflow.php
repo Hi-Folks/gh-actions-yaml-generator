@@ -75,7 +75,7 @@ trait BaseWorkflow
         $this->postgresqlVersion = "latest";
         $this->postgresqlDatabaseName = "db_test_laravel";
         $this->postgresqlDatabasePort = 55432;
-        $this->stepPhpVersions = ["8.0", "7.4"];
+        $this->stepPhpVersions = ["8.1", "8.0", "7.4"];
         $this->stepNodejs = false;
         $this->stepNodejsVersion = "16.x";
         $this->stepCachePackages = true;

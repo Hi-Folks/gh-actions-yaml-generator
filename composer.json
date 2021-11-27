@@ -1,6 +1,6 @@
 {
     "name": "hi-folks/ghygen",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "type": "project",
     "description": "Ghygen is a GitHub Actions configurator for your Laravel Application.",
     "keywords": [

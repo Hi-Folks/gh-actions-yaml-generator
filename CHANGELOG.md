@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1 - 2021-11-27
+Welcome PHP 8.1
+- update GitHub actions workflows for 8.1
+- add option for 8.1 in the UI
+
 ## 0.5.0 - 2021-11-21
 - Now you can **deploy with Forge** with your CI workflow
 - **UI refactoring**: Introducing DaisyUI components
