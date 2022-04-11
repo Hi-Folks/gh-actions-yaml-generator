@@ -31,6 +31,7 @@ trait LaravelStuff
         $this->matrixLaravel = false;
         $this->matrixLaravelVersions = [];
         $this->matrixTestbenchDependencies = [
+            "9.*" => "7.*",
             "8.*" => "6.*",
             "7.*" => "5.*",
             "6.*" => "4.*"
