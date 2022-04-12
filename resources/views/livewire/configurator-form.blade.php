@@ -45,7 +45,7 @@
       <form wire:submit.prevent="submitForm"  action="#" method="POST">
         @csrf
         <div class=" sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
+          <div class="px-4 py-5  space-y-6 sm:p-6   ">
             <x-form.input-text
                 model="name"
                 name="name"
