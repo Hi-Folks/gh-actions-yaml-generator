@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.2 - 2022-04-12
+- added laravel 9 mapping for testbench, thanks to @dkemper
+- improve dark/light mode
+- update npm packages
+
 ## 0.5.1 - 2021-11-27
 Welcome PHP 8.1
 - update GitHub actions workflows for 8.1
