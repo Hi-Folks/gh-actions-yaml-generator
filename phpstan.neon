@@ -2,10 +2,11 @@ includes:
     - ./vendor/nunomaduro/larastan/extension.neon
 parameters:
     reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
     ignoreErrors:
         - '#Parameter .1 \$separator of function explode expects non-empty-string, string given.#'
 
-    level: 6
+    level: 5
     paths:
         - app
         - tests

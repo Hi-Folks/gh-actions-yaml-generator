@@ -101,6 +101,4 @@ jobs:
         run: |
           vendor/bin/phpcs --standard=PSR12 app
 
-      - name: Execute Code Static Analysis (PSALM)
-        run: |
-          vendor/bin/psalm
+

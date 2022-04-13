@@ -23,7 +23,7 @@ phpfix: ## Fix some warnings from phpcs
 	vendor/bin/phpcbf --standard=PSR12  app
 	git commit -m "Auto Fix PSR12 Style" .
 
-allcheck: phpcs phpstan psalm test ## it performs all check (phpcs, phpstan, tests)
+allcheck: phpcs phpstan test ## it performs all check (phpcs, phpstan, tests)
 
 push: allcheck ## It performs all check and then git push on the current branch
 	git push origin HEAD

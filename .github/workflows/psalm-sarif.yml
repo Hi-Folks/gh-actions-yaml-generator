@@ -4,8 +4,7 @@ name: Code Scanning - GitHub integration
 on:
   push:
     branches:
-      - main
-      - develop
+      - tests/**
 
 jobs:
   laravel-tests:

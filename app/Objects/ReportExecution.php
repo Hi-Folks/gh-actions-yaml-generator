@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 class ReportExecution
 {
     /**
-     * @var Collection<int, string>
+     * @var Collection<string, mixed>
      */
     private Collection $result;
 
