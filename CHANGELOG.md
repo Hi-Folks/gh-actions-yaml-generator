@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0 - WIP
+## 0.6.0 - 2022-04-13
 - upgrade to Laravel 9 framework
 
 ## 0.5.2 - 2022-04-12
