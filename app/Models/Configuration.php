@@ -10,7 +10,7 @@ class Configuration extends Model
     use HasFactory;
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'configuration' => 'object',

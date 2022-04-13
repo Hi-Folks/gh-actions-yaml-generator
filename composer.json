@@ -1,6 +1,6 @@
 {
     "name": "hi-folks/ghygen",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "type": "project",
     "description": "Ghygen is a GitHub Actions configurator for your Laravel Application.",
     "keywords": [
@@ -12,43 +12,39 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0|^8.1",
+        "php": "^8.0.2|^8.1",
         "ext-json": "*",
         "doctrine/dbal": "^3.0",
         "composer/semver": "^3.2",
-        "danharrin/livewire-rate-limiting": "^0.2.0",
-        "fideloper/proxy": "^4.4",
+        "danharrin/livewire-rate-limiting": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.2",
         "hi-folks/lara-lens": "^0.2.2",
-        "laravel/framework": "^8.54",
-        "laravel/tinker": "^2.5",
+        "laravel/framework": "^9.2",
+        "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.6",
         "swaggest/json-schema": "^0.12.31",
-        "symfony/yaml": "^5.2"
+        "symfony/yaml": "^6.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^6.11",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "nunomaduro/larastan": "^1.0.0",
-        "phpstan/phpstan": "^1.0.0",
-        "phpunit/phpunit": "^9.5.8",
-        "psalm/plugin-laravel": "^1.4",
+        "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0.0",
+        "phpstan/phpstan": "^1.5.0",
+        "phpunit/phpunit": "^9.5.10",
+
         "squizlabs/php_codesniffer": "^3.6",
         "vimeo/psalm": "^4.7"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "platform": {
-            "php": "7.4"
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {

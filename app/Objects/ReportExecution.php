@@ -7,7 +7,11 @@ use Illuminate\Support\Collection;
 
 class ReportExecution
 {
+    /**
+     * @var Collection<string, mixed>
+     */
     private Collection $result;
+
     private int $idx = -1;
 
     public const LINE_TYPE_ERROR   = 'error';
