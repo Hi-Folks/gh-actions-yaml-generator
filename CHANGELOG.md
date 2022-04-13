@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.0 - WIP
+- upgrade to Laravel 9 framework
+
 ## 0.5.2 - 2022-04-12
 - added laravel 9 mapping for testbench, thanks to @dkemper
 - improve dark/light mode
