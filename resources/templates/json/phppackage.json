@@ -53,10 +53,5 @@
     "stepExecuteStaticAnalysis": "1",
     "stepFixStoragePermissions": false,
     "stepInstallStaticAnalysis": true,
-    "matrixLaravelVersionsString": "[  ]",
-    "matrixTestbenchDependencies": {
-        "6.*": "4.*",
-        "7.*": "5.*",
-        "8.*": "6.*"
-    }
+    "matrixLaravelVersionsString": "[  ]"
 }
