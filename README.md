@@ -79,11 +79,7 @@ Clone source code, enter the new directory and perform a couple of instructions:
 ```shell
 git clone https://github.com/Hi-Folks/gh-actions-yaml-generator.git
 cd gh-actions-yaml-generator
-cp .env.example .env
-composer install
-php artisan key:generate
-npm i
-npm run production
+make install
 ```
 Then create your database and update the .env file with the right values for DB_* .
 
