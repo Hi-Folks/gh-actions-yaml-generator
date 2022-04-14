@@ -27,3 +27,10 @@ allcheck: phpcs phpstan test ## it performs all check (phpcs, phpstan, tests)
 
 push: allcheck ## It performs all check and then git push on the current branch
 	git push origin HEAD
+
+install:
+	cp .env.example .env
+	composer install
+	php artisan key:generate
+	npm i
+	npm run production
