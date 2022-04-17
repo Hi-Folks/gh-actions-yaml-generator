@@ -104,11 +104,11 @@ class WorkflowGenerator
     /**
      * @return string[]
      *
-     * @psalm-return list<'7.3'|'7.4'|'8.0'>
+     * @psalm-return list<'7.3'|'7.4'|'8.0'|'8.1'>
      */
     public function detectPhpVersion(string $phpversion): array
     {
-        $listPhpVersions = [ "7.3", "7.4", "8.0"];
+        $listPhpVersions = [ "7.3", "7.4", "8.0","8.1"];
         $stepPhp = [];
         foreach ($listPhpVersions as $php) {
             if (Semver::satisfies($php, $phpversion)) {
