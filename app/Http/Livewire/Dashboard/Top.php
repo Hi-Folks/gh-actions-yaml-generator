@@ -8,7 +8,7 @@ use Livewire\Component;
 class Top extends Component
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Collection<\App\Models\Configuration> $top
+     * @var \Illuminate\Database\Eloquent\Collection<int,\App\Models\Configuration> $top
      */
     public $top;
 

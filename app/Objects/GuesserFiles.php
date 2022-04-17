@@ -137,9 +137,20 @@ class GuesserFiles
         return $this->somethingExists("getMigrationsPath", true);
     }
 
+    public function dispatch(string $method): string
+    {
+        $callback = [$this, $method];
+        if (is_callable($callback)) {
+            return strval(call_user_func($callback));
+        }
+
+        throw new \Exception('Method not found');
+    }
+
     private function somethingExists(string $methodPath, bool $isDirCheck = false): bool
     {
-        $path = call_user_func([$this, $methodPath]);
+        //$path = call_user_func(array($this, $methodPath));
+        $path = $this->dispatch($methodPath);
         $exists = $path;
         if ($exists == "") {
             return false;

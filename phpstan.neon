@@ -6,7 +6,7 @@ parameters:
     ignoreErrors:
         - '#Parameter .1 \$separator of function explode expects non-empty-string, string given.#'
 
-    level: 5
+    level: 6
     paths:
         - app
         - tests

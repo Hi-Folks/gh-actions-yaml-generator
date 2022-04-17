@@ -28,7 +28,7 @@ class ReportExecution
 
     public function reset(): void
     {
-        $this->result = collect();
+        $this->result = new Collection();
         $this->idx = -1;
     }
 
