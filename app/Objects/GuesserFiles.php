@@ -5,7 +5,6 @@ namespace App\Objects;
 use Composer\Semver\Semver;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class GuesserFiles
 {
@@ -48,10 +47,13 @@ class GuesserFiles
         foreach ($arrayFiles as $variable => $file) {
             $this->filePaths[$variable] = base_path($file);
         }
-        if ($projectDir !== "") {
-            foreach ($arrayFiles as $variable => $file) {
-                $this->filePaths[$variable] = $projectDir . DIRECTORY_SEPARATOR . $file;
-            }
+
+        if ($projectDir === "") {
+            return;
+        }
+
+        foreach ($arrayFiles as $variable => $file) {
+            $this->filePaths[$variable] = $projectDir . DIRECTORY_SEPARATOR . $file;
         }
     }
 
@@ -60,15 +62,14 @@ class GuesserFiles
         return Arr::get($this->filePaths, self::COMPOSER_VAR, "");
     }
 
-
     public function composerExists(): bool
     {
         $exists = $this->getComposerPath();
         if ($exists === "") {
             return false;
-        } else {
-            return is_file($this->getComposerPath());
         }
+
+        return is_file($this->getComposerPath());
     }
 
     public function getEnvPath(): string
@@ -78,7 +79,7 @@ class GuesserFiles
     public function envExists(): bool
     {
         $exists = $this->getEnvPath();
-        if ($exists == "") {
+        if ($exists === "") {
             return false;
         }
         return is_file($this->getEnvPath());
@@ -126,17 +127,15 @@ class GuesserFiles
         return $this->somethingExists("getPhpstanNeonPath");
     }
 
-
     public function getMigrationsPath(): string
     {
         return Arr::get($this->filePaths, self::MIGRATIONS_VAR, "");
     }
+
     public function migrationsExists(): bool
     {
         return $this->somethingExists("getMigrationsPath", true);
     }
-
-
 
     private function somethingExists(string $methodPath, bool $isDirCheck = false): bool
     {
@@ -176,7 +175,6 @@ class GuesserFiles
         return $stepLaravelVersions;
     }
 
-
     public static function generateYamlFilename(
         string $path = "",
         string $title = ""
@@ -194,6 +192,7 @@ class GuesserFiles
     ): string {
         return $projectdir . ".github/workflows/";
     }
+
     public static function existsGithubWorkflowDirectory(
         string $projectdir = ""
     ): bool {
