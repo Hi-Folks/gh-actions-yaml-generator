@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1 - 2022-04-17
+- added php8.1 for auto-detecting php version for matrix
+- added make install command by @AlessandroMinoccheri
+- fix load template for matrixTestbenchDependencies
+
 ## 0.6.0 - 2022-04-13
 - upgrade to Laravel 9 framework
 
