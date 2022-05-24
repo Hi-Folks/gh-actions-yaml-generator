@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.2 - WIP
+- PHPStan Level 6
+
 ## 0.6.1 - 2022-04-17
 - added php8.1 for auto-detecting php version for matrix
 - added make install command by @AlessandroMinoccheri
