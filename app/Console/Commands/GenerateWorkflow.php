@@ -21,7 +21,7 @@ class GenerateWorkflow extends Command
      */
     protected $signature = 'ghygen:generate
     {--projectdir= : the directory of the project with composer.json}
-    {--dry-run : show only the execution report (no workflow file is create or showed)}
+    {--dry-run : show only the execution report (no workflow file is created or showed)}
     {--cache : enable caching packages in the workflow}
     {--envfile=' . GuesserFiles::ENV_DEFAULT_TEMPLATE_FILE . ' : the .env file to use in the workflow}
     {--prefer-stable : Prefer stable versions of dependencies}
@@ -275,7 +275,7 @@ class GenerateWorkflow extends Command
             $generator->stepFixStoragePermissions = true;
         }
         if ($generator->stepFixStoragePermissions) {
-            $reportExecution->addValueInfo("Laravel Fix storage permission", "Chmod will be executed");
+            $reportExecution->addValueInfo("Laravel Fix storage permissions", "Chmod will be executed");
         }
 
 
@@ -311,9 +311,6 @@ class GenerateWorkflow extends Command
                 $this->line($result);
             }
         }
-
-
-
 
         return 0;
     }
