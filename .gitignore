@@ -21,3 +21,5 @@ public/mix-manifest.json
 /output/
 /.vscode/
 result.sarif
+
+/.idea/
