@@ -1,6 +1,5 @@
 # GithHub Actions Workflow generated with Ghygen
-# Original configuration: http://gh-actions-yaml-generator.test?code=b709406b0bcb65c155f50ff5dcf7c6b2
-name: Test PHP 8.1 compatibility
+name: Code Quality
 on:
   push:
     branches:
@@ -16,7 +15,7 @@ jobs:
       # Label used to access the service container
       mysql:
         # Docker Hub image (also with version)
-        image: mysql:5.7
+        image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE:  db_test_laravel
@@ -32,7 +31,7 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
+        operating-system: [ubuntu-latest, windows-latest]
         php-versions: [ '8.0','8.1' ]
         dependency-stability: [ 'prefer-none' ]
 
@@ -56,7 +55,7 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
         if: steps.vendor-cache.outputs.cache-hit != 'true'
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Update Dependencies with latest stable
         if: matrix.dependency-stability == 'prefer-stable'
@@ -101,4 +100,7 @@ jobs:
         run: |
           vendor/bin/phpcs --standard=PSR12 app
 
+      - name: Execute Code Static Analysis (PHP Stan + Larastan)
+        run: |
+          vendor/bin/phpstan analyse app -c ./phpstan.neon  --no-progress
 
