@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4c0ae7419a1459c0dd7bd1943ad2999",
+    "content-hash": "4a89ac06c9513aa78412ad515e6d5281",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1508,29 +1508,31 @@
         },
         {
             "name": "hi-folks/lara-lens",
-            "version": "v0.2.7",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Hi-Folks/lara-lens.git",
-                "reference": "9da64aa08e9090de1ef386a048fe594da37d6b7b"
+                "reference": "28ffdad669220373d57c894d603d3c2287874b98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/9da64aa08e9090de1ef386a048fe594da37d6b7b",
-                "reference": "9da64aa08e9090de1ef386a048fe594da37d6b7b",
+                "url": "https://api.github.com/repos/Hi-Folks/lara-lens/zipball/28ffdad669220373d57c894d603d3c2287874b98",
+                "reference": "28ffdad669220373d57c894d603d3c2287874b98",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "^6.0|^7.0",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
-                "php": "^7.2|^8.0"
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/support": "v8.75.0|^9.0",
+                "nunomaduro/termwind": "^1.13",
+                "php": "^8.0|^8.1"
             },
             "require-dev": {
-                "nunomaduro/larastan": "^0.7.2",
-                "orchestra/testbench": "4.*|5.*|6.*|7.*",
-                "phpunit/phpunit": "^8.0|^9.3",
-                "psalm/plugin-laravel": "^1.5",
+                "doctrine/dbal": "^3.0",
+                "nunomaduro/larastan": "^1.0.0",
+                "orchestra/testbench": "^6.23.2|7.*",
+                "phpunit/phpunit": "^9.5.10",
+                "psalm/plugin-laravel": "^1.6.2",
                 "squizlabs/php_codesniffer": "^3.6",
                 "vimeo/psalm": "^4.11"
             },
@@ -1574,9 +1576,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Hi-Folks/lara-lens/issues",
-                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.2.7"
+                "source": "https://github.com/Hi-Folks/lara-lens/tree/v0.3.1"
             },
-            "time": "2022-01-23T08:29:03+00:00"
+            "time": "2022-07-17T15:59:45+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2082,16 +2084,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.9.0",
+            "version": "3.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "60f3760352fe08e918bc3b1acae4e91af092ebe1"
+                "reference": "9857d7208a94fc63c7bf09caf223280e59ac7274"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/60f3760352fe08e918bc3b1acae4e91af092ebe1",
-                "reference": "60f3760352fe08e918bc3b1acae4e91af092ebe1",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/9857d7208a94fc63c7bf09caf223280e59ac7274",
+                "reference": "9857d7208a94fc63c7bf09caf223280e59ac7274",
                 "shasum": ""
             },
             "require": {
@@ -2107,7 +2109,7 @@
             },
             "require-dev": {
                 "async-aws/s3": "^1.5",
-                "async-aws/simple-s3": "^1.0",
+                "async-aws/simple-s3": "^1.1",
                 "aws/aws-sdk-php": "^3.198.1",
                 "composer/semver": "^3.0",
                 "ext-fileinfo": "*",
@@ -2153,7 +2155,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.9.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.10.1"
             },
             "funding": [
                 {
@@ -2169,7 +2171,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-18T21:02:43+00:00"
+            "time": "2022-10-21T18:57:47+00:00"
         },
         {
             "name": "league/mime-type-detection",
