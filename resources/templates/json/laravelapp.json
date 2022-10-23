@@ -4,7 +4,7 @@
     "stepDusk": false,
     "stepNodejs": "1",
     "databaseType": "mysql",
-    "mysqlVersion": "5.7",
+    "mysqlVersion": "latest",
     "matrixLaravel": false,
     "mysqlDatabase": "mysql",
     "mysqlPassword": "DB_PASSWORD",

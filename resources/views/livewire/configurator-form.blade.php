@@ -151,7 +151,7 @@
                           model="mysqlVersion"
                           name="mysqlVersion"
                           label="Mysql Version"
-                          help="Define the Mysql Version">
+                          help="Define the Mysql Version (latest, 8.0, 5.7)">
                       </x-form.input-text>
                       @error('mysqlVersion') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>

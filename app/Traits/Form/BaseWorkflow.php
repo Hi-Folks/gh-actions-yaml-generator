@@ -66,7 +66,7 @@ trait BaseWorkflow
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
-        $this->mysqlVersion = "5.7";
+        $this->mysqlVersion = "latest";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
         $this->postgresqlDatabase = "postgresql";
