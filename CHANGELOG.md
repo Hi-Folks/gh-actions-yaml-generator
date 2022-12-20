@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.6.2 - WIP
+## 0.6.2 - 2022-12-20
 - PHPStan Level 6
+- Support for PHP 8.2
 
 ## 0.6.1 - 2022-04-17
 - added php8.1 for auto-detecting php version for matrix
