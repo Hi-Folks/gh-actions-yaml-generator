@@ -1,4 +1,4 @@
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Hi-Folks/gh-actions-yaml-generator/Code%20Quality/main?style=for-the-badge)
+![GitHub Workflow Status (main branch)](https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=main&style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge)
 ![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F)
 
