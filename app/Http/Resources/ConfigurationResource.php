@@ -6,6 +6,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ConfigurationResource extends JsonResource
 {
+    public string $code;
+    public int $counts;
+    public string $created_at;
+    public string $updated_at;
+
+
     /**
      * Transform the resource into an array.
      *

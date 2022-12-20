@@ -1,4 +1,4 @@
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Hi-Folks/gh-actions-yaml-generator/Test%20Laravel%20Github%20action/main?style=for-the-badge)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Hi-Folks/gh-actions-yaml-generator/Code%20Quality/main?style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge)
 ![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F)
 
@@ -13,9 +13,9 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - select branches;
 - enable caching for all vendors;
 - enable __caching__ PHP packages;
-- select __multiple__ PHP versions (8.0, 7.4, 7.3);
-- select __multiple Laravel__ versions (8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
-- select __Node__ version for NPM (npm run something);
+- select __multiple__ PHP versions (8.2, 8.1, 8.0, 7.4);
+- select __multiple Laravel__ versions (9, 8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
+- select __Node__ version for NPM (executing scripts via `npm run`);
 - caching node packages;
 - setup __Mysql__ Database service;
 - setup __PostgreSQL__ Database service;
@@ -40,7 +40,12 @@ If you want to start using it locally you can clone the repo and install it foll
 
 ## Command line
 Experimental and "magical" feature: Ghygen ships also a command for generating **automatically** a GitHub Actions workflow Yaml file.
-Once you installed locally Ghygen (see next section), you can execute:
+You can install Gygen as project with composer:
+```shell
+composer create-project hi-folks/ghygen
+cd ghygen
+```
+Once you installed Ghygen, you can execute:
 ```shell
 php artisan ghygen:generate --projectdir=../otherproject
 ```
@@ -74,11 +79,7 @@ Clone source code, enter the new directory and perform a couple of instructions:
 ```shell
 git clone https://github.com/Hi-Folks/gh-actions-yaml-generator.git
 cd gh-actions-yaml-generator
-cp .env.example .env
-composer install
-php artisan key:generate
-npm i
-npm run production
+make install
 ```
 Then create your database and update the .env file with the right values for DB_* .
 

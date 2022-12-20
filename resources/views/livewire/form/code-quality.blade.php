@@ -1,5 +1,5 @@
-<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-  <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Code Quality</legend>
+<fieldset class="card bordered shadow-lg">
+  <legend class="card-title">Code Quality</legend>
   <div class="md:grid md:grid-cols-2 md:gap-2">
     <div class="col-span-1 ">
       <div class="pl-3 pb-2 mt-2 space-y-4">

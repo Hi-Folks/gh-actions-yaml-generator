@@ -4,7 +4,7 @@
     "stepDusk": false,
     "stepNodejs": "1",
     "databaseType": "mysql",
-    "mysqlVersion": "5.7",
+    "mysqlVersion": "latest",
     "matrixLaravel": false,
     "mysqlDatabase": "mysql",
     "mysqlPassword": "DB_PASSWORD",
@@ -12,8 +12,8 @@
     "on_pullrequest": false,
     "stepGenerateKey": true,
     "stepPhpVersions": [
-        "8.0",
-        "7.4"
+        "8.2",
+        "8.1"
     ],
     "on_push_branches": [
         "main",
@@ -26,7 +26,7 @@
     "mysqlPasswordType": "skip",
     "postgresqlVersion": "latest",
     "stepCachePackages": true,
-    "stepNodejsVersion": "15.x",
+    "stepNodejsVersion": "18.x",
     "stepRunMigrations": true,
     "postgresqlDatabase": "postgresql",
     "postgresqlPassword": "postgres",
@@ -36,7 +36,7 @@
     "stepEnvTemplateFile": ".env.example",
     "matrixLaravelVersions": [],
     "stepDirStaticAnalysis": "app",
-    "stepPhpVersionsString": "[ '8.0','7.4' ]",
+    "stepPhpVersionsString": "[ '8.2','8.1' ]",
     "postgresqlDatabaseName": "db_test_laravel",
     "postgresqlDatabasePort": 55432,
     "postgresqlPasswordType": "hardcoded",
@@ -51,10 +51,5 @@
     "stepFixStoragePermissions": true,
     "stepInstallStaticAnalysis": true,
     "matrixLaravelVersionsString": "[  ]",
-    "matrixTestbenchDependencies": {
-        "6.*": "4.*",
-        "7.*": "5.*",
-        "8.*": "6.*"
-    },
     "dependencyStability": [ "prefer-none" ]
 }

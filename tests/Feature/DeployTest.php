@@ -36,4 +36,16 @@ class DeployTest extends TestCase
 
     }
 
+    public function testForgeDeploy(): void
+    {
+        Livewire::test(ConfiguratorForm::class)
+            ->set("name","Test")
+            ->set("stepDeployType","forge")
+            ->set("stepDeployForgeServerName","servername")
+            ->set("stepDeployForgeSiteName","sitename")
+            ->call('submitForm')
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."forge-deploy.yaml")));
+
+    }
+
 }

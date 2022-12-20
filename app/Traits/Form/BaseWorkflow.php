@@ -39,9 +39,9 @@ trait BaseWorkflow
     /**
      * @var array<string> $stepPhpVersions
      */
-    public array $stepPhpVersions; // 7.4
+    public array $stepPhpVersions; // 8.2
     public bool $stepNodejs; // false
-    public string $stepNodejsVersion; // 15.x
+    public string $stepNodejsVersion; // 18.x
     public bool $stepCachePackages; //true
     public bool $stepCacheVendors; //true
     public bool $stepCacheNpmModules; // true
@@ -66,7 +66,7 @@ trait BaseWorkflow
         $this->mysqlDatabase = "mysql";
         $this->mysqlPasswordType = "skip";
         $this->mysqlPassword = "DB_PASSWORD";
-        $this->mysqlVersion = "5.7";
+        $this->mysqlVersion = "latest";
         $this->mysqlDatabaseName = "db_test_laravel";
         $this->mysqlDatabasePort = 33306;
         $this->postgresqlDatabase = "postgresql";
@@ -75,9 +75,9 @@ trait BaseWorkflow
         $this->postgresqlVersion = "latest";
         $this->postgresqlDatabaseName = "db_test_laravel";
         $this->postgresqlDatabasePort = 55432;
-        $this->stepPhpVersions = ["8.0", "7.4"];
+        $this->stepPhpVersions = ["8.2", "8.1", "8.0", "7.4"];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion = "16.x";
+        $this->stepNodejsVersion = "18.x";
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules  = true;
@@ -88,8 +88,8 @@ trait BaseWorkflow
     {
         data_fill($j, "stepDirCodeSniffer", "app");
         data_fill($j, "dependencyStability", [ 'prefer-none' ]);
-        data_fill($j, "onSchedule", false);
-        data_fill($j, "onScheduleCron", "0 0 * * *");
+        data_fill($j, "on_schedule", false);
+        data_fill($j, "on_schedule_cron", "0 0 * * *");
         $this->name = $j->name;
         $this->onPush = $j->on_push;
         $this->onPushBranches =  $j->on_push_branches;

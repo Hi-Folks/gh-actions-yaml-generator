@@ -1,5 +1,5 @@
-<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-  <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Laravel stuff</legend>
+<fieldset class="card bordered shadow-lg">
+  <legend class="card-title">Laravel stuff</legend>
   <div class="md:grid md:grid-cols-2 md:gap-2">
     <div class="col-span-1 ">
       <x-form.input-conditional-checkbox
@@ -14,8 +14,8 @@
           model="matrixLaravelVersions"
           name="matrixLaravelVersions"
           label="Laravel Versions"
-          :list="['8.*'=>'8.*','7.*'=>'7.*','6.*'=>'6.*']"
-          help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 8 , 7 and 6"
+          :list="['9.*'=>'9.*', '8.*'=>'8.*','7.*'=>'7.*','6.*'=>'6.*']"
+          help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 9, 8 , 7 and 6"
           multiselect=1>
         </x-form.input-select>
 

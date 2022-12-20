@@ -27,6 +27,11 @@ class GuesserTest extends TestCase
         $this->assertIsArray($arr);
         $this->assertCount(2, $arr);
         $this->assertEquals("8.*", $arr[1]);
+
+        $arr = GuesserFiles::detectLaravelVersionFromTestbench("7.*");
+        $this->assertIsArray($arr);
+        $this->assertCount(1, $arr);
+        $this->assertEquals("9.*", $arr[0]);
     }
 
     /**

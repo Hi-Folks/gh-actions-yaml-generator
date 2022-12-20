@@ -5,7 +5,6 @@ namespace App\Objects;
 use Composer\Semver\Semver;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class GuesserFiles
 {
@@ -48,10 +47,13 @@ class GuesserFiles
         foreach ($arrayFiles as $variable => $file) {
             $this->filePaths[$variable] = base_path($file);
         }
-        if ($projectDir !== "") {
-            foreach ($arrayFiles as $variable => $file) {
-                $this->filePaths[$variable] = $projectDir . DIRECTORY_SEPARATOR . $file;
-            }
+
+        if ($projectDir === "") {
+            return;
+        }
+
+        foreach ($arrayFiles as $variable => $file) {
+            $this->filePaths[$variable] = $projectDir . DIRECTORY_SEPARATOR . $file;
         }
     }
 
@@ -59,12 +61,14 @@ class GuesserFiles
     {
         return Arr::get($this->filePaths, self::COMPOSER_VAR, "");
     }
+
     public function composerExists(): bool
     {
         $exists = $this->getComposerPath();
-        if ($exists == "") {
+        if ($exists === "") {
             return false;
         }
+
         return is_file($this->getComposerPath());
     }
 
@@ -75,7 +79,7 @@ class GuesserFiles
     public function envExists(): bool
     {
         $exists = $this->getEnvPath();
-        if ($exists == "") {
+        if ($exists === "") {
             return false;
         }
         return is_file($this->getEnvPath());
@@ -123,21 +127,30 @@ class GuesserFiles
         return $this->somethingExists("getPhpstanNeonPath");
     }
 
-
     public function getMigrationsPath(): string
     {
         return Arr::get($this->filePaths, self::MIGRATIONS_VAR, "");
     }
+
     public function migrationsExists(): bool
     {
         return $this->somethingExists("getMigrationsPath", true);
     }
 
+    public function dispatch(string $method): string
+    {
+        $callback = [$this, $method];
+        if (is_callable($callback)) {
+            return strval(call_user_func($callback));
+        }
 
+        throw new \Exception('Method not found');
+    }
 
     private function somethingExists(string $methodPath, bool $isDirCheck = false): bool
     {
-        $path = call_user_func([$this, $methodPath]);
+        //$path = call_user_func(array($this, $methodPath));
+        $path = $this->dispatch($methodPath);
         $exists = $path;
         if ($exists == "") {
             return false;
@@ -154,8 +167,8 @@ class GuesserFiles
      */
     public static function detectLaravelVersionFromTestbench(string $testbenchVersion): array
     {
-        $listLaravelVersions = [ "6.*", "7.*", "8.*"];
-        $listTestBenchVersions = [ "4.0", "5.0", "6.0"];
+        $listLaravelVersions = [ "6.*", "7.*", "8.*", "9.*"];
+        $listTestBenchVersions = [ "4.0", "5.0", "6.0", "7.0"];
         $stepLaravelVersions = [];
         $i = 0;
 
@@ -172,7 +185,6 @@ class GuesserFiles
         //$this->ste = $stepPhp;
         return $stepLaravelVersions;
     }
-
 
     public static function generateYamlFilename(
         string $path = "",
@@ -191,6 +203,7 @@ class GuesserFiles
     ): string {
         return $projectdir . ".github/workflows/";
     }
+
     public static function existsGithubWorkflowDirectory(
         string $projectdir = ""
     ): bool {

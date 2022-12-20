@@ -10,7 +10,7 @@ use Livewire\Component;
 class Daily extends Component
 {
     /**
-     * @var \Illuminate\Support\Collection $daily
+     * @var \Illuminate\Support\Collection<string,int> $daily
      */
     public $daily;
 

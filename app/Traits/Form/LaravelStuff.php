@@ -31,6 +31,7 @@ trait LaravelStuff
         $this->matrixLaravel = false;
         $this->matrixLaravelVersions = [];
         $this->matrixTestbenchDependencies = [
+            "9.*" => "7.*",
             "8.*" => "6.*",
             "7.*" => "5.*",
             "6.*" => "4.*"
@@ -49,7 +50,7 @@ trait LaravelStuff
         $this->stepCopyEnvTemplateFile = $j->stepCopyEnvTemplateFile;
         $this->matrixLaravel = $j->matrixLaravel;
         $this->matrixLaravelVersions = $j->matrixLaravelVersions;
-        $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+        //$this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
     }
 
     /**

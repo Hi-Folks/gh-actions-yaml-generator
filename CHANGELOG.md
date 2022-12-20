@@ -1,8 +1,39 @@
 # Changelog
 
+## 0.6.2 - 2022-12-20
+- PHPStan Level 6
+- Support for PHP 8.2
+
+## 0.6.1 - 2022-04-17
+- added php8.1 for auto-detecting php version for matrix
+- added make install command by @AlessandroMinoccheri
+- fix load template for matrixTestbenchDependencies
+
+## 0.6.0 - 2022-04-13
+- upgrade to Laravel 9 framework
+
+## 0.5.2 - 2022-04-12
+- added laravel 9 mapping for testbench, thanks to @dkemper
+- improve dark/light mode
+- update npm packages
+
+## 0.5.1 - 2021-11-27
+Welcome PHP 8.1
+- update GitHub actions workflows for 8.1
+- add option for 8.1 in the UI
+
+## 0.5.0 - 2021-11-21
+- Now you can **deploy with Forge** with your CI workflow
+- **UI refactoring**: Introducing DaisyUI components
+- **Report** for command line execution
+- Upgrade to **PHPstan 1**
+- Command line: added --dry-run option
+- Now is possible to **install Ghygen** with composer create-project hi-folks/ghygen
+
+
 ## 0.4.6 - 2021-10-23
 It's still Hacktoberfest!
-- Welcome to PHP 8.1, you can select PHP8.1 (experimetal) to check the compatibility of your application in CICD
+- Welcome to PHP 8.1, you can select PHP8.1 (experimental) to check the compatibility of your application in CICD
 
 ## 0.4.5 - 2021-10-22
 It's still Hacktoberfest!

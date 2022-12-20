@@ -1,23 +1,20 @@
 <div x-data="{ yaml: '' }">
 
   <div class="">
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 
+    <div class="grid grid-cols-1 gap-6 p-4 lg:p-10 xl:grid-cols-3 lg:bg-base-200 rounded-box">
+      <h2 class="card-title col-span-3">Select a workflow template</h2>
       <x-card-template
         title="Laravel App"
         description="Setup Workflow for Laravel with database and Code Quality."
         icon="laravel"
       >
-        <div>
-          <p><b class="text-xl">Select template</b>:</p>
-          <x-button onClick="template('laravelapp')">
+          <x-daisyui.button onClick="template('laravelapp')">
             Mysql
-          </x-button>
-          <x-button onClick="template('laravelpostgresql')">
+          </x-daisyui.button>
+          <x-daisyui.button onClick="template('laravelpostgresql')">
             Postgresql
-          </x-button>
-        </div>
-
+          </x-daisyui.button>
       </x-card-template>
 
       <x-card-template
@@ -25,34 +22,30 @@
         description="Setup Workflow for PHP Package."
         icon="php"
       >
-        <p><b class="text-xl">Select template</b>:</p>
-        <x-button onClick="template('phppackage')">
+        <x-daisyui.button onClick="template('phppackage')">
           PHP
-        </x-button>
+        </x-daisyui.button>
       </x-card-template>
       <x-card-template
         title="Laravel Package"
         description="Setup Workflow for Laravel Package."
         icon="laravel"
       >
-        <div>
-          <p><b class="text-xl">Select template</b>:</p>
-          <x-button onClick="template('laravelpackage')">
+
+          <x-daisyui.button onClick="template('laravelpackage')">
             Laravel Package
-          </x-button>
-        </div>
+          </x-daisyui.button>
 
       </x-card-template>
 
-
-
     </div>
+    <div class="divider">OR compile some details...</div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
       <form wire:submit.prevent="submitForm"  action="#" method="POST">
         @csrf
         <div class=" sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6   ">
+          <div class="px-4 py-5  space-y-6 sm:p-6   ">
             <x-form.input-text
                 model="name"
                 name="name"
@@ -63,8 +56,8 @@
             @error('name') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
 
 
-            <fieldset  class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-                <legend class="text-xl font-medium text-gray-900 px-2 pb-2">On - GitHub event that triggers the workflow.</legend>
+            <fieldset  class="card bordered shadow-lg ">
+                <legend class="card-title">On - GitHub event that triggers the workflow.</legend>
                 <div class="md:grid md:grid-cols-2 md:gap-2">
                   <div class="col-span-1 ">
                     <x-form.input-conditional-checkbox
@@ -115,7 +108,7 @@
                       </x-form.input-checkbox>
                     </div>
                   </div>
-                  <div class="col-span-1 ">
+                  <div class="col-span-1">
                     <x-form.input-conditional-checkbox
                       model="onSchedule"
                       name="onSchedule"
@@ -138,8 +131,8 @@
                 </div>
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Select Database</legend>
+            <fieldset class="card bordered shadow-lg" x-data="{ showMysqlService: {{ $databaseType === 'mysql' ? 'true' : 'false' }}, showPostgresqlService: {{ $databaseType === 'postgresql' ? 'true' : 'false' }} }">
+              <legend class="card-title">Select Database</legend>
                 <x-form.input-select
                   model="databaseType"
                   name="databaseType"
@@ -158,7 +151,7 @@
                           model="mysqlVersion"
                           name="mysqlVersion"
                           label="Mysql Version"
-                          help="Define the Mysql Version">
+                          help="Define the Mysql Version (latest, 8.0, 5.7)">
                       </x-form.input-text>
                       @error('mysqlVersion') <span class="flex items-center font-extrabold  tracking-wide text-red-800 bg-red-200 border-red-600 border-b-2  ">{{ $message }}</span> @enderror
                     </div>
@@ -184,7 +177,7 @@
                       <x-form.input-select
                         model="mysqlPasswordType"
                         name="mysqlPasswordType"
-                        label="Mysql Password: skip, or read from secret or hardcoded"
+                        label="Mysql Password"
                         :list="['skip'=>'Skip', 'secret'=>'From Secret', 'hardcoded' => 'Hardcoded']"
                         help="Mysql Password: skip, or read from secret or hardcoded"
                         multiselect=0
@@ -246,7 +239,7 @@
                         <x-form.input-text
                           model="postgresqlPassword"
                           name="postgresqlPassword"
-                          label="Postgresqll Password"
+                          label="Postgresql Password"
                           help="For secret, fill with the name of your parameter for example DB_PASSWORD, for Hardcoded, fill with your password (valid only for CICD, not production or stage)">
                         </x-form.input-text>
                     </div>
@@ -255,8 +248,8 @@
 
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Caching</legend>
+            <fieldset class="card bordered shadow-lg">
+              <legend class="card-title">Caching</legend>
               <div class="md:grid md:grid-cols-3 md:gap-3">
                 <div class="col-span-1 ">
                   <div class="pl-3 pb-2 mt-2 space-y-4">
@@ -298,15 +291,15 @@
               </div>
             </fieldset>
 
-            <fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl">
-              <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Environments (PHP / Node)</legend>
+            <fieldset class="card bordered shadow-lg">
+              <legend class="card-title">Environments (PHP / Node)</legend>
               <div class="md:grid md:grid-cols-2 md:gap-2">
                 <div class="col-span-1 ">
                   <x-form.input-select
                     model="stepPhpVersions"
                     name="stepPhpVersions"
                     label="PHP Versions"
-                    :list="['8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3', '8.1' => '8.1 experimental']"
+                    :list="['8.2' => '8.2', '8.1' => '8.1', '8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
                     help="Select PHP Versions (Multiple)"
                     multiselect=1>
                   </x-form.input-select>
@@ -324,8 +317,8 @@
                       model="stepNodejsVersion"
                       name="stepNodejsVersion"
                       label="Node Js Version"
-                      help="Define the nodejs Version. 16.x is the current stable and it is the default value.
-Select 14.x if you want to use LTS version.">
+                      help="Define the nodejs Version. 19.x is the last stable and it is the default value.
+Select 18.x if you want to use LTS version.">
                     </x-form.input-text>
                   </x-form.input-conditional-checkbox>
                 </div>
@@ -354,17 +347,14 @@ Select 14.x if you want to use LTS version.">
             @include('livewire.form.deploy')
           </div>
 
-          <div class="border-2 border-blue-200 shadow-xl p-1 rounded-xl flex flex-row w-full text-right">
-            <div class="flex-grow px-4 py-1  text-right sm:px-6">
-              <x-button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
+          <div class="card shadow-lg compact px-4 bg-base-100 m-4">
+            <div class="card-actions justify-end">
+              <x-daisyui.button type="button" class="copy-btn" data-clipboard-text="{{ $result }}">
                 Copy
-              </x-button>
-            </div>
-            <div class="flex-grow-0 px-4 py-1 bg-gray-50 text-right sm:px-6">
-              <x-button type="submit">
+              </x-daisyui.button>
+              <x-daisyui.button type="submit">
                 Generate Yaml File
-              </x-button>
-
+              </x-daisyui.button>
           </div>
         </div>
       </form>
@@ -426,7 +416,7 @@ Select 14.x if you want to use LTS version.">
   @endforeach
 
 
-    <div class="px-4 mt-3  ">
+    <div class="px-4 mt-3 shadow-lg  ">
       <div wire:loading wire:target="submitForm">
         <div class="w-full bg-blue-500 border border-blue-200 text-blue-900  pl-4 pr-8 py-3 rounded relative" role="info">
           <strong class="font-bold">Loading</strong>

@@ -5,16 +5,26 @@
 ]
 )
 
-<div  class="bg-blue-100 pt-0 p-4 pt-4 bg-opacity-80 rounded-3xl grid grid-cols-6 space-x-6  shadow-md hover:shadow-xl">
-  <div class="pt-4">
-    <x-dynamic-component  class="m-1"  component="icons.{{ $icon }}"/>
+<div  class="card shadow-lg compact side bg-base-100 col-span-3  xl:col-span-1">
+
+  <div class=" card-body ">
+  <div class="card-body  flex-row items-center space-x-2">
+    <div>
+      <div class="avatar">
+        <div class="w-14 h-14">
+          <x-dynamic-component  class="m-1"  component="icons.{{ $icon }}"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="card-title">{{ $title }}</h2>
+      <p class="text-base-content text-opacity-40">{{ $description }}</p>
+    </div>
+
   </div>
-  <div  class="col-span-5">
-    <p class="text-2xl font-bold text-gray-900">{{ $title }}</p>
-    <p class=" text-gray-500 h-12 text-sm mb-3">{{ $description }}</p>
-  </div>
-  <div class="col-span-6">
+  <div class=" justify-end space-x-1 card-actions">
     {{ $slot }}
+  </div>
   </div>
 </div>
 

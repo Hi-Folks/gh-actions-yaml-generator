@@ -1,8 +1,9 @@
-<fieldset class="border-2 border-blue-200 shadow-xl p-4 rounded-xl" x-data="{ showPloiService: {{ $stepDeployType === 'ploi'? 'true' : 'false' }},
- showVaporService: {{ $stepDeployType === 'vapor'? 'true' : 'false' }}
+<fieldset class="card bordered shadow-lg" x-data="{ showPloiService: {{ $stepDeployType === 'ploi'? 'true' : 'false' }},
+ showVaporService: {{ $stepDeployType === 'vapor'? 'true' : 'false' }},
+ showForgeService: {{ $stepDeployType === 'forge'? 'true' : 'false' }}
   }">
-    <legend class="text-xl font-medium text-gray-900 px-2 pb-2">Deployment (Experimental feature)</legend>
-    <x-form.input-select model="stepDeployType" name="stepDeployType" label="Select Deployment Step" :list="['none'=>'None', 'ploi'=>'Ploi', 'vapor' => 'Vapor']" help="Deployment: *None* if you don't want to deploy the code in your workflow. Otherwise select from available options" multiselect=0 onChange='showPloiService= $event.target.value==="ploi";'>
+    <legend class="card-title">Deployment (Experimental feature)</legend>
+    <x-form.input-select model="stepDeployType" name="stepDeployType" label="Select Deployment Step" :list="['none'=>'None', 'ploi'=>'Ploi', 'vapor' => 'Vapor', 'forge' => 'Forge']" help="Deployment: *None* if you don't want to deploy the code in your workflow. Otherwise select from available options" multiselect=0 onChange='showPloiService= $event.target.value==="ploi";showVaporService= $event.target.value==="vapor";showForgeService= $event.target.value==="forge";'>
     </x-form.input-select>
 
     <div x-show="showPloiService">
@@ -19,12 +20,31 @@
         </div>
     </div>
   <div x-show="showVaporService">
-    <div class="md:grid md:grid-cols-3 md:gap-3">
-
-      <div class="col-span-3">
-
+    <div class="card">
+      <div class="card-body">
         You need to set a GitHub Secret in settings/secrets/actions/new named VAPOR_API_TOKEN.
-        Take a look the documentation about <a href="https://docs.vapor.build/1.0/projects/deployments.html#deploying-from-ci">Laravel Vapor, Deploying From CI</a>
+        <br />
+        Take a look the documentation about <a href="https://docs.vapor.build/1.0/projects/deployments.html#deploying-from-ci" target="_blank">Laravel Vapor, Deploying From CI</a>
+      </div>
+    </div>
+  </div>
+
+  <div x-show="showForgeService">
+    <div class="card">
+      <div class="card-body">
+        You need to set some GitHub Secrets ("GitHub > Project Settings > Secrets"):
+        FORGE_API_TOKEN and SSH_PRIVATE_KEY.
+        <br />
+        Take a look the documentation about <a href="https://forge.laravel.com/docs/1.0/sites/deployments.html#using-forge-cli" target="_blank">Forge, deploy with Forge CLI.</a>
+
+        <div class="col-span-2">
+          <x-form.input-text model="stepDeployForgeServerName" name="stepDeployForgeServerName" label="Forge Server Name" help="Forge Server Name">
+          </x-form.input-text>
+        </div>
+        <div class="col-span-1">
+          <x-form.input-text model="stepDeployForgeSiteName" name="stepDeployForgeSiteName" label="Forge Site Name" help="Forge Site Name">
+          </x-form.input-text>
+        </div>
       </div>
     </div>
   </div>

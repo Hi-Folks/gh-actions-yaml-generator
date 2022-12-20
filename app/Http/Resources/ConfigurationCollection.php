@@ -11,7 +11,7 @@ class ConfigurationCollection extends ResourceCollection
      *
      * @param \Illuminate\Http\Request  $request
      *
-     * @return \Illuminate\Contracts\Support\Arrayable|\JsonSerializable|array<mixed>
+     * @return \Illuminate\Contracts\Support\Arrayable<int,mixed>|\JsonSerializable|array<int,mixed>
      */
     public function toArray($request)
     {
