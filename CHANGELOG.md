@@ -2,6 +2,12 @@
 
 ## 0.7.0 - WIP
 - Added Laravel 10 options for using L10 in the GitHub Actions workflows
+- Upgrading Actions:
+  - actions/checkout@v3 
+  - actions/setup-node@v3
+  - github/codeql-action/upload-sarif@v2
+  - symfonycorp/security-checker-action@v4
+  - webfactory/ssh-agent@v0.7.0
 
 ## 0.6.2 - 2022-12-20
 - PHPStan Level 6
