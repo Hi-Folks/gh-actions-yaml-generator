@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.0 - WIP
+- Added Laravel 10 options for using L10 in the GitHub Actions workflows
+
 ## 0.6.2 - 2022-12-20
 - PHPStan Level 6
 - Support for PHP 8.2
