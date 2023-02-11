@@ -6,6 +6,7 @@ on:
       - main
       - develop
       - features/**
+      - feature/**
 
 jobs:
   laravel-tests:
@@ -42,7 +43,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: '18.x'
       - name: Install NPM packages
         run: npm ci
       - name: Build frontend
