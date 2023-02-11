@@ -33,8 +33,11 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
-        php-versions: [ '8.0','8.1', '8.2' ]
+        php-versions: [ '8.1', '8.2' ]
         dependency-stability: [ 'prefer-none' ]
+        exclude:
+          - operating-system: windows-latest
+            php-versions: 8.1
 
     name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
