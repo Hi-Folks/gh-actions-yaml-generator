@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\ConfiguratorForm;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -13,10 +11,11 @@ class YamlFormTest extends TestCase
 {
     use DatabaseMigrations;
 
-    const DIR_MOCK ="tests/Feature/mock-asserts/";
+    const DIR_MOCK = 'tests/Feature/mock-asserts/';
 
     /**
      * @description Loading form page with defaults.
+     *
      * @return void
      */
     public function test_load_form()
@@ -25,28 +24,30 @@ class YamlFormTest extends TestCase
             ->assertStatus(200);
     }
 
-
     /**
      * Form Test using pull request option.
+     *
      * @return void
      */
     public function test_form_submit_onpullrequest()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("onPullrequest", true)
+            ->set('name', 'Test')
+            ->set('onPullrequest', true)
             ->call('submitForm')
             ->assertHasNoErrors('yaml');
     }
+
     /**
      * Form Test using pull request option.
+     *
      * @return void
      */
     public function test_form_submit_emptyname()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","")
-            ->set("onPullrequest", true)
+            ->set('name', '')
+            ->set('onPullrequest', true)
             ->call('submitForm')
             ->assertHasErrors('name');
     }
@@ -59,9 +60,9 @@ class YamlFormTest extends TestCase
     public function test_form_submit_onmanual()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", true)
-            ->set("onPush", false)
+            ->set('name', 'Test')
+            ->set('manualTrigger', true)
+            ->set('onPush', false)
             ->call('submitForm')
             ->assertHasNoErrors('yaml');
     }
@@ -74,54 +75,54 @@ class YamlFormTest extends TestCase
     public function test_form_submit_onevents()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", false)
-            ->set("onPullrequest", false)
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', false)
+            ->set('onPullrequest', false)
             ->call('submitForm')
             ->assertHasErrors('onEvents');
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
-            ->set("onPullrequest", false)
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
+            ->set('onPullrequest', false)
             ->call('submitForm')
             ->assertHasNoErrors('onEvents');
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", true)
-            ->set("onPush", true)
-            ->set("onPullrequest", false)
+            ->set('name', 'Test')
+            ->set('manualTrigger', true)
+            ->set('onPush', true)
+            ->set('onPullrequest', false)
             ->call('submitForm')
             ->assertHasNoErrors('onEvents');
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", true)
-            ->set("onPush", true)
-            ->set("onPullrequest", true)
+            ->set('name', 'Test')
+            ->set('manualTrigger', true)
+            ->set('onPush', true)
+            ->set('onPullrequest', true)
             ->call('submitForm')
             ->assertHasNoErrors('onEvents');
 
-        $hintsTest =[];
+        $hintsTest = [];
         $hint = "You selected all 3 options: 'on Push', 'on Pull Request', and 'Manual Trigger'.";
-        $hint = $hint . " I suggest you to select 'Manual Trigger' OR 'on push / on pull request'.";
+        $hint = $hint." I suggest you to select 'Manual Trigger' OR 'on push / on pull request'.";
         $hintsTest[] = $hint;
-        $hintsTest[] ="I selected automatically a 'Manual Trigger' for you.";
+        $hintsTest[] = "I selected automatically a 'Manual Trigger' for you.";
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", true)
-            ->set("onPush", true)
-            ->set("onPullrequest", true)
+            ->set('name', 'Test')
+            ->set('manualTrigger', true)
+            ->set('onPush', true)
+            ->set('onPullrequest', true)
             ->call('submitForm')
             ->assertSet('hints', $hintsTest);
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
-            ->set("onPullrequest", true)
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
+            ->set('onPullrequest', true)
             ->call('submitForm')
             ->assertSet('hints', []);
     }
@@ -134,23 +135,22 @@ class YamlFormTest extends TestCase
     public function test_form_submit_tests()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches.yaml")))
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")));
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'on-push-branches.yaml')))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'mysql-service.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
-            ->set("databaseType", "mysql")
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
+            ->set('databaseType', 'mysql')
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")));
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'mysql-service.yaml')));
     }
+
     /**
      * Form Test: using manual triggering option.
      *
@@ -159,19 +159,16 @@ class YamlFormTest extends TestCase
     public function test_form_submit_test_matrix()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
-            ->set("matrixLaravel",true)
-            ->set("matrixLaravelVersions",["8.*" => "8.*"])
-            ->set("stepPhpVersions",[ "8.0", "7.4"])
+            ->set('name', 'Test')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
+            ->set('matrixLaravel', true)
+            ->set('matrixLaravelVersions', ['8.*' => '8.*'])
+            ->set('stepPhpVersions', ['8.0', '7.4'])
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches.yaml")))
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."mysql-service.yaml")))
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."strategy-php-8-74.yaml")));
-
-
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'on-push-branches.yaml')))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'mysql-service.yaml')))
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'strategy-php-8-74.yaml')));
     }
 
     /**
@@ -182,71 +179,68 @@ class YamlFormTest extends TestCase
     public function test_form_codequality_tests()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", false)
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', false)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-noinstall.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpstan-noinstall.yaml')));
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", true)
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpstan-install.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", true)
-            ->set("stepToolStaticAnalysis", 'larastan')
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', true)
+            ->set('stepToolStaticAnalysis', 'larastan')
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-install.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpstan-install.yaml')));
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", true)
-            ->set("stepToolStaticAnalysis", 'phpstan')
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', true)
+            ->set('stepToolStaticAnalysis', 'phpstan')
             ->call('submitForm')
-            ->assertDontSee("composer require --dev nunomaduro/larastan")
-            ->assertSee("composer require --dev phpstan/phpstan");
+            ->assertDontSee('composer require --dev nunomaduro/larastan')
+            ->assertSee('composer require --dev phpstan/phpstan');
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", false)
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', false)
             ->call('submitForm')
-            ->assertDontSee("composer require --dev nunomaduro/larastan")
-            ->assertDontSee("composer require --dev phpstan/phpstan");
+            ->assertDontSee('composer require --dev nunomaduro/larastan')
+            ->assertDontSee('composer require --dev phpstan/phpstan');
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteStaticAnalysis", true)
-            ->set("stepInstallStaticAnalysis", false)
-            ->set("stepPhpstanUseNeon", true)
+            ->set('name', 'Test')
+            ->set('stepExecuteStaticAnalysis', true)
+            ->set('stepInstallStaticAnalysis', false)
+            ->set('stepPhpstanUseNeon', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpstan-conffile.yaml")));
-
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpstan-conffile.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteCodeSniffer", true)
-            ->set("stepInstallCodeSniffer", false)
+            ->set('name', 'Test')
+            ->set('stepExecuteCodeSniffer', true)
+            ->set('stepInstallCodeSniffer', false)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-noinstall.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpcs-noinstall.yaml')));
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteCodeSniffer", true)
-            ->set("stepInstallCodeSniffer", true)
+            ->set('name', 'Test')
+            ->set('stepExecuteCodeSniffer', true)
+            ->set('stepInstallCodeSniffer', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-install.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpcs-install.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepExecuteCodeSniffer", true)
-            ->set("stepDirCodeSniffer", "src")
-            ->set("stepInstallCodeSniffer", true)
+            ->set('name', 'Test')
+            ->set('stepExecuteCodeSniffer', true)
+            ->set('stepDirCodeSniffer', 'src')
+            ->set('stepInstallCodeSniffer', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "phpcs-srcdir.yaml")));
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'phpcs-srcdir.yaml')));
     }
 
     /**
@@ -257,18 +251,16 @@ class YamlFormTest extends TestCase
     public function test_form_keygenerate_tests()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepGenerateKey", true)
+            ->set('name', 'Test')
+            ->set('stepGenerateKey', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "generate-key.yaml")));
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'generate-key.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepGenerateKey", false)
+            ->set('name', 'Test')
+            ->set('stepGenerateKey', false)
             ->call('submitForm')
-            ->assertDontSee("run: php artisan key:generate");
-
+            ->assertDontSee('run: php artisan key:generate');
     }
 
     /**
@@ -279,30 +271,28 @@ class YamlFormTest extends TestCase
     public function test_form_copyenv_tests()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepCopyEnvTemplateFile", true)
+            ->set('name', 'Test')
+            ->set('stepCopyEnvTemplateFile', true)
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml")));
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'copy-env.yaml')));
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepCopyEnvTemplateFile", true)
-            ->set("stepEnvTemplateFile", ".env.ci")
+            ->set('name', 'Test')
+            ->set('stepCopyEnvTemplateFile', true)
+            ->set('stepEnvTemplateFile', '.env.ci')
             ->call('submitForm')
             ->assertSee(
                 str_replace(
-                    ".env.example",
-                    ".env.ci",
-                    file_get_contents(base_path(self::DIR_MOCK . "copy-env.yaml"))
+                    '.env.example',
+                    '.env.ci',
+                    file_get_contents(base_path(self::DIR_MOCK.'copy-env.yaml'))
                 ));
 
-
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test")
-            ->set("stepCopyEnvTemplateFile", false)
+            ->set('name', 'Test')
+            ->set('stepCopyEnvTemplateFile', false)
             ->call('submitForm')
-            ->assertDontSee("- name: Copy .env");
-
+            ->assertDontSee('- name: Copy .env');
     }
 
     /**
@@ -313,13 +303,12 @@ class YamlFormTest extends TestCase
     public function test_form_branches_wildcard()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name","Test Wildcard")
-            ->set("manualTrigger", false)
-            ->set("onPush", true)
-            ->set("onPushBranches", "*")
+            ->set('name', 'Test Wildcard')
+            ->set('manualTrigger', false)
+            ->set('onPush', true)
+            ->set('onPushBranches', '*')
             ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK."on-push-branches-wildcard.yaml")));
-
+            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'on-push-branches-wildcard.yaml')));
     }
 
     /**
@@ -330,28 +319,26 @@ class YamlFormTest extends TestCase
     public function test_dependency_stability_level()
     {
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test Dependency Level")
-            ->set("dependencyStability", [ "prefer-stable" ])
+            ->set('name', 'Test Dependency Level')
+            ->set('dependencyStability', ['prefer-stable'])
             ->call('submitForm')
             ->assertSee("dependency-stability: [ 'prefer-stable' ]");
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test Dependency Level")
-            ->set("dependencyStability", [ "prefer-lowest" ])
+            ->set('name', 'Test Dependency Level')
+            ->set('dependencyStability', ['prefer-lowest'])
             ->call('submitForm')
             ->assertSee("dependency-stability: [ 'prefer-lowest' ]");
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test Dependency Level")
-            ->set("dependencyStability", [ "prefer-lowest", "prefer-stable" ])
+            ->set('name', 'Test Dependency Level')
+            ->set('dependencyStability', ['prefer-lowest', 'prefer-stable'])
             ->call('submitForm')
             ->assertSee("dependency-stability: [ 'prefer-lowest','prefer-stable' ]");
 
         Livewire::test(ConfiguratorForm::class)
-            ->set("name", "Test Without Dependency Level")
+            ->set('name', 'Test Without Dependency Level')
             ->call('submitForm')
             ->assertSee("dependency-stability: [ 'prefer-none' ]");
     }
-
-
 }

@@ -3,13 +3,12 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PagesTest extends TestCase
 {
     use DatabaseMigrations;
-    
+
     /**
      * A basic test example.
      *
@@ -20,6 +19,7 @@ class PagesTest extends TestCase
         $response = $this->get('/');
         $response->assertStatus(200);
     }
+
     /**
      * A basic test example.
      *
@@ -30,6 +30,7 @@ class PagesTest extends TestCase
         $response = $this->get('/dashboard');
         $response->assertStatus(200);
     }
+
     /**
      * A basic test example.
      *
@@ -40,6 +41,7 @@ class PagesTest extends TestCase
         $response = $this->get('/about');
         $response->assertStatus(200);
     }
+
     /**
      * A basic test example.
      *

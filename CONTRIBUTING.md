@@ -41,14 +41,17 @@ Before submitting a pull request:
 In order to maintain consistency in the source code we are following PSR12 coding standard, and using PHP stan for static code analysis.
 You can use the command:
 
-make allcheck
+```bash
+composer all
+```
+
 
 to launch
-- **[PSR-12 Coding Standard](https://www.php-fig.org/psr/psr-12/)**, under the hood is used [PHP Code Sniffer](https://pear.php.net/package/PHP_CodeSniffer);
-- **PHPstan** with [level 5](https://phpstan.org/user-guide/rule-levels)
-- **Phpunit** to execute all tests from ./tests/*
+- **[Laravel Coding Standard](https://github.com/laravel/pint/blob/main/resources/presets/laravel.php)**, under the hood is used [Laravel Pint](https://github.com/laravel/pint);
+- **PHPstan** with [level 6](https://phpstan.org/user-guide/rule-levels)
+- **PestPHP** to execute all tests from ./tests/*
 
-I suggest to launch *make allchecks* before to commit or before to create PR.
+I suggest to launch *composer all* before to commit or before to create PR.
 
 If you want to work on a PR, I suggest you to creating a new branch starting from **develop branch**, and use it also when you will submit your new **P**ull **R**equest on the original repository.
 

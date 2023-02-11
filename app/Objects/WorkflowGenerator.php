@@ -16,10 +16,13 @@ class WorkflowGenerator
     use LaravelStuff;
     use Deploy;
 
-    public const DB_TYPE_NONE = "none";
-    public const DB_TYPE_MYSQL = "mysql";
-    public const DB_TYPE_SQLITE = "sqlite";
-    public const DB_TYPE_POSTGRESQL = "postgresql";
+    public const DB_TYPE_NONE = 'none';
+
+    public const DB_TYPE_MYSQL = 'mysql';
+
+    public const DB_TYPE_SQLITE = 'sqlite';
+
+    public const DB_TYPE_POSTGRESQL = 'postgresql';
 
     public function loadDefaults(): void
     {
@@ -30,8 +33,8 @@ class WorkflowGenerator
     }
 
     /**
-     * @param object $object
-     * @param string ...$args
+     * @param  object  $object
+     * @param  string  ...$args
      * @return array<mixed>
      */
     public static function compactObject(object $object, string ...$args): array
@@ -39,42 +42,44 @@ class WorkflowGenerator
         $vars = get_object_vars($object);
         $retVal = [];
         foreach ($args as $arg) {
-            if (key_exists($arg, $vars)) {
+            if (array_key_exists($arg, $vars)) {
                 $retVal[$arg] = $vars[$arg];
-            } elseif (key_exists(Str::camel($arg), $vars)) {
+            } elseif (array_key_exists(Str::camel($arg), $vars)) {
                 $retVal[$arg] = $vars[Str::camel($arg)];
             }
         }
+
         return $retVal;
     }
 
     /**
-     * @param array<mixed> $array
+     * @param  array<mixed>  $array
      * @return string
      */
     public static function arrayToString(array $array): string
     {
-        return "[ " . implode(
-            ",",
+        return '[ '.implode(
+            ',',
             array_map(
                 function ($str) {
                     return "'$str'";
                 },
                 $array
             )
-        ) . " ]";
+        ).' ]';
     }
 
     /**
-     * @param array<mixed>|string $somethingToSplit
-     * @param string $splitChars
+     * @param  array<mixed>|string  $somethingToSplit
+     * @param  string  $splitChars
      * @return array<mixed>|mixed
      */
-    public static function split($somethingToSplit, string $splitChars = ",")
+    public static function split($somethingToSplit, string $splitChars = ',')
     {
         if (\is_string($somethingToSplit)) {
             return array_map('trim', explode($splitChars, $somethingToSplit));
         }
+
         return $somethingToSplit;
     }
 
@@ -88,16 +93,18 @@ class WorkflowGenerator
         $data = $this->setDataCodeQuality($data);
         $data = $this->setDataLaravelStuff($data);
         $data = $this->setDeployData($data);
+
         return $data;
     }
 
     /**
-     * @param array<mixed> $data
+     * @param  array<mixed>  $data
      * @return array<mixed>|string
      */
     public function generate(array $data)
     {
         $stringResult = view('action_yaml', $data)->render();
+
         return $stringResult;
     }
 
@@ -108,7 +115,7 @@ class WorkflowGenerator
      */
     public function detectPhpVersion(string $phpversion): array
     {
-        $listPhpVersions = [ "7.3", "7.4", "8.0","8.1"];
+        $listPhpVersions = ['7.3', '7.4', '8.0', '8.1'];
         $stepPhp = [];
         foreach ($listPhpVersions as $php) {
             if (Semver::satisfies($php, $phpversion)) {
@@ -116,6 +123,7 @@ class WorkflowGenerator
             }
         }
         $this->stepPhpVersions = $stepPhp;
+
         return $stepPhp;
     }
 
@@ -139,7 +147,7 @@ class WorkflowGenerator
     public function readDotEnv(string $fileEnv): array
     {
         $envConfiguration = [];
-        if (!is_readable($fileEnv)) {
+        if (! is_readable($fileEnv)) {
             throw new \RuntimeException(sprintf('%s file is not readable', $fileEnv));
         }
 
@@ -149,7 +157,7 @@ class WorkflowGenerator
                 continue;
             }
 
-            list($name, $value) = explode('=', $line, 2);
+            [$name, $value] = explode('=', $line, 2);
             $name = trim($name);
             $value = trim($value);
             $envConfiguration[$name] = $value;
@@ -160,8 +168,8 @@ class WorkflowGenerator
 
     public function readNvmrc(string $fileNvmrc): string
     {
-        if (!is_readable($fileNvmrc)) {
-            return "";
+        if (! is_readable($fileNvmrc)) {
+            return '';
         }
 
         $lines = file($fileNvmrc, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -169,9 +177,10 @@ class WorkflowGenerator
             if (strpos(trim($line), '#') === 0) {
                 continue;
             }
+
             return $line;
         }
 
-        return "";
+        return '';
     }
 }
