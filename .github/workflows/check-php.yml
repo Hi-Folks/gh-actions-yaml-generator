@@ -34,12 +34,11 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
         php-versions: [ '8.1', '8.2' ]
-        dependency-stability: [ 'prefer-none' ]
         exclude:
           - operating-system: windows-latest
             php-versions: 8.1
 
-    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+    name: PHP ${{ matrix.php-versions }} - OS ${{ matrix.operating-system}}
 
     steps:
       - uses: actions/checkout@v2
@@ -61,12 +60,6 @@ jobs:
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Update Dependencies with latest stable
-        if: matrix.dependency-stability == 'prefer-stable'
-        run: composer update --prefer-stable
-      - name: Update Dependencies with lowest stable
-        if: matrix.dependency-stability == 'prefer-lowest'
-        run: composer update --prefer-stable --prefer-lowest
 
       - name: Generate key
         run: php artisan key:generate
