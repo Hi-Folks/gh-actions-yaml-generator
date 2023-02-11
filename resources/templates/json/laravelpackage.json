@@ -35,7 +35,7 @@
     "stepCacheNpmModules": false,
     "stepEnvTemplateFile": ".env.example",
     "matrixLaravel": true,
-    "matrixLaravelVersions": ["9.*"],
+    "matrixLaravelVersions": ["10.*"],
     "stepDirStaticAnalysis": "src",
     "stepPhpVersionsString": "[ '8.2','8.1' ]",
     "postgresqlDatabaseName": "db_test_laravel",
@@ -51,6 +51,6 @@
     "stepExecuteStaticAnalysis": "1",
     "stepFixStoragePermissions": false,
     "stepInstallStaticAnalysis": true,
-    "matrixLaravelVersionsString": "[ '9.*' ]"
+    "matrixLaravelVersionsString": "[ '10.*' ]"
 
 }
