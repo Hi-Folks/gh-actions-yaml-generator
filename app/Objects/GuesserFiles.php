@@ -8,27 +8,40 @@ use Illuminate\Support\Str;
 
 class GuesserFiles
 {
-    public const COMPOSER_FILE = "composer.json";
-    public const ENV_FILE = ".env";
-    public const ENV_DEFAULT_TEMPLATE_FILE = ".env.example";
-    public const NVMRC_FILE = ".nvmrc";
-    public const PACKAGE_FILE = "package.json";
-    public const ARTISAN_FILE = "artisan";
-    public const PHPSTANNEON_FILE = "phpstan.neon";
-    public const MIGRATIONS_DIR = "database" . DIRECTORY_SEPARATOR . "migrations";
+    public const COMPOSER_FILE = 'composer.json';
 
-    public const COMPOSER_VAR = "composerFile";
-    public const ENV_VAR = "envFile";
-    public const MIGRATIONS_VAR = "migrationsDir";
-    public const ENV_DEFAULT_TEMPLATE_VAR = "envWorkflowFile";
-    public const NVMRC_VAR = "nvmrcFile";
-    public const PACKAGE_VAR = "packageFile";
-    public const ARTISAN_VAR = "artisanFile";
-    public const PHPSTANNEON_VAR = "phpstanNeonFile";
+    public const ENV_FILE = '.env';
 
+    public const ENV_DEFAULT_TEMPLATE_FILE = '.env.example';
+
+    public const NVMRC_FILE = '.nvmrc';
+
+    public const PACKAGE_FILE = 'package.json';
+
+    public const ARTISAN_FILE = 'artisan';
+
+    public const PHPSTANNEON_FILE = 'phpstan.neon';
+
+    public const MIGRATIONS_DIR = 'database'.DIRECTORY_SEPARATOR.'migrations';
+
+    public const COMPOSER_VAR = 'composerFile';
+
+    public const ENV_VAR = 'envFile';
+
+    public const MIGRATIONS_VAR = 'migrationsDir';
+
+    public const ENV_DEFAULT_TEMPLATE_VAR = 'envWorkflowFile';
+
+    public const NVMRC_VAR = 'nvmrcFile';
+
+    public const PACKAGE_VAR = 'packageFile';
+
+    public const ARTISAN_VAR = 'artisanFile';
+
+    public const PHPSTANNEON_VAR = 'phpstanNeonFile';
 
     /**
-     * @var array<string> $filePaths
+     * @var array<string>
      */
     public array $filePaths = [];
 
@@ -48,24 +61,24 @@ class GuesserFiles
             $this->filePaths[$variable] = base_path($file);
         }
 
-        if ($projectDir === "") {
+        if ($projectDir === '') {
             return;
         }
 
         foreach ($arrayFiles as $variable => $file) {
-            $this->filePaths[$variable] = $projectDir . DIRECTORY_SEPARATOR . $file;
+            $this->filePaths[$variable] = $projectDir.DIRECTORY_SEPARATOR.$file;
         }
     }
 
     public function getComposerPath(): string
     {
-        return Arr::get($this->filePaths, self::COMPOSER_VAR, "");
+        return Arr::get($this->filePaths, self::COMPOSER_VAR, '');
     }
 
     public function composerExists(): bool
     {
         $exists = $this->getComposerPath();
-        if ($exists === "") {
+        if ($exists === '') {
             return false;
         }
 
@@ -74,67 +87,77 @@ class GuesserFiles
 
     public function getEnvPath(): string
     {
-        return Arr::get($this->filePaths, self::ENV_VAR, "");
+        return Arr::get($this->filePaths, self::ENV_VAR, '');
     }
+
     public function envExists(): bool
     {
         $exists = $this->getEnvPath();
-        if ($exists === "") {
+        if ($exists === '') {
             return false;
         }
+
         return is_file($this->getEnvPath());
     }
 
     public function getEnvDefaultTemplatePath(): string
     {
-        return Arr::get($this->filePaths, self::ENV_DEFAULT_TEMPLATE_VAR, "");
+        return Arr::get($this->filePaths, self::ENV_DEFAULT_TEMPLATE_VAR, '');
     }
+
     public function envDefaultTemplateExists(): bool
     {
-        return $this->somethingExists("getEnvDefaultTemplatePath");
+        return $this->somethingExists('getEnvDefaultTemplatePath');
     }
+
     public function getPackagePath(): string
     {
-        return Arr::get($this->filePaths, self::PACKAGE_VAR, "");
+        return Arr::get($this->filePaths, self::PACKAGE_VAR, '');
     }
+
     public function packageExists(): bool
     {
-        return $this->somethingExists("getPackagePath");
+        return $this->somethingExists('getPackagePath');
     }
+
     public function getNvmrcPath(): string
     {
-        return Arr::get($this->filePaths, self::NVMRC_VAR, "");
+        return Arr::get($this->filePaths, self::NVMRC_VAR, '');
     }
+
     public function nvmrcExists(): bool
     {
-        return $this->somethingExists("getNvmrcPath");
+        return $this->somethingExists('getNvmrcPath');
     }
+
     public function getArtisanPath(): string
     {
-        return Arr::get($this->filePaths, self::ARTISAN_VAR, "");
+        return Arr::get($this->filePaths, self::ARTISAN_VAR, '');
     }
+
     public function artisanExists(): bool
     {
-        return $this->somethingExists("getArtisanPath");
+        return $this->somethingExists('getArtisanPath');
     }
 
     public function getPhpstanNeonPath(): string
     {
-        return Arr::get($this->filePaths, self::PHPSTANNEON_VAR, "");
+        return Arr::get($this->filePaths, self::PHPSTANNEON_VAR, '');
     }
+
     public function phpstanNeonExists(): bool
     {
-        return $this->somethingExists("getPhpstanNeonPath");
+        return $this->somethingExists('getPhpstanNeonPath');
     }
 
     public function getMigrationsPath(): string
     {
-        return Arr::get($this->filePaths, self::MIGRATIONS_VAR, "");
+        return Arr::get($this->filePaths, self::MIGRATIONS_VAR, '');
     }
 
     public function migrationsExists(): bool
     {
-        return $this->somethingExists("getMigrationsPath", true);
+        return $this->somethingExists('getMigrationsPath', true);
     }
 
     public function dispatch(string $method): string
@@ -152,23 +175,24 @@ class GuesserFiles
         //$path = call_user_func(array($this, $methodPath));
         $path = $this->dispatch($methodPath);
         $exists = $path;
-        if ($exists == "") {
+        if ($exists == '') {
             return false;
         }
         if ($isDirCheck) {
             return is_dir($path);
         }
+
         return is_file($path);
     }
 
     /**
-     * @param string $testbenchVersion
+     * @param  string  $testbenchVersion
      * @return array<string>
      */
     public static function detectLaravelVersionFromTestbench(string $testbenchVersion): array
     {
-        $listLaravelVersions = [ "6.*", "7.*", "8.*", "9.*", "10.*"];
-        $listTestBenchVersions = [ "4.0", "5.0", "6.0", "7.0", "8.0"];
+        $listLaravelVersions = ['6.*', '7.*', '8.*', '9.*', '10.*'];
+        $listTestBenchVersions = ['4.0', '5.0', '6.0', '7.0', '8.0'];
         $stepLaravelVersions = [];
         $i = 0;
 
@@ -187,25 +211,26 @@ class GuesserFiles
     }
 
     public static function generateYamlFilename(
-        string $path = "",
-        string $title = ""
+        string $path = '',
+        string $title = ''
     ): string {
-        if ($title === "") {
-            $title = "Ghygen Auto Workflow";
+        if ($title === '') {
+            $title = 'Ghygen Auto Workflow';
         }
-        $timeStamp = date("Ymd-His");
-        $fileName = Str::slug($title, '_') . "-" . $timeStamp . ".yml";
-        return $path . $fileName;
+        $timeStamp = date('Ymd-His');
+        $fileName = Str::slug($title, '_').'-'.$timeStamp.'.yml';
+
+        return $path.$fileName;
     }
 
     public static function getGithubWorkflowDirectory(
-        string $projectdir = ""
+        string $projectdir = ''
     ): string {
-        return $projectdir . ".github/workflows/";
+        return $projectdir.'.github/workflows/';
     }
 
     public static function existsGithubWorkflowDirectory(
-        string $projectdir = ""
+        string $projectdir = ''
     ): bool {
         return is_dir(self::getGithubWorkflowDirectory($projectdir));
     }

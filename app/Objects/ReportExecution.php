@@ -14,12 +14,15 @@ class ReportExecution
 
     private int $idx = -1;
 
-    public const LINE_TYPE_ERROR   = 'error';
-    public const LINE_TYPE_WARNING = 'warning';
-    public const LINE_TYPE_INFO = 'info';
-    public const LINE_TYPE_HINT    = 'hint';
-    public const LINE_TYPE_DEFAULT = 'default';
+    public const LINE_TYPE_ERROR = 'error';
 
+    public const LINE_TYPE_WARNING = 'warning';
+
+    public const LINE_TYPE_INFO = 'info';
+
+    public const LINE_TYPE_HINT = 'hint';
+
+    public const LINE_TYPE_DEFAULT = 'default';
 
     public function __construct()
     {
@@ -41,47 +44,52 @@ class ReportExecution
     {
         $this->add($label, $value, true, self::LINE_TYPE_WARNING);
     }
+
     /**
-     * @param string $label
-     * @param string|string[] $value
-     * @param string $style
+     * @param  string  $label
+     * @param  string|string[]  $value
+     * @param  string  $style
+     *
      * @psalm-param array<string>|string $value
      */
-    public function addValue(string $label, $value, string $style = ""): void
+    public function addValue(string $label, $value, string $style = ''): void
     {
         if (is_array($value)) {
-            $value = implode(",", $value);
+            $value = implode(',', $value);
         }
-        if ($style !== "") {
-            $value = sprintf("<%s>%s</%s>", $style, $value, $style);
+        if ($style !== '') {
+            $value = sprintf('<%s>%s</%s>', $style, $value, $style);
         }
         $this->add($label, $value, true, self::LINE_TYPE_INFO);
     }
 
     /**
-     * @param string $label
-     * @param string|string[] $value
+     * @param  string  $label
+     * @param  string|string[]  $value
+     *
      * @psalm-param array<string>|string $value
      */
     public function addValueInfo(string $label, $value): void
     {
-        $this->addValue($label, $value, "info");
+        $this->addValue($label, $value, 'info');
     }
+
     /**
-     * @param string $label
-     * @param string|string[] $value
+     * @param  string  $label
+     * @param  string|string[]  $value
+     *
      * @psalm-param array<string>|string $value
      */
     public function addValueComment(string $label, $value): void
     {
-        $this->addValue($label, $value, "comment");
+        $this->addValue($label, $value, 'comment');
     }
-
 
     public function addHint(string $value): void
     {
-        $this->add("*** HINT", $value, true, self::LINE_TYPE_HINT);
+        $this->add('*** HINT', $value, true, self::LINE_TYPE_HINT);
     }
+
     public function addErrorAndHint(
         string $label,
         string $errorMessage,
@@ -90,6 +98,7 @@ class ReportExecution
         $this->addError($label, $errorMessage);
         $this->addHint($hintMessage);
     }
+
     public function addWarningAndHint(
         string $label,
         string $warningMessage,
@@ -98,6 +107,7 @@ class ReportExecution
         $this->addWarning($label, $warningMessage);
         $this->addHint($hintMessage);
     }
+
     public function addInfoAndHint(
         string $label,
         string $infoMessage,
@@ -115,10 +125,10 @@ class ReportExecution
     ): void {
         $this->result->push(
             [
-                "label" => $label,
-                "value" => $value,
-                "isLine" => $forceLine,
-                "lineType" => $lineType
+                'label' => $label,
+                'value' => $value,
+                'isLine' => $forceLine,
+                'lineType' => $lineType,
             ]
         );
         $this->idx++;
@@ -129,13 +139,14 @@ class ReportExecution
      */
     public static function isMessageLine(string $lineType): bool
     {
-        return (($lineType === self::LINE_TYPE_ERROR) ||
+        return ($lineType === self::LINE_TYPE_ERROR) ||
             ($lineType === self::LINE_TYPE_WARNING) ||
-            ($lineType === self::LINE_TYPE_INFO));
+            ($lineType === self::LINE_TYPE_INFO);
     }
+
     public static function isHintLine(string $lineType): bool
     {
-        return ($lineType === self::LINE_TYPE_HINT);
+        return $lineType === self::LINE_TYPE_HINT;
     }
 
     /**
@@ -145,10 +156,11 @@ class ReportExecution
     {
         $retArray = [];
         foreach ($this->result as $r) {
-            $label = Arr::get($r, "label", "");
-            $value = Arr::get($r, "value", "");
-            $retArray[] = ["label" => $label, "value" => $value];
+            $label = Arr::get($r, 'label', '');
+            $value = Arr::get($r, 'value', '');
+            $retArray[] = ['label' => $label, 'value' => $value];
         }
+
         return $retArray;
     }
 

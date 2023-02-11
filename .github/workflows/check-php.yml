@@ -89,15 +89,15 @@ jobs:
           DB_PORT: 33306
           DB_USER: root
 
-        run: vendor/bin/phpunit --testdox
+        run: composer test
 
 
 
-      - name: Execute Code Sniffer via phpcs
+      - name: Execute Code Sniffer via Pint
         run: |
-          vendor/bin/phpcs --standard=PSR12 app
+          composer cs
 
       - name: Execute Code Static Analysis (PHP Stan + Larastan)
         run: |
-          vendor/bin/phpstan analyse app -c ./phpstan.neon  --no-progress
+          composer phpstan
 
