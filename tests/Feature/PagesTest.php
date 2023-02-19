@@ -1,55 +1,20 @@
 <?php
 
-namespace Tests\Feature;
+use function Pest\Laravel\get;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
+it('loads page', function (string $route) {
+    get(route($route))->assertOK();
+})->with(['index', 'about', 'dashboard']);
 
-class PagesTest extends TestCase
-{
-    use DatabaseMigrations;
+it('can properly loads the index form', function () {
+    get(route('index'))
+        ->AssertSee('Select a workflow template')
+        ->AssertSee('On - GitHub event that triggers the workflow')
+        ->AssertSee('Select a workflow template')
+        ->assertOK();
+});
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testMainPage()
-    {
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testDashboardPage()
-    {
-        $response = $this->get('/dashboard');
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testAboutPage()
-    {
-        $response = $this->get('/about');
-        $response->assertStatus(200);
-    }
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test404Page()
-    {
-        $response = $this->get('/itdoesntexist');
-        $response->assertStatus(404);
-    }
-}
+test('not found page')
+    ->get('/it-does-not-exist')
+    ->assertSee('Not Found')
+    ->AssertNotFound();

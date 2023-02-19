@@ -1,46 +1,25 @@
 <?php
 
-namespace Tests\Feature;
+test('Ploi Deploy')
+    ->livewire(ConfiguratorForm())
+    ->set('name', 'Test')
+    ->set('stepDeployType', 'ploi')
+    ->set('stepDeployWebhookType', 'secret')
+    ->call('submitForm')
+    ->assertSee(readAsset('ploi-deploy.yaml'));
 
-use App\Http\Livewire\ConfiguratorForm;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Livewire\Livewire;
-use Tests\TestCase;
+test('Vapor Deploy')
+    ->livewire(ConfiguratorForm())
+    ->set('name', 'Test')
+    ->set('stepDeployType', 'vapor')
+    ->call('submitForm')
+    ->assertSee(readAsset('vapor-deploy.yaml'));
 
-class DeployTest extends TestCase
-{
-    use DatabaseMigrations;
-
-    const DIR_MOCK = 'tests/Feature/mock-asserts/';
-
-    public function testPloiDeploy(): void
-    {
-        Livewire::test(ConfiguratorForm::class)
-            ->set('name', 'Test')
-            ->set('stepDeployType', 'ploi')
-            ->set('stepDeployWebhookType', 'secret')
-            ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'ploi-deploy.yaml')));
-    }
-
-    public function testVaporDeploy(): void
-    {
-        Livewire::test(ConfiguratorForm::class)
-            ->set('name', 'Test')
-            ->set('stepDeployType', 'vapor')
-
-            ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'vapor-deploy.yaml')));
-    }
-
-    public function testForgeDeploy(): void
-    {
-        Livewire::test(ConfiguratorForm::class)
-            ->set('name', 'Test')
-            ->set('stepDeployType', 'forge')
-            ->set('stepDeployForgeServerName', 'servername')
-            ->set('stepDeployForgeSiteName', 'sitename')
-            ->call('submitForm')
-            ->assertSee(file_get_contents(base_path(self::DIR_MOCK.'forge-deploy.yaml')));
-    }
-}
+test('Forge Deploy')
+    ->livewire(ConfiguratorForm())
+    ->set('name', 'Test')
+    ->set('stepDeployType', 'forge')
+    ->set('stepDeployForgeServerName', 'servername')
+    ->set('stepDeployForgeSiteName', 'sitename')
+    ->call('submitForm')
+    ->assertSee(readAsset('forge-deploy.yaml'));
