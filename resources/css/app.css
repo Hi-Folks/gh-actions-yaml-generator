@@ -1,5 +1,5 @@
 @import 'tailwindcss/base';
-@import '~highlight.js/styles/a11y-light';
+@import 'highlight.js/styles/a11y-light';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
