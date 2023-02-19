@@ -49,7 +49,7 @@ jobs:
       - name: Install NPM packages
         run: npm ci
       - name: Build frontend
-        run: npm run development
+        run: npm run build
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
@@ -100,4 +100,3 @@ jobs:
       - name: Execute Code Static Analysis (PHP Stan + Larastan)
         run: |
           composer phpstan
-
