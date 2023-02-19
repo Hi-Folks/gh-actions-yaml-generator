@@ -67,9 +67,7 @@ class Configuration extends Model
     }
 
     /**
-     * @param  string  $code
      * @param  array<mixed>|object|mixed  $json
-     * @param  string  $metadata
      */
     public static function saveConfiguration(string $code, $json, string $metadata = '{}'): void
     {

@@ -46,9 +46,7 @@ class ReportExecution
     }
 
     /**
-     * @param  string  $label
      * @param  string|string[]  $value
-     * @param  string  $style
      *
      * @psalm-param array<string>|string $value
      */
@@ -64,7 +62,6 @@ class ReportExecution
     }
 
     /**
-     * @param  string  $label
      * @param  string|string[]  $value
      *
      * @psalm-param array<string>|string $value
@@ -75,7 +72,6 @@ class ReportExecution
     }
 
     /**
-     * @param  string  $label
      * @param  string|string[]  $value
      *
      * @psalm-param array<string>|string $value
@@ -134,9 +130,6 @@ class ReportExecution
         $this->idx++;
     }
 
-    /**
-     * @return bool
-     */
     public static function isMessageLine(string $lineType): bool
     {
         return ($lineType === self::LINE_TYPE_ERROR) ||

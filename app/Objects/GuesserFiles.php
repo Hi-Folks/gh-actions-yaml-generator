@@ -186,7 +186,6 @@ class GuesserFiles
     }
 
     /**
-     * @param  string  $testbenchVersion
      * @return array<string>
      */
     public static function detectLaravelVersionFromTestbench(string $testbenchVersion): array

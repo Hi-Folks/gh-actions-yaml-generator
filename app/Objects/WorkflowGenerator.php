@@ -33,8 +33,6 @@ class WorkflowGenerator
     }
 
     /**
-     * @param  object  $object
-     * @param  string  ...$args
      * @return array<mixed>
      */
     public static function compactObject(object $object, string ...$args): array
@@ -54,7 +52,6 @@ class WorkflowGenerator
 
     /**
      * @param  array<mixed>  $array
-     * @return string
      */
     public static function arrayToString(array $array): string
     {
@@ -71,7 +68,6 @@ class WorkflowGenerator
 
     /**
      * @param  array<mixed>|string  $somethingToSplit
-     * @param  string  $splitChars
      * @return array<mixed>|mixed
      */
     public static function split($somethingToSplit, string $splitChars = ',')
@@ -129,8 +125,6 @@ class WorkflowGenerator
 
     /**
      * Detect cache, for now the behavior is to disable cache
-     *
-     * @return void
      */
     public function detectCache(bool $cache): void
     {
