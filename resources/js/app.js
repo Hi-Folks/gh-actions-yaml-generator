@@ -1,12 +1,13 @@
-require('./bootstrap');
+import('./bootstrap');
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
 // Highlight code blocks and line numbers
-const hljs = require('highlight.js/lib/core');
-hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+import hljs from 'highlight.js/lib/core';
+import yamlH from 'highlight.js/lib/languages/yaml'
+hljs.registerLanguage('yaml', yamlH);
 window.hljs = hljs;
 
 // Clipboard

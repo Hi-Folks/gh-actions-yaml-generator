@@ -45,7 +45,7 @@ migraterefresh: ## Execute migrate command for DB schema
 	ssh ${SSH_ALIAS} "cd ${WEB_DIR}; php artisan migrate:refresh"
 
 buildfrontend: ## execute npm task to compile frontend assets (js and css...)
-	npm run production
+	npm run build
 
 optimize: ## Optimize application in production
 	ssh ${SSH_ALIAS} "cd ${WEB_DIR}; php artisan config:cache; php artisan route:cache; php artisan view:cache"
