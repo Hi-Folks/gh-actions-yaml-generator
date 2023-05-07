@@ -9,4 +9,4 @@ parameters:
     level: 6
     paths:
         - app
-        - tests
+

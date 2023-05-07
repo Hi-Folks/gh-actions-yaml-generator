@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Models\Configuration;
 use App\Models\LogConfiguration;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -10,7 +9,7 @@ use Livewire\Component;
 class Daily extends Component
 {
     /**
-     * @var \Illuminate\Support\Collection<string,int> $daily
+     * @var \Illuminate\Support\Collection<string,int>
      */
     public $daily;
 
@@ -20,14 +19,15 @@ class Daily extends Component
         if (config('database.default') === 'pgsql') {
             $date = DB::raw("date_trunc('day', created_at) as date");
         }
-        $this->daily = LogConfiguration::select(array(
+        $this->daily = LogConfiguration::select([
             $date,
-            DB::raw('count(*) as count')
-        ))
+            DB::raw('count(*) as count'),
+        ])
             ->groupBy('date')
             ->orderBy('date', 'DESC') // or ASC
             ->pluck('count', 'date');
     }
+
     public function render(): \Illuminate\View\View
     {
         return view('livewire.dashboard.daily');

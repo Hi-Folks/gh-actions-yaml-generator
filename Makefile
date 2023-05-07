@@ -5,19 +5,19 @@ help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 phpstan: ## Execute phpstan
-	vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress
+	composer phpstan
 
 psalm: ## execute psalm
 	vendor/bin/psalm
 
 test: ## Execute phpunit
-	php artisan test
+	composer test
 
 coverage: ## Execute the coverage test
-	vendor/bin/phpunit --coverage-text
+	composer test
 
 phpcs: ## execute phpcs
-	vendor/bin/phpcs --standard=PSR12 app
+	composer cs
 
 phpfix: ## Fix some warnings from phpcs
 	vendor/bin/phpcbf --standard=PSR12  app

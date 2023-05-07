@@ -29,46 +29,47 @@ class Configuration extends Model
         if (isset($this->configuration->mysqlService)) {
             return $this->configuration->mysqlService;
         }
-        return $this->configuration->databaseType === "mysql";
+
+        return $this->configuration->databaseType === 'mysql';
     }
 
     public function isSqlite(): bool
     {
         if (isset($this->configuration->databaseType)) {
-            return $this->configuration->databaseType === "sqlite";
+            return $this->configuration->databaseType === 'sqlite';
         }
+
         return false;
     }
 
     public function isPostgresqlService(): bool
     {
         if (isset($this->configuration->databaseType)) {
-            return $this->configuration->databaseType === "postgresql";
+            return $this->configuration->databaseType === 'postgresql';
         }
+
         return false;
     }
-
 
     public function getDatabaseType(): string
     {
         if ($this->isMysqlService()) {
-            return "Mysql";
+            return 'Mysql';
         }
         if ($this->isPostgresqlService()) {
-            return "Postgresql";
+            return 'Postgresql';
         }
         if ($this->isSqlite()) {
-            return "Sqlite";
+            return 'Sqlite';
         }
-        return "";
+
+        return '';
     }
 
     /**
-     * @param string $code
-     * @param array<mixed>|object|mixed $json
-     * @param string $metadata
+     * @param  array<mixed>|object|mixed  $json
      */
-    public static function saveConfiguration(string $code, $json, string $metadata = "{}"): void
+    public static function saveConfiguration(string $code, $json, string $metadata = '{}'): void
     {
         $confModel = self::getByCode($code);
 

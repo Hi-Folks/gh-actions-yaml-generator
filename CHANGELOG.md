@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.0 - 2023-02-19
+
+- Added Laravel 10 options for using L10 in the GitHub Actions workflows
+- Upgrading Actions:
+  - actions/checkout@v3
+  - actions/setup-node@v3
+  - github/codeql-action/upload-sarif@v2
+  - symfonycorp/security-checker-action@v4
+  - webfactory/ssh-agent@v0.7.0
+- Introducing Laravel Pint
+- Introducing PestPHP
+- Converting Feature tests for PestPHP, thanks to @dansysanalyst for #151
+- Using composer scripts for executing code quality tools
+
 ## 0.6.2 - 2022-12-20
 - PHPStan Level 6
 - Support for PHP 8.2
@@ -66,7 +80,7 @@ It is time for Hacktoberfest!!!
 - With template laravelpackage (no composer.lock), avoid cache vendors and cache package. Thanks to @hetpatel33 for the hacktoberfest contribution;
 - Update PHP packages, also [Laralens 0.2.6](https://github.com/Hi-Folks/lara-lens);
 - Update contributing file for new contributors.
-- 
+-
 ## 0.4.0 - 2021-09-15
 - Add command to generate automatically GitHub Actions workflow from composer.json, .env, migrations, packages.json
 
@@ -118,7 +132,7 @@ It is time for Hacktoberfest!!!
 
 ### Add
 - Select Template option: Laravel application, PHP package, Laravel package ( #62 );
-- Select tool for code static analysis ( #63 )  
+- Select tool for code static analysis ( #63 )
 
 
 ## 0.2.5 - 2021-04-12
@@ -251,7 +265,7 @@ It is time for Hacktoberfest!!!
 - initial release
 - Collect some parameters about:
     - name of workflow;
-    - "On" (events that trigger the workflow); 
+    - "On" (events that trigger the workflow);
     - setup mysql service container;
     - Caching vendors and packages;
     - select PHP versions;

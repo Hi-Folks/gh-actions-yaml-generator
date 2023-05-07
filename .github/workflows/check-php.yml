@@ -6,6 +6,7 @@ on:
       - main
       - develop
       - features/**
+      - feature/**
 
 jobs:
   laravel-tests:
@@ -32,21 +33,23 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
-        php-versions: [ '8.0','8.1', '8.2' ]
-        dependency-stability: [ 'prefer-none' ]
+        php-versions: [ '8.1', '8.2' ]
+        exclude:
+          - operating-system: windows-latest
+            php-versions: 8.1
 
-    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+    name: PHP ${{ matrix.php-versions }} - OS ${{ matrix.operating-system}}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
       - name: Install NPM packages
         run: npm ci
       - name: Build frontend
-        run: npm run development
+        run: npm run build
       - name: Install PHP versions
         uses: shivammathur/setup-php@v2
         with:
@@ -57,12 +60,6 @@ jobs:
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Update Dependencies with latest stable
-        if: matrix.dependency-stability == 'prefer-stable'
-        run: composer update --prefer-stable
-      - name: Update Dependencies with lowest stable
-        if: matrix.dependency-stability == 'prefer-lowest'
-        run: composer update --prefer-stable --prefer-lowest
 
       - name: Generate key
         run: php artisan key:generate
@@ -92,15 +89,14 @@ jobs:
           DB_PORT: 33306
           DB_USER: root
 
-        run: vendor/bin/phpunit --testdox
+        run: composer test
 
 
 
-      - name: Execute Code Sniffer via phpcs
+      - name: Execute Code Sniffer via Pint
         run: |
-          vendor/bin/phpcs --standard=PSR12 app
+          composer cs
 
       - name: Execute Code Static Analysis (PHP Stan + Larastan)
         run: |
-          vendor/bin/phpstan analyse app -c ./phpstan.neon  --no-progress
-
+          composer phpstan
