@@ -237,7 +237,7 @@ class GenerateWorkflow extends Command
         }
         if ($guesserFiles->packageExists()) {
             $generator->stepNodejs = true;
-            $generator->stepNodejsVersion = '16.x';
+            $generator->stepNodejsVersion = '18.x';
             $versionFromNvmrc = $generator->readNvmrc($guesserFiles
             ->getNvmrcPath());
             if ($versionFromNvmrc !== '') {
