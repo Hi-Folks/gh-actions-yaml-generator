@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.7.1 - 2023-05-07
+- Switching from Webpack to Vite
 - Updating node version for auto generate command
 - Updating PHP version for auto generate command
 - Updating depenedecies (PHP and Node)
