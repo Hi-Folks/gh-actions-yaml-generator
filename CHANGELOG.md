@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1 - 2023-05-07
+- Updating node version for auto generate command
+- Updating PHP version for auto generate command
+- Updating depenedecies (PHP and Node)
+
 ## 0.7.0 - 2023-02-19
 
 - Added Laravel 10 options for using L10 in the GitHub Actions workflows
