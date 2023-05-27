@@ -106,3 +106,19 @@ Next, copy the content of your generated Yaml in a new file in your Laravel proj
 Commit and push the new file.
 
 If you configured "On - Push" you will see the running Actions in your Actions section of your GitHub project.
+
+## Thanks to
+
+Thanks to all the people for providing feedback, opening issues, creating Pull Requests.
+Thank you to all the contributors! You can see the list of contributors [at this section](https://github.com/Hi-Folks/gh-actions-yaml-generator/graphs/contributors).
+
+In the PHP ecosystem, we have many tools that help developers work with great productivity, reliability, and efficiency. One of these tools is JetBrains PHP Storm.
+JetBrains supports the open-source community by providing licenses for open-source projects.
+You can find more information in the [Open Source section of the JetBrains website](https://jb.gg/OpenSourceSupport).
+
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PhpStorm_icon.png" alt= "PhpStorm logo" width="128" height="128">
+
+
+JetBrains is providing me the license for the Ghygen project.
+This fills me with joy, because Ghygen has been recognized as a deserving open-source software.
+Thank you.
