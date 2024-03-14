@@ -1,4 +1,0 @@
-    - name: Execute Code Static Analysis (PHP Stan + Larastan)
-      run: |
-        composer require --dev nunomaduro/larastan
-        vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress

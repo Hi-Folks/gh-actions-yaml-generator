@@ -1,8 +1,0 @@
-    - name: Run Migrations
-# Set environment
-      env:
-        SESSION_DRIVER: array
-        DB_CONNECTION: sqlite
-        DB_DATABASE: ":memory:"
-
-      run: php artisan migrate

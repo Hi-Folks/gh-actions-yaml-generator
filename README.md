@@ -1,108 +1,66 @@
-![GitHub Workflow Status (main branch)](https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=main&style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge)
-![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-# Ghygen
-__Ghygen__ is a GitHub actions Yaml Generator.
+## About Laravel
 
-__Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for Laravel/PHP web application,  so you can:
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- select triggering events: manually or automatically, when the developer _push_ the code on a specific branch, or a developer create a new _Pull Request_;
-- select branches;
-- enable caching for all vendors;
-- enable __caching__ PHP packages;
-- select __multiple__ PHP versions (8.2, 8.1, 8.0, 7.4);
-- select __multiple Laravel__ versions (10, 9, 8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
-- select __Node__ version for NPM (executing scripts via `npm run`);
-- caching node packages;
-- setup __Mysql__ Database service;
-- setup __PostgreSQL__ Database service;
-- setup __Sqlite__ in memory database;
-- run migrations;
-- __execute tests__ via phpunit;
-- __execute tests__ via PestPHP;
-- static __code analysis__ with phpstan or psalm;
-- create Sarif report (with Psalm) for __GitHub integration with code scanning__;
-- code sniffer (via phpcs for __PSR12__ compatibility);
-- __validate Yaml__ file;
-- execute __Browser Test__ via Laravel Dusk.
-- Run __Deployments__ via Ploi using [Ploi Deploy Action](https://github.com/Glennmen/ploi-deploy-action).
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-This is a Work In Progress, we are adding new features...
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean Platform:
+## Learning Laravel
 
-- [Ghygen Demo](https://ghygen.hi-folks.dev/).
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you want to start using it locally you can clone the repo and install it following the instructions below.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-## Command line
-Experimental and "magical" feature: Ghygen ships also a command for generating **automatically** a GitHub Actions workflow Yaml file.
-You can install Gygen as project with composer:
-```shell
-composer create-project hi-folks/ghygen
-cd ghygen
-```
-Once you installed Ghygen, you can execute:
-```shell
-php artisan ghygen:generate --projectdir=../otherproject
-```
-Where "../otherproject" is the directory (absolute or relative path name) with your Laravel project (application or package) that yuo want to automatically generate the GitHub Actions workflow yaml file.
-This "magic" command, will extract information from:
-- composer.json
-- package.json (if it exists)
-- .env file
-- ... and other assets
-- in order to guess a configuration for your GitHub Actions workflow.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-By default the command will show the Yaml workflow file in the standard output. If you want to save it in a file for example "my-workflow.yml" you can use --save option:
-```shell
-php artisan ghygen:generate  --save=my-workflow.yml
-```
+## Laravel Sponsors
 
-If you want to autogenerate Yaml file in the .github/workflows directory use --save=auto
-```shell
-php artisan ghygen:generate  --save=auto
-```
-The file name will be created with the name found in composer.json (slugified).
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-So if you are *superlazy* and want to generate the workflow for the project in the directory ../myproject , you can execute:
-```shell
-php artisan ghygen:generate --projectdir=../myproject/ --save=auto
-```
+### Premium Partners
 
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-## Install
-Clone source code, enter the new directory and perform a couple of instructions:
-```shell
-git clone https://github.com/Hi-Folks/gh-actions-yaml-generator.git
-cd gh-actions-yaml-generator
-make install
-```
-Then create your database and update the .env file with the right values for DB_* .
+## Contributing
 
-Once your Database is configured you can execute the migrations:
-```shell
-php artisan migrate
-```
-Start development server
-```shell
-php artisan serve
-```
-Open the browser to the URL: http://127.0.0.1:8000
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Usage
-Follow these steps:
-- access to the form (by default the URL is http://127.0.0.1:8000 if you run php artisan serve);
-- fill the form;
-- click on "Generate Yaml File" button.
+## Code of Conduct
 
-![github-actions-generator-laravel](github-actions-generator-laravel.png "github-actions-generator-laravel")
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Next, copy the content of your generated Yaml in a new file in your Laravel project _.github/workflows/laravel_workflow.yaml_ .
+## Security Vulnerabilities
 
-Commit and push the new file.
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-If you configured "On - Push" you will see the running Actions in your Actions section of your GitHub project.
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -1,3 +1,0 @@
-    - name: Execute Code Sniffer via phpcs
-      run: |
-        vendor/bin/phpcs --standard=PSR12 app
