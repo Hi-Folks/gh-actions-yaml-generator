@@ -6,7 +6,6 @@ use App\Http\Resources\ConfigurationResource;
 use App\Models\Configuration;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', [ConfiguratorController::class, 'index'])->name('index');
 Route::get('/about', [ConfiguratorController::class, 'about'])->name('about');
 
@@ -31,4 +30,3 @@ Route::post('/action', function () {
 Route::get('/configurations', function () {
     return ConfigurationResource::collection(Configuration::all());
 });
-

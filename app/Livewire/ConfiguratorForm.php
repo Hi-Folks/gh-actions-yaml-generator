@@ -22,11 +22,11 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfiguratorForm extends Component
 {
-    use WithRateLimiting;
     use BaseWorkflow;
     use CodeQuality;
-    use LaravelStuff;
     use Deploy;
+    use LaravelStuff;
+    use WithRateLimiting;
 
     public string $code = '';
 
@@ -116,8 +116,9 @@ class ConfiguratorForm extends Component
 
     public function templateLaravelApp()
     {
-        $this->setTemplate("laravelapp");
+        $this->setTemplate('laravelapp');
     }
+
     public function setTemplate($x)
     {
         if (in_array($x, ['laravelapp', 'laravelpostgresql', 'laravelpackage', 'phppackage'])) {
