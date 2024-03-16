@@ -8,7 +8,7 @@
         label="Define Specific Laravel versions"
         id="matrixLaravel"
         value=1
-        wire:model="matrixLaravel"
+        wire:model.live="matrixLaravel"
       >
         <x-form.input-select
           model="matrixLaravelVersions"
@@ -30,7 +30,7 @@
         label="Copy .env file"
         id="stepCopyEnvTemplateFile"
         value=1
-        wire:model="stepCopyEnvTemplateFile"
+        wire:model.live="stepCopyEnvTemplateFile"
       >
         <x-form.input-text
           model="stepEnvTemplateFile"

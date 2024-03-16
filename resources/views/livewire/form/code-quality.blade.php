@@ -54,7 +54,7 @@
         label="Execute Code Sniffer with phpcs"
         id="stepExecuteCodeSniffer"
         value=1
-        wire:model="stepExecuteCodeSniffer"
+        wire:model.live="stepExecuteCodeSniffer"
       >
         <x-form.input-text
           model="stepDirCodeSniffer"
@@ -79,7 +79,7 @@
         label="Execute Code Static Analysis"
         id="stepExecuteStaticAnalysis"
         value=1
-        wire:model="stepExecuteStaticAnalysis"
+        wire:model.live="stepExecuteStaticAnalysis"
       >
         <x-form.input-select
           model="stepToolStaticAnalysis"
