@@ -29,15 +29,15 @@ jobs:
     name: P$@{{ matrix.php-versions }} - L$@{{ matrix.laravel }} - $@{{ matrix.dependency-stability }} - $@{{ matrix.operating-system}}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 @if ($stepNodejs)
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '{{ $stepNodejsVersion }}'
 @if ($stepCacheNpmModules)
     - name: Cache node_modules directory
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: node_modules-cache
       with:
         path: node_modules
@@ -61,7 +61,7 @@ jobs:
       id: composer-cache
       run: |
         echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       id: actions-cache
       with:
         path: $@{{ steps.composer-cache.outputs.dir }}
@@ -71,7 +71,7 @@ jobs:
 @endif
 @if ($stepCacheVendors)
     - name: Cache PHP dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: vendor-cache
       with:
         path: vendor
