@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: '20.x'
     - name: Install NPM packages
-      run: npm ci
+      run: npm i
     - name: Build frontend
       run: npm run development
     - name: Install PHP versions
