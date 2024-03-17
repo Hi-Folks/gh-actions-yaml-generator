@@ -1,11 +1,18 @@
-![GitHub Workflow Status (main branch)](https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=main&style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge)
-![Website](https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F)
+<p align=center>
+    <img src="https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=main&style=for-the-badge" alt="GitHub Workflow Status (main branch)">
+    <img src="https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge" alt="GitHub release (latest by date)">
+    <img src="https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F" alt="Website">
+</p>
 
 ![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
 
-# Ghygen
-__Ghygen__ is a GitHub actions Yaml Generator.
+<h1 align=center>
+    Ghygen
+</h1>
+
+<p align=center>
+    <i><b>Ghygen</b> is a GitHub actions Yaml Generator.</i>
+</p>
 
 __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for Laravel/PHP web application,  so you can:
 
