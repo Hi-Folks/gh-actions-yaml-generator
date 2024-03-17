@@ -5,6 +5,7 @@ on:
       - main
       - develop
       - features/**
+      - upgrade/**
 
 jobs:
   laravel-tests:
