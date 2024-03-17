@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.0.1 - 2024-03-17
+- Adding select for PHP 8.3 in the workflow files
+- Adding select for Laravel 11 in the workflow files
+- Adding select for Node 20 in the workflow files
+
+
 ## 1.0.0 - 2024-03-17
 - Upgrading to Laravel v11
 - Upgrading to PestPHP v2

@@ -12,8 +12,8 @@
     "on_pullrequest": false,
     "stepGenerateKey": false,
     "stepPhpVersions": [
-        "8.2",
-        "8.1"
+        "8.3",
+        "8.2"
     ],
     "on_push_branches": [
         "master",
@@ -27,7 +27,7 @@
     "mysqlPasswordType": "skip",
     "postgresqlVersion": "latest",
     "stepCachePackages": false,
-    "stepNodejsVersion": "18.x",
+    "stepNodejsVersion": "20.x",
     "stepRunMigrations": false,
     "postgresqlDatabase": "postgresql",
     "postgresqlPassword": "postgres",
@@ -37,7 +37,7 @@
     "stepEnvTemplateFile": ".env.example",
     "matrixLaravelVersions": [],
     "stepDirStaticAnalysis": "src",
-    "stepPhpVersionsString": "[ '8.2','8.1' ]",
+    "stepPhpVersionsString": "[ '8.3','8.2' ]",
     "postgresqlDatabaseName": "db_test_laravel",
     "postgresqlDatabasePort": 55432,
     "postgresqlPasswordType": "hardcoded",

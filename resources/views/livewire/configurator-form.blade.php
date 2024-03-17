@@ -299,7 +299,7 @@
                     model="stepPhpVersions"
                     name="stepPhpVersions"
                     label="PHP Versions"
-                    :list="['8.2' => '8.2', '8.1' => '8.1', '8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
+                    :list="['8.3' => '8.3', '8.2' => '8.2', '8.1' => '8.1', '8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
                     help="Select PHP Versions (Multiple)"
                     multiselect=1>
                   </x-form.input-select>
@@ -317,8 +317,8 @@
                       model="stepNodejsVersion"
                       name="stepNodejsVersion"
                       label="Node Js Version"
-                      help="Define the nodejs Version. 19.x is the last stable and it is the default value.
-Select 18.x if you want to use LTS version.">
+                      help="Define the nodejs Version. 21.x is the latest stable version.
+Select 20.x if you want to use LTS version and it is the default value.">
                     </x-form.input-text>
                   </x-form.input-conditional-checkbox>
                 </div>

@@ -20,8 +20,8 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - select branches;
 - enable caching for all vendors;
 - enable __caching__ PHP packages;
-- select __multiple__ PHP versions (8.2, 8.1, 8.0, 7.4);
-- select __multiple Laravel__ versions (10, 9, 8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
+- select __multiple__ PHP versions (8.3, 8.2, 8.1, 8.0, 7.4);
+- select __multiple Laravel__ versions (11, 10, 9, 8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;
 - select __Node__ version for NPM (executing scripts via `npm run`);
 - caching node packages;
 - setup __Mysql__ Database service;

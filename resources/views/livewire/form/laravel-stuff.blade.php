@@ -14,8 +14,8 @@
           model="matrixLaravelVersions"
           name="matrixLaravelVersions"
           label="Laravel Versions"
-          :list="['10.*'=>'10.*', '9.*'=>'9.*', '8.*'=>'8.*','7.*'=>'7.*','6.*'=>'6.*']"
-          help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 10, 9, 8 , 7 and 6"
+          :list="['11.*'=>'11.*', '10.*'=>'10.*', '9.*'=>'9.*', '8.*'=>'8.*','7.*'=>'7.*','6.*'=>'6.*']"
+          help="Select Laravel Versions (Multiple). This is useful if you are building a package and want to test your package with Laravel 11, 10, 9, 8 , 7 and 6"
           multiselect=1>
         </x-form.input-select>
 
