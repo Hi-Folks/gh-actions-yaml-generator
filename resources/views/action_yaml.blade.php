@@ -50,7 +50,7 @@ jobs:
       run: npm ci
 @endif
     - name: Build frontend
-      run: npm run development
+      run: npm run build
 @endif
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
