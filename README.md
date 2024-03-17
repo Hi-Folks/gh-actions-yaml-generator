@@ -1,5 +1,5 @@
 <p align=center>
-    <img src="https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=main&style=for-the-badge" alt="GitHub Workflow Status (main branch)">
+    <img src="https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=develop&style=for-the-badge" alt="GitHub Workflow Status (develop branch)">
     <img src="https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge" alt="GitHub release (latest by date)">
     <img src="https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F" alt="Website">
 </p>
@@ -11,7 +11,7 @@
 </h1>
 
 <p align=center>
-    <i><b>Ghygen</b> is a GitHub actions Yaml Generator.</i>
+    <i><b>Ghygen</b> is a GitHub Actions configurator for your PHP / Laravel project.</i>
 </p>
 
 __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for Laravel/PHP web application,  so you can:
@@ -37,16 +37,14 @@ __Ghygen__ allows you creating your __Yaml__ file for __GitHub Actions__, for La
 - execute __Browser Test__ via Laravel Dusk.
 - Run __Deployments__ via Ploi using [Ploi Deploy Action](https://github.com/Glennmen/ploi-deploy-action).
 
-This is a Work In Progress, we are adding new features...
-
-If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean Platform:
+If you want to test and use quickly this tool, I deployed the codebase (`develop` branch) on Digital Ocean Platform:
 
 - [Ghygen Demo](https://ghygen.hi-folks.dev/).
 
 If you want to start using it locally you can clone the repo and install it following the instructions below.
 
 ## Command line
-Experimental and "magical" feature: Ghygen ships also a command for generating **automatically** a GitHub Actions workflow Yaml file.
+Ghygen is also a command line tool for generating **automatically** a GitHub Actions workflow Yaml file.
 You can install Gygen as project with composer:
 ```shell
 composer create-project hi-folks/ghygen
@@ -56,33 +54,39 @@ Once you installed Ghygen, you can execute:
 ```shell
 php artisan ghygen:generate --projectdir=../otherproject
 ```
-Where "../otherproject" is the directory (absolute or relative path name) with your Laravel project (application or package) that yuo want to automatically generate the GitHub Actions workflow yaml file.
-This "magic" command, will extract information from:
-- composer.json
-- package.json (if it exists)
-- .env file
-- ... and other assets
-- in order to guess a configuration for your GitHub Actions workflow.
+Where `../otherproject` is the directory (absolute or relative path name) with your Laravel project (application or package) that yuo want to automatically generate the GitHub Actions workflow yaml file.
 
-By default the command will show the Yaml workflow file in the standard output. If you want to save it in a file for example "my-workflow.yml" you can use --save option:
+This command, will extract information from some project file like:
+- `composer.json`
+- `package.json` (if it exists)
+- `.env` file
+- ... and other assets 
+
+in order to guess a configuration for your GitHub Actions workflow.
+
+By default, the command execution will show the Yaml workflow file in the standard output. If you want to save it in a file, for example the "my-workflow.yml" file, you can use `--save` option:
 ```shell
 php artisan ghygen:generate  --save=my-workflow.yml
 ```
 
-If you want to autogenerate Yaml file in the .github/workflows directory use --save=auto
+If you want to autogenerate Yaml file in the `.github/workflows` directory use `--save=auto`:
+
 ```shell
 php artisan ghygen:generate  --save=auto
 ```
-The file name will be created with the name found in composer.json (slugified).
 
-So if you are *superlazy* and want to generate the workflow for the project in the directory ../myproject , you can execute:
+The file name will be created with the `name` value found in the `composer.json`.
+
+So if you want to generate the workflow for the project in the directory `../myproject`, you can execute the command with `--projectdir` and the `--save` options:
+
 ```shell
 php artisan ghygen:generate --projectdir=../myproject/ --save=auto
 ```
 
+## The Ghygen Web version
+### Install the Web version
 
-## Install
-Clone source code, enter the new directory and perform a couple of instructions:
+For running the Web version of Ghygen, you can clone source code, enter the new directory and perform a couple of instructions:
 ```shell
 git clone https://github.com/Hi-Folks/gh-actions-yaml-generator.git
 cd gh-actions-yaml-generator
@@ -100,7 +104,7 @@ php artisan serve
 ```
 Open the browser to the URL: http://127.0.0.1:8000
 
-## Usage
+### Usage
 Follow these steps:
 - access to the form (by default the URL is http://127.0.0.1:8000 if you run php artisan serve);
 - fill the form;
