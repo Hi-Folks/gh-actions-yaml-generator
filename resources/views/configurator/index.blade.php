@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config("app.name") }} - {{ $title }}</title>
-  <livewire:styles />
+    @livewireStyles
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="{{ $title }} {{ $description }}" />
@@ -34,7 +34,7 @@
     </main>
     <x-footer></x-footer>
   </div>
-  <livewire:scripts />
+  @livewireScripts
 
 
 </body>

@@ -1,8 +1,8 @@
-import('./bootstrap');
+import './bootstrap';
 
-import Alpine from 'alpinejs';
-window.Alpine = Alpine;
-Alpine.start();
+//import Alpine from 'alpinejs';
+//window.Alpine = Alpine;
+//Alpine.start();
 
 // Highlight code blocks and line numbers
 import hljs from 'highlight.js/lib/core';

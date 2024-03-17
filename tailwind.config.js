@@ -1,23 +1,16 @@
-module.exports = {
-
-    content: [
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
-
-
-    ],
-  darkMode: 'media', // or 'media' or 'class'
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+      './resources/**/*.blade.php',
+      './resources/**/*.js',
+      './resources/**/*.vue',
+  ],
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
-
       require('@tailwindcss/typography'),
       require('daisyui'),
-
   ],
 }
+

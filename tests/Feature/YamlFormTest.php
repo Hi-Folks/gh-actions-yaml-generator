@@ -72,12 +72,12 @@ test('form submit on events', function () {
         ->assertSet('hints', $hints);
 
     livewire(ConfiguratorForm())
-         ->set('name', 'Test')
-         ->set('manualTrigger', false)
-         ->set('onPush', true)
-         ->set('onPullrequest', true)
-         ->call('submitForm')
-         ->assertSet('hints', []);
+        ->set('name', 'Test')
+        ->set('manualTrigger', false)
+        ->set('onPush', true)
+        ->set('onPullrequest', true)
+        ->call('submitForm')
+        ->assertSet('hints', []);
 });
 
 test('form submit tests')

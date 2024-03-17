@@ -9,10 +9,10 @@
         description="Setup Workflow for Laravel with database and Code Quality."
         icon="laravel"
       >
-          <x-daisyui.button onClick="template('laravelapp')">
+          <x-daisyui.button onClick="setTemplate('laravelapp')">
             Mysql
           </x-daisyui.button>
-          <x-daisyui.button onClick="template('laravelpostgresql')">
+          <x-daisyui.button onClick="setTemplate('laravelpostgresql')">
             Postgresql
           </x-daisyui.button>
       </x-card-template>
@@ -22,7 +22,7 @@
         description="Setup Workflow for PHP Package."
         icon="php"
       >
-        <x-daisyui.button onClick="template('phppackage')">
+        <x-daisyui.button onClick="setTemplate('phppackage')">
           PHP
         </x-daisyui.button>
       </x-card-template>
@@ -32,7 +32,7 @@
         icon="laravel"
       >
 
-          <x-daisyui.button onClick="template('laravelpackage')">
+          <x-daisyui.button onClick="setTemplate('laravelpackage')">
             Laravel Package
           </x-daisyui.button>
 
@@ -42,7 +42,7 @@
     <div class="divider">OR compile some details...</div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form wire:submit.prevent="submitForm"  action="#" method="POST">
+      <form wire:submit="submitForm"  action="#" method="POST">
         @csrf
         <div class=" sm:overflow-hidden">
           <div class="px-4 py-5  space-y-6 sm:p-6   ">
@@ -66,7 +66,7 @@
                       label="On Push"
                       id="onPush"
                       value=1
-                      wire:model="onPush"
+                      wire:model.live="onPush"
                     >
                       <x-form.input-text
                         model="onPushBranches"
@@ -84,7 +84,7 @@
                       label="On Pull Request"
                       id="onPullrequest"
                       value=1
-                      wire:model="onPullrequest"
+                      wire:model.live="onPullrequest"
                     >
                       <x-form.input-text
                         model="onPullrequestBranches"
@@ -115,7 +115,7 @@
                       label="On Schedule"
                       id="onSchedule"
                       value=1
-                      wire:model="onSchedule"
+                      wire:model.live="onSchedule"
                     >
                       <x-form.input-text
                         model="onScheduleCron"
@@ -311,7 +311,7 @@
                     label="Install node for NPM build"
                     id="stepNodejs"
                     value=1
-                    wire:model="stepNodejs"
+                    wire:model.live="stepNodejs"
                   >
                     <x-form.input-text
                       model="stepNodejsVersion"

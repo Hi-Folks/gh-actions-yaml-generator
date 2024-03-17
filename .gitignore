@@ -18,6 +18,7 @@ public/mix-manifest.json
 /Makefile.param.prod
 /public/google*.html
 
+
 /output/
 /.vscode/
 result.sarif

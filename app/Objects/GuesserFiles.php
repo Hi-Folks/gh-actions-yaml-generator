@@ -205,6 +205,7 @@ class GuesserFiles
         } catch (\Exception $e) {
             $stepLaravelVersions = [];
         }
+
         //$this->ste = $stepPhp;
         return $stepLaravelVersions;
     }

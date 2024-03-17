@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Configuration;
 use App\Objects\WorkflowGenerator;
@@ -22,11 +22,11 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfiguratorForm extends Component
 {
-    use WithRateLimiting;
     use BaseWorkflow;
     use CodeQuality;
-    use LaravelStuff;
     use Deploy;
+    use LaravelStuff;
+    use WithRateLimiting;
 
     public string $code = '';
 
@@ -89,7 +89,7 @@ class ConfiguratorForm extends Component
         $codeNotFound = false;
         $this->loadDefaults();
         if ($this->template != '') {
-            $this->template($this->template);
+            $this->setTemplate($this->template);
         }
         if ($this->code != '') {
             $confModel = Configuration::getByCode($this->code);
@@ -114,7 +114,12 @@ class ConfiguratorForm extends Component
         $this->result = ' ';
     }
 
-    public function template(string $x): void
+    public function templateLaravelApp(): void
+    {
+        $this->setTemplate('laravelapp');
+    }
+
+    public function setTemplate(string $x): void
     {
         if (in_array($x, ['laravelapp', 'laravelpostgresql', 'laravelpackage', 'phppackage'])) {
             $this->template = $x;

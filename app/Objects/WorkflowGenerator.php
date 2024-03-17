@@ -13,8 +13,8 @@ class WorkflowGenerator
 {
     use BaseWorkflow;
     use CodeQuality;
-    use LaravelStuff;
     use Deploy;
+    use LaravelStuff;
 
     public const DB_TYPE_NONE = 'none';
 

@@ -21,7 +21,7 @@
     </a-->
   </label>
 
-  <select @change="{{ $onChange }}" wire:model.lazy="{{ $model }}" class="{{ $multiselect ? 'form-multiselect' : 'form-select' }} select select-bordered w-full max-w-xs" {{ $multiselect ? 'multiple' : '' }} name="{{ $name }}" id="{{ $id ?? $name }}">
+  <select @change="{{ $onChange }}" wire:model.live.blur="{{ $model }}" class="{{ $multiselect ? 'form-multiselect' : 'form-select' }} select select-bordered w-full max-w-xs" {{ $multiselect ? 'multiple' : '' }} name="{{ $name }}" id="{{ $id ?? $name }}">
     @foreach( $list as $key=> $item)
     <option value="{{ $key }}">{{  $item }}</option>
     @endforeach
