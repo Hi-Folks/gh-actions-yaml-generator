@@ -12,6 +12,7 @@
   - actions/checkout@v4
   - actions/setup-node@v4
   - actions/cache@v4
+- Upgrading larastan usage in the Workflow
 
 ## 1.0.0 - 2024-03-17
 - Upgrading to Laravel v11
