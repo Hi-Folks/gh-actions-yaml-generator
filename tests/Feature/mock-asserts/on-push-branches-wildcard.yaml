@@ -1,0 +1,5 @@
+name: Test Wildcard
+on:
+  push:
+    branches:
+      - '*'

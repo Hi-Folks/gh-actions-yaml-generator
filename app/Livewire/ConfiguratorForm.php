@@ -114,12 +114,12 @@ class ConfiguratorForm extends Component
         $this->result = ' ';
     }
 
-    public function templateLaravelApp()
+    public function templateLaravelApp(): void
     {
         $this->setTemplate('laravelapp');
     }
 
-    public function setTemplate($x)
+    public function setTemplate(string $x): void
     {
         if (in_array($x, ['laravelapp', 'laravelpostgresql', 'laravelpackage', 'phppackage'])) {
             $this->template = $x;

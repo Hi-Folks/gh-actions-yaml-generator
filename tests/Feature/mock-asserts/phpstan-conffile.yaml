@@ -1,0 +1,3 @@
+    - name: Execute Code Static Analysis (PHP Stan + Larastan)
+      run: |
+        vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress

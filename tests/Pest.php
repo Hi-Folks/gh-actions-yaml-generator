@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\ConfiguratorForm;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -13,6 +15,7 @@
 
 uses(
     Tests\TestCase::class,
+    Illuminate\Foundation\Testing\DatabaseMigrations::class,
     // Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Feature');
 
@@ -45,4 +48,20 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+/**
+ *  ConfiguratorForm class name
+ */
+function ConfiguratorForm(): string
+{
+    return ConfiguratorForm::class;
+}
+
+/**
+ * Reads assets file content
+ */
+function readAsset(string $filename): string
+{
+    return file_get_contents(__DIR__.'/Feature/mock-asserts/'.$filename);
 }

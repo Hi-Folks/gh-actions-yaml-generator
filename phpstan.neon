@@ -1,0 +1,12 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Parameter .1 \$separator of function explode expects non-empty-string, string given.#'
+
+    level: 6
+    paths:
+        - app
+
