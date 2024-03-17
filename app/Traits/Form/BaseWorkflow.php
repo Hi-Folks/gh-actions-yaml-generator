@@ -57,7 +57,7 @@ trait BaseWorkflow
     /**
      * @var array<string>
      */
-    public array $stepPhpVersions; // 8.2
+    public array $stepPhpVersions; // 8.3
 
     public bool $stepNodejs; // false
 
@@ -97,9 +97,9 @@ trait BaseWorkflow
         $this->postgresqlVersion = 'latest';
         $this->postgresqlDatabaseName = 'db_test_laravel';
         $this->postgresqlDatabasePort = 55432;
-        $this->stepPhpVersions = ['8.2', '8.1', '8.0', '7.4'];
+        $this->stepPhpVersions = ['8.3', '8.2', '8.1', '8.0', '7.4'];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion = '18.x';
+        $this->stepNodejsVersion = '20.x';
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules = true;

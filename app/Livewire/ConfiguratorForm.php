@@ -84,7 +84,9 @@ class ConfiguratorForm extends Component
 
     public function mount(): void
     {
+
         $this->fill(request()->only('code'));
+
         Log::debug(__METHOD__.' Code : '.$this->code);
         $codeNotFound = false;
         $this->loadDefaults();
