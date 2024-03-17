@@ -1,7 +1,7 @@
 
 # Changelog
 
-## 1.0.0 - 2023-03-17
+## 1.0.0 - 2024-03-17
 - Upgrading to Laravel v11
 - Upgrading to PestPHP v2
 - Upgrading to Livewire v3
