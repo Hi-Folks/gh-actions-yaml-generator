@@ -14,7 +14,7 @@
 @endif
 
 @if ($stepSecurityCheck)
-    - uses: symfonycorp/security-checker-action@v4
+    - uses: symfonycorp/security-checker-action@v5
 @endif
 
 @if ($stepExecuteCodeSniffer)
@@ -52,7 +52,7 @@
 @else
         vendor/bin/psalm --report=result.sarif
     - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       with:
         # Path to SARIF file relative to the root of the repository
         sarif_file: result.sarif
