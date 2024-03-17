@@ -5,7 +5,13 @@
 - Adding select for PHP 8.3 in the workflow files
 - Adding select for Laravel 11 in the workflow files
 - Adding select for Node 20 in the workflow files
-
+- Updating GitHub Actions versions:
+  - symfonycorp/security-checker-action@v5
+  - github/codeql-action/upload-sarif@v3
+  - webfactory/ssh-agent@v0.9.0
+  - actions/checkout@v4
+  - actions/setup-node@v4
+  - actions/cache@v4
 
 ## 1.0.0 - 2024-03-17
 - Upgrading to Laravel v11
