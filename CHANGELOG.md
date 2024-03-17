@@ -1,4 +1,12 @@
+
 # Changelog
+
+## 1.0.0 - 2023-03-17
+- Upgrading to Laravel v11
+- Upgrading to PestPHP v2
+- Upgrading to Livewire v3
+- Upgrading to Larastan v2
+
 
 ## 0.7.1 - 2023-05-07
 - Switching from Webpack to Vite
