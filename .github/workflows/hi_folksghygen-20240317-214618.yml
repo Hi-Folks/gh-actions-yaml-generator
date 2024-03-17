@@ -28,7 +28,7 @@ jobs:
     - name: Install NPM packages
       run: npm i
     - name: Build frontend
-      run: npm run development
+      run: npm run build
     - name: Install PHP versions
       uses: shivammathur/setup-php@v2
       with:
