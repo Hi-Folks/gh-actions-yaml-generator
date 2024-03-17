@@ -111,7 +111,7 @@ class GenerateWorkflow extends Command
                 $generator->name
             );
 
-            $phpversion = Arr::get($composer, 'require.php', '8.0');
+            $phpversion = Arr::get($composer, 'require.php', '8.3');
 
             $stepPhp = $generator->detectPhpVersion($phpversion);
             $reportExecution->addValueInfo('PHP versions', $stepPhp);
@@ -154,7 +154,7 @@ class GenerateWorkflow extends Command
                 $reportExecution->addValueComment('Code sniffer', 'Not detected');
             }
             // nunomaduro/larastan
-            $larastan = Arr::get($devPackages, 'nunomaduro/larastan', '');
+            $larastan = Arr::get($devPackages, 'larastan/larastan', '');
             if ($larastan !== '') {
                 $generator->stepExecuteStaticAnalysis = true;
                 $generator->stepInstallStaticAnalysis = false;
@@ -237,7 +237,7 @@ class GenerateWorkflow extends Command
         }
         if ($guesserFiles->packageExists()) {
             $generator->stepNodejs = true;
-            $generator->stepNodejsVersion = '18.x';
+            $generator->stepNodejsVersion = '20.x';
             $versionFromNvmrc = $generator->readNvmrc($guesserFiles
                 ->getNvmrcPath());
             if ($versionFromNvmrc !== '') {

@@ -31,12 +31,12 @@
     - name: Execute Code Static Analysis (PHP Stan + Larastan)
       run: |
 @if ($stepInstallStaticAnalysis)
-        composer require --dev nunomaduro/larastan
+        composer require --dev larastan/larastan
 @endif
 @if ($stepPhpstanUseNeon)
         vendor/bin/phpstan analyse -c ./phpstan.neon --no-progress
 @else
-        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+        vendor/bin/phpstan analyse {{ $stepDirStaticAnalysis }} -c ./vendor/larastan/larastan/extension.neon  --level=4 --no-progress
 @endif
 @elseif ($stepToolStaticAnalysis == 'psalmlaravel')
     - name: Execute Code Static Analysis (PSALM)

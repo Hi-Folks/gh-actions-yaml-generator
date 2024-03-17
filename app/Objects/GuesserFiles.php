@@ -190,8 +190,8 @@ class GuesserFiles
      */
     public static function detectLaravelVersionFromTestbench(string $testbenchVersion): array
     {
-        $listLaravelVersions = ['6.*', '7.*', '8.*', '9.*', '10.*'];
-        $listTestBenchVersions = ['4.0', '5.0', '6.0', '7.0', '8.0'];
+        $listLaravelVersions = ['6.*', '7.*', '8.*', '9.*', '10.*', '11.*'];
+        $listTestBenchVersions = ['4.0', '5.0', '6.0', '7.0', '8.0', '9.0'];
         $stepLaravelVersions = [];
         $i = 0;
 
