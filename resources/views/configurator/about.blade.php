@@ -93,7 +93,7 @@
                 Matrix versions
               </dt>
               <dd class="mt-2 text-base text-gray-500">
-                Select multiple PHP versions (8.0, 7.4, 7.3), multiple Laravel versions (8, 7, 6).
+                Select multiple PHP versions (8.3, 8.2, 8.1, 8.0, 7.4, 7.3), multiple Laravel versions (11, 10, 9, 8, 7, 6).
               </dd>
             </div>
           </div>
@@ -113,7 +113,7 @@
                 Quality Check
               </dt>
               <dd class="mt-2 text-base text-gray-500">
-                Execute PHPunit tests, Code sniffer (PSR12), Static code analysis.
+                Execute PHPunit/PestPHP tests, Code sniffer (PSR12) or Pint (PER / PSR12), Static code analysis.
               </dd>
             </div>
           </div>
@@ -138,55 +138,19 @@
               <li>select branches;</li>
               <li>enable caching for all vendors;</li>
               <li>enable <strong>caching</strong> PHP packages;</li>
-              <li>select <strong>multiple</strong> PHP versions (8.0, 7.4, 7.3);</li>
-              <li>select <strong>multiple Laravel</strong> versions (8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;</li>
+              <li>select <strong>multiple</strong> PHP versions (8.3, 8.2, 8.1, 8.0, 7.4, 7.3);</li>
+              <li>select <strong>multiple Laravel</strong> versions (11, 10, 9, 8, 7, 6), useful if you are developing a Laravel Package and you want to test it with multiple Laravel version;</li>
               <li>select <strong>Node</strong> version for NPM (npm run something);</li>
               <li>caching node packages;</li>
               <li>setup <strong>Mysql</strong> service;</li>
               <li>run migrations;</li>
               <li><strong>execute tests</strong> via phpunit;</li>
               <li>static <strong>code analysis</strong>;</li>
-              <li>code sniffer (via phpcs for <strong>PSR12</strong> compatibility);</li>
+              <li>code sniffer (via phpcs for <strong>PSR12</strong> compatibility or Laravel Pint);</li>
               <li><strong>validate Yaml</strong> file;</li>
               <li>execute <strong>Browser Test</strong> via Laravel Dusk.</li>
             </ul>
-            <p>This is a Work In Progress, we are adding new features...</p>
-            <p>If you want to test and use quickly this tool, I deployed the codebase (main branch) on Digital Ocean Platform:</p>
-            <ul>
-              <li><a href="https://ghygen.hi-folks.dev/" rel="nofollow">Ghygen Demo</a>.</li>
-            </ul>
-            <p>If you want to start using it locally you can clone the repo and install it following the instructions below.</p>
-            <h2>Install</h2>
-            <p>Clone source code, enter the new directory and perform a couple of instructions:</p>
-            <div class="highlight highlight-source-shell">
-              <pre>git clone https://github.com/Hi-Folks/gh-actions-yaml-generator.git
-cd gh-actions-yaml-generator
-cp .env.example .env
-composer install
-php artisan key:generate
-npm i
-npm run production</pre>
-            </div>
-            <p>Then create your database and update the .env file with the right values for DB_* .</p>
-            <p>Once your Database is configured you can execute the migrations:</p>
-            <div class="highlight highlight-source-shell">
-              <pre>php artisan migrate</pre>
-              <p>Start development server</p>
-              <div class="highlight highlight-source-shell">
-                <pre>php artisan serve</pre>
-              </div>
-              <p>Open the browser to the URL: <a href="http://127.0.0.1:8000" rel="nofollow">http://127.0.0.1:8000</a></p>
-              <h2>Usage</h2>
-              <p>Follow these steps:</p>
-              <ul>
-                <li>access to the form (by default the URL is <a href="http://127.0.0.1:8000" rel="nofollow">http://127.0.0.1:8000</a> if you run php artisan serve);</li>
-                <li>fill the form;</li>
-                <li>click on "Generate Yaml File" button.</li>
-              </ul>
-              <p><img src="https://raw.githubusercontent.com/Hi-Folks/gh-actions-yaml-generator/main/github-actions-generator-laravel.png" alt="github-actions-generator-laravel" title="github-actions-generator-laravel" style="max-width:100%;"></p>
-              <p>Next, copy the content of your generated Yaml in a new file in your Laravel project <em>.github/workflows/laravel_workflow.yaml</em> .</p>
-              <p>Commit and push the new file.</p>
-              <p>If you configured "On - Push" you will see the running Actions in your Actions section of your GitHub project.</p>
+            <p>If you want to download it you can clone the repository https://github.com/Hi-Folks/gh-actions-yaml-generator</p>
           </article>
         </div>
       </div>
