@@ -1,7 +1,7 @@
 <p align=center>
-    <img src="https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=develop&style=for-the-badge" alt="GitHub Workflow Status (develop branch)">
-    <img src="https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge" alt="GitHub release (latest by date)">
-    <img src="https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F" alt="Website">
+    <a href="https://github.com/Hi-Folks/gh-actions-yaml-generator/actions"><img src="https://img.shields.io/github/actions/workflow/status/Hi-Folks/gh-actions-yaml-generator/check-php.yml?branch=develop&style=for-the-badge" alt="GitHub Workflow Status (develop branch)"></a>
+    <a href="https://github.com/Hi-Folks/gh-actions-yaml-generator/releases"><img src="https://img.shields.io/github/v/release/Hi-Folks/gh-actions-yaml-generator?style=for-the-badge" alt="GitHub release (latest by date)"></a>
+    <a href="https://ghygen.hi-folks.dev/"><img src="https://img.shields.io/website?label=Demo%20Site&style=for-the-badge&url=https%3A%2F%2Fghygen.hi-folks.dev%2F" alt="Website"></a>
 </p>
 
 ![Ghygen](ghygen-github-actions-yaml-generator-laravel.png "Ghygen")
