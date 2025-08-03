@@ -13,7 +13,7 @@ trait Deploy
     public string $stepDeployForgeServerName;
 
     public string $stepDeployForgeSiteName;
-    //public $stepDeployApiToken;
+    // public $stepDeployApiToken;
 
     public function loadDefaultsDeploy(): void
     {
@@ -23,7 +23,7 @@ trait Deploy
         $this->stepDeployForgeServerName = '';
         $this->stepDeployForgeSiteName = '';
 
-        //$this->stepDeployApiToken = "VAPOR_API_TOKEN";
+        // $this->stepDeployApiToken = "VAPOR_API_TOKEN";
     }
 
     public function loadDeployFromJson(object $j): void
@@ -33,13 +33,13 @@ trait Deploy
         data_fill($j, 'stepDeployWebhookUrl', 'WEBHOOK_URL');
         data_fill($j, 'stepDeployForgeServerName', '');
         data_fill($j, 'stepDeployForgeSiteName', '');
-        //data_fill($j, "stepDeployApiToken", 'VAPOR_API_TOKEN');
+        // data_fill($j, "stepDeployApiToken", 'VAPOR_API_TOKEN');
 
         $this->stepDeployType = $j->stepDeployType;
         $this->stepDeployWebhookType = $j->stepDeployWebhookType;
         $this->stepDeployForgeServerName = $j->stepDeployForgeServerName;
         $this->stepDeployForgeSiteName = $j->stepDeployForgeSiteName;
-        //$this->stepDeployApiToken = $j->stepDeployApiToken;
+        // $this->stepDeployApiToken = $j->stepDeployApiToken;
     }
 
     /**
@@ -53,7 +53,7 @@ trait Deploy
         $data['stepDeployWebhookUrl'] = $this->stepDeployWebhookUrl;
         $data['stepDeployForgeSiteName'] = $this->stepDeployForgeSiteName;
         $data['stepDeployForgeServerName'] = $this->stepDeployForgeServerName;
-        //$data["stepDeployApiToken"] = $this->stepDeployApiToken;
+        // $data["stepDeployApiToken"] = $this->stepDeployApiToken;
 
         return $data;
     }

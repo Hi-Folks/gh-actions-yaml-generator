@@ -4,17 +4,17 @@ namespace App\Traits\Form;
 
 trait CodeQuality
 {
-    public bool $stepExecutePhpunit; //true
+    public bool $stepExecutePhpunit; // true
 
-    public bool $stepExecutePestphp; //false
+    public bool $stepExecutePestphp; // false
 
-    public bool $stepSecurityCheck; //false
+    public bool $stepSecurityCheck; // false
 
-    public bool $stepExecuteCodeSniffer; //false
+    public bool $stepExecuteCodeSniffer; // false
 
     public string $stepDirCodeSniffer; // app
 
-    public bool $stepInstallCodeSniffer; //true
+    public bool $stepInstallCodeSniffer; // true
 
     public bool $stepExecuteStaticAnalysis; // false
 
@@ -22,7 +22,7 @@ trait CodeQuality
 
     public string $stepToolStaticAnalysis; // phpstan|larastan|psalmlaravel
 
-    public bool $stepInstallStaticAnalysis; //true
+    public bool $stepInstallStaticAnalysis; // true
 
     public bool $stepDusk; // false
 

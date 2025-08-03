@@ -12,7 +12,7 @@ Route::get('/about', [ConfiguratorController::class, 'about'])->name('about');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/action', function () {
-    //$type = "application/x-yaml";
+    // $type = "application/x-yaml";
     $type = 'text/x-yaml';
     $data = [
         'name' => 'Test Laravel Github action',

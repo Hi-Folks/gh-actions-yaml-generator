@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Configuration extends Model
 {
-    use HasFactory;
-
     /**
      * @var array<string, string>
      */
@@ -74,7 +71,7 @@ class Configuration extends Model
         $confModel = self::getByCode($code);
 
         if (! $confModel) {
-            $confModel = new self();
+            $confModel = new self;
             $confModel->code = $code;
             $confModel->configuration = $json;
             $confModel->metadata = $metadata;

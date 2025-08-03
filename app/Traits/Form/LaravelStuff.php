@@ -6,7 +6,7 @@ use App\Objects\WorkflowGenerator;
 
 trait LaravelStuff
 {
-    public bool $stepFixStoragePermissions; //true
+    public bool $stepFixStoragePermissions; // true
 
     public bool $stepRunMigrations; // true
 
@@ -59,7 +59,7 @@ trait LaravelStuff
         $this->stepCopyEnvTemplateFile = $j->stepCopyEnvTemplateFile;
         $this->matrixLaravel = $j->matrixLaravel;
         $this->matrixLaravelVersions = $j->matrixLaravelVersions;
-        //$this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
+        // $this->matrixTestbenchDependencies = (array)  $j->matrixTestbenchDependencies;
     }
 
     /**

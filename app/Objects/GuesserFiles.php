@@ -172,7 +172,7 @@ class GuesserFiles
 
     private function somethingExists(string $methodPath, bool $isDirCheck = false): bool
     {
-        //$path = call_user_func(array($this, $methodPath));
+        // $path = call_user_func(array($this, $methodPath));
         $path = $this->dispatch($methodPath);
         $exists = $path;
         if ($exists == '') {
@@ -206,7 +206,7 @@ class GuesserFiles
             $stepLaravelVersions = [];
         }
 
-        //$this->ste = $stepPhp;
+        // $this->ste = $stepPhp;
         return $stepLaravelVersions;
     }
 

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Objects\GuesserFiles;
-//use PHPUnit\Framework\TestCase;
+// use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
 class GuesserTest extends TestCase
@@ -13,7 +13,7 @@ class GuesserTest extends TestCase
      *
      * @return void
      */
-    public function testLaravelVersions()
+    public function test_laravel_versions()
     {
         $arr = GuesserFiles::detectLaravelVersionFromTestbench('xxx');
         $this->assertIsArray($arr);
@@ -39,9 +39,9 @@ class GuesserTest extends TestCase
      *
      * @return void
      */
-    public function testPathGuesser()
+    public function test_path_guesser()
     {
-        $guesserFiles = new GuesserFiles();
+        $guesserFiles = new GuesserFiles;
         $guesserFiles->pathFiles('../test');
 
         $this->assertEquals($guesserFiles->getEnvDefaultTemplatePath(), '../test/.env.example');

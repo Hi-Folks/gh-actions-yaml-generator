@@ -198,13 +198,13 @@ class ConfiguratorForm extends Component
         }
         try {
             $json = json_encode($array);
-            //$compressed = gzdeflate($json,  9);
+            // $compressed = gzdeflate($json,  9);
             $hashCode = md5($json);
             Configuration::saveConfiguration($hashCode, $data);
             $this->code = $hashCode;
             $seconds = 60 * 60 * 3; // 3 hours
             $schema = Cache::remember('cache-schema-yaml', $seconds, function () {
-                //return Schema::import('https://json.schemastore.org/github-workflow');
+                // return Schema::import('https://json.schemastore.org/github-workflow');
                 return Schema::import(json_decode(file_get_contents(base_path('github-workflow.json'))));
             });
             $schema->in(json_decode($json));

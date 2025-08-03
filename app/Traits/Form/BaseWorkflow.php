@@ -63,9 +63,9 @@ trait BaseWorkflow
 
     public string $stepNodejsVersion; // 18.x
 
-    public bool $stepCachePackages; //true
+    public bool $stepCachePackages; // true
 
-    public bool $stepCacheVendors; //true
+    public bool $stepCacheVendors; // true
 
     public bool $stepCacheNpmModules; // true
 
@@ -97,9 +97,9 @@ trait BaseWorkflow
         $this->postgresqlVersion = 'latest';
         $this->postgresqlDatabaseName = 'db_test_laravel';
         $this->postgresqlDatabasePort = 55432;
-        $this->stepPhpVersions = ['8.3', '8.2', '8.1', '8.0', '7.4'];
+        $this->stepPhpVersions = ['8.4', '8.3', '8.2', '8.1', '8.0', '7.4'];
         $this->stepNodejs = false;
-        $this->stepNodejsVersion = '20.x';
+        $this->stepNodejsVersion = '22.x';
         $this->stepCachePackages = true;
         $this->stepCacheVendors = true;
         $this->stepCacheNpmModules = true;

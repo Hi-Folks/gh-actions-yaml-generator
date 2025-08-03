@@ -299,7 +299,7 @@
                     model="stepPhpVersions"
                     name="stepPhpVersions"
                     label="PHP Versions"
-                    :list="['8.3' => '8.3', '8.2' => '8.2', '8.1' => '8.1', '8.0'=>'8.0','7.4'=>'7.4','7.3'=>'7.3']"
+                    :list="['8.4' => '8.4', '8.3' => '8.3', '8.2' => '8.2', '8.1' => '8.1', '8.0'=>'8.0','7.4'=>'7.4']"
                     help="Select PHP Versions (Multiple)"
                     multiselect=1>
                   </x-form.input-select>

@@ -63,7 +63,7 @@ class GenerateWorkflow extends Command
      */
     public function handle()
     {
-        $reportExecution = new ReportExecution();
+        $reportExecution = new ReportExecution;
         $this->saveFile = false;
         $dryRun = $this->option('dry-run');
         $projectdir = $this->option('projectdir');
@@ -88,17 +88,17 @@ class GenerateWorkflow extends Command
         $cache = $this->option('cache');
         $optionEnvWorkflowFile = $this->option('envfile');
 
-        $guesserFiles = new GuesserFiles();
+        $guesserFiles = new GuesserFiles;
         $guesserFiles->pathFiles($projectdir, $optionEnvWorkflowFile);
 
-        //$this->line("Composer : " . $guesserFiles->getComposerPath());
+        // $this->line("Composer : " . $guesserFiles->getComposerPath());
         if (! $guesserFiles->composerExists()) {
             $this->error('Composer file not found');
 
             return -1;
         }
 
-        $generator = new WorkflowGenerator();
+        $generator = new WorkflowGenerator;
         $generator->loadDefaults();
 
         if ($guesserFiles->composerExists()) { /** @phpstan-ignore-line */
@@ -268,7 +268,7 @@ class GenerateWorkflow extends Command
         }
         $generator->stepFixStoragePermissions = false;
         if ($guesserFiles->artisanExists()) {
-            //artisan file so:ENV_TEMPLATE_FILE_DEFAULT.
+            // artisan file so:ENV_TEMPLATE_FILE_DEFAULT.
             // fix storage permissions
             $generator->stepFixStoragePermissions = true;
         }
